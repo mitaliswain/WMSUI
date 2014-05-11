@@ -1,0 +1,19 @@
+<%= form_tag("/shipmentreceive") do %>
+
+ <% @receiving.each_with_index do |receive, index| %>	
+ 	<% if index <= @sequence %>			
+		<%= editable_input(receive)%>
+	<% end %>	
+ <% end %>
+
+
+<div>
+  <%= content_tag(:label, "Error: " +  @response["error"][0].to_s) if ! @response["valid"] %>
+</div>  
+
+<div>
+  <%= submit_tag("Receive") %>
+</div>  
+</div>
+
+<% end %>
