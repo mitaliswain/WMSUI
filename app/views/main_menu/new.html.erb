@@ -1,0 +1,14 @@
+<%= form_tag("/mainmenu") do %>
+	<div>
+		<%= label_tag(:client, "Client:") %>
+		<%= text_field_tag(:client) %>
+	</div>
+	<div>
+		<%= label_tag(:warehouse, "Warehouse:") %>
+		<%= text_field_tag(:warehouse) %>
+	</div>		
+	<div>
+  		<%= submit_tag("Proceed") %>
+	</div>  
+	
+<%end%>

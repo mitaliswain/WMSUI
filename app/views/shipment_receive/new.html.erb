@@ -8,7 +8,7 @@
 
 
 <div>
-  <%= content_tag(:label, "Error: " +  @response["error"][0].to_s) if ! @response["valid"] %>
+  <%= content_tag(:label, "Error: " +  @response["message"][0].to_s) if ! @response["valid"] %>
 </div>  
 
 <div>
