@@ -8,23 +8,23 @@ class ShipmentReceiveController < ApplicationController
   def new
     @response = Hash.new  
     @receiving = [
-                  {"name" => 'location',  "description"=> "Location" ,  "value" => '', "validated" => false},
-                  {"name" => 'shipment_nbr',  "description"=> "Shipment" ,  "value" => '', "validated" => false},
-                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false},
-                  {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false},
-                  {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false},
-                  {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false}
+                  {"name" => 'location',  "description"=> "Location" ,  "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'shipment_nbr',  "description"=> "Shipment" ,  "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false ,"to_validate" => false }
 
                   ]               
     @sequence = 0
     session[:receiving] = @receiving           
     session[:sequence] = @sequence
     
-    @response= {"valid"=> true, "message"=> []}
+    @response= {"status"=> true, "message"=> []}
   end 
   
   def create
-    @response= {"valid"=> true, "message"=> []}
+    @response= {"status"=> true, "message"=> []}
      
     @wms = session[:wms]  
     @receiving = session[:receiving]
@@ -40,9 +40,13 @@ class ShipmentReceiveController < ApplicationController
       shipment.store(receive["name"], receive["value"]) if index < @sequence
       shipment.store(receive["name"], params[:name]) if index == @sequence  
     end
+   
     
-    
-    @response = Shipment.validate(@receiving[@sequence]["name"], shipment)
+   if @receiving[@sequence]["to_validate"] 
+       @response = Shipment.validate(@receiving[@sequence]["name"], shipment) 
+   else
+       @response = {"status"  => true, "message" => []}
+   end      
                                             
     if @response["status"] == true
         @receiving[@sequence]["value"] = params[:name] if !params[:name].nil?
