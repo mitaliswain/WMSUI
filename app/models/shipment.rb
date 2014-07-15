@@ -21,9 +21,7 @@ class Shipment
     puts shipment   
     response = RestClient.post url,
     shipment: shipment
-
-      puts response
-     return JSON.parse(response)
+   return JSON.parse(response)
       
   end
   
@@ -50,7 +48,6 @@ class Shipment
 
     puts response     
     return JSON.parse(response)
-    
     
   end
   
