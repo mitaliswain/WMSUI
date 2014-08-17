@@ -67,6 +67,5 @@ class Shipment
     return JSON.parse(response)
     
   end
-  
-  
+    
 end
