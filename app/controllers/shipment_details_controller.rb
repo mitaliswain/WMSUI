@@ -11,8 +11,14 @@ class ShipmentDetailsController < ApplicationController
     end
   end
   
-  def update
-    response = Shipment.shipment_details_update(params[:shipment], params[:field_to_update])
+  def update_header
+    response = Shipment.shipment_update_header(params[:id], params[:shipment], params[:field_to_update])
     render :json => response
   end
+
+  def update_detail
+    response = Shipment.shipment_update_detail(params[:id], params[:shipment], params[:field_to_update])
+    render :json => response
+  end
+
 end

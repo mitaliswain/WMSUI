@@ -8,9 +8,17 @@ class Shipment
     return JSON.parse(response)       
   end
   
-  def self.shipment_details_update(shipment, field_to_update)
+  def self.shipment_update_header(id, shipment, field_to_update)
+    url = "http://wmsservice.herokuapp.com/shipment/#{id}/update_header"
+    response = RestClient.post url, 
+    shipment: shipment,
+    field_to_update: field_to_update
+      
+    return JSON.parse(response)  
+  end
 
-    url = "http://wmsservice.herokuapp.com/shipment/Shipment1/update"
+  def self.shipment_update_detail(id, shipment, field_to_update)
+    url = "http://wmsservice.herokuapp.com/shipment/#{id}/update_detail"
     response = RestClient.post url, 
     shipment: shipment,
     field_to_update: field_to_update

@@ -16,9 +16,26 @@ shipment_detail.controller('shipmentCtrl', function ($scope, $http, $location) {
     
   });
 
- $scope.updateUser = function(data, el) {
+ $scope.updateHeader = function(data, el, id) {
 
-    return $http.post('/shipment_details/Shipment1/update', {
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var url = '/shipment_details/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	shipment: {'client': 'WM', 'warehouse': 'WH1'},
+    	field_to_update: {'column': el.$editable.elem[0].id, 'value': data}
+    	});
+ };
+  
+ $scope.updateDetail = function(data, el, id) {
+
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var url = '/shipment_details/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
+    return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	shipment: {'client': 'WM', 'warehouse': 'WH1'},
     	field_to_update: {'column': el.$editable.elem[0].id, 'value': data}
