@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
+  post 'shipment_details/:shipment_details/update' => 'shipment_details#update' 
   resources :shipmentreceive, controller: 'shipment_receive'
+  resources :shipmentdetails, controller: 'shipment_details'
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
