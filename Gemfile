@@ -12,7 +12,7 @@ group :production do
   gem 'pg'
 end
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -44,5 +44,3 @@ gem 'rest-client'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
-
-gem 'sprockets', git: 'git://github.com/sstephenson/sprockets.git'
