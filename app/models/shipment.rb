@@ -1,5 +1,15 @@
 require 'rest_client'
 class Shipment
+  
+   def self.shipment_list(shipment)
+
+    url = "http://wmsservice.herokuapp.com/shipment?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
+    #url = "localhost:3002/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+    response = RestClient.get url    
+    return JSON.parse(response)       
+  end
+
+
   def self.shipment_details(shipment)
 
     url = "http://wmsservice.herokuapp.com/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
