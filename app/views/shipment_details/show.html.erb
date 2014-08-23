@@ -26,7 +26,7 @@
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
 		  	<div>ASN Type: <a href="#" id="asn_type" editable-text="shipment_header.asn_type" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.asn_type || "empty" }}</a></div>
-		  	<div>Source: <a href="#" id="source" editable-text="shipment_header.source" onbeforesave="updateHeader($data, this, shipment_header.id">{{ shipment_header.source || "empty" }}</a></div>
+		  	<div>Source: <a href="#" id="source" editable-text="shipment_header.source" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.source || "empty" }}</a></div>
 		  	<div>Source Comment: <a href="#" id="source_comment" editable-text="shipment_header.source_comment" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.source_comment || "empty" }}</a></div>
 		  	<div>Appointment Number: <a href="#" id="appointment_nbr" editable-text="shipment_header.appointment_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.appointment_nbr || "empty" }}</a></div>
 		  	<div>Dock Door: <a href="#" id="door_door" editable-text="shipment_header.door_door" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.door_door || "empty" }}</a></div>
@@ -52,7 +52,7 @@
 					        </a>
 					      </h4>
 					    </div>
-					    <div id="collapse_detail_{{$index}}" class="panel-collapse collapse in">
+					    <div id="collapse_detail_{{$index}}" class="panel-collapse collapse">
 					      <div class="panel-body">
 					      		<div>PO Quantity: <a href="#" id="po_qty" editable-text="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
 		  						<div>received_qty: <a href="#" id="received_qty" editable-text="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "empty" }}</a></div>
