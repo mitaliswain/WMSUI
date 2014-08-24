@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   post 'shipment_details/:id/update_header' => 'shipment_details#update_header' 
   post 'shipment_details/:id/update_detail' => 'shipment_details#update_detail' 
+  post 'shipment_details/' => 'shipment_details#create' 
+
 
   resources :shipmentreceive, controller: 'shipment_receive'
   resources :shipmentdetails, controller: 'shipment_details'

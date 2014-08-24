@@ -23,6 +23,14 @@ class ShipmentDetailsController < ApplicationController
     end
   end
   
+  def new
+    
+  end
+  
+  def create
+    render :json => {error: 'ok'}
+  end
+  
   def update_header
     response = Shipment.shipment_update_header(params[:id], params[:shipment], params[:field_to_update])
     render :json => response

@@ -28,8 +28,13 @@
 			<tr>
 				<td>Shipment</td>
 				<td>Shipemnt Type</td>
-				<td><i class="icon-plus-sign"></i></td>					
-			</tr>
+				<td>
+					<a id="open_shipment_add"
+					data-toggle="modal"
+					href="#shipment_header_add">
+				  	<i class="icon-plus-sign"></i></a>
+				</td>					
+
 		</thead>	
 			<tr ng-repeat="shipment_header in shipment_headers">
 				<td>{{shipment_header.shipment_nbr}}</td>
@@ -45,8 +50,8 @@
 		</table>
 
 	
+ 
 
-	
 	<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -64,6 +69,15 @@
     </div>
   </div>
 </div>
-	</div>
+
+ <div class="modal fade" id="shipment_header_add" tabindex="-1" role="dialog" aria-labelledby="basicModal2" aria-hidden="true">
+ 
+  </div>
+
+
+
+
+
+</div>
 </body>
 </html>	
