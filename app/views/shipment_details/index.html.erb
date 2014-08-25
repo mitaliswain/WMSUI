@@ -8,6 +8,13 @@
 			$('#shipment_detail_modal_iframe').attr('src', url)
 			$('#shipment_detail_modal').modal('show');
 		});
+		
+		$(document).on("click", "#open_shipment_add", function () {
+			url = '/shipmentdetails/new/?warehouse=WH1&client=WM';
+			$('#shipment_detail_modal_iframe').attr('src', url)
+			$('#shipment_detail_modal').modal('show');
+		});
+
 
 	</script>
 	<style>
@@ -31,7 +38,6 @@
 				<td>
 					<a id="open_shipment_add"
 					data-toggle="modal"
-					href="#shipment_header_add">
 				  	<i class="icon-plus-sign"></i></a>
 				</td>					
 
@@ -70,9 +76,6 @@
   </div>
 </div>
 
- <div class="modal fade" id="shipment_header_add" tabindex="-1" role="dialog" aria-labelledby="basicModal2" aria-hidden="true">
- 
-  </div>
 
 
 
