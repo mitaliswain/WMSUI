@@ -1,0 +1,17 @@
+	   <header ng-repeat-start="shipment_detail in shipment_details">
+	      <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion_detail" href="#collapse_detail_{{$index}}" >
+		          Item: {{shipment_detail.item}}
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapse_detail_{{$index}}" class="panel-collapse collapse">
+		      <div class="panel-body">
+		      		<div>PO Quantity: <a href="#" id="po_qty" editable-text="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
+					<div>received_qty: <a href="#" id="received_qty" editable-text="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "empty" }}</a></div>
+			  </div>
+			 </div> 	
+		 </header>	
+		 <header ng-repeat-end></header>	

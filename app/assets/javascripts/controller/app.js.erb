@@ -1,0 +1,16 @@
+var app = angular.module('shipment_detail', ["ngRoute", "xeditable"]);
+
+app.config(['$routeProvider',
+ function($routeProvider) {
+   $routeProvider.
+     when('/shipmentHeader', {
+       templateUrl: 'shipment_header.html', controller: 'shipmentCtrl'})      
+    .otherwise({
+            templateUrl: '/assets/shipment_header.html', controller: 'shipmentCtrl'});
+     
+}]);
+
+app.run(function(editableOptions) {
+ editableOptions.theme = 'bs3';
+});
+ 

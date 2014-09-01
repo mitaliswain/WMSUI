@@ -1,4 +1,4 @@
-<html ng-app="shipment_add">
+<html ng-app="shipment_details">
 	<head>
 		<%= csrf_meta_tag %>
 	</head>	
@@ -10,30 +10,15 @@
   <form editable-form name="editableForm" onaftersave="saveUser()">
 	<div>
 	      <span class="title">Shipment Number: </span>	  
-	      <span editable-text="shipment_header.shipment_nbr" e-name="shipment_nbr" class e-required>{{ shipment_header.shipment_nbr || 'empty' }}</span>
-	</div>	
-
-	<div>
+	      <span editable-text="shipment_header.shipment_nbr" e-name="shipment_nbr" class e-required>{{ shipment_header.shipment_nbr || 'empty' }}</span><p/>
 	      <span class="title">ASN Type: </span>	  
-	      <span editable-text="shipment_header.asn_type" e-name="asn_type"  e-required>{{ shipment_header.asn_type || 'empty' }}</span>
-	</div>	
-
-	<div>
+	      <span editable-text="shipment_header.asn_type" e-name="asn_type"  e-required>{{ shipment_header.asn_type || 'empty' }}</span><p/>
 	      <span class="title">Source: </span>	  
-	      <span editable-text="shipment_header.source" e-name="source"  e-required>{{ shipment_header.source || 'empty' }}</span>
-	</div>	
-
-	<div>
+	      <span editable-text="shipment_header.source" e-name="source"  e-required>{{ shipment_header.source || 'empty' }}</span><p/>
 	      <span class="title">Source Comment: </span>	  
-	      <span editable-text="shipment_header.source_comment" e-name="source_comment"  e-required>{{ shipment_header.source_comment || 'empty' }}</span>
-	</div>	
-
-	<div>
+	      <span editable-text="shipment_header.source_comment" e-name="source_comment"  e-required>{{ shipment_header.source_comment || 'empty' }}</span><p/>
 	      <span class="title">Location: </span>	  
-	      <span editable-text="shipment_header.door_door" e-name="door_door"  e-required>{{ shipment_header.door_door || 'empty' }}</span>
-	</div>	
-
-	<div>
+	      <span editable-text="shipment_header.door_door" e-name="door_door"  e-required>{{ shipment_header.door_door || 'empty' }}</span><p/>
 	      <span class="title">Purchase Order: </span>	  
 	      <span editable-text="shipment_header.purchase_order_nbr" e-name="purchase_order_nbr"  e-required>{{ shipment_header.purchase_order_nbr || 'empty' }}</span>
 	</div>	

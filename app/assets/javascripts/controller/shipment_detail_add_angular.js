@@ -1,11 +1,4 @@
-var shipment_detail = angular.module('shipment_add', ["xeditable"]);
-
-shipment_detail.run(function(editableOptions) {
-  editableOptions.theme = 'bs3';
-});
-
-
-shipment_detail.controller('shipmentAddCtrl', function ($scope, $http, $location) {	
+app.controller('shipmentAddCtrl', function ($scope, $http, $location) {	
  
   $scope.checkName = function(data) {
     if (data !== 'awesome' && data !== 'error') {

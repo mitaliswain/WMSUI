@@ -3,8 +3,8 @@ class Shipment
   
    def self.shipment_list(shipment)
 
-    url = "http://wmsservice.herokuapp.com/shipment?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
-    #url = "localhost:3002/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+    
+    url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
@@ -12,34 +12,36 @@ class Shipment
 
   def self.shipment_details(shipment)
 
-    url = "http://wmsservice.herokuapp.com/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
-    #url = "localhost:3002/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+  
+    url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
   
-  def self.shipment_update_header(id, shipment, field_to_update)
-    url = "http://wmsservice.herokuapp.com/shipment/#{id}/update_header"
+  def self.shipment_update_header(id, app_parameters, fields_to_update)
+    
+    url = Shipment.geturl + "/shipment/#{id}/update_header"   
     response = RestClient.post url, 
-    shipment: shipment,
-    field_to_update: field_to_update
+    app_parameters: app_parameters,
+    fields_to_update: fields_to_update
       
     return JSON.parse(response)  
   end
 
-  def self.shipment_update_detail(id, shipment, field_to_update)
-    url = "http://wmsservice.herokuapp.com/shipment/#{id}/update_detail"
+  def self.shipment_update_detail(id, app_parameters, fields_to_update)
+    
+    url = Shipment.geturl + "/shipment/#{id}/update_detail"
     response = RestClient.post url, 
-    shipment: shipment,
-    field_to_update: field_to_update
+    app_parameters: app_parameters,
+    fields_to_update: fields_to_update
       
     return JSON.parse(response)  
   end
 
   def self.receive(shipment)
 
-    url = 'http://wmsservice.herokuapp.com/shipment/' + shipment["shipment_nbr"] + '/receive'
-    #url = 'http://localhost:3001/shipment/' + shipment["shipment_nbr"] + '/receive'
+    url = Shipment.geturl + '/shipment/' + shipment["shipment_nbr"] + '/receive'
+   
 
     shipment = {
         client:     shipment["client"], 
@@ -62,8 +64,8 @@ class Shipment
   
   def self.validate(to_validate, shipment)
       
-      url = 'http://wmsservice.herokuapp.com/shipment/' + to_validate + '/validate'
-      #url = 'http://localhost:3001/shipment/' + to_validate + '/validate'
+      url = Shipment.geturl + '/shipment/' + to_validate + '/validate'
+      
       
      shipment = {
         client:     shipment["client"], 
@@ -84,6 +86,11 @@ class Shipment
     puts response     
     return JSON.parse(response)
     
+  end
+  
+  def self.geturl
+    #'http://wmsservice.herokuapp.com'
+    'http://localhost:3001'
   end
     
 end

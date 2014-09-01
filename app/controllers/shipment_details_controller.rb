@@ -6,7 +6,7 @@ class ShipmentDetailsController < ApplicationController
     shipment['client'] = params[:client]
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render :json => Shipment.shipment_list(shipment) }
     end
   end
@@ -32,7 +32,7 @@ class ShipmentDetailsController < ApplicationController
   end
   
   def update_header
-    response = Shipment.shipment_update_header(params[:id], params[:shipment], params[:field_to_update])
+    response = Shipment.shipment_update_header(params[:id], params[:app_parameters], params[:fields_to_update])
     render :json => response
   end
 

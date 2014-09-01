@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require_tree ./bootstrap
+//= require_tree ./angular
+//= require_tree ./xeditable
+
+//= require ./controller/app.js.erb
+//= require_tree ./controller
