@@ -1,6 +1,4 @@
-angular.module('shipment_list', []);
-
-function ShipmentListCtrl($scope, $http,$location) {
+app.controller('ShipmentListCtrl', function ($scope, $http, $location) {	
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
@@ -9,4 +7,4 @@ function ShipmentListCtrl($scope, $http,$location) {
   $http.get(url).success(function(data) {
     $scope.shipment_headers = data;
   });
-}
+});
