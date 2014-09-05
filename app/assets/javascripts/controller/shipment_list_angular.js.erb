@@ -1,4 +1,4 @@
-app.controller('ShipmentListCtrl', function ($scope, $http, $location) {	
+app.controller('ShipmentListCtrl', function ($scope, $http,  $location) {	
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
@@ -6,5 +6,14 @@ app.controller('ShipmentListCtrl', function ($scope, $http, $location) {
   var url = '/shipmentdetails.json?client=' + client + '&warehouse='+ warehouse;		
   $http.get(url).success(function(data) {
     $scope.shipment_headers = data;
-  });
+   }); 
+});
+
+app.controller('MyCtrl', function($scope) {
+    $scope.myData = [{name: "Moroni", age: 50},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34}];
+    $scope.gridOptions = { data: 'myData' };
 });
