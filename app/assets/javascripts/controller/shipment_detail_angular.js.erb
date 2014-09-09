@@ -39,11 +39,13 @@ app.controller('shipmentCtrl', function ($scope, $http, $location) {
     var warehouse = $location.search().warehouse;
     var shipment  =  $location.search().shipment;
     var client    = $location.search().client; 
+    var fields_to_update = {};
+    fields_to_update[el.$editable.elem[0].id] = data;
     var url = '/shipment_details/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	shipment: {'client': 'WM', 'warehouse': 'WH1'},
-    	field_to_update: {'column': el.$editable.elem[0].id, 'value': data}
+    	fields_to_update: fields_to_update
     	});
 
  };

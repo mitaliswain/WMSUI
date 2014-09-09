@@ -9,9 +9,14 @@
 		    </div>
 		    <div id="collapse_detail_{{$index}}" class="panel-collapse collapse">
 		      <div class="panel-body">
-		      		<div>PO Quantity: <a href="#" id="po_qty" editable-text="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
-					<div>received_qty: <a href="#" id="received_qty" editable-text="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "empty" }}</a></div>
+		      	
+		      		<div>PO Quantity: <a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
+		      		<div>Shipped Quantity: <a href="#" id="shipped_quantity" editable-number="shipment_detail.shipped_quantity" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.shipped_quantity || "empty" }}</a></div>
+
+					<div>Received_qty: <a href="#" id="received_qty" editable-number="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "empty" }}</a></div>
+					<div>Verified Quantity: <a href="#" id="verified_qty" editable-number="shipment_detail.verified_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.verified_qty || "empty" }}</a></div>
 			  </div>
 			 </div> 	
 		 </header>	
 		 <header ng-repeat-end></header>	
+

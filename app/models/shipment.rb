@@ -31,9 +31,19 @@ class Shipment
   def self.shipment_update_detail(id, app_parameters, fields_to_update)
     
     url = Shipment.geturl + "/shipment/#{id}/update_detail"
-    response = RestClient.post url, 
+    response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update
+    fields_to_update: fields_to_update){ | responses, request, result, &block |
+      case responses.code
+      when 200
+        p "It worked ! #{responses}" 
+        responses
+      when 422
+        p responses
+     else
+      responses.return!(request, result, &block)
+    end
+    }
       
     return JSON.parse(response)  
   end
@@ -89,8 +99,8 @@ class Shipment
   end
   
   def self.geturl
-    'http://wmsservice.herokuapp.com'
-    #'http://localhost:3001'
+    #'http://wmsservice.herokuapp.com'
+    'http://localhost:3001'
   end
     
 end
