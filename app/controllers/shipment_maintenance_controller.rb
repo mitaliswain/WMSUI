@@ -1,4 +1,4 @@
-class ShipmentDetailsController < ApplicationController
+class ShipmentMaintenanceController < ApplicationController
   def index
     shipment = {}  
     shipment['shipment_nbr'] = params[:id]
@@ -26,9 +26,10 @@ class ShipmentDetailsController < ApplicationController
   def new
     
   end
-  
-  def create
-    render :json => {error: 'ok'}
+
+  def add_header
+    response = Shipment.shipment_add_header(params[:app_parameters], params[:fields_to_update])
+    render :json => response
   end
   
   def update_header

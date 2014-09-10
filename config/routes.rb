@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
-  post 'shipment_details/:id/update_header' => 'shipment_details#update_header' 
-  post 'shipment_details/:id/update_detail' => 'shipment_details#update_detail' 
-  post 'shipment_details/' => 'shipment_details#create' 
+  post 'shipment/add_header'        => 'shipment_maintenance#add_header' 
+  post 'shipment/:id/update_header' => 'shipment_maintenance#update_header' 
+  post 'shipment/:id/update_detail' => 'shipment_maintenance#update_detail' 
 
 
   resources :shipmentreceive, controller: 'shipment_receive'
-  resources :shipmentdetails, controller: 'shipment_details'
+  resources :shipment, controller: 'shipment_maintenance'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
