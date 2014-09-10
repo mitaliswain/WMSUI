@@ -1,9 +1,7 @@
 require 'rest_client'
 class Shipment
   
-   def self.shipment_list(shipment)
-
-    
+   def self.shipment_list(shipment)    
     url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
@@ -11,8 +9,6 @@ class Shipment
 
 
   def self.shipment_details(shipment)
-
-  
     url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
@@ -28,8 +24,15 @@ class Shipment
     return JSON.parse(response)  
   end
 
-  def self.shipment_update_detail(id, app_parameters, fields_to_update)
-    
+  def self.shipment_add_header(app_parameters, fields_to_update)
+    url = Shipment.geturl + "/shipment/add_header"   
+    response = RestClient.post url, 
+    app_parameters: app_parameters,
+    fields_to_update: fields_to_update
+    return JSON.parse(response)  
+  end
+
+  def self.shipment_update_detail(id, app_parameters, fields_to_update)    
     url = Shipment.geturl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,

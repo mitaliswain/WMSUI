@@ -1,0 +1,57 @@
+<html ng-app="shipment_detail">
+	<head>
+		<%= csrf_meta_tag %>
+		<style>
+			.asn_header {
+				width: 50%;
+				float: left
+			}
+		</style>	
+	</head>	
+
+
+<body ng-controller="shipmentCtrl">
+
+<div>
+	<button type="button" class="btn btn-primary"> Wahrehouse : </button> {{shipment_header.warehouse}}
+	<button type="button" class="btn btn-primary"> Client:  </button>{{shipment_header.client}}
+	<button type="button" class="btn btn-primary"> Shipment:  </button> {{shipment_header.shipment_nbr}} 
+</div>
+
+
+<div class="panel-group" id="accordion" style="width: 90%">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Shipment Header
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+      <div ng-include src="header_template.url"></div> 
+     </div>
+    </div>
+        <div class="panel-heading">
+          <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Shipment Details
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse in">
+      <div class="panel-body">
+				<div class="panel-group" id="accordion_detail" style="width: 100%">
+					<div ng-include src="detail_template.url"></div> 
+     			</div>
+      </div>
+	
+   </div>
+ </div> 
+
+</div>
+
+		
+</body>
+</html>	 

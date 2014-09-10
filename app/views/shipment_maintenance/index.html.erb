@@ -1,0 +1,87 @@
+<html>
+<head>
+	<script>
+
+		$(document).on("click", "#open_shipment_detail", function () {
+			url = '/shipment/' + $(this).attr('data-target') +
+			       '#?shipment='      + $(this).attr('data-target') +
+			       '&warehouse=WH1&client=WM';
+			$('#shipment_detail_modal_iframe').attr('src', url)
+			$('#shipment_detail_modal').modal('show');
+		});
+		
+		$(document).on("click", "#open_shipment_add", function () {
+			url = '/shipment/new/?warehouse=WH1&client=WM';
+			$('#shipment_detail_modal_iframe').attr('src', url)
+			$('#shipment_detail_modal').modal('show');
+		});
+		
+	</script>
+	<style>
+		.modal-dialog {
+		  width: 900px;
+		}
+		
+	</style>
+</head>
+
+<body ng-app="shipment_detail" >
+		
+	<div ng-controller="ShipmentListCtrl" style="width: 60%">
+		<a href="/">
+			<h2>Shipment List</h2>
+		</a>	
+			
+       <table class="table table-striped table-bordered">	
+		<thead>	
+			<tr>
+				<th>Shipment</th>
+				<th>Shipemnt Type</th>
+				<th>
+					<a id="open_shipment_add"
+					data-toggle="modal"
+				  	<i class="icon-plus-sign"></i></a>
+				</th>
+		</thead>	
+		</tbody>
+			<tr ng-repeat="shipment_header in shipment_headers">
+				<td>
+					{{shipment_header.shipment_nbr}}
+				</td>
+				<td>{{shipment_header.asn_type}}</td>
+				<td>
+					<a id="open_shipment_detail"
+					data-toggle="modal"
+					data-target="{{shipment_header.shipment_nbr}}">
+				  	<i class="icon-edit"></i></a>
+				</td>					
+			</tr>
+		</tbody>
+	</table>
+
+	
+ 
+
+	<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <h4 class="modal-title" id="myModalLabel">Shipment Detail</h4>
+            </div>
+            <div class="modal-body" style="height:700px; max-height:700px; width:100%; max-width:100%;">
+                <iframe id="shipment_detail_modal_iframe" src="" style="width: 100%; height: 100%"></iframe>
+            </div>
+            <div class="modal-footer" >
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>	

@@ -2,7 +2,7 @@ app.controller('shipmentCtrl', function ($scope, $http, $location) {
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
-  var url = '/shipmentdetails/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
+  var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
   $http.get(url).success(function(data) {
     $scope.shipment_header = data.shipment_header;
     $scope.shipment_details = data.shipment_detail;    

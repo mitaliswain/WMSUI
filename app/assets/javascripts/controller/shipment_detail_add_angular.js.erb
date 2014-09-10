@@ -1,23 +1,47 @@
 app.controller('shipmentAddCtrl', function ($scope, $http, $location) {	
  
-  $scope.checkName = function(data) {
-    if (data !== 'awesome' && data !== 'error') {
-      return "Username should be `awesome` or `error`";
-    }
-  };
+  var warehouse = $location.search().warehouse;
+  var shipment  =  $location.search().shipment;
+  var client    = $location.search().client; 
+  //var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
+   $scope.shipment_header = {};
+   $scope.shipment_details = {};    
+  
+  $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path("shipment_header.html") %>'
+        }; 
 
-  $scope.saveUser = function() {
-    // $scope.user already updated!
-      alert($scope.shipment_header.asn_type);	
-      alert($scope.shipment_header.shipment_nbr);
-   return $http.post('/shipment_details/', {authenticity_token: $('meta[name="csrf-token"]').attr('content'), shipment: $scope.shipment_header}).error(function(err) {
- /*     if(err.field && err.msg) {
-        // err like {field: "name", msg: "Server-side error for this username!"} 
-        $scope.editableForm.$setError(err.field, err.msg);
-      } else { 
-        // unknown error
-        $scope.editableForm.$setError('name', 'Unknown error!');
-      }*/
-    });
-  };
+  $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path("shipment_detail.html") %>'
+        }; 
+
+
+ $scope.updateHeader = function(data, el, id) {
+
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var fields_to_update = {};   
+ 	$scope.shipment_header[el.$editable.elem[0].id] = data;
+ 	};
+  
+ $scope.saveHeader = function() {
+
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var fields_to_update = {};
+    fields_to_update = $scope.shipment_header;
+    var url = '/shipment_details/add_header?client=' + client + '&warehouse='+ warehouse;	
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
+    	fields_to_update: fields_to_update
+    	});
+ };
+
+  
+
 });
