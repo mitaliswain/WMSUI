@@ -36,7 +36,7 @@ app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {
     	.success(function(res) {
 	     	res = res || {};
  	      	if(res.status == false) { 
-	        	d.reject(res.message[0]);
+	        	d.reject(res.message[0].msg);
 	      	} else { 
 	           d.resolve();
 	      	}

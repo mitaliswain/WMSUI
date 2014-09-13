@@ -6,7 +6,6 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
   //var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
    $scope.shipment_header = {};
    $scope.shipment_details = {};    
-  
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path("shipment_header.html") %>'
@@ -22,6 +21,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     var warehouse = $location.search().warehouse;
     var shipment  =  $location.search().shipment;
     var client    = $location.search().client; 
+
     var fields_to_update = {};
     fields_to_update = $scope.shipment_header;
     var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
@@ -30,9 +30,20 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
     	fields_to_update: fields_to_update
     }).success(function(message){
-    	$scope.editableForm.$setError("asn_type", "asn type in error");
+    	if (message.status == false && message.message == 'field')
+    	{ 
+    		angular.forEach(message.message, function(error, field){
+    			$scope.editableForm.$setError(field, error);
+    		});
+    	}
+    		
+    	if (message.status == false && message.message == 'error')
+    	{ 
+    		$scope.global_error = message.message[0].error;
+    	}	   	
     }).error(function(message){
-    	$scope.editableForm.$setError("asn_type", "asn type in error");
+    	alert(message.message[0].error);	
+    	$scope.global_error = message.message[0].error;
     });
  };
 

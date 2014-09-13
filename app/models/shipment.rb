@@ -32,9 +32,16 @@ class Shipment
 
   def self.shipment_add_header(app_parameters, fields_to_update)
     url = Shipment.geturl + "/shipment/add_header"   
-    response = RestClient.post url, 
+    response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update
+    fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+      when 200
+        responses
+     else
+      {status: false, message: [responses.description]}.to_json
+    end
+    }    
     return JSON.parse(response)  
   end
 
@@ -42,9 +49,15 @@ class Shipment
     url = Shipment.geturl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update)
-      
-    return JSON.parse(response)  
+    fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+      when 200
+        responses
+     else
+      {status: false, message: [responses.description]}.to_json
+    end
+    }          
+    return JSON.parse(responses)  
   end
 
   def self.receive(shipment)

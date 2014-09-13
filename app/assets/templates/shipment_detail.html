@@ -45,6 +45,32 @@
 					<div>UOM: <a href="#" id="uom" editable-text="shipment_detail.uom" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.uom || "empty" }}</a></div>
 					<div>Unit Weight: <a href="#" id="unit_wgt" editable-number="shipment_detail.unit_wgt" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.unit_wgt || "empty" }}</a></div>
 	
+			  
+			  
+			        <h4>Tracking</h4>
+		      		<div>Track COO: <a href="#" id="track_coo" editable-text="shipment_detail.track_coo" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_coo || "empty" }}</a></div>
+		      		<div>Track LOC Control: <a href="#" id="track_lotcontrol" editable-text="shipment_detail.track_lotcontrol" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_lotcontrol || "empty" }}</a></div>
+                    <div>Track Serial Number: <a href="#" id="track_serial_nbr" editable-text="shipment_detail.track_serial_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_serial_nbr || "empty" }}</a></div>
+			  
+			  
+                    <h4>Costing</h4>
+		      		<div>Unit Cost: <a href="#" id="unit_cost" editable-number="shipment_detail.unit_cost" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.unit_cost || "empty" }}</a></div>
+		      		<div>Retail  Price: <a href="#" id="retail_price" editable-number="shipment_detail.retail_price" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.retail_price || "empty" }}</a></div>
+                    <div>Landing Cost: <a href="#" id="landing_cost" editable-number="shipment_detail.landing_cost" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.landing_cost || "empty" }}</a></div>
+			  
+			  
+			       <h4>Audit Info</h4>
+		      		<div>Created Date: <a href="#" id="created_date" editable-date="shipment_detail.created_date" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_date || "empty" }}</a></div>
+		      		<div>Created User: <a href="#" id="created_user" editable-text="shipment_detail.created_user" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_user || "empty" }}</a></div>
+                    <div>Created PRC: <a href="#" id="created_prc" editable-text="shipment_detail.created_prc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_prc || "empty" }}</a></div>
+					<div>Updated Date: <a href="#" id="updated_date" editable-date="shipment_detail.updated_date" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.upated_date || "empty" }}</a></div>
+		      		<div>Updated User: <a href="#" id="updated_user" editable-text="shipment_detail.updated_user" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.updated_user || "empty" }}</a></div>
+                    <div>Updated PRC: <a href="#" id="updated_prc" editable-text="shipment_detail.updated_prc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.updated_prc || "empty" }}</a></div>
+					
+			  
+			  
+			<created_date> <created_user> <created_prc> <created_at>
+<updated_date> <updated_user> <updated_prc> <updated_at>
 			  </div>
 			 </div> 	
 		 </header>	
