@@ -16,16 +16,6 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
         name: 'detail_template',
         url: '<%= asset_path("shipment_detail.html") %>'
         }; 
-
-
- $scope.updateHeader = function(data, el, id) {
-
-    var warehouse = $location.search().warehouse;
-    var shipment  =  $location.search().shipment;
-    var client    = $location.search().client; 
-    var fields_to_update = {};   
- 	$scope.shipment_header[el.$editable.elem[0].id] = data;
- 	};
   
  $scope.saveHeader = function() {
 
@@ -34,14 +24,17 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     var client    = $location.search().client; 
     var fields_to_update = {};
     fields_to_update = $scope.shipment_header;
-    var url = '/shipment_details/add_header?client=' + client + '&warehouse='+ warehouse;	
+    var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
     	fields_to_update: fields_to_update
-    	});
+    }).success(function(message){
+    	$scope.editableForm.$setError("asn_type", "asn type in error");
+    }).error(function(message){
+    	$scope.editableForm.$setError("asn_type", "asn type in error");
+    });
  };
 
-  
 
 });

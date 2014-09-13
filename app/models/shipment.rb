@@ -17,10 +17,16 @@ class Shipment
   def self.shipment_update_header(id, app_parameters, fields_to_update)
     
     url = Shipment.geturl + "/shipment/#{id}/update_header"   
-    response = RestClient.post url, 
+    response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update
-      
+    fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+      when 200
+        responses
+     else
+      {status: false, message: [responses.description]}.to_json
+    end
+    }     
     return JSON.parse(response)  
   end
 
@@ -36,17 +42,7 @@ class Shipment
     url = Shipment.geturl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update){ | responses, request, result, &block |
-      case responses.code
-      when 200
-        p "It worked ! #{responses}" 
-        responses
-      when 422
-        p responses
-     else
-      responses.return!(request, result, &block)
-    end
-    }
+    fields_to_update: fields_to_update)
       
     return JSON.parse(response)  
   end

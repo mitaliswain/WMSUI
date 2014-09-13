@@ -37,6 +37,8 @@
 			<tr>
 				<th>Shipment</th>
 				<th>Shipemnt Type</th>
+				<th>Shipemnt Statu</th>
+				<th>Ship Via</th>				
 				<th>
 					<a id="open_shipment_add"
 					data-toggle="modal"
@@ -49,6 +51,9 @@
 					{{shipment_header.shipment_nbr}}
 				</td>
 				<td>{{shipment_header.asn_type}}</td>
+				<td>{{shipment_header.record_status}}</td>
+				<td>{{shipment_header.ship_via}}</td>
+
 				<td>
 					<a id="open_shipment_detail"
 					data-toggle="modal"
@@ -66,7 +71,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
             <h4 class="modal-title" id="myModalLabel">Shipment Detail</h4>
             </div>
             <div class="modal-body" style="height:700px; max-height:700px; width:100%; max-width:100%;">

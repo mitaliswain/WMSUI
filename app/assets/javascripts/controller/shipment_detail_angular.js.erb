@@ -1,4 +1,4 @@
-app.controller('shipmentCtrl', function ($scope, $http, $location) {	
+app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {	
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
@@ -27,12 +27,32 @@ app.controller('shipmentCtrl', function ($scope, $http, $location) {
     var fields_to_update = {};
     var url = '/shipment/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
 	fields_to_update[el.$editable.elem[0].id] = data;
-    return $http.post(url, {
+	var d = $q.defer();
+    $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
     	fields_to_update: fields_to_update
-    	});
- };
+    	})
+    	.success(function(res) {
+	     	res = res || {};
+ 	      	if(res.status == false) { 
+	        	d.reject(res.message[0]);
+	      	} else { 
+	           d.resolve();
+	      	}
+	    }).error(function(e){
+	      	d.reject('Server error!');
+	    });
+	    return d.promise;
+ 	};
+
+  $scope.statuses = [
+    {value: 'Created', text: 'Created'},
+    {value: 'Initiated', text: 'Initiated'},
+    {value: 'In Fullfilment', text: 'In Fullfilment'},
+    {value: 'Verified', text: 'Verified'},
+    {value: 'Cancelled', text: 'Cancelled'}
+  ]; 
   
  $scope.updateDetail = function(data, el, id) {
 
@@ -48,7 +68,6 @@ app.controller('shipmentCtrl', function ($scope, $http, $location) {
     	fields_to_update: fields_to_update
     	});
 
- };
-  
+ }; 
 
 });
