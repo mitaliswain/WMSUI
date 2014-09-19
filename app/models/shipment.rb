@@ -21,10 +21,10 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200
+      when 200, 201, 422
         responses
      else
-      {status: false, message: [responses.description]}.to_json
+      {status: responses.code, message: [responses.description]}.to_json
     end
     }     
     return JSON.parse(response)  
@@ -36,10 +36,10 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200
+      when 200, 201, 422
         responses
      else
-      {status: false, message: [responses.description]}.to_json
+      {status: responses.code, message: [responses.description]}.to_json
     end
     }    
     return JSON.parse(response)  

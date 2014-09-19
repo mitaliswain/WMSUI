@@ -6,6 +6,11 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
   //var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
    $scope.shipment_header = {};
    $scope.shipment_details = {};    
+   $scope.globalInfo = {
+   	error: false,
+   	warning: false,
+   	info: false 
+   };
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path("shipment_header.html") %>'
@@ -29,25 +34,35 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
     	fields_to_update: fields_to_update
-    }).success(function(message){
-    	if (message.status == false && message.message == 'field')
+    }).success(function(message){ 		
+ 		setInfo('info', 'Shipment Created Successful');
+    }).error(function(message){
+    	if (message.status == '422')
     	{ 
-    		angular.forEach(message.message, function(error, field){
-    			$scope.editableForm.$setError(field, error);
+    		setInfo('error', 'Validation Error');
+    		angular.forEach(message.errors, function(error){
+    			$scope.editableForm.$setError(error.field, error.message);
     		});
     	}
-    		
-    	if (message.status == false && message.message == 'error')
-    	{ 
-    		$scope.global_error = message.message[0].error;
-    	}	   	
-    }).error(function(message){
-    	alert(message.message[0].error);	
-    	$scope.global_error = message.message[0].error;
     });
  };
 
-
+ var setInfo = function(infotype, message) {
+ 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){
+ 		console.log(infotype);
+ 		console.log(infoKey);
+ 		console.log(infoValue);
+ 		if(infotype == infoKey) {
+ 			$scope.globalInfo[infoKey] = true
+ 		}
+ 		else{
+ 			$scope.globalInfo[infoKey] = false
+ 		}
+ 	});
+ 	$scope.global_notification = message;		
+ 	return;
+ }
+   
 });
 
 
