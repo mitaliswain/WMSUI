@@ -1,0 +1,69 @@
+<html ng-app="shipment_detail">
+	<head>
+		<%= csrf_meta_tag %>
+		<style>
+			.asn_header {
+				width: 50%;
+				float: left
+			}
+		</style>
+	</head>
+
+	<body ng-controller="shipmentAddCtrl">
+
+		<div>
+			<button type="button" class="btn btn-primary">
+				Wahrehouse :
+			</button>
+			{{shipment_header.warehouse}}
+			<button type="button" class="btn btn-primary">
+				Client:
+			</button>
+			{{shipment_header.client}}
+			<button type="button" class="btn btn-primary">
+				Shipment:
+			</button>
+			{{shipment_header.shipment_nbr}}
+		</div>
+		<form editable-form name="editableForm" onaftersave="saveDetail()">
+			<div class="buttons">
+				<!-- button to show form -->
+				<button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+					Edit
+				</button>
+				<!-- buttons to submit / cancel form -->
+				<span ng-show="editableForm.$visible">
+					<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+						Save
+					</button>
+					<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+						Cancel
+					</button> </span>
+			</div>
+
+			<div>
+				Item Barcode: <a href="#" id="item" e-name="item" editable-text="shipment_detail.item" >{{ shipment_detail.item || "empty" }}</a>
+			</div>
+			<div>
+				Short Description: <a href="#" id="short_desc" e-name="short_desc" editable-text="shipment_detail.short_desc" >{{ shipment_detail.short_desc || "empty" }}</a>
+			</div>
+			<div>
+				PO_Quantity: <a href="#" id="po_qty" e-name="po_qty" editable-number="shipment_detail.po_qty" >{{ shipment_detail.po_qty || "empty" }}</a>
+			</div>
+			<div>
+				Shipped Quantity: <a href="#" id="shipped_quantity" e-name="shipped_quantity" editable-number="shipment_detail.shipped_quantity">{{ shipped_quantity.verified_qty || "empty" }}</a>
+			</div>
+			<div>
+				Received_Quantity: <a href="#" id="received_qty" e-name="received_qty" editable-number="shipment_detail.received_qty" >{{ shipment_detail.received_qty || "empty" }}</a>
+			</div>
+			<div>
+				Hot Item: <a href="#" id="hot_item" e-name="hot_item" editable-number="shipment_detail.hot_item" >{{ shipment_detail.hot_item || "empty" }}</a>
+			</div>
+			<div>
+				Record Status: <a href="#" id="record_status" e-name="record_status" editable-number="shipment_detail.record_status" >{{ shipment_detail.record_status || "empty" }}</a>
+			</div>
+			</div>
+		</form>
+	</body>
+</html>
+

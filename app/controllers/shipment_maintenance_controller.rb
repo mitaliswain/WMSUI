@@ -26,6 +26,15 @@ class ShipmentMaintenanceController < ApplicationController
   def new
     
   end
+  
+  def add_detail
+    
+  end
+
+  def save_detail
+    response = Shipment.shipment_add_detail(params[:app_parameters], params[:fields_to_update])
+    render :json => response, status: response['status']
+  end
 
   def add_header
     response = Shipment.shipment_add_header(params[:app_parameters], params[:fields_to_update])

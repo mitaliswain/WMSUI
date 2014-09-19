@@ -8,10 +8,17 @@
 			});
 
 			$(document).on("click", "#open_shipment_add", function() {
-				url = '/shipment/new/?warehouse=WH1&client=WM';
+				url = '/shipment/new/#?warehouse=WH1&client=WM';
 				$('#shipment_detail_modal_iframe').attr('src', url)
 				$('#shipment_detail_modal').modal('show');
 			});
+
+			$(document).on("click", "#open_shipment_detail_add", function() {
+				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&shipment='+$(this).attr('data-target');
+				$('#shipment_detail_modal_iframe').attr('src', url)
+				$('#shipment_detail_modal').modal('show');
+			});
+
 			var sortingOrder = 'shipment_header.shipment_nbr';
 		</script>
 		<style>
@@ -107,7 +114,7 @@
 							</div>
 
 							<div class="shipment-header">
-								<a id="open_shipment_detail"
+								<a id="open_shipment_detail_add"
 								data-toggle="modal"
 								data-target="{{item.shipment_header.shipment_nbr}}"> <i class="icon-edit"></i></a>
 							</div>
@@ -125,8 +132,9 @@
 									Received Quantity
 								</div>
 							<div class="shipment-header">
-								<a id="open_shipment_add"
+								<a id="open_shipment_detail_add"
 									data-toggle="modal"
+									data-target="{{item.shipment_header.shipment_nbr}}">
 								  	<i class="icon-plus-sign"></i></a>
 							</div>
 

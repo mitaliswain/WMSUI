@@ -45,6 +45,22 @@ class Shipment
     return JSON.parse(response)  
   end
 
+  def self.shipment_add_detail(app_parameters, fields_to_update)
+    url = Shipment.geturl + "/shipment/add_detail"   
+    response = RestClient.post(url, 
+    app_parameters: app_parameters,
+    fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+      when 200, 201, 422
+        responses
+     else
+      {status: responses.code, message: [responses.description]}.to_json
+    end
+    }    
+    return JSON.parse(response)  
+  end
+
+
   def self.shipment_update_detail(id, app_parameters, fields_to_update)    
     url = Shipment.geturl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 

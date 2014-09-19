@@ -3,7 +3,6 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
-  //var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
    $scope.shipment_header = {};
    $scope.shipment_details = {};    
    $scope.globalInfo = {
@@ -11,6 +10,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
    	warning: false,
    	info: false 
    };
+   
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path("shipment_header.html") %>'
@@ -47,11 +47,37 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     });
  };
 
+ $scope.saveDetail = function() {
+
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var fields_to_update = {};
+    fields_to_update = $scope.shipment_detail;
+    fields_to_update.shipment_nbr = shipment;
+    
+    var url = '/shipment/add_detail?client=' + client + '&warehouse='+ warehouse;	
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
+    	fields_to_update: fields_to_update
+    }).success(function(message){ 		
+    	console.log($scope.items)
+ 		setInfo('info', 'Shipment Created Successful');
+    }).error(function(message){
+    	if (message.status == '422')
+    	{ 
+    		setInfo('error', 'Validation Error');
+    		angular.forEach(message.errors, function(error){
+    			$scope.editableForm.$setError(error.field, error.message);
+    		});
+    	}
+    });
+ };
+
+
  var setInfo = function(infotype, message) {
- 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){
- 		console.log(infotype);
- 		console.log(infoKey);
- 		console.log(infoValue);
+ 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){;
  		if(infotype == infoKey) {
  			$scope.globalInfo[infoKey] = true
  		}
