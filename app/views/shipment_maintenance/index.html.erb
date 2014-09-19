@@ -112,8 +112,9 @@
 								data-target="{{item.shipment_header.shipment_nbr}}"> <i class="icon-edit"></i></a>
 							</div>
 						</div>
-						<div ng-show="item.show" style="padding-left: 5%" class="warning">
-								<div>
+			<!--Detail -->
+						<div ng-show="item.show" style="padding-left: 5%">
+								<div class="label label-default">
 								<div class="shipment-header">
 									Quantity
 								</div>
@@ -123,6 +124,12 @@
 								<div class="shipment-header">
 									Received Quantity
 								</div>
+							<div class="shipment-header">
+								<a id="open_shipment_add"
+									data-toggle="modal"
+								  	<i class="icon-plus-sign"></i></a>
+							</div>
+
 								</div>
 							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
 								<div class="shipment-header">
