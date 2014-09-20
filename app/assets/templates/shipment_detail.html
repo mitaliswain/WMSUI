@@ -15,6 +15,7 @@
 		    <div id="collapse_detail_{{$index}}" class="panel-collapse collapse">
 		      <div class="panel-body">
 		      	    <h4>Item</h4>
+		      	    
 		      		<div>Item Barcode: <a href="#" id="item" editable-text="shipment_detail.item" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.item || "empty" }}</a></div>
 		      		<div>Short Description: <a href="#" id="short_desc" editable-text="shipment_detail.short_desc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.short_desc || "empty" }}</a></div>
                     <div>PO_Quantity: <a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
