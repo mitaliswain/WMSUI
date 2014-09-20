@@ -2,10 +2,13 @@ app.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter)
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
-   
+  var lastitem = {}; 
    $scope.shipment = 'new shipment';
    var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
-   $http.get(url).success(function(data) {
+
+		
+    $scope.reload = function() {
+    $http.get(url).success(function(data) {
     $scope.shipment_headers = data;
     $scope.items = data; 
 	
@@ -16,6 +19,7 @@ app.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter)
     $scope.itemsPerPage = 8;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
+
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
@@ -24,10 +28,17 @@ app.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter)
     };
 
     
-    $scope.expand = function(item) {
+    $scope.toggle_expand = function(item) {
        item.show = !item.show;
+       console.log(item);
+       lastitem = item;	       
     }
-	
+    
+    $scope.expand = function(item) {
+       item.show = true;	       
+    }
+    			
+    	
     // init the filtered items
     $scope.search = function () {
         $scope.filteredItems = $filter('filter')($scope.items, function (item) {
@@ -108,6 +119,12 @@ app.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter)
         else
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
- }); 
+ $scope.expand(lastitem);	
+ });
  
+ 
+
+ };
+ 
+    $scope.reload();
 });

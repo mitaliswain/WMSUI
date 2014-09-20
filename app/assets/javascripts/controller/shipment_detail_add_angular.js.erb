@@ -65,12 +65,14 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	console.log($scope.items)
  		setInfo('info', 'Shipment Created Successful');
     }).error(function(message){
-    	if (message.status == '422')
-    	{ 
+    	if (message.status == '422'){ 
     		setInfo('error', 'Validation Error');
     		angular.forEach(message.errors, function(error){
     			$scope.editableForm.$setError(error.field, error.message);
     		});
+    	}
+    	else {
+    		 setInfo('error', message.message);
     	}
     });
  };
