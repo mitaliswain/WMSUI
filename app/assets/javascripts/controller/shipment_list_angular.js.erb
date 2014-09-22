@@ -30,12 +30,11 @@ app.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter)
     
     $scope.toggle_expand = function(item) {
        item.show = !item.show;
-       console.log(item);
        lastitem = item;	       
     }
     
-    $scope.expand = function(item) {
-       item.show = true;	       
+    $scope.expand = function(item) {	
+ 		item.show = true;	      
     }
     			
     	

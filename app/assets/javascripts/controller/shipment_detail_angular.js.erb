@@ -1,6 +1,6 @@
 app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {	
   var warehouse = $location.search().warehouse;
-  var shipment  =  $location.search().shipment;
+  var shipment  =  $location.search().id;
   var client    = $location.search().client; 
   var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
   $http.get(url).success(function(data) {
@@ -66,7 +66,7 @@ app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {
     var url = '/shipment/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	shipment: {'client': 'WM', 'warehouse': 'WH1'},
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
     	fields_to_update: fields_to_update
     	});
 

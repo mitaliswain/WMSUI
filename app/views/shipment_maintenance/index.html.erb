@@ -2,7 +2,7 @@
 	<head>
 		<script>
 			$(document).on("click", "#open_shipment_detail", function() {
-				url = '/shipment/' + $(this).attr('data-target') + '#?shipment=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
+				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
 				$('#shipment_detail_modal_iframe').attr('src', url)
 				$('#shipment_detail_modal').modal('show');
 			});
@@ -19,7 +19,7 @@
 			});
 
 			$(document).on("click", "#open_shipment_detail_add", function() {
-				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&shipment='+$(this).attr('data-target');
+				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&asn_header_id='+$(this).attr('data-target');
 				$('#shipment_detail_modal_iframe').attr('src', url)
 				$('#shipment_detail_modal').modal('show');
 			});
@@ -32,6 +32,7 @@
 			}
 			.shipment-header {
 				min-width: 15%;
+				max-width: 15%;
 				display: inline-block;
 				text-align: center;
 				min-height: 1px;
@@ -42,7 +43,7 @@
 
 	<body ng-app="shipment_detail" >
 
-		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 60%">
+		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
 			<a href="/"> <h2>Shipment List</h2> </a>
 
 			<div class="input-group" style="width: 30%">
@@ -121,17 +122,16 @@
 							<div class="shipment-header">
 								<a id="open_shipment_detail"
 								data-toggle="modal"
-								data-target="{{item.shipment_header.shipment_nbr}}"> <i class="icon-edit"></i></a>
+								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
 						</div>
 			<!--Detail -->
 						<div ng-show="item.show" style="padding-left: 5%">
 								<div class="label label-default">
 								<div class="shipment-header">
-									Quantity
 								</div>
 								<div class="shipment-header">
-									Shipped Quantity
+									Shipped Quantity 
 								</div>
 								<div class="shipment-header">
 									Received Quantity
@@ -139,7 +139,7 @@
 							<div class="shipment-header">
 								<a id="open_shipment_detail_add"
 									data-toggle="modal"
-									data-target="{{item.shipment_header.shipment_nbr}}">
+									data-target="{{item.shipment_header.id}}">
 								  	<i class="icon-plus-sign"></i></a>
 							</div>
 

@@ -50,10 +50,12 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
  $scope.saveDetail = function() {
 
     var warehouse = $location.search().warehouse;
-    var shipment  =  $location.search().shipment;
+    var asn_header_id  =  $location.search().asn_header_id;
+    console.log(asn_header_id);
     var client    = $location.search().client; 
     var fields_to_update = {};
     fields_to_update = $scope.shipment_detail;
+    fields_to_update['asn_header_id'] = asn_header_id
     fields_to_update.shipment_nbr = shipment;
     
     var url = '/shipment/add_detail?client=' + client + '&warehouse='+ warehouse;	
@@ -62,13 +64,17 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1'},
     	fields_to_update: fields_to_update
     }).success(function(message){ 		
-    	console.log($scope.items)
  		setInfo('info', 'Shipment Created Successful');
     }).error(function(message){
     	if (message.status == '422'){ 
     		setInfo('error', 'Validation Error');
     		angular.forEach(message.errors, function(error){
-    			$scope.editableForm.$setError(error.field, error.message);
+    			if(error.field == null)
+    				{setInfo('error', error.message);}
+    			else{
+    				$scope.editableForm.$setError(error.field, error.message);
+    			}	
+    			
     		});
     	}
     	else {

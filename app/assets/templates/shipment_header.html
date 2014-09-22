@@ -169,7 +169,7 @@
 		<div id="collapse_Receiving" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					Track LotControl: <a href="#" id="v" editable-text="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
+					Track LotControl: <a href="#" id="track_lotcontrol" editable-text="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
 				</div>
 
 				<div class="asn_header">
@@ -194,7 +194,7 @@
 					Receiving Ended By: <a href="#" id="receiving_ended_by" editable_text="shipment_header.receiving_ended_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_ended_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Dock Door: <a href="#" id="dock_door" editable_text="shipment_header.dock_door" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.dock_door || "empty" }}</a>
+					Dock Door: <a href="#" id="door_door" editable_text="shipment_header.door_door" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.door_door || "empty" }}</a>
 				</div>
 			</div>
 		</div>

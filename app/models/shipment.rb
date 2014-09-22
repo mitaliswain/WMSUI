@@ -21,10 +21,13 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201, 422
+      when 200, 201,422
         responses
+      when 204  
+        {status: responses.code, message: []}.to_json
      else
-      {status: responses.code, message: [responses.description]}.to_json
+      message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+      {status: responses.code, message: [message]}.to_json
     end
     }     
     return JSON.parse(response)  
@@ -39,7 +42,8 @@ class Shipment
       when 200, 201, 422
         responses
      else
-      {status: responses.code, message: [responses.description]}.to_json
+       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+      {status: responses.code, message: message}.to_json
     end
     }    
     return JSON.parse(response)  
@@ -54,7 +58,8 @@ class Shipment
       when 200, 201, 422
         responses
      else
-      {status: responses.code, message: [responses.description]}.to_json
+       message = responses.nil? ? {} : JSON.parse(responses)["message"]  
+      {status: responses.code, message: message}.to_json
     end
     }    
     return JSON.parse(response)  
@@ -69,8 +74,11 @@ class Shipment
       case responses.code
       when 200, 201, 422
         responses
+      when 204  
+        {status: responses.code, message: []}.to_json  
      else
-      {status: false, message: [responses.description]}.to_json
+       message = responses.nil? ? {} : JSON.parse(responses)["message"]  
+      {status: responses.code, message: message}.to_json
     end
     }          
     return JSON.parse(response)  
@@ -127,8 +135,8 @@ class Shipment
   end
   
   def self.geturl
-    'http://wmsservice.herokuapp.com'
-    #'http://localhost:3001'
+    #'http://wmsservice.herokuapp.com'
+    'http://localhost:3001'
   end
     
 end

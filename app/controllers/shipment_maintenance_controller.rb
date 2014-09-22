@@ -48,7 +48,7 @@ class ShipmentMaintenanceController < ApplicationController
   end
 
   def update_detail
-    response = Shipment.shipment_update_detail(params[:id], params[:shipment], params[:fields_to_update])
+    response = Shipment.shipment_update_detail(params[:id], params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
   end
 

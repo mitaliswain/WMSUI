@@ -6,6 +6,32 @@
 				width: 50%;
 				float: left
 			}
+			div[ng-app] {
+				margin: 10px;
+			}
+			form[name="editableForm"] > div {
+				height: auto;
+				padding: 5px 0;
+			}
+
+			form[name="editableForm"] .title {
+				display: inline-block;
+				font-weight: bold;
+				padding-top: 5px;
+				vertical-align: top;
+				min-width: 140px;
+			}
+
+			form[name="editableForm"] .editable {
+				display: inline-block;
+				padding-top: 5px;
+				vertical-align: top;
+			}
+
+			form[name="editableForm"] select {
+				width: 120px;
+			}
+
 		</style>
 	</head>
 
@@ -49,27 +75,7 @@
 				</div>
 			</div>
 
-			<div>
-				Item Barcode: <a href="#" id="item" e-name="item" editable-text="shipment_detail.item" >{{ shipment_detail.item || "empty" }}</a>
-			</div>
-			<div>
-				Short Description: <a href="#" id="short_desc" e-name="short_desc" editable-text="shipment_detail.short_desc" >{{ shipment_detail.short_desc || "empty" }}</a>
-			</div>
-			<div>
-				PO_Quantity: <a href="#" id="po_qty" e-name="po_qty" editable-number="shipment_detail.po_qty" >{{ shipment_detail.po_qty || "empty" }}</a>
-			</div>
-			<div>
-				Shipped Quantity: <a href="#" id="shipped_quantity" e-name="shipped_quantity" editable-number="shipment_detail.shipped_quantity">{{ shipped_quantity.verified_qty || "empty" }}</a>
-			</div>
-			<div>
-				Received_Quantity: <a href="#" id="received_qty" e-name="received_qty" editable-number="shipment_detail.received_qty" >{{ shipment_detail.received_qty || "empty" }}</a>
-			</div>
-			<div>
-				Hot Item: <a href="#" id="hot_item" e-name="hot_item" editable-number="shipment_detail.hot_item" >{{ shipment_detail.hot_item || "empty" }}</a>
-			</div>
-			<div>
-				Record Status: <a href="#" id="record_status" e-name="record_status" editable-number="shipment_detail.record_status" >{{ shipment_detail.record_status || "empty" }}</a>
-			</div>
+			<div ng-include src="detail_template.url"></div>
 			</div>
 		</form>
 	</body>
