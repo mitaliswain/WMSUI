@@ -33,7 +33,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: ' ', channel: ' '},
     	fields_to_update: fields_to_update
     }).success(function(message){ 		
  		setInfo('info', 'Shipment Created Successful');
@@ -67,7 +67,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     var url = '/shipment/add_detail?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: '', channel: ''},
     	fields_to_update: fields_to_update
     }).success(function(message){ 		
  		setInfo('info', 'Shipment detail added');
