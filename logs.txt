@@ -118,3 +118,223 @@ ger_load!'
 2014-07-15T04:04:40.348776+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=529f1727-577e-4ad2-9ba1-d1ccf86d8876 fwd="50.131.130.219" dyno= connect= service= status=503 bytes=
 2014-07-15T04:04:44.729158+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=wmsui.herokuapp.com request_id=057b3dc3-406e-4283-941d-a7bdb0868cd4 fwd="50.131.130.219" dyno= connect= service= status=503 bytes=
 2014-07-15T04:04:44.991816+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=f0624340-a6ec-49ef-811b-36ede54e58d8 fwd="50.131.130.219" dyno= connect= service= status=503 bytes=
+Usage: heroku logs
+
+ display recent log output
+
+ -n, --num NUM        # the number of lines to display
+ -p, --ps PS          # only display logs from the given process
+ -s, --source SOURCE  # only display logs from the given source
+ -t, --tail           # continually stream logs
+
+Example:
+
+ $ heroku logs
+ 2012-01-01T12:00:00+00:00 heroku[api]: Config add EXAMPLE by email@example.com
+ 2012-01-01T12:00:01+00:00 heroku[api]: Release v1 created by email@example.com
+
+2014-09-26T21:55:16.522519+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/server.rb:69:in `start'
+2014-09-26T21:55:16.522513+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:160:in `start'
+2014-09-26T21:55:16.522531+00:00 app[web.1]: 	bin/rails:4:in `<main>'
+2014-09-26T21:55:16.579340+00:00 app[web.1]: => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+2014-09-26T21:55:16.522500+00:00 app[web.1]: [2014-09-26 21:55:16] FATAL SignalException: SIGTERM
+2014-09-26T21:55:16.522515+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:14:in `run'
+2014-09-26T21:55:16.579338+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2014-09-26T21:55:16.522508+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `select'
+2014-09-26T21:55:16.522517+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/server.rb:264:in `start'
+2014-09-26T21:55:16.579342+00:00 app[web.1]: => Ctrl-C to shutdown server
+2014-09-26T21:55:16.579343+00:00 app[web.1]: Exiting
+2014-09-26T21:55:16.522512+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:32:in `start'
+2014-09-26T21:55:16.522530+00:00 app[web.1]: 	bin/rails:4:in `require'
+2014-09-26T21:55:16.522522+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:81:in `block in server'
+2014-09-26T21:55:16.522524+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `tap'
+2014-09-26T21:55:16.522539+00:00 app[web.1]: [2014-09-26 21:55:16] INFO  going to shutdown ...
+2014-09-26T21:55:16.522525+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `server'
+2014-09-26T21:55:16.522600+00:00 app[web.1]: [2014-09-26 21:55:16] INFO  WEBrick::HTTPServer#start done.
+2014-09-26T21:55:16.522527+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+2014-09-26T21:55:16.579329+00:00 app[web.1]: => Booting WEBrick
+2014-09-26T21:55:16.522528+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands.rb:17:in `<top (required)>'
+2014-09-26T21:55:16.579335+00:00 app[web.1]: => Rails 4.1.0 application starting in production on http://0.0.0.0:37847
+2014-09-26T21:55:17.524093+00:00 heroku[web.1]: Process exited with status 143
+2014-09-28T08:17:35+00:00 heroku[slug-compiler]: Slug compilation started
+2014-09-28T08:17:50+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-09-28T08:17:50.567907+00:00 heroku[api]: Release v47 created by farooq.buvvaji@gmail.com
+2014-09-28T08:17:50.567832+00:00 heroku[api]: Deploy 5d8b5ce by farooq.buvvaji@gmail.com
+2014-09-28T08:18:12.049353+00:00 heroku[web.1]: Unidling
+2014-09-28T08:18:12.049668+00:00 heroku[web.1]: State changed from down to starting
+2014-09-28T08:18:14.455315+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 54238 -e production`
+2014-09-28T08:18:17.304153+00:00 app[web.1]: [2014-09-28 08:18:17] INFO  WEBrick 1.3.1
+2014-09-28T08:18:17.304175+00:00 app[web.1]: [2014-09-28 08:18:17] INFO  ruby 2.0.0 (2014-09-19) [x86_64-linux]
+2014-09-28T08:18:17.304564+00:00 app[web.1]: [2014-09-28 08:18:17] INFO  WEBrick::HTTPServer#start: pid=2 port=54238
+2014-09-28T08:18:17.994650+00:00 heroku[web.1]: State changed from starting to up
+2014-09-28T08:18:19.328304+00:00 heroku[router]: at=info method=GET path="/shipment" host=wmsui.herokuapp.com request_id=006777d2-36a4-4dc6-9be0-3338109d4273 fwd="24.23.220.12" dyno=web.1 connect=1ms service=231ms status=200 bytes=7616
+2014-09-28T08:18:19.523972+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=e282357b-caa5-447e-8875-40aef5cd7ae7 fwd="24.23.220.12" dyno=web.1 connect=1ms service=52ms status=200 bytes=184384
+2014-09-28T08:18:19.555666+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=c568b341-6d89-43bf-8c5a-8f4087047d3f fwd="24.23.220.12" dyno=web.1 connect=1ms service=84ms status=200 bytes=659313
+2014-09-28T08:18:21.291324+00:00 heroku[router]: at=info method=GET path="/assets/glyphicons-halflings.png" host=wmsui.herokuap
+p.com request_id=2d447b9f-48ee-4c7a-9dcc-39af45fcf9cd fwd="24.23.220.12" dyno=web.1 connect=1ms service=9ms status=200 bytes=13171
+2014-09-28T08:18:21.355022+00:00 heroku[router]: at=info method=GET path="/shipment.json?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=573f4499-08e8-42a7-b12e-57b47f353728 fwd="24.23.220.12" dyno=web.1 connect=2ms service=16ms status=500 bytes=330
+2014-09-28T08:18:21.515153+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=edd9b1d6-9eaf-44d5-b637-0efa3841ff2b fwd="24.23.220.12" dyno=web.1 connect=1ms service=4ms status=200 bytes=228
+2014-09-28T08:18:34.573820+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=64e226bc-f058-4986-a207-314274f763c1 fwd="24.23.220.12" dyno=web.1 connect=5ms service=3ms status=304 bytes=133
+2014-09-28T08:18:34.701090+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=132c82a7-ae18-4e57-9416-2b50d85dc936 fwd="24.23.220.12" dyno=web.1 connect=1ms service=12ms status=404 bytes=1829
+2014-09-28T08:18:34.773551+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=413595d9-aa00-44b9-a36d-52b46b875870 fwd="24.23.220.12" dyno=web.1 connect=2ms service=11ms status=404 bytes=1829
+2014-09-28T08:19:52+00:00 heroku[slug-compiler]: Slug compilation started
+2014-09-28T08:20:08+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-09-28T08:20:08.598885+00:00 heroku[api]: Deploy 3a243f1 by farooq.buvvaji@gmail.com
+2014-09-28T08:20:08.598941+00:00 heroku[api]: Release v48 created by farooq.buvvaji@gmail.com
+2014-09-28T08:20:09.147024+00:00 heroku[web.1]: State changed from up to starting
+2014-09-28T08:20:11.955792+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-09-28T08:20:12.597156+00:00 app[web.1]: [2014-09-28 08:20:12] FATAL SignalException: SIGTERM
+2014-09-28T08:20:12.597182+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands.rb:17:in `<top (required)>'
+2014-09-28T08:20:12.597166+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `block in start'
+2014-09-28T08:20:12.597164+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `select'
+2014-09-28T08:20:12.597168+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:32:in `start'
+2014-09-28T08:20:12.597171+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:14:in `run'
+2014-09-28T08:20:12.622709+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2014-09-28T08:20:12.597169+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:160:in `start'
+2014-09-28T08:20:12.597185+00:00 app[web.1]: 	bin/rails:4:in `<main>'
+2014-09-28T08:20:12.597276+00:00 app[web.1]: [2014-09-28 08:20:12] INFO  going to shutdown ...
+2014-09-28T08:20:12.597179+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `server'
+2014-09-28T08:20:12.597355+00:00 app[web.1]: [2014-09-28 08:20:12] INFO  WEBrick::HTTPServer#start done.
+2014-09-28T08:20:12.597172+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/server.rb:264:in `start'
+2014-09-28T08:20:12.597176+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:81:in `block in server'
+2014-09-28T08:20:12.597174+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/server.rb:69:in `start'
+2014-09-28T08:20:12.597183+00:00 app[web.1]: 	bin/rails:4:in `require'
+2014-09-28T08:20:12.622700+00:00 app[web.1]: => Booting WEBrick
+2014-09-28T08:20:12.622711+00:00 app[web.1]: => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+2014-09-28T08:20:12.622714+00:00 app[web.1]: Exiting
+2014-09-28T08:20:12.597177+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `tap'
+2014-09-28T08:20:12.597180+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+2014-09-28T08:20:12.622707+00:00 app[web.1]: => Rails 4.1.0 application starting in production on http://0.0.0.0:54238
+2014-09-28T08:20:12.622713+00:00 app[web.1]: => Ctrl-C to shutdown server
+2014-09-28T08:20:13.111682+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 21595 -e production`
+2014-09-28T08:20:13.408257+00:00 heroku[web.1]: Process exited with status 143
+2014-09-28T08:20:17.155809+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  WEBrick::HTTPServer#start: pid=2 port=21595
+2014-09-28T08:20:17.155375+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  ruby 2.0.0 (2014-09-19) [x86_64-linux]
+2014-09-28T08:20:17.155348+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  WEBrick 1.3.1
+2014-09-28T08:20:17.387212+00:00 heroku[web.1]: State changed from starting to up
+2014-09-28T08:20:42.086357+00:00 heroku[router]: at=info method=GET path="/shipment" host=wmsui.herokuapp.com request_id=9a8103d6-2718-4a73-aac1-29cb95a32455 fwd="24.23.220.12" dyno=web.1 connect=1ms service=126ms status=304 bytes=728
+2014-09-28T08:20:42.282027+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=d7d86215-2597-49ff-b243-a42d2f614489 fwd="24.23.220.12" dyno=web.1 connect=0ms service=94ms status=200 bytes=659313
+2014-09-28T08:20:42.260884+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=e139d04b-a7ed-4061-8f8a-21d1fed0f2ec fwd="24.23.220.12" dyno=web.1 connect=1ms service=72ms status=200 bytes=184384
+2014-09-28T08:20:42.908556+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=57836649-8933-4fcf-b19f-8ed347a5f77b fwd="24.23.220.12" dyno=web.1 connect=1ms service=16ms status=404 bytes=1829
+2014-09-28T08:20:46.773184+00:00 heroku[router]: at=info method=GET path="/assets/glyphicons-halflings.png" host=wmsui.herokuapp.com request_id=e74ee884-b492-480a-8335-d50a0148bac9 fwd="24.23.220.12" dyno=web.1 connect=2ms service=7ms status=304 bytes=231
+2014-09-28T08:20:54.930147+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=dee0e91b-5734-4db1-98eb-5d40ab0768bf fwd="24.23.220.12" dyno=web.1 connect=17ms service=8012ms status=404 bytes=1829
+2014-09-28T08:20:54.827463+00:00 heroku[router]: at=info method=GET path="/shipment.json?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=03e01b31-8e3a-4577-9caa-abc3300c8ea2 fwd="24.23.220.12" dyno=web.1 connect=0ms service=8015ms status=200 bytes=15177
+2014-09-28T08:20:54.826025+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=a5c8b42e-2aa8-4a8f-93f6-d0be75acb367 fwd="24.23.220.12" dyno=web.1 connect=1ms service=7947ms status=200 bytes=228
+2014-09-28T08:21:02.529454+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=e212b8c2-2150-42cb-9c18-409d2e3e416b fwd="24.23.220.12" dyno=web.1 connect=1ms service=7ms status=304 bytes=133
+2014-09-28T08:21:02.413739+00:00 heroku[router]: at=info method=GET path="/shipment/new/" host=wmsui.herokuapp.com request_id=822e6365-ac60-4130-a6fa-39d7b610c1a5 fwd="24.23.220.12" dyno=web.1 connect=3ms service=14ms status=200 bytes=4028
+2014-09-28T08:21:02.523148+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=68770508-2382-4e3b-88f8-2815dfc106e6 fwd="24.23.220.12" dyno=web.1 connect=2ms service=4ms status=304 bytes=133
+2014-09-28T08:21:02.806000+00:00 heroku[router]: at=info method=GET path="/assets/shipment_header.html" host=wmsui.herokuapp.com request_id=c41860db-333c-4013-a351-1344d0e67d01 fwd="24.23.220.12" dyno=web.1 connect=1ms service=12ms status=200 bytes=24326
+2014-09-28T08:21:02.845329+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=12c7c518-086f-4b8d-92d3-67a73418559a fwd="24.23.220.12" dyno=web.1 connect=0ms service=4ms status=304 bytes=133
+2014-09-28T08:21:02.802033+00:00 heroku[router]: at=info method=GET path="/assets/shipment_detail.html" host=wmsui.herokuapp.com request_id=86c55e4a-626d-4b56-8892-01d401765f18 fwd="24.23.220.12" dyno=web.1 connect=1ms service=11ms status=200 bytes=9990
+2014-09-28T08:21:47.003542+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=71c4c679-79bb-46ca-abe0-5786ccae3dfc fwd="24.23.220.12" dyno=web.1 connect=1ms service=35ms status=500 bytes=1754
+2014-09-28T08:21:52.007607+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=3196315f-b8c1-4495-abf7-e3f06edc29d1 fwd="24.23.220.12" dyno=web.1 connect=1ms service=28ms status=500 bytes=1754
+2014-09-28T08:21:55.719026+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=9170da0b-d579-4476-893a-7d67ef38be20 fwd="24.23.220.12" dyno=web.1 connect=1ms service=28ms status=500 bytes=1754
+2014-09-28T08:22:00.004943+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=6979fda1-86d3-41c0-acdf-61d251561a6a fwd="24.23.220.12" dyno=web.1 connect=1ms service=4ms status=304 bytes=133
+2014-09-28T08:22:00.296797+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=bfa87f9e-6f92-4115-83c3-2d2acd1ae71e fwd="24.23.220.12" dyno=web.1 connect=0ms service=11ms status=404 bytes=1829
+2014-09-28T08:22:00.393134+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=6a22ebd6-7026-4f1a-b386-e0ac2c8c60ba fwd="24.23.220.12" dyno=web.1 connect=12ms service=58ms status=404 bytes=1829
+2014-09-28T08:22:08.475759+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=90740a72-8ba5-4805-b54b-6a906f7eff5e fwd="24.23.220.12" dyno=web.1 connect=6ms service=43ms status=500 bytes=1754
+2014-09-28T08:24:09.350001+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=61f1ecd6-6ffe-4b26-bb0b-4481019a429f fwd="24.23.220.12" dyno=web.1 connect=8ms service=74ms status=500 bytes=1754
+2014-09-28T08:26:11.499910+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=17fb3b0a-07c6-4b19-bdfd-9aefa8231249 fwd="24.23.220.12" dyno=web.1 connect=1ms service=39ms status=500 bytes=1754
+2014-09-26T21:55:16.522513+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:160:in `start'
+2014-09-26T21:55:16.522531+00:00 app[web.1]: 	bin/rails:4:in `<main>'
+2014-09-26T21:55:16.579340+00:00 app[web.1]: => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+2014-09-26T21:55:16.522500+00:00 app[web.1]: [2014-09-26 21:55:16] FATAL SignalException: SIGTERM
+2014-09-26T21:55:16.522515+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:14:in `run'
+2014-09-26T21:55:16.579338+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2014-09-26T21:55:16.522508+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `select'
+2014-09-26T21:55:16.522517+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/server.rb:264:in `start'
+2014-09-26T21:55:16.579342+00:00 app[web.1]: => Ctrl-C to shutdown server
+2014-09-26T21:55:16.579343+00:00 app[web.1]: Exiting
+2014-09-26T21:55:16.522512+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:32:in `start'
+2014-09-26T21:55:16.522530+00:00 app[web.1]: 	bin/rails:4:in `require'
+2014-09-26T21:55:16.522522+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:81:in `block in server'
+2014-09-26T21:55:16.522524+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `tap'
+2014-09-26T21:55:16.522539+00:00 app[web.1]: [2014-09-26 21:55:16] INFO  going to shutdown ...
+2014-09-26T21:55:16.522525+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `server'
+2014-09-26T21:55:16.522600+00:00 app[web.1]: [2014-09-26 21:55:16] INFO  WEBrick::HTTPServer#start done.
+2014-09-26T21:55:16.522527+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+2014-09-26T21:55:16.579329+00:00 app[web.1]: => Booting WEBrick
+2014-09-26T21:55:16.522528+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands.rb:17:in `<top (required)>'
+2014-09-26T21:55:16.579335+00:00 app[web.1]: => Rails 4.1.0 application starting in production on http://0.0.0.0:37847
+2014-09-26T21:55:17.524093+00:00 heroku[web.1]: Process exited with status 143
+2014-09-28T08:17:35+00:00 heroku[slug-compiler]: Slug compilation started
+2014-09-28T08:17:50+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-09-28T08:17:50.567907+00:00 heroku[api]: Release v47 created by farooq.buvvaji@gmail.com
+2014-09-28T08:17:50.567832+00:00 heroku[api]: Deploy 5d8b5ce by farooq.buvvaji@gmail.com
+2014-09-28T08:18:12.049353+00:00 heroku[web.1]: Unidling
+2014-09-28T08:18:12.049668+00:00 heroku[web.1]: State changed from down to starting
+2014-09-28T08:18:14.455315+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 54238 -e production`
+2014-09-28T08:18:17.304153+00:00 app[web.1]: [2014-09-28 08:18
+:17] INFO  WEBrick 1.3.1
+2014-09-28T08:18:17.304175+00:00 app[web.1]: [2014-09-28 08:18:17] INFO  ruby 2.0.0 (2014-09-19) [x86_64-linux]
+2014-09-28T08:18:17.304564+00:00 app[web.1]: [2014-09-28 08:18:17] INFO  WEBrick::HTTPServer#start: pid=2 port=54238
+2014-09-28T08:18:17.994650+00:00 heroku[web.1]: State changed from starting to up
+2014-09-28T08:18:19.328304+00:00 heroku[router]: at=info method=GET path="/shipment" host=wmsui.herokuapp.com request_id=006777d2-36a4-4dc6-9be0-3338109d4273 fwd="24.23.220.12" dyno=web.1 connect=1ms service=231ms status=200 bytes=7616
+2014-09-28T08:18:19.523972+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=e282357b-caa5-447e-8875-40aef5cd7ae7 fwd="24.23.220.12" dyno=web.1 connect=1ms service=52ms status=200 bytes=184384
+2014-09-28T08:18:19.555666+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=c568b341-6d89-43bf-8c5a-8f4087047d3f fwd="24.23.220.12" dyno=web.1 connect=1ms service=84ms status=200 bytes=659313
+2014-09-28T08:18:21.291324+00:00 heroku[router]: at=info method=GET path="/assets/glyphicons-halflings.png" host=wmsui.herokuapp.com request_id=2d447b9f-48ee-4c7a-9dcc-39af45fcf9cd fwd="24.23.220.12" dyno=web.1 connect=1ms service=9ms status=200 bytes=13171
+2014-09-28T08:18:21.355022+00:00 heroku[router]: at=info method=GET path="/shipment.json?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=573f4499-08e8-42a7-b12e-57b47f353728 fwd="24.23.220.12" dyno=web.1 connect=2ms service=16ms status=500 bytes=330
+2014-09-28T08:18:21.515153+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=edd9b1d6-9eaf-44d5-b637-0efa3841ff2b fwd="24.23.220.12" dyno=web.1 connect=1ms service=4ms status=200 bytes=228
+2014-09-28T08:18:34.573820+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=64e226bc-f058-4986-a207-314274f763c1 fwd="24.23.220.12" dyno=web.1 connect=5ms service=3ms status=304 bytes=133
+2014-09-28T08:18:34.701090+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=132c82a7-ae18-4e57-9416-2b50d85dc936 fwd="24.23.220.12" dyno=web.1 connect=1ms service=12ms status=404 bytes=1829
+2014-09-28T08:18:34.773551+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=413595d9-aa00-44b9-a36d-52b46b875870 fwd="24.23.220.12" dyno=web.1 connect=2ms service=11ms status=404 bytes=1829
+2014-09-28T08:19:52+00:00 heroku[slug-compiler]: Slug compilation started
+2014-09-28T08:20:08+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-09-28T08:20:08.598885+00:00 heroku[api]: Deploy 3a243f1 by farooq.buvvaji@gmail.com
+2014-09-28T08:20:08.598941+00:00 heroku[api]: Release v48 created by farooq.buvvaji@gmail.com
+2014-09-28T08:20:09.147024+00:00 heroku[web.1]: State changed from up to starting
+2014-09-28T08:20:11.955792+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2014-09-28T08:20:12.597156+00:00 app[web.1]: [2014-09-28 08:20:12] FATAL SignalException: SIGTERM
+2014-09-28T08:20:12.597182+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands.rb:17:in `<top (required)>'
+2014-09-28T08:20:12.597166+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `block in start'
+2014-09-28T08:20:12.597164+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:170:in `select'
+2014-09-28T08:20:12.597168+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:32:in `start'
+2014-09-28T08:20:12.597171+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:14:in `run'
+2014-09-28T08:20:12.622709+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2014-09-28T08:20:12.597169+00:00 app[web.1]: 	/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/webrick/server.rb:160:in `start'
+2014-09-28T08:20:12.597185+00:00 app[web.1]: 	bin/rails:4:in `<main>'
+2014-09-28T08:20:12.597276+00:00 app[web.1]: [2014-09-28 08:20:12] INFO  going to shutdown ...
+2014-09-28T08:20:12.597179+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `server'
+2014-09-28T08:20:12.597355+00:00 app[web.1]: [2014-09-28 08:20:12] INFO  WEBrick::HTTPServer#start done.
+2014-09-28T08:20:12.597172+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/server.rb:264:in `start'
+2014-09-28T08:20:12.597176+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:81:in `block in server'
+2014-09-28T08:20:12.597174+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/server.rb:69:in `start'
+2014-09-28T08:20:12.597183+00:00 app[web.1]: 	bin/rails:4:in `require'
+2014-09-28T08:20:12.622700+00:00 app[web.1]: => Booting WEBrick
+2014-09-28T08:20:12.622711+00:00 app[web.1]: => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+2014-09-28T08:20:12.622714+00:00 app[web.1]: Exiting
+2014-09-28T08:20:12.597177+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:76:in `tap'
+2014-09-28T08:20:12.597180+00:00 app[web.1]: 	/app/vendor/bundle/ruby/2.0.0/gems/railties-4.1.0/lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+2014-09-28T08:20:12.622707+00:00 app[web.1]: => Rails 4.1.0 application starting in production on http://0.0.0.0:54238
+2014-09-28T08:20:12.622713+00:00 app[web.1]: => Ctrl-C to shutdown server
+2014-09-28T08:20:13.111682+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 21595 -e production`
+2014-09-28T08:20:13.408257+00:00 heroku[web.1]: Process exited with status 143
+2014-09-28T08:20:17.155809+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  WEBrick::HTTPServer#start: pid=2 port=21595
+2014-09-28T08:20:17.155375+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  ruby 2.0.0 (2014-09-19) [x86_64-linux]
+2014-09-28T08:20:17.155348+00:00 app[web.1]: [2014-09-28 08:20:17] INFO  WEBrick 1.3.1
+2014-09-28T08:20:17.387212+00:00 heroku[web.1]: State changed from starting to up
+2014-09-28T08:20:42.086357+00:00 heroku[router]: at=info method=GET path="/shipment" host=wmsui.herokuapp.com request_id=9a8103d6-2718-4a73-aac1-29cb95a32455 fwd="24.23.220.12" dyno=web.1 connect=1ms service=126ms status=304 bytes=728
+2014-09-28T08:20:42.282027+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=d7d86215-2597-49ff-b243-a42d2f614489 fwd="24.23.220.12" dyno=web.1 connect=0ms service=94ms status=200 bytes=659313
+2014-09-28T08:20:42.260884+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=e139d04b-a7ed-4061-8f8a-21d1fed0f2ec fwd="24.23.220.12" dyno=web.1 connect=1ms service=72ms status=200 bytes=184384
+2014-09-28T08:20:42.908556+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=57836649-8933-4fcf-b19f-8ed347a5f77b fwd="24.23.220.12" dyno=web.1 connect=1ms service=16ms status=404 bytes=1829
+2014-09-28T08:20:46.773184+00:00 heroku[router]: at=info method=GET path="/assets/glyphicons-halflings.png" host=wmsui.herokuapp.com request_id=e74ee884-b492-480a-8335-d50a0148bac9 fwd="24.23.220.12" dyno=web.1 connect=2ms service=7ms status=304 bytes=231
+2014-09-28T08:20:54.930147+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=dee0e91b-5734-4db1-98eb-5d40ab0768bf fwd="24.23.220.12" dyno=web.1 connect=17ms service=8012ms status=404 bytes=1829
+2014-09-28T08:20:54.827463+00:00 heroku[router]: at=info method=GET path="/shipment.json?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=03e01b31-8e3a-4577-9caa-abc3300c8ea2 fwd="24.23.220.12" dyno=web.1 connect=0ms service=8015ms status=200 bytes=15177
+2014-09-28T08:20:54.826025+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=a5c8b42e-2aa8-4a8f-93f6-d0be75acb367 fwd="24.23.220.12" dyno=web.1 connect=1ms service=7947ms status=200 bytes=228
+2014-09-28T08:21:02.529454+00:00 heroku[router]: at=info method=GET path="/assets/application-057025252b25ed79d7c375d6cb4d241b.js" host=wmsui.herokuapp.com request_id=e212b8c2-2150-42cb-9c18-409d2e3e416b fwd="24.23.220.12" dyno=web.1 connect=1ms service=7ms status=304 bytes=133
+2014-09-28T08:21:02.413739+00:00 heroku[router]: at=info method=GET path="/shipment/new/" host=wmsui.herokuapp.com request_id=822e6365-ac60-4130-a6fa-39d7b610c1a5 fwd="24.23.220.12" dyno=web.1 connect=3ms service=14ms status=200 bytes=4028
+2014-09-28T08:21:02.523148+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=68770508-2382-4e3b-88f8-2815dfc106e6 fwd="24.23.220.12" dyno=web.1 connect=2ms service=4ms status=304 bytes=133
+2014-09-28T08:21:02.806000+00:00 heroku[router]: at=info method=GET path="/assets/shipment_header.html" host=wmsui.herokuapp.com request_id=c41860db-333c-4013-a351-1344d0e67d01 fwd="24.23.220.12" dyno=web.1 connect=1ms service=12ms status=200 bytes=24326
+2014-09-28T08:21:02.845329+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=wmsui.herokuapp.com request_id=12c7c518-086f-4b8d-92d3-67a7341
+8559a fwd="24.23.220.12" dyno=web.1 connect=0ms service=4ms status=304 bytes=133
+2014-09-28T08:21:02.802033+00:00 heroku[router]: at=info method=GET path="/assets/shipment_detail.html" host=wmsui.herokuapp.com request_id=86c55e4a-626d-4b56-8892-01d401765f18 fwd="24.23.220.12" dyno=web.1 connect=1ms service=11ms status=200 bytes=9990
+2014-09-28T08:21:47.003542+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=71c4c679-79bb-46ca-abe0-5786ccae3dfc fwd="24.23.220.12" dyno=web.1 connect=1ms service=35ms status=500 bytes=1754
+2014-09-28T08:21:52.007607+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=3196315f-b8c1-4495-abf7-e3f06edc29d1 fwd="24.23.220.12" dyno=web.1 connect=1ms service=28ms status=500 bytes=1754
+2014-09-28T08:21:55.719026+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=9170da0b-d579-4476-893a-7d67ef38be20 fwd="24.23.220.12" dyno=web.1 connect=1ms service=28ms status=500 bytes=1754
+2014-09-28T08:22:00.004943+00:00 heroku[router]: at=info method=GET path="/assets/application-61fe564f4983a7fd64e24b19a1718e09.css" host=wmsui.herokuapp.com request_id=6979fda1-86d3-41c0-acdf-61d251561a6a fwd="24.23.220.12" dyno=web.1 connect=1ms service=4ms status=304 bytes=133
+2014-09-28T08:22:00.296797+00:00 heroku[router]: at=info method=GET path="/assets/bootstrap.css.map" host=wmsui.herokuapp.com request_id=bfa87f9e-6f92-4115-83c3-2d2acd1ae71e fwd="24.23.220.12" dyno=web.1 connect=0ms service=11ms status=404 bytes=1829
+2014-09-28T08:22:00.393134+00:00 heroku[router]: at=info method=GET path="/assets/angular-route.min.js.map" host=wmsui.herokuapp.com request_id=6a22ebd6-7026-4f1a-b386-e0ac2c8c60ba fwd="24.23.220.12" dyno=web.1 connect=12ms service=58ms status=404 bytes=1829
+2014-09-28T08:22:08.475759+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=90740a72-8ba5-4805-b54b-6a906f7eff5e fwd="24.23.220.12" dyno=web.1 connect=6ms service=43ms status=500 bytes=1754
+2014-09-28T08:24:09.350001+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=61f1ecd6-6ffe-4b26-bb0b-4481019a429f fwd="24.23.220.12" dyno=web.1 connect=8ms service=74ms status=500 bytes=1754
+2014-09-28T08:26:11.499910+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=17fb3b0a-07c6-4b19-bdfd-9aefa8231249 fwd="24.23.220.12" dyno=web.1 connect=1ms service=39ms status=500 bytes=1754
+2014-09-28T08:28:21.167851+00:00 heroku[router]: at=info method=POST path="/shipment/add_header?client=WM&warehouse=WH1" host=wmsui.herokuapp.com request_id=d4b1dac7-527c-4157-aa5e-ee3d9706c949 fwd="24.23.220.12" dyno=web.1 connect=0ms service=30ms status=500 bytes=1754

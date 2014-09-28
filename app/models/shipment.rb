@@ -42,6 +42,7 @@ class Shipment
       when 200, 201, 422
         responses
      else
+       p responses
        message = responses.nil? ? {} : JSON.parse(responses)["message"] 
       {status: responses.code, message: message}.to_json
     end
@@ -151,8 +152,11 @@ class Shipment
   end
   
   def self.geturl
-    'http://wmsservice.herokuapp.com'
-    #'http://localhost:3001'
+    if Rails.env.production?
+      return 'http://wmsservice.herokuapp.com'
+    end
+    #'http://wmsservice.herokuapp.com'
+    'http://localhost:3001'
   end
     
 end
