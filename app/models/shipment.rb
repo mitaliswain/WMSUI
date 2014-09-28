@@ -14,6 +14,24 @@ class Shipment
     return JSON.parse(response)       
   end
   
+
+  def self.shipment_add_header(app_parameters, fields_to_update)
+    url = Shipment.geturl + "/shipment/add_header"   
+    response = RestClient.post(url, 
+    app_parameters: app_parameters,
+    fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+      when 200, 201, 422
+        responses
+     else
+       p responses
+       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+      {status: responses.code, message: message}.to_json
+    end
+    }    
+    return JSON.parse(response)  
+  end
+
   def self.shipment_update_header(id, app_parameters, fields_to_update)
     
     url = Shipment.geturl + "/shipment/#{id}/update_header"   
@@ -33,22 +51,6 @@ class Shipment
     return JSON.parse(response)  
   end
 
-  def self.shipment_add_header(app_parameters, fields_to_update)
-    url = Shipment.geturl + "/shipment/add_header"   
-    response = RestClient.post(url, 
-    app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
-      case responses.code
-      when 200, 201, 422
-        responses
-     else
-       p responses
-       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
-      {status: responses.code, message: message}.to_json
-    end
-    }    
-    return JSON.parse(response)  
-  end
 
   def self.shipment_add_detail(app_parameters, fields_to_update)
     url = Shipment.geturl + "/shipment/add_detail"   
@@ -89,8 +91,6 @@ class Shipment
   def self.receive(shipment)
 
     url = Shipment.geturl + '/shipment/' + shipment["shipment_nbr"] + '/receive'
-   
-
     shipment = {
         client:     shipment["client"], 
         warehouse:  shipment["warehouse"],
@@ -120,9 +120,7 @@ class Shipment
   
   def self.validate(to_validate, shipment)
       
-      url = Shipment.geturl + '/shipment/' + to_validate + '/validate'
-      
-      
+      url = Shipment.geturl + '/shipment/' + to_validate + '/validate'     
      shipment = {
         client:     shipment["client"], 
         warehouse:  shipment["warehouse"],
