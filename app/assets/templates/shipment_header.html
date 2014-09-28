@@ -12,7 +12,7 @@
 		<span class="title">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type" editable-text="shipment_header.asn_type" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.asn_type || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Record Status:</span><a href="#" id="record_status" e-name="record_status" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in statuses" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required >{{ shipment_header.record_status || "empty" }}</a>
+		<span class="title">Record Status:</span><a href="#" id="record_status" e-name="record_status" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in statuses" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required >{{ shipment_header.record_status || "Created" }}</a>
 	</div>
 	<div class="asn_header">
 		<span class="title">Purchase Order No:</span><a href="#" id="purchase_order_nbr" e-name="purchase_order_nbr" editable_text="shipment_header.purchase_order_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.purchase_order_nbr || "empty" }}</a>

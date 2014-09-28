@@ -20,11 +20,11 @@ class ShipmentReceiveController < ApplicationController
     session[:receiving] = @receiving           
     session[:sequence] = @sequence
     
-    @response= {"status"=> true, "message"=> []}
+    @response= {"status"=> '200', "message"=> ""}
   end 
   
   def create
-    @response= {"status"=> true, "message"=> []}
+    @response= {"status"=> '200', "message"=> ""}
      
     @wms = session[:wms]  
     @receiving = session[:receiving]
@@ -45,19 +45,19 @@ class ShipmentReceiveController < ApplicationController
    if @receiving[@sequence]["to_validate"] 
        @response = Shipment.validate(@receiving[@sequence]["name"], shipment) 
    else
-       @response = {"status"  => true, "message" => []}
+       @response = {"status"  => "200", "message" => []}
    end      
                                             
-    if @response["status"] == true
+    if @response["status"] == '200'
         @receiving[@sequence]["value"] = params[:name] if !params[:name].nil?
         @receiving[@sequence]["validated"] = true   
         @sequence = session[:sequence] + 1
     end    
 
-    
+
     if @receiving[@sequence].nil? 
           @response = Shipment.receive(shipment)
-          if @response["status"] == true
+          if @response["status"] == '201'
              session.delete('receiving')
              session.delete('sequence')
              redirect_to action: :new

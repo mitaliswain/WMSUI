@@ -51,11 +51,12 @@ class Shipment
 
   def self.shipment_add_detail(app_parameters, fields_to_update)
     url = Shipment.geturl + "/shipment/add_detail"   
+    p app_parameters
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201, 422
+      when 200, 201, 422, 204
         responses
      else
        message = responses.nil? ? {} : JSON.parse(responses)["message"]  
@@ -102,8 +103,16 @@ class Shipment
         innerpack_qty:   shipment["inner_pack"]
        } 
     puts shipment   
-    response = RestClient.post url,
-    shipment: shipment
+    response = RestClient.post(url,
+    shipment: shipment){ | responses, request, result, &block |
+      case responses.code
+      when 200, 201, 422, 204
+        responses
+     else
+       message = responses.nil? ? {} : JSON.parse(responses)["message"]  
+      {status: responses.code, message: message}.to_json
+    end
+    }    
    return JSON.parse(response)
       
   end
@@ -126,10 +135,17 @@ class Shipment
         innerpack_qty:   shipment["inner_pack"]
        } 
     puts shipment   
-    response = RestClient.post url,
-    shipment: shipment
+    response = RestClient.post(url,
+    shipment: shipment) { | responses, request, result, &block |
+      case responses.code
+      when 200, 201, 422, 204
+        responses
+     else
+       message = responses.nil? ? {} : JSON.parse(responses)["message"]  
+      {status: responses.code, message: message}.to_json
+    end
+    }    
 
-    puts response     
     return JSON.parse(response)
     
   end
