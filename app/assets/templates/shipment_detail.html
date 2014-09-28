@@ -1,7 +1,7 @@
 				<div style="float:left">		     
 					<h4>Item</h4>		      	    
-		      		<div class="asn_header">Item Barcode: <a href="#" id="item" editable-text="shipment_detail.item" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.item || "empty" }}</a></div>
-		      		<div class="asn_header">Short Description: <a href="#" id="short_desc" editable-text="shipment_detail.short_desc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.short_desc || "empty" }}</a></div>
+		      		<div class="asn_header">Item Barcode: <a href="#" e-name="item" id="item" editable-text="shipment_detail.item" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.item || "empty" }}</a></div>
+		      		<div class="asn_header">Short Description: <a href="#" e-name="short_desc" id="short_desc" editable-text="shipment_detail.short_desc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.short_desc || "empty" }}</a></div>
                     <div class="asn_header">PO Quantity: <a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
 					<div class="asn_header">Shipped Quantity: <a href="#" id="shipped_quantity" editable-number="shipment_detail.shipped_quantity" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.shipped_quantity || "0" }}</a></div>
 					<div class="asn_header">Received Quantity: <a href="#" id="received_qty" editable-number="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "0" }}</a></div>

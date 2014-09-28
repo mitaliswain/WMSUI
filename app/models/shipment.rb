@@ -151,8 +151,8 @@ class Shipment
   end
   
   def self.geturl
-    #'http://wmsservice.herokuapp.com'
-    'http://localhost:3001'
+    'http://wmsservice.herokuapp.com'
+    #'http://localhost:3001'
   end
     
 end
