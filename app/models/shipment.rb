@@ -1,22 +1,29 @@
 require 'rest_client'
+
 class Shipment
   
-   def self.shipment_list(shipment)    
-    url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+  def self.shipment_list(shipment)    
+    url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
 
 
   def self.shipment_details(shipment)
-    url = Shipment.geturl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+    url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
   
+<<<<<<< HEAD
 
   def self.shipment_add_header(app_parameters, fields_to_update)
     url = Shipment.geturl + "/shipment/add_header"   
+=======
+  def self.shipment_update_header(id, app_parameters, fields_to_update)
+    
+    url = Properties.getUrl + "/shipment/#{id}/update_header"   
+>>>>>>> a62ddc83c9b3d50b83807d9edf9bd5e44f710031
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -32,9 +39,14 @@ class Shipment
     return JSON.parse(response)  
   end
 
+<<<<<<< HEAD
   def self.shipment_update_header(id, app_parameters, fields_to_update)
     
     url = Shipment.geturl + "/shipment/#{id}/update_header"   
+=======
+  def self.shipment_add_header(app_parameters, fields_to_update)
+    url = Properties.getUrl + "/shipment/add_header"   
+>>>>>>> a62ddc83c9b3d50b83807d9edf9bd5e44f710031
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -53,8 +65,7 @@ class Shipment
 
 
   def self.shipment_add_detail(app_parameters, fields_to_update)
-    url = Shipment.geturl + "/shipment/add_detail"   
-    p app_parameters
+    url = Properties.getUrl + "/shipment/add_detail"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -71,7 +82,7 @@ class Shipment
 
 
   def self.shipment_update_detail(id, app_parameters, fields_to_update)    
-    url = Shipment.geturl + "/shipment/#{id}/update_detail"
+    url = Properties.getUrl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -88,6 +99,7 @@ class Shipment
     return JSON.parse(response)  
   end
 
+<<<<<<< HEAD
   def self.receive(shipment)
 
     url = Shipment.geturl + '/shipment/' + shipment["shipment_nbr"] + '/receive'
@@ -156,5 +168,7 @@ class Shipment
     #'http://wmsservice.herokuapp.com'
     'http://localhost:3001'
   end
+=======
+>>>>>>> a62ddc83c9b3d50b83807d9edf9bd5e44f710031
     
 end
