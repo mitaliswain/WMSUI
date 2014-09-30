@@ -1,8 +1,11 @@
 class Properties
         
   def self.getUrl
-    #'http://wmsservice.herokuapp.com'
     'http://localhost:3001'
+    #'http://wmsservice.herokuapp.com'
+    if Rails.env.production?
+       'http://wmsservice.herokuapp.com'
+    end     
   end
 
 end
