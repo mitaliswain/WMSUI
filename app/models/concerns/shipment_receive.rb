@@ -104,7 +104,6 @@ class ShipmentReceive
         quantity:   shipment["quantity"],
         innerpack_qty:   shipment["inner_pack"]
        } 
-    puts shipment   
     response = RestClient.post(url,
     shipment: shipment) { | responses, request, result, &block |
       case responses.code

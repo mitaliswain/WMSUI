@@ -35,8 +35,11 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
-    }).success(function(message){ 		
+    }).success(function(data){ 		
+    	$scope.shipment_header = data.shipment_header;
+		$scope.shipment_details = data.shipment_detail;    
  		setInfo('info', 'Shipment Created Successful');
+
     }).error(function(message){
     	if (message.status == '422')
     	{ 
@@ -44,6 +47,9 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     		angular.forEach(message.errors, function(error){
     			$scope.editableForm.$setError(error.field, error.message);
     		});
+    	}
+    	else {
+    		 setInfo('error', message.message);
     	}
     });
  };
@@ -98,7 +104,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
  	$scope.global_notification = message;		
  	return;
  }
-   
+  
 });
 
 
