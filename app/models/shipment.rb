@@ -39,10 +39,14 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201,422
+      when 200, 422
         responses
-      when 204  
-        {status: responses.code, message: []}.to_json
+      when 201  
+        message = JSON.parse(responses)  
+        resource_url = Properties.getUrl + message["content"][0]["link"] 
+        p app_parameters
+        response = RestClient.get(resource_url,  {client: 'WM', warehouse: 'WH1', building: nil, channel: nil})    
+        return JSON.parse(response)    
      else
       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
       {status: responses.code, message: [message]}.to_json
