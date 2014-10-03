@@ -45,8 +45,9 @@ class Shipment
       when 201  
         message = JSON.parse(responses)  
         resource_url = Properties.getUrl + message["content"][0]["link"] 
+        app_parameters = app_parameters.merge(expand: "Yes")
         p app_parameters
-        response = RestClient.get(resource_url,  {client: 'WM', warehouse: 'WH1', building: nil, channel: nil})    
+        response = RestClient.post(resource_url, app_parameters)
         return JSON.parse(response)    
      else
        message = responses.nil? ? {} : JSON.parse(responses)["message"] 
