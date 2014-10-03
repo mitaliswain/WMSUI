@@ -22,15 +22,14 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201,422
+      when 200, 201, 422
         responses
-      when 204  
-        {status: responses.code, message: []}.to_json
      else
-      message = responses.nil? ? {} : JSON.parse(responses)["message"] 
-      {status: responses.code, message: [message]}.to_json
+       p responses
+       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+      {status: responses.code, message: message}.to_json
     end
-    }     
+    }    
     return JSON.parse(response)  
   end
 
@@ -50,12 +49,13 @@ class Shipment
         response = RestClient.post(resource_url, app_parameters)
         return JSON.parse(response)    
      else
-       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
-      {status: responses.code, message: message}.to_json
+      message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+      {status: responses.code, message: [message]}.to_json
     end
-    }    
+    }     
     return JSON.parse(response)  
   end
+
 
   def self.shipment_add_detail(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_detail"   
@@ -92,5 +92,4 @@ class Shipment
     return JSON.parse(response)  
   end
 
-    
 end
