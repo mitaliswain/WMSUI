@@ -22,10 +22,10 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201, 422
+      when 200, 201, 422, 204
+        p responses
         responses
      else
-       p responses
        message = responses.nil? ? {} : JSON.parse(responses)["message"] 
       {status: responses.code, message: message}.to_json
     end
