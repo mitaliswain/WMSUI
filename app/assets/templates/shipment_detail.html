@@ -5,12 +5,12 @@
                     <div class="asn_header">PO Quantity: <a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a></div>
 					<div class="asn_header">Shipped Quantity: <a href="#" id="shipped_quantity" editable-number="shipment_detail.shipped_quantity" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.shipped_quantity || "0" }}</a></div>
 					<div class="asn_header">Received Quantity: <a href="#" id="received_qty" editable-number="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "0" }}</a></div>
-					<div class="asn_header">Hot Item: <a href="#" id="hot_item" editable-checkbox="shipment_detail.hot_item" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.hot_item == true ? "Y" : "N" }}</a></div>
+					<div class="asn_header">Hot Item: <a href="#" id="hot_item" editable-checkbox="shipment_detail.hot_item" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.hot_item || "empty" }}</a></div>
 					<div class="asn_header">Record Status: <a href="#" id="record_status" editable-text="shipment_detail.record_status" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.record_status || "empty" }}</a></div>
 				</div>	
 				<div style="float:left">	
 					<h4>Extended Item Details</h4>
-		      		<div class="asn_header">PO Line No: <a href="#" id="poline_nbr" editable-text="shipment_detail.poline_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.poline_nbr || "empty" }}</a></div>
+		      		<div class="asn_header">PO Line No: <a href="#" id="poline_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.poline_nbr || "empty" }}</a></div>
 		      		<div class="asn_header">SKU Attribute1: <a href="#" id="sku_attribute1" editable-text="shipment_detail.sku_attribute1" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute1 || "empty" }}</a></div>
                     <div class="asn_header">SKU Attribute2: <a href="#" id="sku_attribute2" editable-text="shipment_detail.sku_attribute2" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute2 || "empty" }}</a></div>
 					<div class="asn_header">SKU Attribute3: <a href="#" id="sku_attribute3" editable-text="shipment_detail.sku_attribute3" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipped_quantity.sku_attribute3 || "empty" }}</a></div>

@@ -11,6 +11,11 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
    	info: false 
    };
    
+   $scope.statuses = [
+    {value: 'Created', text: 'Created'},
+  ]; 
+  
+   
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path("shipment_header.html") %>'

@@ -1,14 +1,9 @@
 <%= form_tag("/mainmenu") do %>
-	<div>
-		<%= label_tag(:client, "Client:") %>
-		<%= text_field_tag(:client) %>
-	</div>
-	<div>
-		<%= label_tag(:warehouse, "Warehouse:") %>
-		<%= text_field_tag(:warehouse) %>
-	</div>		
-	<div>
-  		<%= submit_tag("Proceed") %>
-	</div>  
-	
+<div>
+	<% @basic_parameters.each_with_index do |item, index| %>
+			<div><input type="text" name="<%=item["name"]%>"  placeholder="<%= item["description"]%>"></div>
+	<% end %>
+	<%= submit_tag("Proceed") %>
+</div>
+
 <%end%>
