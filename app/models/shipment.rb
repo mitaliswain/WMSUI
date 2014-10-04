@@ -22,7 +22,7 @@ class Shipment
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201, 422
+      when 200, 201, 422,204
         responses
      else
        p responses

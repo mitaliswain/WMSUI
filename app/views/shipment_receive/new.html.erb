@@ -1,5 +1,6 @@
 <%= form_tag("/shipmentreceive") do %>
 
+ User:<%=@user%> <%=@basic_parameters["client"]%>/<%=@basic_parameters["warehouse"]%>/<%=@basic_parameters["building"]%>/<%=@basic_parameters["channel"]%>
  <% @shipment.each_with_index do |receive, index| %>
  	<% if receive["validated"] == false %>			
 		<%= editable_input(receive)%>
