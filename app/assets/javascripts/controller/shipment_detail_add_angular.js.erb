@@ -53,8 +53,10 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     			$scope.editableForm.$setError(error.field, error.message);
     		});
     	}
+
     	else {
     		 setInfo('error', message.message);
+
     	}
     });
  };
