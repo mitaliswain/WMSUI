@@ -41,9 +41,16 @@
 		</style>
 	</head>
 
-	<body ng-app="shipment_detail" >
+<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a></li>
+  <li><a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Initiated')">Initiated</a></li>
+  <li><a href="#messages" role="tab" data-toggle="tab">In Fulfilment</a></li>
+  <li><a href="#settings" role="tab" data-toggle="tab">Verified</a></li>
+</ul>
 
-		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+
+	<body ng-app="shipment_detail" >
 			<a href="/"> <h2>Shipment List</h2> </a>
 
 			<div class="input-group" style="width: 30%">
@@ -54,7 +61,7 @@
 				<thead>
 					<tr>
 						<th colspan="7">
-						<div>
+						<div class="bs-callout">
 							<div class="shipment-header">
 								Option
 							</div>
@@ -126,7 +133,7 @@
 							</div>
 						</div>
 			<!--Detail -->
-						<div ng-show="item.show" style="padding-left: 5%">
+						<div ng-show="item.show" style="padding-left: 0%">
 								<div class="label label-default">
 								<div class="shipment-header">
 								</div>

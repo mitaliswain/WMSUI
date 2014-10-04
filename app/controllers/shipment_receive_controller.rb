@@ -13,26 +13,20 @@ class ShipmentReceiveController < ApplicationController
                   {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false ,"to_validate" => false }
-                  ] 
-    session[:wms].each do |wms|
-      @shipment << wms
-    end                           
+                ]
+    @basic_parameters = session[:basic_parameters]        
     session[:shipment] = @shipment  
       @error = ''            
   end 
   
   def create    
-
+    @basic_parameters = session[:basic_parameters]   
     @shipment = session[:shipment]
-    processed_response = ShipmentReceive.new.process_receiving(@shipment, params["name"], params["value"])
-    session[:shipment] = processed_response[:shipment]
-              
-    if processed_response[:status] == '201'  
-       redirect_to action: :new      
-    else 
-       @error =  processed_response[:error] 
-       render 'new.html.erb'
-    end
+    processed_response = ShipmentReceive.new.process_receiving(@basic_parameters, @shipment, params["name"], params["value"])
+
+    session[:shipment] = processed_response[:shipment]     
+    @error =   processed_response[:error]          
+    render 'new.html.erb'     
 
     end
 
