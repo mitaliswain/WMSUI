@@ -24,7 +24,7 @@ class ShipmentReceive
   end
   
   def reset_shipment(shipment)
-      items_not_to_be_reset = ["shipment_nbr", "location"]
+      items_not_to_be_reset = ["shipment_nbr", "location", "item"]
       shipment_clone = shipment.clone
       shipment_clone.each_with_index do |shipment_item, index|
         if items_not_to_be_reset.select{|item| item == shipment_item["name"]}.empty?

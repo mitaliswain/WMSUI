@@ -9,8 +9,8 @@ class ShipmentReceiveController < ApplicationController
     @shipment =   [
                   {"name" => 'shipment_nbr',  "description"=> "Shipment" ,  "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'location',  "description"=> "Location" ,  "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false, "to_validate" => true},
+                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false, "to_validate" => true},
                   {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false ,"to_validate" => false }
                 ]
