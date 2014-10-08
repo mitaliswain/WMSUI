@@ -54,7 +54,7 @@
 		<form editable-form name="editableForm" onaftersave="saveDetail()">
 			<div class="buttons">
 				<!-- button to show form -->
-				<button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+				<button type="button" class="btn btn-default" ng-click="clear(); editableForm.$show()" ng-show="!editableForm.$visible">
 					Edit
 				</button>
 				<!-- buttons to submit / cancel form -->
