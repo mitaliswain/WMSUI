@@ -6,7 +6,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
    
    $scope.shipment_header = {};
    $scope.shipment_detail = {}; 
-   console.log($scope.shipment_header);   
+   
    $scope.globalInfo = {
    	error: false,
    	warning: false,
@@ -22,6 +22,11 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     {value: 'N', text: 'No'},
     ]; 
 
+    $scope.clear = function() {
+	   $scope.shipment_header= {};
+	   $scope.shipment_detail= {};	
+	   setInfo('info', "");
+	   };
   
    
   $scope.header_template = {
@@ -34,12 +39,6 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
         url: '<%= asset_path("shipment_detail.html") %>'
         };
          
-  $scope.clear = function() {
-  	   console.log('ok');	
- 	   $scope.shipment_header = {};
-   	   $scope.shipment_detail = {}; 
-	   };
-  
  $scope.saveHeader = function() {
 
     var warehouse = $location.search().warehouse;
@@ -57,7 +56,7 @@ app.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     }).success(function(data){ 		
     	$scope.shipment_header = data.shipment_header;
 		$scope.shipment_details = data.shipment_detail;    
- 		setInfo('info', 'Shipment Created Successful');
+ 		setInfo('info', 'Shipment Created Successfully');
 
     }).error(function(message){
     	if (message.status == '422')
