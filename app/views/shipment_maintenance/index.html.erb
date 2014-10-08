@@ -3,7 +3,7 @@
 		<script>
 			$(document).on("click", "#open_shipment_detail", function() {
 				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url)
+				$('#shipment_detail_modal_iframe').attr('src', url);
 				$('#shipment_detail_modal').modal('show');
 			});
 
@@ -13,13 +13,13 @@
 
 			$(document).on("click", "#open_shipment_add", function() {
 				url = '/shipment/new/#?warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url)
+				$('#shipment_detail_modal_iframe').attr('src', url);		
 				$('#shipment_detail_modal').modal('show');
 			});
 
 			$(document).on("click", "#open_shipment_detail_add", function() {
 				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
-				$('#shipment_detail_modal_iframe').attr('src', url)
+				$('#shipment_detail_modal_iframe').attr('src', url);
 				$('#shipment_detail_modal').modal('show');
 			});
 
