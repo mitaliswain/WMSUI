@@ -30,6 +30,18 @@ class ShipmentMaintenanceController < ApplicationController
   def add_detail
     
   end
+  
+  def edit_detail
+    shipment = {}  
+    shipment['shipment_nbr'] = params[:id]
+    shipment['warehouse'] = params[:warehouse]
+    shipment['client'] = params[:client]
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => Shipment.shipment_details(shipment) }
+    end
+  end
 
   def save_detail
     response = Shipment.shipment_add_detail(params[:app_parameters], params[:fields_to_update])

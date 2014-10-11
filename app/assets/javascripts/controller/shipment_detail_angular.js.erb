@@ -2,8 +2,9 @@ app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().id;
   var client    = $location.search().client; 
+  var detail_id    = $location.search().detail_id; 
   var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
-  $scope.YesandNo = [
+  $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
     {value: 'N', text: 'No'},
   ]; 
@@ -11,6 +12,13 @@ app.controller('shipmentCtrl', function ($scope, $http, $location, $q) {
   $http.get(url).success(function(data) {
     $scope.shipment_header = data.shipment_header;
     $scope.shipment_details = data.shipment_detail;    
+  		
+
+  	angular.forEach(data.shipment_detail, function(shipment_detail) {
+  		if (shipment_detail.id == $location.search().detail_id){
+  			$scope.shipment_details = [shipment_detail];			  			
+  		};
+	});
   });
   
   $scope.header_template = {
