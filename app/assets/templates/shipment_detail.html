@@ -15,7 +15,7 @@
 		<span class="title">Received Quantity: </span><a href="#" id="received_qty" editable-number="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "0" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Hot Item: </span><a href="#" id="hot_item" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesandNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.hot_item || "empty" }}</a>
+		<span class="title">Hot Item: </span><a href="#" id="hot_item" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.hot_item || "empty" }}</a>
 	</div>
 	<div class="asn_header">
 		<span class="title">Record Status: </span><a href="#" id="record_status" editable-text="shipment_detail.record_status" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.record_status || "empty" }}</a>
@@ -105,13 +105,13 @@
 			<div class="panel-body">
 				<h4>Tracking</h4>
 				<div class="asn_header">
-					<span class="title">Track COO: </span><a href="#" id="track_coo" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesandNo" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_coo || "empty" }}</a>
+					<span class="title">Track COO: </span><a href="#" id="track_coo" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_coo || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					<span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesandNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_lotcontrol || "empty" }}</a>
+					<span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_lotcontrol || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					<span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesandNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_serial_nbr || "empty" }}</a>
+					<span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_serial_nbr || "empty" }}</a>
 				</div>
 			</div>
 		</div>

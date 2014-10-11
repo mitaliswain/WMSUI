@@ -7,10 +7,6 @@
 				$('#shipment_detail_modal').modal('show');
 			});
 
-			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {
-				angular.element('#ShipmentListCtrl').scope().reload();
-			});
-
 			$(document).on("click", "#open_shipment_add", function() {
 				url = '/shipment/new/#?warehouse=WH1&client=WM';
 				$('#shipment_detail_modal_iframe').attr('src', url);		
@@ -23,6 +19,12 @@
 				$('#shipment_detail_modal').modal('show');
 			});
 
+			$(document).on("click", "#open_shipment_detail_edit", function() {
+				url = '/shipment/' + $(this).attr('shipment_id') + '/edit_detail/' + $(this).attr('shipment_detail_id') + '#?id=' + $(this).attr('shipment_id') + '&detail_id=' + $(this).attr('shipment_detail_id') + '&warehouse=WH1&client=WM';
+				$('#shipment_detail_modal_iframe').attr('src', url);
+				$('#shipment_detail_modal').modal('show');
+			});
+			
 			var sortingOrder = 'shipment_header.shipment_nbr';
 		</script>
 		<style>
@@ -140,7 +142,8 @@
 								data-toggle="modal"
 								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
-						</div><!--Detail -->
+						</div>
+						<!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
 								<div class="shipment-header"></div>
@@ -169,9 +172,9 @@
 								</div>
 
 								<div class="shipment-header">
-									<a id="open_shipment_detail"
+									<a id="open_shipment_detail_edit"
 									data-toggle="modal"
-									data-target="{{item.shipment_header.shipment_nbr}}"> <i class="icon-edit"></i></a>
+									shipment_id="{{item.shipment_header.id}}" shipment_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
 								</div>
 
 							</div>

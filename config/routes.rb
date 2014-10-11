@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  get 'shipment/add_detail'        => 'shipment_maintenance#add_detail'
+  get 'shipment/add_detail'         => 'shipment_maintenance#add_detail'
+  get 'shipment/:id/edit_detail/:detail_id'    => 'shipment_maintenance#edit_detail'
   post 'shipment/add_detail'        => 'shipment_maintenance#save_detail' 
   post 'shipment/add_header'        => 'shipment_maintenance#add_header' 
   post 'shipment/:id/update_header' => 'shipment_maintenance#update_header' 
