@@ -25,7 +25,7 @@
 
 			$(document).on("click", "#open_shipment_detail_edit", function() {
 				url = '/shipment/' + $(this).attr('shipment_id') + '/edit_detail/' + $(this).attr('shipment_detail_id') + '#?id=' + $(this).attr('shipment_id') + '&detail_id=' + $(this).attr('shipment_detail_id') + '&warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);
+				$('#shipment_detail_modal_iframe').attr('src', url); 
 				$('#shipment_detail_modal').modal('show');
 			});
 			
