@@ -1,12 +1,13 @@
 var app = angular.module('shipment_detail', ["ngRoute", "xeditable", "ngGrid"]);
+var configuration = angular.module('configuration_detail', ["ngRoute", "xeditable", "ngGrid"]);
 
 app.config(['$routeProvider',
  function($routeProvider) {
    $routeProvider.
      when('/shipmentHeader', {
-       templateUrl: 'shipment_header.html', controller: 'shipmentCtrl'})      
+       templateUrl: 'shipment_header.html', controller: 'shipmentEditCtrl'})      
     .otherwise({
-            templateUrl: '/assets/shipment_header.html', controller: 'shipmentCtrl'});
+            templateUrl: '/assets/shipment_header.html', controller: 'shipmentEditCtrl'});
      
 }]);
 

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'shipment/:id/update_header' => 'shipment_maintenance#update_header' 
   post 'shipment/:id/update_detail' => 'shipment_maintenance#update_detail' 
   
+  get 'configuration/' => 'configuration_maintenance#index'
+  
   resources :mainmenu,  controller: 'main_menu'
 
   resources :shipmentreceive, controller: 'shipment_receive'
