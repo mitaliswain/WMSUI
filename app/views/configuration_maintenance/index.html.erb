@@ -9,13 +9,13 @@
 
 			$(document).on("click", "#open_shipment_add", function() {
 				url = '/shipment/new/#?warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);		
-				angular.element('#shipmentAddCtrl').scope().clear();		
+				$('#shipment_detail_modal_iframe').attr('src', url);
+				angular.element('#shipmentAddCtrl').scope().clear();
 				$('#shipment_detail_modal').modal('show');
 			});
 
-			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {		
-				angular.element('#ShipmentListCtrl').scope().reload();		
+			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {
+				angular.element('#ShipmentListCtrl').scope().reload();
 			});
 
 			$(document).on("click", "#open_shipment_detail_add", function() {
@@ -30,7 +30,7 @@
 				$('#shipment_detail_modal_iframe').attr('src', url);
 				$('#shipment_detail_modal').modal('show');
 			});
-			
+
 			var sortingOrder = 'shipment_header.shipment_nbr';
 		</script>
 		<style>
@@ -51,7 +51,7 @@
 	<div id="ShipmentListCtrl" ng-controller="ConfigurationListCtrl" style="width: 80%; margin: 2%">
 
 		<body ng-app="configuration_detail" >
-			<a href="/"> <h2>Shipment List</h2> </a>
+			<a href="/"> <h2>Global Configuration</h2> </a>
 
 			<div class="input-group" style="width: 30%">
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
@@ -60,16 +60,10 @@
 			<div>
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active">
-						<a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a>
+						<a href="#Active" role="tab" data-toggle="tab" ng-click="status('true')">Active</a>
 					</li>
 					<li>
-						<a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Initiated')">Initiated</a>
-					</li>
-					<li>
-						<a href="#messages" role="tab" data-toggle="tab" ng-click="status('In Fullfilment')">In Fulfilment</a>
-					</li>
-					<li>
-						<a href="#settings" role="tab" data-toggle="tab" ng-click="status('Verified')">Verified</a>
+						<a href="#Inactive" role="tab" data-toggle="tab" ng-click="status('false')">Inactive</a>
 					</li>
 				</ul>
 
@@ -83,16 +77,16 @@
 								Option
 							</div>
 							<div class="shipment-header">
-								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
+								Module<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
-								ASN Typpe&nbsp;<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
+								Key<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
-								Ship Via&nbsp;<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
+								Value<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
-								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
+								Active<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
 								<a id="open_shipment_add"
@@ -128,19 +122,19 @@
 								<a id="expand"
 								data-toggle="modal"
 								data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
-								</div>
+							</div>
 
-								<div class="shipment-header">
+							<div class="shipment-header">
 								{{item.module}}
-								</div>
-								<div class="shipment-header">
+							</div>
+							<div class="shipment-header">
 								{{item.key}}
 							</div>
-							<div class="shipment-header">
-								{{item.value}}
+							<div class="shipment-header"> 
+								<a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="updateConfig($data, this, shipment_header.id)">{{ item.value || "empty" }}</a>
 							</div>
 							<div class="shipment-header">
-								{{item.shipment_header.record_status}}
+								{{item.enable}}
 							</div>
 
 							<div class="shipment-header">
@@ -148,42 +142,7 @@
 								data-toggle="modal"
 								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
-						</div>
-						<!--Detail -->
-						<div ng-show="item.show" style="padding-left: 0%">
-							<div class="label label-default">
-								<div class="shipment-header"></div>
-								<div class="shipment-header">
-									Shipped Quantity
-								</div>
-								<div class="shipment-header">
-									Received Quantity
-								</div>
-								<div class="shipment-header">
-									<a id="open_shipment_detail_add"
-									data-toggle="modal"
-									data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
-								</div>
-
-							</div>
-							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
-								<div class="shipment-header">
-									{{detail.item}}
-								</div>
-								<div class="shipment-header">
-									{{detail.shipped_quantity}}
-								</div>
-								<div class="shipment-header">
-									{{detail.received_qty}}
-								</div>
-
-								<div class="shipment-header">
-									<a id="open_shipment_detail_edit"
-									data-toggle="modal"
-									shipment_id="{{item.shipment_header.id}}" shipment_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
-								</div>
-
-							</div>
+						</div><!--Detail -->
 						</div> </td>
 					</tr>
 

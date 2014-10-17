@@ -4,7 +4,10 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
   var client    = $location.search().client; 
   var lastitem = {}; 
   var last_status;
-   var url = '/configuration.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
+  var url = '/configuration.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
+  $scope.options = [];
+  
+
 
 		
     $scope.reload = function() {
@@ -19,7 +22,19 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
 		    $scope.itemsPerPage = 8;
 		    $scope.pagedItems = [];
 		    $scope.currentPage = 0;
-		
+		    
+		    $scope.loadGroups = function(key) {  
+		    $scope.options = [];	   
+  	   		angular.forEach(data, function(configuration) {
+  	   			if (configuration.key == key) {
+  	   					angular.forEach(JSON.parse(configuration.attribute1).Options, function(option){
+  	   						$scope.options.push({value: option, text: option})
+  	   					});
+  	   				return;
+  	   			}
+  	   			});  	   		
+		    };
+		    
 		    var searchMatch = function (haystack, needle) {
 		        if (!needle) {
 		            return true;
@@ -44,10 +59,10 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
 		    	status = status==null ? 'Created' : status 
 		    	last_status = status;   	
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		               // if (searchMatch(item["shipment_header"]["record_status"], status))
+		                //if (searchMatch(item["enable"], status))
 		              	    return true;
-		              //	else              	    
-		            	//	return false;
+		              	//else              	    
+		            		//return false;
 	
 		        });
 		        // take care of the sorting order
