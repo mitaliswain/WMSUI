@@ -2,13 +2,15 @@
 
  User:<%=@user%> <%=@basic_parameters["client"]%>/<%=@basic_parameters["warehouse"]%>/<%=@basic_parameters["building"]%>/<%=@basic_parameters["channel"]%>
  <% @shipment.each_with_index do |receive, index| %>
- 	<% if receive["validated"] == false %>			
-		<%= editable_input(receive)%>
-		<input type="hidden" name="name" value="<%=receive["name"]%>">
-		<% break %>	
-	<% else %>
-		<div> <%= receive["description"] %> : <%= receive["value"] %></div>	
-	<% end %>	
+ 	<% if receive["to_validate"] == "Yes"%>
+	 	<% if receive["validated"] == false %>			
+			<%= editable_input(receive)%>
+			<input type="hidden" name="name" value="<%=receive["name"]%>">
+			<% break %>	
+		<% else %>
+			<div> <%= receive["description"] %> : <%= receive["value"] %></div>	
+		<% end %>	
+	<%end%>	
  <% end %>
 
 

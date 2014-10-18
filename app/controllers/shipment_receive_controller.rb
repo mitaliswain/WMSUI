@@ -6,14 +6,16 @@ class ShipmentReceiveController < ApplicationController
    end
    
   def new 
-    @shipment =   [
-                  {"name" => 'shipment_nbr',  "description"=> "Shipment" ,  "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'location',  "description"=> "Location" ,  "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false, "to_validate" => true},
-                  {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false ,"to_validate" => false }
+    shipment =   [
+                  {"name" => 'shipment_nbr',  "description"=> "Shipment" ,  "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'purchase_order_nbr',  "description"=> "Purchase Order" ,  "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'location',  "description"=> "Location" ,  "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'item',      "description"=> "Item" , "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'case',      "description"=> "Case", "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'quantity',  "description"=> "Quantity",  "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'inner_pack',"description"=> "Inner Pack",   "value" => '', "validated" => false ,"to_validate" => "Yes" }
                 ]
+    @shipment = ShipmentReceive.new.prepare_shipment_receiving_screen(shipment) 
     @basic_parameters = session[:basic_parameters]        
     session[:shipment] = @shipment  
       @error = ''            

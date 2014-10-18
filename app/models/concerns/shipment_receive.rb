@@ -5,6 +5,16 @@ class ShipmentReceive
   def initialize
   end
 
+  def prepare_shipment_receiving_screen(shipment)
+    config_list = GlobalConfiguration.new.configuration_list_key_value(module: 'RECEIVING')
+    p config_list
+    index = shipment.find_index {|field| field["name"] == "purchase_order_nbr"}
+    shipment[index]["to_validate"] = config_list[:Purchase_Order_Required] if index && config_list.has_key?(:Purchase_Order_Required)
+    shipment 
+  end
+  
+  
+
   def process_receiving(basic_parameters, shipment, to_validate, value)
      
     shipment = set_shipment_value_from_input(shipment.clone, to_validate, "value", value)
@@ -131,6 +141,7 @@ class ShipmentReceive
     return JSON.parse(response)    
   end
   
+  
   def extract_shipment shipment_data    
     shipment = {}
     shipment_data.each do |shipment_info|
@@ -139,6 +150,7 @@ class ShipmentReceive
     shipment
     
   end
+  
 
 
 end

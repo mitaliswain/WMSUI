@@ -92,33 +92,33 @@
 								<a id="open_shipment_add"
 								data-toggle="modal"
 								<i class="icon-plus-sign"></i></a>
-								</div>
-								</div></th>
-								</tr>
-								</thead>
-								<tfoot>
-								<td colspan="7">
-								<div>
-								<ul class="pagination pull-right">
-								<li ng-class="{disabled: currentPage == 0}">
+							</div>
+						</div></th>
+					</tr>
+				</thead>
+				<tfoot>
+					<td colspan="7">
+					<div>
+						<ul class="pagination pull-right">
+							<li ng-class="{disabled: currentPage == 0}">
 								<a href ng-click="prevPage()">« Prev</a>
-								</li>
-								<li ng-repeat="n in range(pagedItems.length)"
-								ng-class="{active: n == currentPage}"
-								ng-click="setPage()">
+							</li>
+							<li ng-repeat="n in range(pagedItems.length)"
+							ng-class="{active: n == currentPage}"
+							ng-click="setPage()">
 								<a href ng-bind="n + 1">1</a>
-								</li>
-								<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+							</li>
+							<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
 								<a href ng-click="nextPage()">Next »</a>
-								</li>
-								</ul>
-								</div></td>
-								</tfoot>
-								<tbody>
-								<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-								<td colspan="7">
-								<div  class="bs-callout bs-callout-info">
-								<div class="shipment-header" ng-click="toggle_expand(item)" >
+							</li>
+						</ul>
+					</div></td>
+				</tfoot>
+				<tbody>
+					<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+						<td colspan="7">
+						<div  class="bs-callout bs-callout-info">
+							<div class="shipment-header" ng-click="toggle_expand(item)" >
 								<a id="expand"
 								data-toggle="modal"
 								data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
@@ -130,7 +130,7 @@
 							<div class="shipment-header">
 								{{item.key}}
 							</div>
-							<div class="shipment-header"> 
+							<div class="shipment-header">
 								<a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="updateConfig($data, this, shipment_header.id)">{{ item.value || "empty" }}</a>
 							</div>
 							<div class="shipment-header">
@@ -142,11 +142,10 @@
 								data-toggle="modal"
 								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
-						</div><!--Detail -->
-						</div> </td>
+						</div><!--Detail --> </div> </td>
 					</tr>
 
-					</tbody>
+				</tbody>
 			</table>
 
 			<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
