@@ -15,7 +15,6 @@
 
 //= require_tree ./bootstrap
 //= require_tree ./angular
-//= require_tree ./ngGrid
 //= require_tree ./xeditable
 
 //= require ./controller/app.js.erb
