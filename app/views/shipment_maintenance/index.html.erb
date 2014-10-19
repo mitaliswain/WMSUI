@@ -9,8 +9,7 @@
 
 			$(document).on("click", "#open_shipment_add", function() {
 				url = '/shipment/new/#?warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);		
-				angular.element('#shipmentAddCtrl').scope().clear();		
+				$('#shipment_detail_modal_iframe').attr('src', url);			
 				$('#shipment_detail_modal').modal('show');
 			});
 
