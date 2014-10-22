@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'shipment/:id/update_detail' => 'shipment_maintenance#update_detail' 
   
   get 'configuration/' => 'configuration_maintenance#index'
+  put 'configuration/:id' => 'configuration_maintenance#update'
   
   resources :mainmenu,  controller: 'main_menu'
 

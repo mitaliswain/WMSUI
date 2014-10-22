@@ -55,7 +55,6 @@ class ShipmentMaintenanceController < ApplicationController
   
   def update_header
     response = Shipment.shipment_update_header(params[:id], params[:app_parameters], params[:fields_to_update])
-    p response[:status]
     render :json => response, status: response['status']
   end
 
