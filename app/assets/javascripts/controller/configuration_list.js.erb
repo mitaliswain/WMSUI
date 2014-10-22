@@ -1,13 +1,42 @@
-configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter) {	
+configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $q) {	
   var warehouse = $location.search().warehouse;
-  var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
   var lastitem = {}; 
   var last_status;
   var url = '/configuration.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
   $scope.options = [];
+  $scope.TrueOrFalse = [
+    {value: 'True', text: 'True'},
+    {value: 'False', text: 'False'},
+    ]; 
   
+ $scope.update_configuration = function(data, el, id) {
 
+    var warehouse = $location.search().warehouse;
+    var client    = $location.search().client; 
+    var fields_to_update = {};
+    var url = '/configuration/'+ id 
+	fields_to_update[el.$editable.elem[0].id] = data;
+	var d = $q.defer();
+    $http.put(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+    	fields_to_update: fields_to_update
+    	})
+    	.success(function(res) {
+	     	res = res || {};
+	        d.resolve();
+	    }).error(function(res){
+	    	res = res || {};
+	    	if (res.code == 500) {
+	      		d.reject('Server error!');
+	      	}
+	      	else {	
+	      		d.reject(res.errors[0].message);
+	      	} 		
+	    });
+	    return d.promise;
+ 	};
 
 		
     $scope.reload = function() {
@@ -78,11 +107,10 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
 		    $scope.search = function () {
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
 		            //for(var attr in item) {
-		                //if (searchMatch(item["shipment_header"]["shipment_nbr"], $scope.query))
+		                if (searchMatch(item["key"], $scope.query))
 		              	    return true;
-		              	//else              	    
-		            //}
-		            	//return false;
+		              	else              	    		            
+		            	return false;
 		        	});
 		        // take care of the sorting order
 		        if ($scope.sortingOrder !== '') {
