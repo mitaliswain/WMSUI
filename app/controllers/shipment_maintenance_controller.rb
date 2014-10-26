@@ -4,6 +4,7 @@ class ShipmentMaintenanceController < ApplicationController
     shipment['shipment_nbr'] = params[:id]
     shipment['warehouse'] = params[:warehouse]
     shipment['client'] = params[:client]
+    
 
     respond_to do |format|
       format.html 
