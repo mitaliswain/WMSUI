@@ -6,10 +6,10 @@
 <div class="btn-default">
 	<div class="asn_header">
 		<span class="title"> Shipment Number:</span>
-		<a href="#" id="shipment_nbr"  e-name="shipment_nbr" editable-text="shipment_header.shipment_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.shipment_nbr || "empty" }}</a>
+		<a href="#" id="shipment_nbr"  e-name="shipment_nbr" editable-text="shipment_header.shipment_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)" >{{ shipment_header.shipment_nbr || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type" editable-text="shipment_header.asn_type" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.asn_type || "empty" }}</a>
+		<span class="title">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in AsnType" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.asn_type || "empty" }}</a>
 	</div>
 	<div class="asn_header">
 		<span class="title">Record Status:</span><a href="#" id="record_status" e-name="record_status" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in statuses" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required >{{ shipment_header.record_status || "Created" }}</a>
@@ -27,13 +27,13 @@
 		<span class="title">Appointment Nbr:</span><a href="#" id="appointment_nbr" e-name="appointment_nbr" editable_text="shipment_header.appointment_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.appointment_nbr || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Auto cancel PO:</span><a href="#" id="auto_cancel_po" e-name="auto_cancel_po" editable_select="shipment_header.auto_cancel_po" e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.auto_cancel_po || "N" }}</a>
+		<span class="title">Auto cancel PO:</span><a href="#" id="auto_cancel_po" e-name="auto_cancel_po" editable_select="shipment_header.auto_cancel_po" e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.auto_cancel_po || "Not set" }}</a>
 	</div>
 	<div class="asn_header">
 		<span class="title">COO:</span><a href="#" id="coo" e-name="coo" editable_text="shipment_header.coo" onbeforesave="updateHeader($data, this, shipment_header.id)" >{{ shipment_header.coo || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Shipment Verified:</span><a href="#" id="shipment_verified" e-name="shipment_verified">{{ shipment_header.shipment_verified}}</a>
+		<span class="title">Shipment Verified:</span><a href="#" id="shipment_verified" e-name="shipment_verified">{{ shipment_header.shipment_verified|| "No" }}</a>
 	</div>
 </div>
 &nbsp;
