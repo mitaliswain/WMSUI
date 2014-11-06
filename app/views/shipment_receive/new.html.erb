@@ -4,9 +4,13 @@
  <% @shipment.each_with_index do |receive, index| %>
  	<% if receive["to_validate"] == "Yes"%>
 	 	<% if receive["validated"] == false %>			
-			<%= editable_input(receive)%>
-			<input type="hidden" name="name" value="<%=receive["name"]%>">
-			<% break %>	
+			<!--%= editable_input(receive)%-->
+			<div>
+				<label><%=receive["description"]%></label>
+				<input class="medium text" type="text" name="<%=receive["name"]%>" value="">
+				<!--input type="hidden" name="name" value="<%=receive["name"]%>"-->
+			</div>
+			<%break%>
 		<% else %>
 			<div> <%= receive["description"] %> : <%= receive["value"] %></div>	
 		<% end %>	

@@ -1,0 +1,60 @@
+<div>
+<nav class="navbar navbar-inverse" role="navigation">
+<div class="container-fluid"> 
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle-Navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    
+    <label class="navbar-brand" href="#">Warehouse Management</label>
+  </div>
+  
+ <%if current_page?(:action=>"index", :controller=>"login") || current_page?(:action=>"aboutus", :controller=>"login") || current_page?(:action=>"thanks", :controller=>"userregister")  %>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <!--div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav pull-right">
+      <li class="active"><a href="/login"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li><a href="/login/contactus/"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+      <li><a href="/login/aboutus/"><span class="glyphicon glyphicon-user"></span> About Us</a></li>
+    </ul>
+  </div!--> <!-- /.navbar-collapse -->
+  
+<%else%>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav pull-right">
+      <li class="active"><a href="/warehousemaintenance"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-th"></span> Utilities <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/configuration">Configuration</a></li>   
+          <li class="divider"></li>
+          <li><a href="/shipment">Shipment</a></li>
+          <li class="divider"></li>
+          <li><a href="/case">Case Inventory</a></li>
+          <li class="divider"></li>
+          <li><a href="/mainmenu/new">Receive</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-leaf"></span> Welcome <%= @userid %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/login?logout=yes">Log out</a></li>  
+          <li class="divider"></li>
+          <li><a href="#">Change Password</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Change Default</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+    </ul>
+   </div><!-- /.navbar-collapse -->
+<%end%>
+</div> <!-- /.container-fluid -->
+</nav>
+</div>
