@@ -49,6 +49,7 @@
 	</head>
 
 	<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" style="width: 80%; margin: 2%">
+		<%= render"shared/menu" %>
 
 		<body ng-app="configuration_detail" >
 			<a href="/"> <h2>Global Configuration</h2> </a>
@@ -136,7 +137,6 @@
 							<div class="row-header">
 								<a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
 							</div>
-
 							<div class="row-header">
 								<a id="open_shipment_detail"
 								data-toggle="modal"

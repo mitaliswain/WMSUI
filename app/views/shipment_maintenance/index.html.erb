@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<script>
+			
 			$(document).on("click", "#open_shipment_detail", function() {
 				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
 				$('#shipment_detail_modal_iframe').attr('src', url);
@@ -15,6 +16,8 @@
 
 			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {		
 				angular.element('#ShipmentListCtrl').scope().reload();		
+				$(this).removeData('bs.modal');
+				console.log('hidden');
 			});
 
 			$(document).on("click", "#open_shipment_detail_add", function() {
@@ -47,10 +50,14 @@
 		</style>
 	</head>
 
-	<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+	<body ng-app="shipment_detail" >
 
-		<body ng-app="shipment_detail" >
-			<a href="/"> <h2>Shipment List</h2> </a>
+		<%= render"shared/menu" %>
+		
+		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+
+		
+			<a href="/shipment"> <h2>Shipment List</h2> </a>
 
 			<div class="input-group" style="width: 30%">
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
