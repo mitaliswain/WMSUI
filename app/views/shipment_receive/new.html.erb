@@ -5,6 +5,7 @@
  	<% if receive["to_validate"] == "Yes"%>
 	 	<% if receive["validated"] == false %>			
 			<%= editable_input(receive)%>
+			<input type="hidden" name="name" value="<%=receive["name"]%>">
 				<%break%>
 		<% else %>
 			<div> <%= receive["description"] %> : <%= receive["value"] %></div>	
