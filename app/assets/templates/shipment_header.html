@@ -86,16 +86,16 @@
 		<div id="collapse_Buyer" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					Buyer ID: <a href="#" id="buyer_id" editable-text="shipment_header.buyer_id" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_id || "empty" }}</a>
+					<span class="title">Buyer ID: </span><a href="#" id="buyer_id" editable-text="shipment_header.buyer_id" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_id || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Buyer Name: <a href="#" id="buyer_name" editable_text="shipment_header.buyer_name" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_name || "empty" }}</a>
+					<span class="title">Buyer Name: </span><a href="#" id="buyer_name" editable_text="shipment_header.buyer_name" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_name || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Department: <a href="#" id="department" editable_text="shipment_header.department" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.department || "empty" }}</a>
+					<span class="title">Department: </span><a href="#" id="department" editable_text="shipment_header.department" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.department || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Buyer EmailID: <a href="#" id="buyer_email_id" editable_text="shipment_header.buyer_email_id" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_email_id || "empty" }}</a>
+					<span></span> EmailID: </span><a href="#" id="buyer_email_id" editable_text="shipment_header.buyer_email_id" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.buyer_email_id || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -105,43 +105,43 @@
 		<div id="collapse_Date" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					PO Created By: <a href="#" id="pocreated_by" editable-date="shipment_header.pocreated_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.pocreated_by || "empty" }}</a>
+					<span class="title">Created By: </span><a href="#" id="pocreated_by">{{ shipment_header.pocreated_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Created Date: <a href="#" id="po_created_date" editable-date="shipment_header.po_created_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_created_date || "empty" }}</a>
+					<span class="title">Created Date: </span><a href="#" id="po_created_date" editable-date="shipment_header.po_created_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_created_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Ship Date: <a href="#" id="po_ship_date" editable_date="shipment_header.po_ship_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_ship_date || "empty" }}</a>
+					<span class="title">Ship Date: </span><a href="#" id="po_ship_date" editable_date="shipment_header.po_ship_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_ship_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Last Modified By: <a href="#" id="po_last_modified_by" editable_text="shipment_header.po_last_modified_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_last_modified_by || "empty" }}</a>
+					<span class="title">Last Modified By: </span><a href="#" id="po_last_modified_by" editable_text="shipment_header.po_last_modified_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_last_modified_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Last Modifified Date: <a href="#" id="po_last_modified_date" editable_date="shipment_header.hot_item_po" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hot_item_po || "empty" }}</a>
+					<span class="title">Last Modifified Date: </span><a href="#" id="po_last_modified_date" editable_date="shipment_header.hot_item_po" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hot_item_po || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Downloaded By: <a href="#" id="po_downloaded_by" editable-text="shipment_header.po_downloaded_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_downloaded_by || "empty" }}</a>
+					<span class="title">Downloaded By: </span><a href="#" id="po_downloaded_by" editable-text="shipment_header.po_downloaded_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_downloaded_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO Downloaded Date: <a href="#" id="po_downloaded_date" editable_text="shipment_header.po_downloaded_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.appointment_nbr || "empty" }}</a>
+					<span class="title">Downloaded Date: </span><a href="#" id="po_downloaded_date" editable_text="shipment_header.po_downloaded_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.appointment_nbr || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Auto Cancel PO: <a href="#" id="auto_cancel_po" editable_text="shipment_header.auto_cancel_po" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.auto_cancel_po || "empty" }}</a>
+					<span class="title">Auto Cancel PO: </span><a href="#" id="auto_cancel_po" editable_text="shipment_header.auto_cancel_po" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.auto_cancel_po || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Cancel After Days: <a href="#" id="cancel_after_days" editable_text="shipment_header.cancel_after_days" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cancel_after_days || "empty" }}</a>
+					<span class="title">Cancel After Days: </span><a href="#" id="cancel_after_days" editable_text="shipment_header.cancel_after_days" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cancel_after_days || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO cancelled By: <a href="#" id="po_cancelled_by" editable_text="shipment_header.po_cancelled_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_cancelled_by || "empty" }}</a>
+					<span class="title">Cancelled By: </span><a href="#" id="po_cancelled_by" editable_text="shipment_header.po_cancelled_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_cancelled_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					PO cancelled Date: <a href="#" id="po_cancelled_date" editable_date="shipment_header.po_cancelled_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_cancelled_date || "empty" }}</a>
+					<span class="title">Cancelled Date: </span><a href="#" id="po_cancelled_date" editable_date="shipment_header.po_cancelled_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_cancelled_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Shipment Verified By: <a href="#" id="shipment_verified_by" editable_text="shipment_header.shipment_verified_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.shipment_verified_by || "empty" }}</a>
+					<span class="title">Shipment Verified By: </span><a href="#" id="shipment_verified_by" editable_text="shipment_header.shipment_verified_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.shipment_verified_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Shipment Verified Date: <a href="#" id="shipment_verified_date" editable_date="shipment_header.shipment_verified_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.shipment_verified_date || "empty" }}</a>
+					<span class="title">Shipment Verified Date: </span><a href="#" id="shipment_verified_date" editable_date="shipment_header.shipment_verified_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.shipment_verified_date || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -152,13 +152,13 @@
 		<div id="collapse_Tracking" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					Track LotControl: <a href="#" id="v" editable-checkbox="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
+					<span class="title">Track LotControl: </span><a href="#" id="v" editable-checkbox="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Track Serial No: <a href="#" id="track_serial_nbr" editable_checkbox="shipment_header.track_serial_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_serial_nbr || "empty" }}</a>
+					<span class="title">Track Serial No: </span><a href="#" id="track_serial_nbr" editable_checkbox="shipment_header.track_serial_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_serial_nbr || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Track COO: <a href="#" id="track_coo" editable_checkbox="shipment_header.track_coo" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_coo || "empty" }}</a>
+					<span class="title">Track COO: </span><a href="#" id="track_coo" editable_checkbox="shipment_header.track_coo" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_coo || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -169,32 +169,32 @@
 		<div id="collapse_Receiving" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					Track LotControl: <a href="#" id="track_lotcontrol" editable-text="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
+					<span class="title">Track LotControl: </span><a href="#" id="track_lotcontrol" editable-text="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
 				</div>
 
 				<div class="asn_header">
-					PO Ship Date: <a href="#" id="po_ship_date" editable-date="shipment_header.po_ship_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_ship_date || "empty" }}</a>
+					<span class="title">PO Ship Date: </span><a href="#" id="po_ship_date" editable-date="shipment_header.po_ship_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.po_ship_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Mode Of Transport: <a href="#" id="mode_of_transport" editable_text="shipment_header.mode_of_transport" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.mode_of_transport || "empty" }}</a>
+					<span class="title">Mode Of Transport: </span><a href="#" id="mode_of_transport" editable_text="shipment_header.mode_of_transport" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.mode_of_transport || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Receiving Started Date: <a href="#" id="receiving_stated_date"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_stated_date || "empty" }}</a>
+					<span class="title">Receiving Started Date: </span><a href="#" id="receiving_stated_date"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_stated_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					First Receiving By: <a href="#" id="first_receiving_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.first_receiving_by || "empty" }}</a>
+					<span class="title">First Receiving By: </span><a href="#" id="first_receiving_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.first_receiving_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Area: <a href="#" id="area"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.area || "empty" }}</a>
+					<span class="title">Area: </span><a href="#" id="area"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.area || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Receiving Ended Date: <a href="#" id="receiving_ended_date" editable_date="shipment_header.receiving_ended_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_ended_date || "empty" }}</a>
+					<span class="title">Receiving Ended Date: </span><a href="#" id="receiving_ended_date" editable_date="shipment_header.receiving_ended_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_ended_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Receiving Ended By: <a href="#" id="receiving_ended_by" editable_text="shipment_header.receiving_ended_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_ended_by || "empty" }}</a>
+					<span class="title">Receiving Ended By: </span><a href="#" id="receiving_ended_by" editable_text="shipment_header.receiving_ended_by" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.receiving_ended_by || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Dock Door: <a href="#" id="door_door"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.door_door || "empty" }}</a>
+					<span class="title">Dock Door: </span><a href="#" id="door_door"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.door_door || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -206,22 +206,22 @@
 			<div class="panel-body">
 
 				<div class="asn_header">
-					Total Units: <a href="#" id="total_units"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_units || "empty" }}</a>
+					<span class="title">Total Units: </span><a href="#" id="total_units"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_units || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Cases Ordered: <a href="#" id="cases_ordered"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cases_ordered || "empty" }}</a>
+					<span class="title">Cases Ordered: </span><a href="#" id="cases_ordered"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cases_ordered || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Total Weight: <a href="#" id="total_weight"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_weight || "empty" }}</a>
+					<span class="title">Total Weight: </span><a href="#" id="total_weight"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_weight || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Total Volume: <a href="#" id="total_volume"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_volume || "empty" }}</a>
+					<span class="title">Total Volume: </span><a href="#" id="total_volume"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_volume || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Units Received: <a href="#" id="units_rcvd"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.units_rcvd || "empty" }}</a>
+					<span class="title">Units Received: </span><a href="#" id="units_rcvd"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.units_rcvd || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Cases Received: <a href="#" id="cases_rcvd"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cases_rcvd || "empty" }}</a>
+					<span class="title">Cases Received: </span><a href="#" id="cases_rcvd"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.cases_rcvd || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -232,19 +232,19 @@
 		<div id="collapse_QA" class="panel-collapse collapse out">
 			<div class="panel-body">
 				<div class="asn_header">
-					QA Sampling Plan: <a href="#" id="qa_samplling_plan" editable-text="shipment_header.qa_samplling_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.qa_samplling_plan || "empty" }}</a>
+					<span class="title">QA Sampling Plan: </span><a href="#" id="qa_samplling_plan" editable-text="shipment_header.qa_samplling_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.qa_samplling_plan || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Override QA Plan: <a href="#" id="override_qa_plan" editable_text="shipment_header.override_qa_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.override_qa_plan || "empty" }}</a>
+					<span class="title">Override QA Plan: </span><a href="#" id="override_qa_plan" editable_text="shipment_header.override_qa_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.override_qa_plan || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Override Plan: <a href="#" id="override_plan" editable_text="shipment_header.override_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.override_plan || "empty" }}</a>
+					<span class="title">Override Plan: </span><a href="#" id="override_plan" editable_text="shipment_header.override_plan" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.override_plan || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Total Units IN QA: <a href="#" id="total_units_in_qa" editable_text="shipment_header.total_units_in_qa" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_units_in_qa || "empty" }}</a>
+					<span class="title">Total Units IN QA: </span><a href="#" id="total_units_in_qa" editable_text="shipment_header.total_units_in_qa" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_units_in_qa || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Total Cases IN QA: <a href="#" id="total_cases_in_qa" editable_text="shipment_header.total_cases_in_qa" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_cases_in_qa || "empty" }}</a>
+					<span class="title">Total Cases IN QA: </span><a href="#" id="total_cases_in_qa" editable_text="shipment_header.total_cases_in_qa" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.total_cases_in_qa || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -256,52 +256,51 @@
 			<div class="panel-body">
 
 				<div class="asn_header">
-					Hold Inventory: <a href="#" id="hold_inventory" editable_checkbox="shipment_header.hold_inventory" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hold_inventory || "empty" }}</a>
+					<span class="title">Hold Inventory: </span><a href="#" id="hold_inventory" editable_checkbox="shipment_header.hold_inventory" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hold_inventory || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Hold Code: <a href="#" id="hold_code" editable_text="shipment_header.hold_code" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hold_code || "empty" }}</a>
+					<span class="title">Hold Code: </span><a href="#" id="hold_code" editable_text="shipment_header.hold_code" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.hold_code || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Alert Buyer: <a href="#" id="alert_buyer" editable_checkbox="shipment_header.alert_buyer" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.alert_buyer || "empty" }}</a>
+					<span class="title">Alert Buyer: </span><a href="#" id="alert_buyer" editable_checkbox="shipment_header.alert_buyer" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.alert_buyer || "empty" }}</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="panel-heading">
-			<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_header_inners" href="#collapse_Receiving" > QA Information </a></h4>
+			<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_header_inners" href="#collapse_Carrier" > Carrier Infromation </a></h4>
 		</div>
-		<div id="collapse_QA" class="panel-collapse collapse out">
+		<div id="collapse_Carrier" class="panel-collapse collapse out">
 			<div class="panel-body">
-				<h4>Misc Details</h4>
 				<div class="asn_header">
-					SHip Via: <a href="#" id="ship_via" editable-text="shipment_header.ship_via" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.ship_via || "empty" }}</a>
+					<span class="title">Ship Via: </span><a href="#" id="ship_via" editable-text="shipment_header.ship_via" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.ship_via || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Trailor Type: <a href="#" id="trailor_type" editable_text="shipment_header.trailor_type" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.trailor_type || "empty" }}</a>
+					<span class="title">Trailor Type: </span><a href="#" id="trailor_type" editable_text="shipment_header.trailor_type" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.trailor_type || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Manifest No: <a href="#" id="manifest_nbr" editable_text="shipment_header.manifest_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.manifest_nbr || "empty" }}</a>
+					<span class="title">Manifest No: </span><a href="#" id="manifest_nbr" editable_text="shipment_header.manifest_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.manifest_nbr || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					BOL: <a href="#" id="bol" editable_text="shipment_header.bol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.bol || "empty" }}</a>
+					<span class="title">BOL: </span><a href="#" id="bol" editable_text="shipment_header.bol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.bol || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Seal No: <a href="#" id="seal_nbr" editable_text="shipment_header.seal_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.seal_nbr || "empty" }}</a>
+					<span class="title">Seal No: </span><a href="#" id="seal_nbr" editable_text="shipment_header.seal_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.seal_nbr || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					SCAC Code: <a href="#" id="scac_code" editable_text="shipment_header.scac_code" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.scac_code || "empty" }}</a>
+					<span class="title">SCAC Code: </span><a href="#" id="scac_code" editable_text="shipment_header.scac_code" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.scac_code || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Order No: <a href="#" id="order_nbr" editable_text="shipment_header.order_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.order_nbr || "empty" }}</a>
+					<span class="title">Order No: </span><a href="#" id="order_nbr" editable_text="shipment_header.order_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.order_nbr || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Order Type: <a href="#" id="order_type" editable_text="shipment_header.order_type" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.order_type || "empty" }}</a>
+					<span class="title">Order Type: </span><a href="#" id="order_type" editable_text="shipment_header.order_type" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.order_type || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Source Comment: <a href="#" id="source_comment" editable_text="shipment_header.source_comment" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.source_comment || "empty" }}</a>
+					<span class="title">Source Comment:</span> <a href="#" id="source_comment" editable_text="shipment_header.source_comment" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.source_comment || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Comments: <a href="#" id="comments" editable_text="shipment_header.comments" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.comments || "empty" }}</a>
+					<span class="title">Comments: </span><a href="#" id="comments" editable_text="shipment_header.comments" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.comments || "empty" }}</a>
 				</div>
 			</div>
 		</div>
@@ -311,30 +310,29 @@
 		</div>
 		<div id="collapse_Audit" class="panel-collapse collapse out">
 			<div class="panel-body">
-				<h4>Audit Info</h4>
 				<div class="asn_header">
-					Created Date: <a href="#" id="created_date" editable-date="shipment_header.created_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_date || "empty" }}</a>
+					<span class="title">Created Date: </span><a href="#" id="created_date" editable-date="shipment_header.created_date" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Created User: <a href="#" id="created_user" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_user || "empty" }}</a>
+					<span class="title">Created User: </span><a href="#" id="created_user" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_user || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Created Prc: <a href="#" id="created_prc" editable_text="shipment_header.created_prc" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_prc || "empty" }}</a>
+					<span class="title">Created Prc: </span><a href="#" id="created_prc" editable_text="shipment_header.created_prc" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_prc || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Created At: <a href="#" id="created_at" editable_text="shipment_header.created_at" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_at || "empty" }}</a>
+					<span class="title">Created At: </span><a href="#" id="created_at" editable_text="shipment_header.created_at" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.created_at || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Updated Date: <a href="#" id="updated_date" editable_date="shipment_header.seal_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_date || "empty" }}</a>
+					<span class="title">Updated Date: </span><a href="#" id="updated_date" editable_date="shipment_header.seal_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_date || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Updated User: <a href="#" id="updated_user"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_user || "empty" }}</a>
+					<span class="title">Updated User: </span><a href="#" id="updated_user"  onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_user || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Updated Prc: <a href="#" id="updated_prc" editable_text="shipment_header.updated_prc" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_prc || "empty" }}</a>
+					<span class="title">Updated Prc: </span><a href="#" id="updated_prc" editable_text="shipment_header.updated_prc" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_prc || "empty" }}</a>
 				</div>
 				<div class="asn_header">
-					Updated At: <a href="#" id="updated_at" editable_text="shipment_header.updated_at" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_at || "empty" }}</a>
+					<span class="title">Updated At: </span><a href="#" id="updated_at" editable_text="shipment_header.updated_at" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.updated_at || "empty" }}</a>
 				</div>
 
 			</div>
