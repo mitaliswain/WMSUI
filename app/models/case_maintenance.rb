@@ -9,8 +9,8 @@ class CaseMaintenance
   end
 
 
-  def self.case_details(shipment)
-    url = Properties.getUrl + "/case/#{case_data['shipment_nbr']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"   
+  def self.case_details(case_data)
+    url = Properties.getUrl + "/case/#{case_data['id']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end

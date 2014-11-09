@@ -15,13 +15,13 @@ class CaseMaintenanceController < ApplicationController
 
   def show 
     case_data = {}
-    case_data['shipment_nbr'] = params[:id]
+    case_data['id'] = params[:id]
     case_data['warehouse'] = params[:warehouse]
     case_data['client'] = params[:client]
     
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => CaseMaintenance.caset_details(case_data) }
+      format.json { render :json => CaseMaintenance.case_details(case_data) }
     end
   end
   

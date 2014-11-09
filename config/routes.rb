@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   
   get 'case' => 'case_maintenance#index'
   get 'case/new' => 'case_maintenance#new'
- post 'case/add_header'        => 'case_maintenance#add_header' 
+  get 'case/:id' => 'case_maintenance#show'
+  post 'case/:id/update_header'        => 'case_maintenance#update_header' 
+  post 'case/add_header'        => 'case_maintenance#add_header' 
  
   
   get 'configuration/' => 'configuration_maintenance#index'

@@ -1,34 +1,34 @@
 case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {	
   var warehouse = $location.search().warehouse;
-  var shipment  =  $location.search().id;
+  var id  =  $location.search().id;
   var client    = $location.search().client; 
   var detail_id    = $location.search().detail_id; 
-  var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
+  var url = '/case/'+  id + '.json?client=' + client + '&warehouse='+ warehouse;	
   $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
     {value: 'N', text: 'No'},
   ]; 
 
   $http.get(url).success(function(data) {
-    $scope.shipment_header = data.shipment_header;
-    $scope.shipment_details = data.shipment_detail;    
+    $scope.case_header = data.case_header;
+    $scope.case_details = data.case_detail;    
   		
 
-  	angular.forEach(data.shipment_detail, function(shipment_detail) {
-  		if (shipment_detail.id == $location.search().detail_id){
-  			$scope.shipment_details = [shipment_detail];			  			
+  	angular.forEach(data.case_detail, function(case_detail) {
+  		if (case_detail.id == $location.search().detail_id){
+  			$scope.case_details = [case_detail];			  			
   		};
 	});
   });
   
   $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('/shipment_maintenance/shipment_header.html') %>'
+        url: '<%= asset_path('case_maintenance/case_header.html') %>'
         }; 
 
   $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('/shipment_maintenance/shipment_maintenance/') %>'
+        url: '<%= asset_path('case_maintenance/case_detail.html') %>'
         }; 
 
 
@@ -37,8 +37,9 @@ case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {
     var warehouse = $location.search().warehouse;
     var shipment  =  $location.search().shipment;
     var client    = $location.search().client; 
+    var id  =  $location.search().id;
     var fields_to_update = {};
-    var url = '/shipment/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
+    var url = '/case/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
 	fields_to_update[el.$editable.elem[0].id] = data;
 	var d = $q.defer();
     $http.post(url, {
@@ -75,7 +76,7 @@ case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {
     var shipment  =  $location.search().shipment;
     var client    = $location.search().client; 
     var fields_to_update = {};
-    var url = '/shipment/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
+    var url = '/case/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
 	fields_to_update[el.$editable.elem[0].id] = data;
 	var d = $q.defer();
     $http.post(url, {
