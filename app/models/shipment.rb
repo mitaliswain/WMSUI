@@ -27,6 +27,7 @@ class Shipment
         responses
      else
        message = responses.nil? ? {} : JSON.parse(responses)["message"] 
+       p message
       {status: responses.code, message: message}.to_json
     end
     }    

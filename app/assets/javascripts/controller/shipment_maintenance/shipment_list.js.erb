@@ -3,7 +3,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
   var lastitem = {}; 
-  var last_status;
+  var last_status = 'Created';
    $scope.shipment = 'new shipment';
    var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
 
@@ -41,8 +41,6 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 		
 		    // Filter by status
 		    $scope.status = function (status) {
-		    	console.log(last_status);
-		    	console.log(status);
 		    	status = status==null ?  last_status : status;
 		    	last_status = status;   	
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {

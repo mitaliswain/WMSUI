@@ -50,9 +50,10 @@ shipment.controller('shipmentEditCtrl', function ($scope, $http, $location, $q) 
 	     	res = res || {};
 	        d.resolve();
 	    }).error(function(res){
+	    	console.log(res);
 	    	res = res || {};
-	    	if (res.code == 500) {
-	      		d.reject('Server error!');
+	    	if (res.status == 500) {
+	      		d.reject(res.message|| 'Server Error');
 	      	}
 	      	else {	
 	      		d.reject(res.errors[0].message);
