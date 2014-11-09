@@ -1,4 +1,5 @@
 var shipment = angular.module('shipment_detail', ["ngRoute", "xeditable"]);
+var case_data = angular.module('case_detail', ["ngRoute", "xeditable"]);
 var configuration = angular.module('configuration_detail', ["ngRoute", "xeditable"]);
 
 shipment.config(['$routeProvider',
@@ -14,4 +15,8 @@ shipment.config(['$routeProvider',
 shipment.run(function(editableOptions) {
  editableOptions.theme = 'bs3';
 });
+case_data.run(function(editableOptions) {
+ editableOptions.theme = 'bs3';
+});
+ 
  

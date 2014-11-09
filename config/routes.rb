@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   post 'shipment/:id/update_header' => 'shipment_maintenance#update_header' 
   post 'shipment/:id/update_detail' => 'shipment_maintenance#update_detail' 
   
+  get 'case' => 'case_maintenance#index'
+  get 'case/new' => 'case_maintenance#new'
+ post 'case/add_header'        => 'case_maintenance#add_header' 
+ 
+  
   get 'configuration/' => 'configuration_maintenance#index'
   put 'configuration/:id' => 'configuration_maintenance#update'
   

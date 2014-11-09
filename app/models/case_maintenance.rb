@@ -3,21 +3,21 @@ require 'rest_client'
 class CaseMaintenance
   
   def self.case_list(case_data)
-    url = Properties.getUrl + "/case/#{case_data['case']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
+    url = Properties.getUrl + "/case/#{case_data['case']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"
     response = RestClient.get url    
     return JSON.parse(response)       
   end
 
 
   def self.case_details(shipment)
-    url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+    url = Properties.getUrl + "/case/#{case_data['shipment_nbr']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
   
   def self.case_update_header(id, app_parameters, fields_to_update)
     
-    url = Properties.getUrl + "/shipment/#{id}/update_header"   
+    url = Properties.getUrl + "/case/#{id}/update_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -34,7 +34,7 @@ class CaseMaintenance
   end
 
   def self.case_add_header(app_parameters, fields_to_update)
-    url = Properties.getUrl + "/shipment/add_header"   
+    url = Properties.getUrl + "/case/add_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -57,7 +57,7 @@ class CaseMaintenance
 
 
   def self.case_add_detail(app_parameters, fields_to_update)
-    url = Properties.getUrl + "/shipment/add_detail"   
+    url = Properties.getUrl + "/case/add_detail"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -74,7 +74,7 @@ class CaseMaintenance
 
 
   def self.case_update_detail(id, app_parameters, fields_to_update)
-    url = Properties.getUrl + "/shipment/#{id}/update_detail"
+    url = Properties.getUrl + "/case/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |

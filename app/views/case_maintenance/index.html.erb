@@ -2,44 +2,44 @@
 	<head>
 		<script>
 			
-			$(document).on("click", "#open_shipment_detail", function() {
-				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
+			$(document).on("click", "#open_case_detail", function() {
+				url = '/case/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
+				$('#case_detail_modal_iframe').attr('src', url);
+				$('#case_detail_modal').modal('show');
 			});
 
-			$(document).on("click", "#open_shipment_add", function() {
-				url = '/shipment/new/#?warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);			
-				$('#shipment_detail_modal').modal('show');
+			$(document).on("click", "#open_case_add", function() {
+				url = '/case/new/#?warehouse=WH1&client=WM';
+				$('#case_detail_modal_iframe').attr('src', url);			
+				$('#case_detail_modal').modal('show');
 			});
 
-			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {		
-				angular.element('#ShipmentListCtrl').scope().reload();		
+			$(document).on('hidden.bs.modal', '#case_detail_modal', function() {		
+				angular.element('#CaseListCtrl').scope().reload();		
 				$(this).removeData('bs.modal');
 				console.log('hidden');
 			});
 
-			$(document).on("click", "#open_shipment_detail_add", function() {
-				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
+			$(document).on("click", "#open_case_detail_add", function() {
+				url = '/case/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
+				$('#case_detail_modal_iframe').attr('src', url);
+				$('#case_detail_modal').modal('show');
 			});
 
-			$(document).on("click", "#open_shipment_detail_edit", function() {
-				url = '/shipment/' + $(this).attr('shipment_id') + '/edit_detail/' + $(this).attr('shipment_detail_id') + '#?id=' + $(this).attr('shipment_id') + '&detail_id=' + $(this).attr('shipment_detail_id') + '&warehouse=WH1&client=WM';
+			$(document).on("click", "#open_case_detail_edit", function() {
+				url = '/case/' + $(this).attr('case_id') + '/edit_detail/' + $(this).attr('case_detail_id') + '#?id=' + $(this).attr('case_id') + '&detail_id=' + $(this).attr('case_detail_id') + '&warehouse=WH1&client=WM';
 
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
+				$('#case_detail_modal_iframe').attr('src', url);
+				$('#case_detail_modal').modal('show');
 			});
 			
-			var sortingOrder = 'shipment_header.shipment_nbr';
+			var sortingOrder = 'case_header.case_id';
 		</script>
 		<style>
 			.modal-dialog {
 				width: 900px;
 			}
-			.shipment-header {
+			.case-header {
 				min-width: 15%;
 				max-width: 15%;
 				display: inline-block;
@@ -50,14 +50,14 @@
 		</style>
 	</head>
 
-	<body ng-app="shipment_detail" >
+	<body ng-app="case_detail" >
 
 		<%= render"shared/menu" %>
 		
-		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+		<div id="CaseListCtrl" ng-controller="CaseListCtrl" style="width: 80%; margin: 2%">
 
 		
-			<a href="/shipment"> <h2>Shipment List</h2> </a>
+			<a href="/case"> <h2>Case List</h2> </a>
 
 			<div class="input-group" style="width: 30%">
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
@@ -69,13 +69,10 @@
 						<a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a>
 					</li>
 					<li>
-						<a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Initiated')">Initiated</a>
+						<a href="#Received" role="tab" data-toggle="tab" ng-click="status('Received')">Received</a>
 					</li>
 					<li>
-						<a href="#Receiving in Progress" role="tab" data-toggle="tab" ng-click="status('Receiving in Progress')">Receiving in Progress</a>
-					</li>
-					<li>
-						<a href="#settings" role="tab" data-toggle="tab" ng-click="status('Verified')">Verified</a>
+						<a href="#Consumed" role="tab" data-toggle="tab" ng-click="status('Consumed')">Consumed</a>
 					</li>
 				</ul>
 
@@ -85,23 +82,23 @@
 					<tr>
 						<th colspan="7">
 						<div class="bs-callout">
-							<div class="shipment-header">
+							<div class="case-header">
 								Option
 							</div>
-							<div class="shipment-header">
+							<div class="case-header">
+								Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="icon-sort"></i></a>
+							</div>
+							<div class="case-header">
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
 							</div>
-							<div class="shipment-header">
-								ASN Typpe&nbsp;<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
+							<div class="case-header">
+								Vendor &nbsp;<a ng-click="sort_by('vendor_nbr')"><i class="icon-sort"></i></a>
 							</div>
-							<div class="shipment-header">
-								Ship Via&nbsp;<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="shipment-header">
+							<div class="case-header">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
-							<div class="shipment-header">
-								<a id="open_shipment_add"
+							<div class="case-header">
+								<a id="open_case_add"
 								data-toggle="modal"
 								<i class="icon-plus-sign"></i></a>
 								</div>
@@ -130,63 +127,63 @@
 								<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
 								<td colspan="7">
 								<div  class="bs-callout bs-callout-info">
-								<div class="shipment-header" ng-click="toggle_expand(item)" >
+								<div class="case-header" ng-click="toggle_expand(item)" >
 								<a id="expand"
 								data-toggle="modal"
-								data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
+								data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
 								</div>
 
-								<div class="shipment-header">
-								{{item.shipment_header.shipment_nbr}}
+								<div class="case-header">
+								{{item.case_header.case_id}}
 								</div>
-								<div class="shipment-header">
-								{{item.shipment_header.asn_type}}
+								<div class="case-header">
+								{{item.case_header.shipment_nbr}}
 							</div>
-							<div class="shipment-header">
-								{{item.shipment_header.ship_via}}
+							<div class="case-header">
+								{{item.case_header.vendor_nbr}}
 							</div>
-							<div class="shipment-header">
-								{{item.shipment_header.record_status}}
+							<div class="case-header">
+								{{item.case_header.record_status}}
 							</div>
 
-							<div class="shipment-header">
-								<a id="open_shipment_detail"
+							<div class="case-header">
+								<a id="open_case_detail"
 								data-toggle="modal"
-								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
+								data-target="{{item.case_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
 						</div>
 						<!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
-								<div class="shipment-header"></div>
-								<div class="shipment-header">
+								<div class="case-header"></div>
+								<div class="case-header">
 									Shipped Quantity
 								</div>
-								<div class="shipment-header">
+								<div class="case-header">
 									Received Quantity
 								</div>
-								<div class="shipment-header">
-									<a id="open_shipment_detail_add"
+								<div class="case-header">
+									<a id="open_case_detail_add"
 									data-toggle="modal"
-									data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
+									data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
 								</div>
 
 							</div>
-							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
-								<div class="shipment-header">
+							<div ng-repeat="detail in item.case_detail" class="bs-callout">
+								<div class="case-header">
 									{{detail.item}}
 								</div>
-								<div class="shipment-header">
-									{{detail.shipped_quantity}}
+								<div class="case-header">
+									{{detail.quantity}}
 								</div>
-								<div class="shipment-header">
-									{{detail.received_qty}}
+								<div class="case-header">
+									{{detail.coo}}
 								</div>
 
-								<div class="shipment-header">
-									<a id="open_shipment_detail_edit"
+								<div class="case-header">
+									<a id="open_case_detail_edit"
 									data-toggle="modal"
-									shipment_id="{{item.shipment_header.id}}" shipment_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
+									case_id="{{item.case_header.id}}" case_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
 								</div>
 
 							</div>
@@ -196,17 +193,17 @@
 					</tbody>
 			</table>
 
-			<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal fade" id="case_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								<i class="icon-remove"></i>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">Shipment Detail</h4>
+							<h4 class="modal-title" id="myModalLabel">Case Detail</h4>
 						</div>
 						<div class="modal-body" style="height:700px; max-height:700px; width:100%; max-width:100%;">
-							<iframe id="shipment_detail_modal_iframe" src="" style="width: 100%; height: 100%"></iframe>
+							<iframe id="case_detail_modal_iframe" src="" style="width: 100%; height: 100%"></iframe>
 						</div>
 						<div class="modal-footer" >
 							<button type="button" class="btn btn-default" data-dismiss="modal">
