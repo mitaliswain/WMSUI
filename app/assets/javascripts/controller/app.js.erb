@@ -5,9 +5,9 @@ shipment.config(['$routeProvider',
  function($routeProvider) {
    $routeProvider.
      when('/shipmentHeader', {
-       templateUrl: 'shipment_header.html', controller: 'shipmentEditCtrl'})      
+       templateUrl: 'shipment_header.html', controller: 'shipmentEditCtrl'})
     .otherwise({
-            templateUrl: '/assets/shipment_header.html', controller: 'shipmentEditCtrl'});
+            templateUrl: '/assets/shipment_maintenance/shipment_header.html', controller: 'shipmentEditCtrl'});
      
 }]);
 
