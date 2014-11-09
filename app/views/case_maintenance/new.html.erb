@@ -1,0 +1,91 @@
+<html ng-app="shipment_detail">
+	<head>
+		<%= csrf_meta_tag %>
+		<style>
+			.asn_header {
+				width: 50%;
+				float: left
+			}
+			div[ng-app] {
+				margin: 10px;
+			}
+			form[name="editableForm"] > div {
+				height: auto;
+				padding: 5px 0;
+			}
+
+			form[name="editableForm"] .title {
+				display: inline-block;
+				font-weight: bold;
+				padding-top: 5px;
+				vertical-align: top;
+				min-width: 140px;
+			}
+
+			form[name="editableForm"] .editable {
+				display: inline-block;
+				padding-top: 5px;
+				vertical-align: top;
+			}
+
+			form[name="editableForm"] select {
+				width: 120px;
+			}
+
+		</style>
+	</head>
+
+	<body ng-controller="shipmentAddCtrl">
+		<div>
+			<button type="button" class="btn btn-primary">
+				Wahrehouse :
+			</button>
+			{{shipment_header.warehouse || "WM"}}
+			<button type="button" class="btn btn-primary">
+				Client:
+			</button>
+			{{shipment_headerclient || "WH1"}}
+			<button type="button" class="btn btn-primary">
+				Shipment:
+			</button>
+			{{shipment_header.shipment_nbr||"New Shipment"}}
+												
+		</div>
+
+		<div class="panel-group" id="accordion" style="width: 90%">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Shipment Header </a></h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<form editable-form name="editableForm" onaftersave="saveHeader()">
+							<div class="buttons">
+								<!-- button to show form -->
+								<button type="button" class="btn btn-default" ng-click="clear(); editableForm.$show()" ng-show="!editableForm.$visible">
+									New Shipment
+								</button>
+
+								<!-- buttons to submit / cancel form -->
+								<span ng-show="editableForm.$visible">
+									<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+										Save
+									</button>
+									<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+										Cancel
+									</button> 
+									</span>
+							</div>
+
+							<div ng-include src="header_template.url"></div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		</div>
+
+	</body>
+</html>

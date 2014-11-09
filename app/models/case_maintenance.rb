@@ -1,21 +1,21 @@
 require 'rest_client'
 
-class Shipment
+class CaseMaintenance
   
-  def self.shipment_list(shipment)    
-    url = Properties.getUrl + "/shipment/?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
+  def self.case_list(case_data)
+    url = Properties.getUrl + "/case/#{case_data['case']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
     response = RestClient.get url    
     return JSON.parse(response)       
   end
 
 
-  def self.shipment_details(shipment)
+  def self.case_details(shipment)
     url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
   
-  def self.shipment_update_header(id, app_parameters, fields_to_update)
+  def self.case_update_header(id, app_parameters, fields_to_update)
     
     url = Properties.getUrl + "/shipment/#{id}/update_header"   
     response = RestClient.post(url, 
@@ -33,7 +33,7 @@ class Shipment
     return JSON.parse(response)  
   end
 
-  def self.shipment_add_header(app_parameters, fields_to_update)
+  def self.case_add_header(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
@@ -56,7 +56,7 @@ class Shipment
   end
 
 
-  def self.shipment_add_detail(app_parameters, fields_to_update)
+  def self.case_add_detail(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_detail"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
@@ -73,7 +73,7 @@ class Shipment
   end
 
 
-  def self.shipment_update_detail(id, app_parameters, fields_to_update)    
+  def self.case_update_detail(id, app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,

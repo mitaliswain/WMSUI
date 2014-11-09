@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<script>
+			
+			$(document).on("click", "#open_shipment_detail", function() {
+				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
+				$('#shipment_detail_modal_iframe').attr('src', url);
+				$('#shipment_detail_modal').modal('show');
+			});
+
+			$(document).on("click", "#open_shipment_add", function() {
+				url = '/shipment/new/#?warehouse=WH1&client=WM';
+				$('#shipment_detail_modal_iframe').attr('src', url);			
+				$('#shipment_detail_modal').modal('show');
+			});
+
+			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {		
+				angular.element('#ShipmentListCtrl').scope().reload();		
+				$(this).removeData('bs.modal');
+				console.log('hidden');
+			});
+
+			$(document).on("click", "#open_shipment_detail_add", function() {
+				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
+				$('#shipment_detail_modal_iframe').attr('src', url);
+				$('#shipment_detail_modal').modal('show');
+			});
+
+			$(document).on("click", "#open_shipment_detail_edit", function() {
+				url = '/shipment/' + $(this).attr('shipment_id') + '/edit_detail/' + $(this).attr('shipment_detail_id') + '#?id=' + $(this).attr('shipment_id') + '&detail_id=' + $(this).attr('shipment_detail_id') + '&warehouse=WH1&client=WM';
+
+				$('#shipment_detail_modal_iframe').attr('src', url);
+				$('#shipment_detail_modal').modal('show');
+			});
+			
+			var sortingOrder = 'shipment_header.shipment_nbr';
+		</script>
+		<style>
+			.modal-dialog {
+				width: 900px;
+			}
+			.shipment-header {
+				min-width: 15%;
+				max-width: 15%;
+				display: inline-block;
+				text-align: center;
+				min-height: 1px;
+				white-space: nowrap
+			}
+		</style>
+	</head>
+
+	<body ng-app="shipment_detail" >
+
+		<%= render"shared/menu" %>
+		
+		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+
+		
+			<a href="/shipment"> <h2>Shipment List</h2> </a>
+
+			<div class="input-group" style="width: 30%">
+				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+				<span class="input-group-addon"><i class="icon-search"></i></span>
+			</div>
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active">
+						<a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a>
+					</li>
+					<li>
+						<a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Initiated')">Initiated</a>
+					</li>
+					<li>
+						<a href="#Receiving in Progress" role="tab" data-toggle="tab" ng-click="status('Receiving in Progress')">Receiving in Progress</a>
+					</li>
+					<li>
+						<a href="#settings" role="tab" data-toggle="tab" ng-click="status('Verified')">Verified</a>
+					</li>
+				</ul>
+
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="7">
+						<div class="bs-callout">
+							<div class="shipment-header">
+								Option
+							</div>
+							<div class="shipment-header">
+								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
+							</div>
+							<div class="shipment-header">
+								ASN Typpe&nbsp;<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
+							</div>
+							<div class="shipment-header">
+								Ship Via&nbsp;<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
+							</div>
+							<div class="shipment-header">
+								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
+							</div>
+							<div class="shipment-header">
+								<a id="open_shipment_add"
+								data-toggle="modal"
+								<i class="icon-plus-sign"></i></a>
+								</div>
+								</div></th>
+								</tr>
+								</thead>
+								<tfoot>
+								<td colspan="7">
+								<div>
+								<ul class="pagination pull-right">
+								<li ng-class="{disabled: currentPage == 0}">
+								<a href ng-click="prevPage()">« Prev</a>
+								</li>
+								<li ng-repeat="n in range(pagedItems.length)"
+								ng-class="{active: n == currentPage}"
+								ng-click="setPage()">
+								<a href ng-bind="n + 1">1</a>
+								</li>
+								<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+								<a href ng-click="nextPage()">Next »</a>
+								</li>
+								</ul>
+								</div></td>
+								</tfoot>
+								<tbody>
+								<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+								<td colspan="7">
+								<div  class="bs-callout bs-callout-info">
+								<div class="shipment-header" ng-click="toggle_expand(item)" >
+								<a id="expand"
+								data-toggle="modal"
+								data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
+								</div>
+
+								<div class="shipment-header">
+								{{item.shipment_header.shipment_nbr}}
+								</div>
+								<div class="shipment-header">
+								{{item.shipment_header.asn_type}}
+							</div>
+							<div class="shipment-header">
+								{{item.shipment_header.ship_via}}
+							</div>
+							<div class="shipment-header">
+								{{item.shipment_header.record_status}}
+							</div>
+
+							<div class="shipment-header">
+								<a id="open_shipment_detail"
+								data-toggle="modal"
+								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
+							</div>
+						</div>
+						<!--Detail -->
+						<div ng-show="item.show" style="padding-left: 0%">
+							<div class="label label-default">
+								<div class="shipment-header"></div>
+								<div class="shipment-header">
+									Shipped Quantity
+								</div>
+								<div class="shipment-header">
+									Received Quantity
+								</div>
+								<div class="shipment-header">
+									<a id="open_shipment_detail_add"
+									data-toggle="modal"
+									data-target="{{item.shipment_header.id}}"> <i class="icon-plus-sign"></i></a>
+								</div>
+
+							</div>
+							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
+								<div class="shipment-header">
+									{{detail.item}}
+								</div>
+								<div class="shipment-header">
+									{{detail.shipped_quantity}}
+								</div>
+								<div class="shipment-header">
+									{{detail.received_qty}}
+								</div>
+
+								<div class="shipment-header">
+									<a id="open_shipment_detail_edit"
+									data-toggle="modal"
+									shipment_id="{{item.shipment_header.id}}" shipment_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
+								</div>
+
+							</div>
+						</div> </td>
+					</tr>
+
+					</tbody>
+			</table>
+
+			<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								<i class="icon-remove"></i>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Shipment Detail</h4>
+						</div>
+						<div class="modal-body" style="height:700px; max-height:700px; width:100%; max-width:100%;">
+							<iframe id="shipment_detail_modal_iframe" src="" style="width: 100%; height: 100%"></iframe>
+						</div>
+						<div class="modal-footer" >
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button>
+							<button type="button" class="btn btn-primary">
+								Save changes
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	</div>
+
+	</body>
+</html>
