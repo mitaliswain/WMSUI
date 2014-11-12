@@ -21,7 +21,6 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
 
 
     $scope.clear = function() {
-       console.log('clear');	
 	   $scope.case_header= {};
 	   $scope.case_detail= {};	
 	   setInfo('info', ' ');
@@ -41,7 +40,7 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
  $scope.saveHeader = function() {
  	
     var fields_to_update = {};
-    console.log($scope.case_header);
+ 	var asn_header_id  =  $location.search().asn_header_id;
     fields_to_update = $scope.case_header;
     var url = '/case/add_header'
     return $http.post(url, {
@@ -72,6 +71,8 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
  $scope.saveDetail = function() {
 
     var fields_to_update = {};
+    var case_header_id  =  $location.search().case_header_id;
+    var case_id  =  $location.search().case_id;
     fields_to_update = $scope.case_detail;
     fields_to_update['case_header_id'] = case_header_id
     fields_to_update.case_id = case_id;

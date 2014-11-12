@@ -1,6 +1,10 @@
 <div  class="btn-default">
-	<div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">Error:{{global_notification}}</div>
-	<div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">{{global_notification}}</div>
+	<div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+		Error:{{global_notification}}
+	</div>
+	<div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+		{{global_notification}}
+	</div>
 </div>
 
 <div class="btn-default">
@@ -18,19 +22,17 @@
 		<span class="title">Location Type:</span><a href="#" id="location_type" e-name="location_type" editable_text="case_header.location_type" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.location_type || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Area:</span><a href="#" id="area" e-name="area" editable_text="case_header.area"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.area || 'Not set' }} </a>
+		<span class="title">Purchase Order:</span><a href="#" id="purchase_order_nbr" e-name="purchase_order_nbr" editable_text="case_header.purchase_order_nbr" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.purchase_order_nbr || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Zone:</span><a href="#" id="zone" e-name="zone" editable_text="case_header.zone"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.zone || 'Not set' }} </a>
+		<span class="title">Shipment:</span><a href="#" id="shipment_nbr" e-name="shipment_nbr" editable_text="case_header.shipment_nbr" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.shipment_nbr || "empty" }}</a>
+	</div>
+
+	<div class="asn_header">
+		<span class="title">On Hold:</span><a href="#" id="on_hold" e-name="on_hold" editable_select="case_header.on_hold"  e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.on_hold || 'Not set' }} </a>
 	</div>
 	<div class="asn_header">
-		<span class="title">Aisle:</span><a href="#" id="aisle" e-name="area" editable_text="case_header.aisle"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.aisle || 'Not set' }} </a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Bay:</span><a href="#" id="bay" e-name="zone" editable_text="case_header.bay"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.bay || 'Not set' }} </a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Position:</span><a href="#" id="postion" e-name="zone" editable_text="case_header.position"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.position || 'Not set' }} </a>
+		<span class="title">Hold Code:</span><a href="#" id="hold_code" e-name="hold_code" editable_text="case_header.hold_code"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.hold_code || 'Not set' }} </a>
 	</div>
 
 </div>
@@ -43,20 +45,58 @@
 		</div>
 		<div id="collapse_header_more" class="panel-collapse collapse out">
 
+			<div class="panel-group" id="accordion_header_inners" style="width: 100%">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_header_inners" href="#collapse_location" > Location Information </a></h4>
+					</div>
+					<div id="collapse_location" class="panel-collapse collapse out">
+						<div class="panel-body">
+							<div class="asn_header">
+								<span class="title">Location Type:</span><a href="#" id="location_type" e-name="location_type" editable_text="case_header.location_type" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.location_type || "empty" }}</a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Area:</span><a href="#" id="area" e-name="area" editable_text="case_header.area"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.area || 'Not set' }} </a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Zone:</span><a href="#" id="zone" e-name="zone" editable_text="case_header.zone"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.zone || 'Not set' }} </a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Aisle:</span><a href="#" id="aisle" e-name="area" editable_text="case_header.aisle"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.aisle || 'Not set' }} </a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Bay:</span><a href="#" id="bay" e-name="zone" editable_text="case_header.bay"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.bay || 'Not set' }} </a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Position:</span><a href="#" id="postion" e-name="zone" editable_text="case_header.position"  onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.position || 'Not set' }} </a>
+							</div>
 
-<div class="panel-group" id="accordion_header_inners" style="width: 100%">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_header_inners" href="#collapse_vendor" > Vendor Information </a></h4>
-		</div>
-		<div id="collapse_vendor" class="panel-collapse collapse out">
-			<div class="panel-body">
+						</div>
+
+					</div>
+					<div class="panel-heading">
+						<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_header_inners" href="#collapse_vendor" > Vendor Information </a></h4>
+					</div>
+					<div id="collapse_vendor" class="panel-collapse collapse out">
+						<div class="panel-body">
+							<div class="asn_header">
+								<span class="title">Vendor:</span><a href="#" id="vendor_nbr" e-name="vendor_nbr" editable_text="case_header.vendor_nbr" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.vendor_nbr || "empty" }}</a>
+							</div>
+							<div class="asn_header">
+								<span class="title">Vendor Factory:</span><a href="#" id="vendor_factory" e-name="vendor_factory" editable_text="case_header.vendor_factory" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.vendor_factory || "empty" }}</a>
+							</div>
+							<div class="asn_header">
+								<span class="title">COO:</span><a href="#" id="coo" e-name="coo" editable_text="case_header.coo" onbeforesave="updateHeader($data, this, case_header.id)" >{{ case_header.coo || "empty" }}</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
 			</div>
+
+
 		</div>
-
 	</div>
-</div>	
-
-</div>
-</div>
 </div>

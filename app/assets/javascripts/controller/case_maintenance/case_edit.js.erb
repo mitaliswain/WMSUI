@@ -64,10 +64,8 @@ case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {
 
   $scope.statuses = [
     {value: 'Created', text: 'Created'},
-    {value: 'Initiated', text: 'Initiated'},
-    {value: 'In Fullfilment', text: 'In Fullfilment'},
-    {value: 'Verified', text: 'Verified'},
-    {value: 'Cancelled', text: 'Cancelled'}
+    {value: 'Received', text: 'Received'},
+    {value: 'Consumed', text: 'Consumed'}
   ]; 
   
  $scope.updateDetail = function(data, el, id) {

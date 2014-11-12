@@ -1,4 +1,4 @@
-<html ng-app="shipment_detail">
+<html ng-app="case_detail">
 	<head>
 		<%= csrf_meta_tag %>
 		<style>
@@ -35,21 +35,21 @@
 		</style>
 	</head>
 
-	<body ng-controller="shipmentAddCtrl">
+	<body ng-controller="caseAddCtrl">
 
 		<div>
 			<button type="button" class="btn btn-primary">
 				Wahrehouse :
 			</button>
-			{{shipment_header.warehouse}}
+			{{case_header.warehouse}}
 			<button type="button" class="btn btn-primary">
 				Client:
 			</button>
-			{{shipment_header.client}}
+			{{case_header.client}}
 			<button type="button" class="btn btn-primary">
-				Shipment:
+				Case:
 			</button>
-			{{shipment_header.shipment_nbr}}
+			{{case_header.case_id}}
 		</div>
 		<form editable-form name="editableForm" onaftersave="saveDetail()">
 			<div class="buttons">

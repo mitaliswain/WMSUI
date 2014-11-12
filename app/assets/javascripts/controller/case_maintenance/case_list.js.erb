@@ -41,7 +41,6 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
 		    	status = status==null ?  last_status : status;
 		    	last_status = status;   	
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {		        	   
-		        	   console.log(item["case_header"]["record_status"]);
 		                if (searchMatch(item["case_header"]["record_status"], status))
 		              	    return true;
 		              	else              	    

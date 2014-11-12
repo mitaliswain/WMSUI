@@ -23,13 +23,13 @@
 			<button type="button" class="btn btn-primary">
 				Shipment:
 			</button>
-			{{case_header.shipment_nbr}}
+			{{case_header.case_id}}
 		</div>
 
 		<div class="panel-group" id="accordion" style="width: 90%">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Shipment Header </a></h4>
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Case Header </a></h4>
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Shipment Details </a></h4>
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Case Details </a></h4>
 				</div>
 				<div id="collapseTwo" class="panel-collapse collapse in">
 					<div class="panel-body">
@@ -51,10 +51,10 @@
 								</div>
 							</div>
 
-							<header ng-repeat-start="shipment_detail in shipment_details">
+							<header ng-repeat-start="case_detail in case_details">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_detail" href="#collapse_detail_{{$index}}" > Item: {{shipment_detail.item}} </a></h4>
+										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_detail" href="#collapse_detail_{{$index}}" > Item: {{case_detail.item}} </a></h4>
 									</div>
 									<div id="collapse_detail_{{$index}}" class="panel-collapse collapse">
 										<div class="panel-body">

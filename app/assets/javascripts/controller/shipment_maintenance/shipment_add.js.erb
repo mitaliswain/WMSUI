@@ -30,7 +30,6 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
 
 
     $scope.clear = function() {
-       console.log('clear');	
 	   $scope.shipment_header= {};
 	   $scope.shipment_detail= {};	
 	   setInfo('info', ' ');
@@ -54,7 +53,6 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     var client    = $location.search().client; 
 
     var fields_to_update = {};
-    console.log($scope.shipment_header);
     fields_to_update = $scope.shipment_header;
     var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
     return $http.post(url, {
@@ -86,10 +84,8 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
 
     var warehouse = $location.search().warehouse;
     var asn_header_id  =  $location.search().asn_header_id;
-    console.log(asn_header_id);
     var client    = $location.search().client; 
     var fields_to_update = {};
-    console.log($scope.shipment_detail);
     fields_to_update = $scope.shipment_detail;
     fields_to_update['asn_header_id'] = asn_header_id
     fields_to_update.shipment_nbr = shipment;

@@ -21,7 +21,7 @@
 			});
 
 			$(document).on("click", "#open_case_detail_add", function() {
-				url = '/case/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
+				url = '/case/add_detail/#?warehouse=WH1&client=WM&case_header_id=' + $(this).attr('data-target');
 				$('#case_detail_modal_iframe').attr('src', url);
 				$('#case_detail_modal').modal('show');
 			});
