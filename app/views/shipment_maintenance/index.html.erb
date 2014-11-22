@@ -56,13 +56,14 @@
 		
 		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
 
-		
-			<a href="/shipment"> <h2>Shipment List</h2> </a>
 
-			<div class="input-group" style="width: 30%">
-				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
-				<span class="input-group-addon"><i class="icon-search"></i></span>
-			</div>
+          <div><h3><a href="/shipment"><span class="label label-primary">Shipment List</span></a></h3></div>
+          <div class="input-group pull-right" style="width: 30%" >
+            <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+            <span class="input-group-addon"><i class="icon-search"></i></span>
+          </div>
+
+
 			<div>
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active">
@@ -78,8 +79,8 @@
 						<a href="#settings" role="tab" data-toggle="tab" ng-click="status('Verified')">Verified</a>
 					</li>
 				</ul>
-
 			</div>
+
 			<table class="table">
 				<thead>
 					<tr>
@@ -92,10 +93,10 @@
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
-								ASN Typpe&nbsp;<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
+								Shipped Qty&nbsp;<a ng-click="sort_by('asn_type')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
-								Ship Via&nbsp;<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
+								Received Qty&nbsp;<a ng-click="sort_by('ship_via')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="shipment-header">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
@@ -140,10 +141,10 @@
 								{{item.shipment_header.shipment_nbr}}
 								</div>
 								<div class="shipment-header">
-								{{item.shipment_header.asn_type}}
+								{{item.shipment_header.unit_ordered}}
 							</div>
 							<div class="shipment-header">
-								{{item.shipment_header.ship_via}}
+								{{item.shipment_header.unit_shipped}}
 							</div>
 							<div class="shipment-header">
 								{{item.shipment_header.record_status}}

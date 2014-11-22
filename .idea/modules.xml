@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" filepath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/WMSUI.iml" filepath="$PROJECT_DIR$/.idea/WMSUI.iml" />
     </modules>
   </component>
 </project>
-
