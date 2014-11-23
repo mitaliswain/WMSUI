@@ -5,6 +5,12 @@
 	<div class="asn_header">
 		<span class="title">Short Description: </span><a href="#" e-name="short_desc" id="short_desc" editable-text="shipment_detail.short_desc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.short_desc || "empty" }}</a>
 	</div>
+    <div class="asn_header">
+        <span class="title">Purchase Order: </span><a href="#" id="purchase_order_nbr" editable-text="purchase_order_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.purchase_order_nbr || "empty" }}</a>
+    </div>
+    <div class="asn_header">
+        <span class="title">PO Line No: </span><a href="#" id="poline_nbr" editable-number="poline_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.poline_nbr || "empty" }}</a>
+    </div>
 	<div class="asn_header">
 		<span class="title">PO Quantity: </span><a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a>
 	</div>
@@ -30,9 +36,6 @@
 		</div>		
 		<div id="Vendor" class="panel-collapse collapse out">
 			<div class="panel-body">
-				<div class="asn_header">
-					<span class="title">PO Line No: </span><a href="#" id="poline_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.poline_nbr || "empty" }}</a>
-				</div>
 				<div class="asn_header">
 					<span class="title">SKU Attribute1: </span><a href="#" id="sku_attribute1" editable-text="shipment_detail.sku_attribute1" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute1 || "empty" }}</a>
 				</div>

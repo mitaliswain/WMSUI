@@ -89,7 +89,7 @@ shipment.controller('shipmentEditCtrl', function ($scope, $http, $location, $q) 
 	        d.resolve();
 	    }).error(function(res){
 	    	res = res || {};
-	    	if (res.code == 500) {
+	    	if (res.status == 500) {
 	      		d.reject('Server error!');
 	      	}
 	      	else {	
