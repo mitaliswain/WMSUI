@@ -11,8 +11,11 @@ class ShipmentReceiveController < ApplicationController
                   {"name" => 'shipment_nbr',       "description"=> "Shipment" ,       "value" => '', "validated" => false, "to_validate" => "Yes"},
                   {"name" => 'purchase_order_nbr', "description"=> "Purchase Order" , "value" => '', "validated" => false, "to_validate" => "Yes"},
                   {"name" => 'case',               "description"=> "Case",            "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'lot_number',         "description"=> "Lot Number",      "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'coo',                "description"=> "coo",             "value" => '', "validated" => false, "to_validate" => "Yes"},
                   {"name" => 'item',               "description"=> "Item" ,           "value" => '', "validated" => false, "to_validate" => "Yes"},
                   {"name" => 'quantity',           "description"=> "Quantity",        "value" => '', "validated" => false, "to_validate" => "Yes"},
+                  {"name" => 'serial_nbr',         "description"=> "serial Number",   "value" => '', "validated" => false, "to_validate" => "Yes", "temp_data"=>[]},
                   {"name" => 'inner_pack',         "description"=> "Inner Pack",      "value" => '', "validated" => false ,"to_validate" => "Yes" }
                 ]
     @basic_parameters = session[:basic_parameters]        

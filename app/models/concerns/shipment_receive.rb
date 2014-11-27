@@ -23,19 +23,35 @@ class ShipmentReceive
 private
 
   def validate_shipment_and_reset_the_input(to_validate, value)
+
       set_shipment_value_from_input(to_validate, "value", value)
       response = validate_shipment(to_validate)
-      
-      response["status"] == '200'  ?         
-         set_shipment_value_from_input(to_validate, "validated", true) : set_shipment_value_from_input(to_validate, "value", "")             
-      set_case_details(response["additional_info"][0])  if case_successfully_validated?(to_validate, response)   
+
+      set_shipment_value_from_input(to_validate, "validated", true)  if successfully_validated?(response)
+
+      set_case_details(response["additional_info"][0])  if case_successfully_validated?(to_validate, response)
+
+      set_shipment_value_from_input("serial_nbr", "temp_data", extract_shipment["serial_nbr"]) if more_serial_numbers_are_not_scanned?(response, to_validate)
+
+      set_shipment_value_from_input(to_validate, "value", "") if ! successfully_validated?(response)
+
+      p response
+
       #response = receive_shipment_and_reset_the_input   if all_validation_completed_successfully?(response)  
       
       response      
   end
-  
+
+  def successfully_validated?(response)
+    response["status"] == '200'
+  end
+
   def case_successfully_validated?(to_validate, response)
     response["status"] == '200' && self.config_list[:Receiving_Type] == 'Case' && to_validate == "case" 
+  end
+
+  def  more_serial_numbers_are_not_scanned?(response, to_validate)
+    to_validate == 'serial_nbr' && response["status"]=='422' && response["errors"][0]["code"] == '424'
   end
 
   def set_case_details(case_detail)    
@@ -125,11 +141,14 @@ private
         channel:    nil,
         building:   nil,
         shipment_nbr:   shipment["shipment_nbr"],
-        location:   shipment["location"],
-        case_id:    shipment["case"],
-        item:       shipment["item"],
-        quantity:   shipment["quantity"],
-        innerpack_qty:   shipment["inner_pack"]
+        location:       shipment["location"],
+        case_id:        shipment["case"],
+        lot_number:     shipment["lot_number"],
+        coo:            shipment["coo"],
+        item:           shipment["item"],
+        quantity:       shipment["quantity"],
+        serial_nbr:  shipment["serial_nbr"],
+        innerpack_qty:  shipment["inner_pack"]
        } 
     response = RestClient.post(url,
     shipment: shipment){ | responses, request, result, &block |
@@ -147,25 +166,26 @@ private
   end
   
   def validate_shipment(to_validate)
-    
-      shipment = extract_shipment  
+    shipment_payload = extract_shipment
       url = Properties.getUrl + '/shipment/' + to_validate + '/validate'
       
-      
-     shipment = {
+     shipment_hash = {
         client:     self.basic_parameters["client"], 
         warehouse:  self.basic_parameters["warehouse"],
         channel:    nil,
         building:   nil,
-        shipment_nbr:   shipment["shipment_nbr"],
-        location:   shipment["location"],
-        case_id:    shipment["case"],
-        item:       shipment["item"],
-        quantity:   shipment["quantity"],
-        innerpack_qty:   shipment["inner_pack"]
+        shipment_nbr:   shipment_payload["shipment_nbr"],
+        location:       shipment_payload["location"],
+        case_id:        shipment_payload["case"],
+        lot_number:     shipment_payload["lot_number"],
+        coo:            shipment_payload["coo"],
+        item:           shipment_payload["item"],
+        quantity:       shipment_payload["quantity"],
+        serial_nbr:  shipment_payload["serial_nbr"],
+        innerpack_qty:  shipment_payload["inner_pack"]
        } 
     response = RestClient.post(url,
-    shipment: shipment) { | responses, request, result, &block |
+    shipment: shipment_hash) { | responses, request, result, &block |
       case responses.code
       when 200, 201, 422, 204
         responses
@@ -179,11 +199,18 @@ private
   
   
   def extract_shipment
-    shipment = {}
+    shipment_payload = {}
     self.shipment.each do |shipment_info|
-      shipment[shipment_info["name"]] = shipment_info["value"]
+      p 'I am here'
+      p shipment_info["name"] == 'serial_nbr' && shipment_info["value"].present?
+      if shipment_info["name"] == 'serial_nbr' && shipment_info["value"].present?
+        shipment_payload[shipment_info["name"]] = shipment_info["temp_data"]+ [shipment_info["value"]]
+      else
+        shipment_payload[shipment_info["name"]] = shipment_info["value"]
+      end
     end
-    shipment
+    p shipment_payload
+    shipment_payload
     
   end
   
