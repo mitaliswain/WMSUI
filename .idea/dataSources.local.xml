@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails WMSUI: development" uuid="d158bbc1-3bfa-42e9-9573-d35fdb4f7f81">
+      <secret-storage>memory</secret-storage>
+    </data-source>
+  </component>
+</project>
