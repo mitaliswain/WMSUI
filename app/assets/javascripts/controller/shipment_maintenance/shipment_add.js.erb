@@ -1,10 +1,12 @@
 shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {	
  
-  var warehouse = $location.search().warehouse;
-  var shipment  =  $location.search().shipment;
-  var client    = $location.search().client; 
-   
-   $scope.shipment_header = {};
+  var client    = 'WM';
+  var warehouse = 'WH1';
+  var asn_header_id  =  $location.search().asn_header_id;
+  var shipment  =  $location.search().shipment_nbr;
+
+
+    $scope.shipment_header = {};
    $scope.shipment_detail = {}; 
    
    $scope.globalInfo = {
@@ -81,11 +83,8 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
  };
 
  $scope.saveDetail = function() {
-
-    var warehouse = $location.search().warehouse;
-    var asn_header_id  =  $location.search().asn_header_id;
-    var client    = $location.search().client; 
     var fields_to_update = {};
+    console.log(asn_header_id);
     fields_to_update = $scope.shipment_detail;
     fields_to_update['asn_header_id'] = asn_header_id
     fields_to_update.shipment_nbr = shipment;
@@ -95,8 +94,10 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
-    }).success(function(message){ 		
- 		setInfo('info', 'Shipment detail added');
+    }).success(function(data){
+        $scope.shipment_header = data.shipment_header;
+        $scope.shipment_detail = data.shipment_detail;
+        setInfo('info', 'Shipment detail added');
     }).error(function(message){
     	if (message.status == '422'){ 
     		setInfo('error', 'Validation Error');

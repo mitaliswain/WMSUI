@@ -9,7 +9,7 @@
 		<a href="#" id="shipment_nbr"  e-name="shipment_nbr" editable-text="shipment_header.shipment_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)" >{{ shipment_header.shipment_nbr || "empty" }}</a>
 	</div>
 	<div class="asn_header">
-		<span class="title">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in AsnType" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.asn_type || "empty" }}</a>
+		<span class="title">ASN Type:</span><a href="#" id="asn_type" e-name="asn_type" editable_select="shipment_header.asn_type" e-ng-options="s.value as s.text for s in AsnType" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required>{{ shipment_header.asn_type || "empty" }}</a>
 	</div>
 	<div class="asn_header">
 		<span class="title">Record Status:</span><a href="#" id="record_status" e-name="record_status" editable_select="shipment_header.record_status" e-ng-options="s.value as s.text for s in statuses" onbeforesave="updateHeader($data, this, shipment_header.id)" e-required >{{ shipment_header.record_status || "Created" }}</a>
@@ -151,15 +151,16 @@
 		</div>
 		<div id="collapse_Tracking" class="panel-collapse collapse out">
 			<div class="panel-body">
-				<div class="asn_header">
-					<span class="title">Track LotControl: </span><a href="#" id="v" editable-checkbox="shipment_header.track_lotcontrol" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_lotcontrol || "empty" }}</a>
-				</div>
-				<div class="asn_header">
-					<span class="title">Track Serial No: </span><a href="#" id="track_serial_nbr" editable_checkbox="shipment_header.track_serial_nbr" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_serial_nbr || "empty" }}</a>
-				</div>
-				<div class="asn_header">
-					<span class="title">Track COO: </span><a href="#" id="track_coo" editable_checkbox="shipment_header.track_coo" onbeforesave="updateHeader($data, this, shipment_header.id)">{{ shipment_header.track_coo || "empty" }}</a>
-				</div>
+                <div class="asn_header">
+                    <span class="title">Track COO: </span><a href="#" id="track_coo" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_coo || "empty" }}</a>
+                </div>
+                <div class="asn_header">
+                    <span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_lotcontrol || "empty" }}</a>
+                </div>
+                <div class="asn_header">
+                    <span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_serial_nbr || "empty" }}</a>
+                </div>
+
 			</div>
 		</div>
 
