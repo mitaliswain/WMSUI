@@ -2,19 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="514093bf-68f3-4867-aaf8-d509383ed6a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/../WMSService/.idea/dataSources.ids" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/.idea/dictionaries/Mitaliswain.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/putaway/case_putaway.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/concerns/case_putaway.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/case_putaway_controller.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/test/integration/case_putaway_process_integration_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/putaway/case_putaway_processing.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/putaway/case_putaway_validation.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/test/integration/case_putaway_validation_integration_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/case_putaway/new.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/putaway.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/putaway_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" afterPath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/controllers/case_controller.rb" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/case_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/test/fixtures/case_details.yml" afterPath="$PROJECT_DIR$/../WMSService/test/fixtures/case_details.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/test/fixtures/case_headers.yml" afterPath="$PROJECT_DIR$/../WMSService/test/fixtures/case_headers.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/inventory/case_maintenance_detail.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/inventory/case_maintenance_detail.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/../WMSService/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shipment_maintenance/index.html.erb" afterPath="$PROJECT_DIR$/app/views/shipment_maintenance/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shipment_maintenance/new.html.erb" afterPath="$PROJECT_DIR$/app/views/shipment_maintenance/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/test/fixtures/item_masters.yml" afterPath="$PROJECT_DIR$/../WMSService/test/fixtures/item_masters.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/test/fixtures/location_masters.yml" afterPath="$PROJECT_DIR$/../WMSService/test/fixtures/location_masters.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/utilities/response.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/utilities/response.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/config/routes.rb" afterPath="$PROJECT_DIR$/../WMSService/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/shipment.rb" afterPath="$PROJECT_DIR$/app/models/shipment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_add.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_add.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/controllers/shipment_controller.rb" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/shipment_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/shipment_header.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/shipment_header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_maintenance.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_maintenance.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_maintenance_detail.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_maintenance_detail.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/shipment_detail.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/shipment_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/concerns/shipment_receive.rb" afterPath="$PROJECT_DIR$/app/models/concerns/shipment_receive.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_processing.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_processing.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_validation.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_validation.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WMSUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +42,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="false" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/WMSUI@Run_test__shipment_receive_process_integration_test___WMSService.coverage" NAME="Run test 'shipment_receive_process_integration_test': WMSService Coverage Results" MODIFIED="1416898276506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../WMSService" MODULE_NAME="WMSService" />
     <SUITE FILE_PATH="coverage/WMSUI@Run_test__shipment_receive_validation_integration_test___WMSService.coverage" NAME="Run test 'shipment_receive_validation_integration_test': WMSService Coverage Results" MODIFIED="1416900508459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../WMSService" MODULE_NAME="WMSService" />
+    <SUITE FILE_PATH="coverage/WMSUI@Run_test__shipment_receive_process_integration_test___WMSService.coverage" NAME="Run test 'shipment_receive_process_integration_test': WMSService Coverage Results" MODIFIED="1416898276506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../WMSService" MODULE_NAME="WMSService" />
     <SUITE FILE_PATH="coverage/WMSUI@Production__WMSUI.coverage" NAME="Production: WMSUI Coverage Results" MODIFIED="1416897818488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="WMSUI" />
     <SUITE FILE_PATH="coverage/WMSUI@Development__WMSUI.coverage" NAME="Development: WMSUI Coverage Results" MODIFIED="1415155107783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="WMSUI" />
   </component>
@@ -58,9 +72,46 @@
       <file leaf-file-name="shipment_receive_validation.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_validation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="3735">
-              <caret line="174" column="32" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2523" max-vertical-offset="3720">
+              <caret line="173" column="32" selection-start-line="173" selection-start-column="32" selection-end-line="173" selection-end-column="32" />
+              <folding>
+                <marker date="1417934040000" expanded="true" signature="15:8142" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="51:8138" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="882:1767" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="1025:1125" placeholder="#..." />
+                <marker date="1417934040000" expanded="true" signature="1132:1758" placeholder="case ... end" />
+                <marker date="1417934040000" expanded="true" signature="1493:1695" placeholder="#..." />
+                <marker date="1417934040000" expanded="true" signature="1793:2719" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="1979:2710" placeholder="case ... end" />
+                <marker date="1417934040000" expanded="true" signature="2740:3863" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="2988:3854" placeholder="case ... end" />
+                <marker date="1417934040000" expanded="true" signature="3884:4853" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="4300:4844" placeholder="case ... end" />
+                <marker date="1417934040000" expanded="true" signature="4887:5616" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="4895:5608" placeholder="if ... end" />
+                <marker date="1417934040000" expanded="true" signature="5103:5572" placeholder="case ... end" />
+                <marker date="1417934040000" expanded="true" signature="5643:5689" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="5709:5748" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="5775:5821" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="5856:5910" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="5937:6235" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="5944:6227" placeholder="if ... end" />
+                <marker date="1417934040000" expanded="true" signature="6015:6217" placeholder="if ... end" />
+                <marker date="1417934040000" expanded="true" signature="6285:6634" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="6401:6614" placeholder="if ... end" />
+                <marker date="1417934040000" expanded="true" signature="6459:6501" placeholder="{ ... }" />
+                <marker date="1417934040000" expanded="true" signature="6699:6765" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="6834:7165" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="6918:7077" placeholder="do ... end" />
+                <marker date="1417934040000" expanded="true" signature="7199:7258" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="7291:7360" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="7392:7460" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="7511:7680" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="7518:7671" placeholder="if ... end" />
+                <marker date="1417934040000" expanded="true" signature="7701:7970" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="8002:8098" placeholder=" ... end" />
+                <marker date="1417934040000" expanded="true" signature="8123:8131" placeholder=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,9 +119,17 @@
       <file leaf-file-name="response.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../WMSService/app/models/utilities/response.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2025">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2010">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1417905970000" expanded="true" signature="15:2614" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="1356:1494" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="1556:1891" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="1945:2206" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="2249:2459" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="2499:2609" placeholder=" ... end" />
+                <marker date="1417905970000" expanded="true" signature="2502:2605" placeholder="if ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,21 +159,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1560">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1417327384000" expanded="true" signature="37:3281" placeholder=" ... end" />
-                <marker date="1417327384000" expanded="true" signature="604:1099" placeholder=" ... end" />
-                <marker date="1417327384000" expanded="true" signature="788:1055" placeholder="{ ... }" />
-                <marker date="1417327384000" expanded="true" signature="835:1049" placeholder="case ... end" />
-                <marker date="1417327384000" expanded="true" signature="1165:1859" placeholder=" ... end" />
-                <marker date="1417327384000" expanded="true" signature="1335:1814" placeholder="{ ... }" />
-                <marker date="1417327384000" expanded="true" signature="1382:1808" placeholder="case ... end" />
-                <marker date="1417327384000" expanded="true" signature="1926:2635" placeholder=" ... end" />
-                <marker date="1417327384000" expanded="true" signature="2096:2591" placeholder="{ ... }" />
-                <marker date="1417327384000" expanded="true" signature="2143:2585" placeholder="case ... end" />
-                <marker date="1417327384000" expanded="true" signature="2709:3276" placeholder=" ... end" />
-                <marker date="1417327384000" expanded="true" signature="2889:3226" placeholder="{ ... }" />
-                <marker date="1417327384000" expanded="true" signature="2936:3220" placeholder="case ... end" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,7 +167,7 @@
       <file leaf-file-name="shipment_receive.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/concerns/shipment_receive.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28313252" vertical-offset="474" max-vertical-offset="3330">
+            <state vertical-scroll-proportion="0.28313252" vertical-offset="474" max-vertical-offset="3300">
               <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding />
             </state>
@@ -452,50 +497,48 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="RailsProjectView">
-        <subPane>
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            <PATH_ELEMENT USER_OBJECT="WMSService">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="$PROJECT_DIR$/../WMSService">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="models">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="concerns">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            <PATH_ELEMENT USER_OBJECT="WMSService">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            <PATH_ELEMENT USER_OBJECT="$PROJECT_DIR$/../WMSService">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WMSUI" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CaseMaintenanceController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -694,6 +737,52 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WMSUI" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CaseMaintenanceController" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -715,7 +804,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_validation_integration_test': WMSService">
-    <configuration default="false" name="Run test 'asn_detail_test': WMSService" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
+    <configuration default="false" name="Run test 'case_putaway_process_integration_test': WMSService" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
       <module name="WMSService" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) -Itest" />
@@ -736,7 +825,7 @@
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/models/asn_detail_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/integration/case_putaway_process_integration_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
@@ -744,6 +833,61 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Run test 'case_putaway_validation_integration_test': WMSService" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="WMSService" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) -Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/integration/case_putaway_validation_integration_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="case_putaway_processing" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="WMSService" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/app/models/concerns/putaway" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/app/models/concerns/putaway/case_putaway_processing.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <RunnerSettings RunnerId="RubyRunner" />
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
@@ -990,7 +1134,7 @@
       <envs />
       <method />
     </configuration>
-    <list size="13">
+    <list size="15">
       <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_process_integration_test': WMSService" />
       <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in test: WMSService" />
       <item index="2" class="java.lang.String" itemvalue="Rails.Development: WMSService" />
@@ -1001,15 +1145,19 @@
       <item index="7" class="java.lang.String" itemvalue="Rake.spec: WMSUI" />
       <item index="8" class="java.lang.String" itemvalue="Rails.Production: WMSUI" />
       <item index="9" class="java.lang.String" itemvalue="Rails.Development: WMSUI" />
-      <item index="10" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'asn_detail_test': WMSService" />
-      <item index="11" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in integration: WMSService" />
-      <item index="12" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_validation_integration_test': WMSService" />
+      <item index="10" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'case_putaway_process_integration_test': WMSService" />
+      <item index="11" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'case_putaway_validation_integration_test': WMSService" />
+      <item index="12" class="java.lang.String" itemvalue="Ruby.case_putaway_processing" />
+      <item index="13" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in integration: WMSService" />
+      <item index="14" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_validation_integration_test': WMSService" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_validation_integration_test': WMSService" />
-        <item index="1" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in integration: WMSService" />
-        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'asn_detail_test': WMSService" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'case_putaway_process_integration_test': WMSService" />
+        <item index="1" class="java.lang.String" itemvalue="Ruby.case_putaway_processing" />
+        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'case_putaway_validation_integration_test': WMSService" />
+        <item index="3" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.All tests in integration: WMSService" />
+        <item index="4" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'shipment_receive_validation_integration_test': WMSService" />
       </list>
     </recent_temporary>
   </component>
@@ -1073,7 +1221,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27945206" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1081,20 +1229,20 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2714055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27544427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21647818" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27945206" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22025724" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1422,9 +1570,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../WMSService/app/models/concerns/shipment/shipment_receive_validation.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="3735">
-          <caret line="174" column="32" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2523" max-vertical-offset="3720">
+          <caret line="173" column="32" selection-start-line="173" selection-start-column="32" selection-end-line="173" selection-end-column="32" />
+          <folding>
+            <marker date="1417934040000" expanded="true" signature="15:8142" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="51:8138" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="882:1767" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="1025:1125" placeholder="#..." />
+            <marker date="1417934040000" expanded="true" signature="1132:1758" placeholder="case ... end" />
+            <marker date="1417934040000" expanded="true" signature="1493:1695" placeholder="#..." />
+            <marker date="1417934040000" expanded="true" signature="1793:2719" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="1979:2710" placeholder="case ... end" />
+            <marker date="1417934040000" expanded="true" signature="2740:3863" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="2988:3854" placeholder="case ... end" />
+            <marker date="1417934040000" expanded="true" signature="3884:4853" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="4300:4844" placeholder="case ... end" />
+            <marker date="1417934040000" expanded="true" signature="4887:5616" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="4895:5608" placeholder="if ... end" />
+            <marker date="1417934040000" expanded="true" signature="5103:5572" placeholder="case ... end" />
+            <marker date="1417934040000" expanded="true" signature="5643:5689" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="5709:5748" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="5775:5821" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="5856:5910" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="5937:6235" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="5944:6227" placeholder="if ... end" />
+            <marker date="1417934040000" expanded="true" signature="6015:6217" placeholder="if ... end" />
+            <marker date="1417934040000" expanded="true" signature="6285:6634" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="6401:6614" placeholder="if ... end" />
+            <marker date="1417934040000" expanded="true" signature="6459:6501" placeholder="{ ... }" />
+            <marker date="1417934040000" expanded="true" signature="6699:6765" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="6834:7165" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="6918:7077" placeholder="do ... end" />
+            <marker date="1417934040000" expanded="true" signature="7199:7258" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="7291:7360" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="7392:7460" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="7511:7680" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="7518:7671" placeholder="if ... end" />
+            <marker date="1417934040000" expanded="true" signature="7701:7970" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="8002:8098" placeholder=" ... end" />
+            <marker date="1417934040000" expanded="true" signature="8123:8131" placeholder=" ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1462,21 +1647,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1417327384000" expanded="true" signature="37:3281" placeholder=" ... end" />
-            <marker date="1417327384000" expanded="true" signature="604:1099" placeholder=" ... end" />
-            <marker date="1417327384000" expanded="true" signature="788:1055" placeholder="{ ... }" />
-            <marker date="1417327384000" expanded="true" signature="835:1049" placeholder="case ... end" />
-            <marker date="1417327384000" expanded="true" signature="1165:1859" placeholder=" ... end" />
-            <marker date="1417327384000" expanded="true" signature="1335:1814" placeholder="{ ... }" />
-            <marker date="1417327384000" expanded="true" signature="1382:1808" placeholder="case ... end" />
-            <marker date="1417327384000" expanded="true" signature="1926:2635" placeholder=" ... end" />
-            <marker date="1417327384000" expanded="true" signature="2096:2591" placeholder="{ ... }" />
-            <marker date="1417327384000" expanded="true" signature="2143:2585" placeholder="case ... end" />
-            <marker date="1417327384000" expanded="true" signature="2709:3276" placeholder=" ... end" />
-            <marker date="1417327384000" expanded="true" signature="2889:3226" placeholder="{ ... }" />
-            <marker date="1417327384000" expanded="true" signature="2936:3220" placeholder="case ... end" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1484,7 +1655,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2025">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1417905970000" expanded="true" signature="15:2614" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="1356:1494" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="1556:1891" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="1945:2206" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="2249:2459" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="2499:2609" placeholder=" ... end" />
+            <marker date="1417905970000" expanded="true" signature="2502:2605" placeholder="if ... end" />
+          </folding>
         </state>
       </provider>
     </entry>

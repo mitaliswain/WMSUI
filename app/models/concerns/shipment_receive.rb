@@ -91,6 +91,7 @@ private
       self.shipment.each_with_index do |shipment_item, index|
         if items_not_to_be_reset.select{|item| item == shipment_item["name"]}.empty?
             self.shipment[index]["value"] = ""
+            self.shipment[index]["temp_data"] = [] if  self.shipment[index].has_key?("temp_data")
             self.shipment[index]["validated"] = false           
         end 
       end
@@ -201,15 +202,12 @@ private
   def extract_shipment
     shipment_payload = {}
     self.shipment.each do |shipment_info|
-      p 'I am here'
-      p shipment_info["name"] == 'serial_nbr' && shipment_info["value"].present?
       if shipment_info["name"] == 'serial_nbr' && shipment_info["value"].present?
         shipment_payload[shipment_info["name"]] = shipment_info["temp_data"]+ [shipment_info["value"]]
       else
         shipment_payload[shipment_info["name"]] = shipment_info["value"]
       end
     end
-    p shipment_payload
     shipment_payload
     
   end

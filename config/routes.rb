@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   resources :shipmentreceive, controller: 'shipment_receive'
   resources :shipment, controller: 'shipment_maintenance'
+
+  resources :case_putaway, controller: 'case_putaway'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
