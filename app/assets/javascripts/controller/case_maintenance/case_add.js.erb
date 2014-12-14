@@ -1,7 +1,10 @@
 case_data.controller('caseAddCtrl', function ($scope, $http, $location) {	
    
-   $scope.shipment_header = {};
-   $scope.shipment_detail = {}; 
+   $scope.case_header = {};
+   $scope.case_detail = {};
+   var case_header_id  =  $location.search().case_header_id;
+   var case_id  =  $location.search().case_id;
+
    
    $scope.globalInfo = {
    	error: false,
@@ -48,8 +51,8 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
-    	$scope.shipment_header = data.case_header;
-		$scope.shipment_details = data.case_detail;    
+    	$scope.case_header = data.case_header;
+		$scope.case_details = data.case_detail;
  		setInfo('info', 'Case Created Successfully');
 
     }).error(function(message){
@@ -71,8 +74,6 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
  $scope.saveDetail = function() {
 
     var fields_to_update = {};
-    var case_header_id  =  $location.search().case_header_id;
-    var case_id  =  $location.search().case_id;
     fields_to_update = $scope.case_detail;
     fields_to_update['case_header_id'] = case_header_id
     fields_to_update.case_id = case_id;
@@ -83,7 +84,7 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
     }).success(function(message){ 		
- 		setInfo('info', 'Shipment detail added');
+ 		setInfo('info', 'Case detail added');
     }).error(function(message){
     	if (message.status == '422'){ 
     		setInfo('error', 'Validation Error');

@@ -9,7 +9,7 @@
 			});
 
 			$(document).on("click", "#open_case_add", function() {
-				url = '/case/new/#?warehouse=WH1&client=WM';
+				url = '/case/new/' +  (new Date().getTime()) + '/#';
 				$('#case_detail_modal_iframe').attr('src', url);			
 				$('#case_detail_modal').modal('show');
 			});
@@ -91,14 +91,14 @@
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="case-header">
-								Vendor &nbsp;<a ng-click="sort_by('vendor_nbr')"><i class="icon-sort"></i></a>
+								Location<a ng-click="sort_by('vendor_nbr')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="case-header">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="case-header">
 								<a id="open_case_add"
-								data-toggle="modal"
+								data-toggle="modal">
 								<i class="icon-plus-sign"></i></a>
 								</div>
 								</div></th>
@@ -139,7 +139,7 @@
 								{{item.case_header.shipment_nbr}}
 							</div>
 							<div class="case-header">
-								{{item.case_header.vendor_nbr}}
+								{{item.case_header.location}}
 							</div>
 							<div class="case-header">
 								{{item.case_header.record_status}}
