@@ -1,4 +1,4 @@
-shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter) {	
+shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal) {	
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
@@ -7,6 +7,51 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
    $scope.shipment = 'new shipment';
    var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
 
+
+  $scope.shipment_add_modal = function (size) {
+    var modalInstance = $modal.open({
+      templateUrl: '<%= asset_path('shipment_maintenance/new.html') %>',
+      controller: 'shipmentAddCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+    $scope.reload();
+   }
+
+  $scope.shipment_edit_modal = function (size, shipment) {
+    var modalInstance = $modal.open({
+      templateUrl: '<%= asset_path('shipment_maintenance/show.html') %>',
+      controller: 'shipmentEditCtrl',
+      size: size,
+      resolve: {
+        shipment: function () {
+          return shipment;
+        }
+      }
+    });
+    
+    $scope.reload();
+   }
+
+
+  $scope.shipment_detail_add_modal = function (size, shipment) {
+    var modalInstance = $modal.open({
+      templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
+      controller: 'shipmentAddCtrl',
+      size: size,
+      resolve: {
+        shipment: function () {
+          return shipment;
+        }
+      }
+    });
+    
+    $scope.reload();
+   }
 		
     $scope.reload = function() {
 	    $http.get(url).success(function(data) {

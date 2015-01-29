@@ -1,4 +1,4 @@
-shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {	
+shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, $http, $location) {	
  
   var client    = 'WM';
   var warehouse = 'WH1';
@@ -6,7 +6,7 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
   var shipment  =  $location.search().shipment_nbr;
 
 
-    $scope.shipment_header = {};
+   $scope.shipment_header = {};
    $scope.shipment_detail = {}; 
    
    $scope.globalInfo = {
@@ -34,7 +34,6 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
     $scope.clear = function() {
 	   $scope.shipment_header= {};
 	   $scope.shipment_detail= {};	
-	   setInfo('info', ' ');
 	   };
   
    
@@ -130,6 +129,14 @@ shipment.controller('shipmentAddCtrl', function ($scope, $http, $location) {
  	return;
  }
   
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
 });
 
 
