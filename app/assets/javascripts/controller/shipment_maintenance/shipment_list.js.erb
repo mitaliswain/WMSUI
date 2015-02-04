@@ -10,12 +10,12 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 
   $scope.shipment_add_modal = function (size) {
     var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/new.html') %>',
-      controller: 'shipmentAddCtrl',
+      templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
+      controller: 'shipmentHeaderCtrl',
       size: size,
       resolve: {
-        items: function () {
-          return $scope.items;
+        shipment: function () {
+          return null;
         }
       }
     });
@@ -24,8 +24,8 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 
   $scope.shipment_edit_modal = function (size, shipment) {
     var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/show.html') %>',
-      controller: 'shipmentEditCtrl',
+      templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
+      controller: 'shipmentHeaderCtrl',
       size: size,
       resolve: {
         shipment: function () {
@@ -41,12 +41,33 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
   $scope.shipment_detail_add_modal = function (size, shipment) {
     var modalInstance = $modal.open({
       templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-      controller: 'shipmentAddCtrl',
+      controller: 'shipmentDetailCtrl',
       size: size,
       resolve: {
         shipment: function () {
           return shipment;
-        }
+        }, 
+        shipment_detail_id: function () {
+          return null;
+        }	
+      }
+    });
+    
+    $scope.reload();
+   }
+
+  $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
+    var modalInstance = $modal.open({
+      templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
+      controller: 'shipmentDetailCtrl',
+      size: size,
+      resolve: {
+        shipment: function () {
+          return shipment;
+        },
+		shipment_detail_id: function () {
+          return shipment_detail_id;
+        }	
       }
     });
     

@@ -1,0 +1,142 @@
+shipment.controller('shipmentHeaderCtrl', function ($scope, $modalInstance, shipment, $http, $location) {	
+ 
+  var client    = 'WM';
+  var warehouse = 'WH1';
+  var asn_header_id  =  $location.search().asn_header_id;
+	
+
+   $scope.shipment_header = {};
+   $scope.shipment_detail = {}; 
+   var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
+   console.log(url);	
+   
+   if (shipment != null) {
+	   $http.get(url).success(function(data) {
+	    	$scope.shipment_header = data.shipment_header;
+	    	$scope.shipment_details = data.shipment_detail;      			
+	  	});
+  	};
+   
+   $scope.globalInfo = {
+   	error: false,
+   	warning: false,
+   	info: false 
+   };
+   
+   $scope.statuses = [
+    {value: 'Created', text: 'Created'},
+    ]; 
+   
+   $scope.YesorNo = [
+    {value: 'Y', text: 'Yes'},
+    {value: 'N', text: 'No'},
+    ]; 
+
+   $scope.AsnType = [
+    {value: 'PO', text: 'PO'},
+    {value: 'Inbound', text: 'Inbound'},
+    {value: 'Warehouse Transfer', text: 'Warehouse Transfer'}
+    ]; 
+
+
+    $scope.clear = function() {
+	   $scope.shipment_header= {};
+	   $scope.shipment_detail= {};	
+	   };
+  
+   
+  $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
+        }; 
+
+  $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
+        };
+         
+ $scope.saveHeader = function() {
+	
+    var fields_to_update = {};
+    fields_to_update = $scope.shipment_header;
+    var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	fields_to_update: fields_to_update
+    }).success(function(data){ 		
+    	$scope.shipment_header = data.shipment_header;
+		$scope.shipment_details = data.shipment_detail;    
+ 		setInfo('info', 'Shipment Created Successfully');
+
+    }).error(function(message){
+    	if (message.status == '422')
+    	{ 
+    		setInfo('error', 'Validation Error');
+    		angular.forEach(message.errors, function(error){
+    			$scope.editableForm.$setError(error.field, error.message);
+    		});
+    	}
+
+    	else {
+    		 setInfo('error', message.message);
+
+    	}
+    });
+ };
+
+ $scope.updateHeader = function(data, el, id) {
+ 	
+    var warehouse = $location.search().warehouse;
+    var shipment  =  $location.search().shipment;
+    var client    = $location.search().client; 
+    var fields_to_update = {};
+    var url = '/shipment/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
+	fields_to_update[el.$editable.elem[0].id] = data;
+	var d = $q.defer();
+    $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+    	fields_to_update: fields_to_update
+    	})
+    	.success(function(res) {
+	     	res = res || {};
+	        d.resolve();
+	    }).error(function(res){
+	    	console.log(res);
+	    	res = res || {};
+	    	if (res.status == 500) {
+	      		d.reject(res.message|| 'Server Error');
+	      	}
+	      	else {	
+	      		d.reject(res.errors[0].message);
+	      	} 		
+	    });
+	    return d.promise;
+ 	};
+
+
+ var setInfo = function(infotype, message) {
+ 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){;
+ 		if(infotype == infoKey) {
+ 			$scope.globalInfo[infoKey] = true
+ 		}
+ 		else{
+ 			$scope.globalInfo[infoKey] = false
+ 		}
+ 	});
+ 	$scope.global_notification = message;		
+ 	return;
+ }
+  
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+});
+
+
