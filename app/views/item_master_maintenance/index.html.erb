@@ -1,0 +1,146 @@
+<html>
+<head>
+  <script>
+      var sortingOrder = 'item_master.item';
+
+  </script>
+  <style>
+      .modal-dialog {
+          width: 900px;
+      }
+      .shipment-header {
+          min-width: 15%;
+          max-width: 15%;
+          display: inline-block;
+          text-align: center;
+          min-height: 1px;
+          white-space: nowrap
+      }
+  </style>
+</head>
+
+<body ng-app="item_master" >
+
+<%= render"shared/menu" %>
+
+
+<div id="ItemListCtrl" ng-controller="ItemListCtrl" style="width: 80%; margin: 2%">
+  <div>
+    <h3><a href="/item_master"><span class="label label-primary">Item Master</span></a></h3>
+  </div>
+  <div class="input-group pull-right" style="width: 30%" >
+    <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+    <span class="input-group-addon"><i class="icon-search"></i></span>
+  </div>
+
+  <div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active">
+        <a href="#Created" role="tab" data-toggle="tab" ng-click="status('Active')">Created</a>
+      </li>
+      <li>
+        <a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Inactive')">Initiated</a>
+      </li>
+    </ul>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th colspan="7">
+        <div class="bs-callout">
+          <div class="shipment-header">
+            Option
+          </div>
+          <div class="shipment-header">
+            Item &nbsp;<a ng-click="sort_by('item')"><i class="icon-sort"></i></a>
+          </div>
+          <div class="shipment-header">
+            Item Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a>
+          </div>
+          <div class="shipment-header">
+            Barcode &nbsp;<a ng-click="sort_by('barcode')"><i class="icon-sort"></i></a>
+          </div>
+          <div class="shipment-header">
+            Country of Origin&nbsp;<a ng-click="sort_by('coo')"><i class="icon-sort"></i></a>
+          </div>
+          <div class="shipment-header">
+            <a id="open_shipment_add"  ng-click="shipment_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+          </div>
+        </div></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+      <td colspan="7">
+        <div  class="bs-callout bs-callout-info">
+          <div class="shipment-header" ng-click="toggle_expand(item)" >
+            <i class="{{item.show ? 'fa fa-caret-right fa-lg' : 'fa fa-caret-down fa-lg'}}"></i></a>
+          </div>
+
+          <div class="shipment-header">
+            {{item.item}}
+          </div>
+          <div class="shipment-header">
+            {{item.description}}
+          </div>
+          <div class="shipment-header">
+            {{item.barcode}}
+          </div>
+          <div class="shipment-header">
+            {{item.coo}}
+          </div>
+
+          <div class="shipment-header">
+            <a id="open_shipment_detail" ng-click="shipment_edit_modal('lg', item.shipment_header.id)">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </div>
+        </div>
+
+    </tbody>
+
+    <tfoot>
+    <td colspan="7">
+      <div>
+        <ul class="pagination pull-right">
+          <li ng-class="{disabled: currentPage == 0}">
+            <a href ng-click="prevPage()">« Prev</a>
+          </li>
+          <li ng-repeat="n in range(pagedItems.length)"
+              ng-class="{active: n == currentPage}"
+              ng-click="setPage()">
+            <a href ng-bind="n + 1">1</a>
+          </li>
+          <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+            <a href ng-click="nextPage()">Next »</a>
+          </li>
+        </ul>
+      </div></td>
+    </tfoot>
+
+  </table>
+
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li ng-repeat="item in items">
+          <a ng-click="selected.item = item">{{ item }}</a>
+        </li>
+      </ul>
+      Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+
+
+</div>
+
+</body>
+</html>

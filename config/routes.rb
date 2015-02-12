@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   
   get 'configuration/' => 'configuration_maintenance#index'
   put 'configuration/:id' => 'configuration_maintenance#update'
-  
+
+  get 'item_master/' => 'item_master_maintenance#index'
+
+
   resources :mainmenu,  controller: 'main_menu'
 
   resources :shipmentreceive, controller: 'shipment_receive'

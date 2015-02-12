@@ -4,79 +4,13 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
   var client    = $location.search().client; 
   var lastitem = {}; 
   var last_status = 'Created';
-   $scope.shipment = 'new shipment';
-   var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
+
+    $scope.shipment = 'new shipment';
+   var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
 
-  $scope.shipment_add_modal = function (size) {
-    var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
-      controller: 'shipmentHeaderCtrl',
-      size: size,
-      resolve: {
-        shipment: function () {
-          return null;
-        }
-      }
-    });
-    $scope.reload();
-   }
-
-  $scope.shipment_edit_modal = function (size, shipment) {
-    var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-      controller: 'shipmentHeaderCtrl',
-      size: size,
-      resolve: {
-        shipment: function () {
-          return shipment;
-        }
-      }
-    });
-    
-    $scope.reload();
-   }
-
-
-  $scope.shipment_detail_add_modal = function (size, shipment) {
-    var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-      controller: 'shipmentDetailCtrl',
-      size: size,
-      resolve: {
-        shipment: function () {
-          return shipment;
-        }, 
-        shipment_detail_id: function () {
-          return null;
-        }	
-      }
-    });
-    
-    $scope.reload();
-   }
-
-  $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
-    var modalInstance = $modal.open({
-      templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-      controller: 'shipmentDetailCtrl',
-      size: size,
-      resolve: {
-        shipment: function () {
-          return shipment;
-        },
-		shipment_detail_id: function () {
-          return shipment_detail_id;
-        }	
-      }
-    });
-    
-    $scope.reload();
-   }
-		
     $scope.reload = function() {
 	    $http.get(url).success(function(data) {
-		    $scope.shipment_headers = data;
 		    $scope.items = data; 
 			
 		    $scope.sortingOrder = sortingOrder;
@@ -211,6 +145,75 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 		 });
 		
 	 };
- 
+
+    //Modal methods
+    $scope.shipment_add_modal = function (size) {
+        var modalInstance = $modal.open({
+            templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
+            controller: 'shipmentAddCtrl',
+            size: size,
+            resolve: {
+                shipment: function () {
+                    return null;
+                }
+            }
+        });
+        $scope.reload();
+    }
+
+    $scope.shipment_edit_modal = function (size, shipment) {
+        var modalInstance = $modal.open({
+            templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
+            controller: 'shipmentEditCtrl',
+            size: size,
+            resolve: {
+                shipment: function () {
+                    return shipment;
+                },
+                shipment_detail_id: function () {
+                    return null;
+                }
+            }
+        });
+
+        $scope.reload();
+    }
+
+
+    $scope.shipment_detail_add_modal = function (size, shipment) {
+        var modalInstance = $modal.open({
+            templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
+            controller: 'shipmentAddCtrl',
+            size: size,
+            resolve: {
+                shipment: function () {
+                    return shipment;
+                },
+                shipment_detail_id: function () {
+                    return null;
+                }
+            }
+        });
+
+        $scope.reload();
+    }
+
+    $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
+        var modalInstance = $modal.open({
+            templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
+            controller: 'shipmentEditCtrl',
+            size: size,
+            resolve: {
+                shipment: function () {
+                    return shipment;
+                },
+                shipment_detail_id: function () {
+                    return shipment_detail_id;
+                }
+            }
+        });
+        $scope.reload();
+    }
+
     $scope.reload();
 });

@@ -44,7 +44,7 @@
 			<button type="button" class="btn btn-primary">
 				Client:
 			</button>
-			{{shipment_headerclient || "WH1"}}
+			{{shipment_header.client || "WH1"}}
 			<button type="button" class="btn btn-primary">
 				Shipment:
 			</button>
@@ -77,7 +77,7 @@
 			</div>
 		
 		<div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">Save</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>	
 
