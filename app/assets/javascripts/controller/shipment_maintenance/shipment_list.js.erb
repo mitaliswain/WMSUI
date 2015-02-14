@@ -125,21 +125,31 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 		
 		    // change sorting order
 		    $scope.sort_by = function(newSortingOrder) {
-		        if ($scope.sortingOrder == newSortingOrder)
+		        //if ($scope.sortingOrder == newSortingOrder)
 		            $scope.reverse = !$scope.reverse;
 		
-		        $scope.sortingOrder = newSortingOrder;
-		
+		        $scope.sortingOrder = 'shipment_header.'+newSortingOrder;
+		        console.log($scope.sortingOrder);
+
+		        // take care of the sorting order
+		        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+		        $scope.currentPage = 0;
+		        // now group by pages
+		        $scope.groupToPages();
+
+		/*
 		        // icon setup
 		        $('th i').each(function(){
 		            // icon reset
-		            $(this).removeClass().addClass('icon-sort');
+		            $(this).removeClass().addClass('fa icon-sort');
 		        });
 		        if ($scope.reverse)
-		            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-up');
+		            $('th.'+newSortingOrder+' i').removeClass().addClass('fa fa-icon-chevron-up');
 		        else
-		            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
+		            $('th.'+newSortingOrder+' i').removeClass().addClass('fa fa-icon-chevron-down');
+		*/ 	
 		    };
+  
 		 $scope.expand(lastitem);	
 		 $scope.status();
 		 });

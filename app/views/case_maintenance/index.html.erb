@@ -1,63 +1,19 @@
 <html>
 	<head>
 		<script>
-			
-			$(document).on("click", "#open_case_detail", function() {
-				url = '/case/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
-				$('#case_detail_modal_iframe').attr('src', url);
-				$('#case_detail_modal').modal('show');
-			});
-
-			$(document).on("click", "#open_case_add", function() {
-				url = '/case/new/' +  (new Date().getTime()) + '/#';
-				$('#case_detail_modal_iframe').attr('src', url);			
-				$('#case_detail_modal').modal('show');
-			});
-
-			$(document).on('hidden.bs.modal', '#case_detail_modal', function() {		
-				angular.element('#CaseListCtrl').scope().reload();		
-				$(this).removeData('bs.modal');
-				console.log('hidden');
-			});
-
-			$(document).on("click", "#open_case_detail_add", function() {
-				url = '/case/add_detail/#?warehouse=WH1&client=WM&case_header_id=' + $(this).attr('data-target');
-				$('#case_detail_modal_iframe').attr('src', url);
-				$('#case_detail_modal').modal('show');
-			});
-
-			$(document).on("click", "#open_case_detail_edit", function() {
-				url = '/case/' + $(this).attr('case_id') + '/edit_detail/' + $(this).attr('case_detail_id') + '#?id=' + $(this).attr('case_id') + '&detail_id=' + $(this).attr('case_detail_id') + '&warehouse=WH1&client=WM';
-
-				$('#case_detail_modal_iframe').attr('src', url);
-				$('#case_detail_modal').modal('show');
-			});
-			
 			var sortingOrder = 'case_header.case_id';
 		</script>
-		<style>
-			.modal-dialog {
-				width: 900px;
-			}
-			.case-header {
-				min-width: 15%;
-				max-width: 15%;
-				display: inline-block;
-				text-align: center;
-				min-height: 1px;
-				white-space: nowrap
-			}
-		</style>
 	</head>
 
 	<body ng-app="case_detail" >
 
 		<%= render"shared/menu" %>
-		
+
 		<div id="CaseListCtrl" ng-controller="CaseListCtrl" style="width: 80%; margin: 2%">
 
-		
-			<div><h3><a href="/case"> <span class="label label-primary">Case List</a></h3></div>
+			<div>
+				<h3><a href="/case"> <span class="label label-primary">Case List</a></h3>
+			</div>
 			<div class="input-group pull-right" style="width: 30%">
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
 				<span class="input-group-addon"><i class="icon-search"></i></span>
@@ -81,87 +37,68 @@
 					<tr>
 						<th colspan="7">
 						<div class="bs-callout">
-							<div class="case-header">
+							<div class="row-header">
 								Option
 							</div>
-							<div class="case-header">
-								Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="icon-sort"></i></a>
+							<div class="row-header">
+								Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="case-header">
-								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="icon-sort"></i></a>
+							<div class="row-header">
+								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="case-header">
-								Location<a ng-click="sort_by('vendor_nbr')"><i class="icon-sort"></i></a>
+							<div class="row-header">
+								Location<a ng-click="sort_by('vendor_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="case-header">
+							<div class="row-header">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
-							<div class="case-header">
-								<a id="open_case_add"
-								data-toggle="modal">
-								<i class="icon-plus-sign"></i></a>
-								</div>
-								</div></th>
-								</tr>
-								</thead>
-								<tfoot>
-								<td colspan="7">
-								<div>
-								<ul class="pagination pull-right">
-								<li ng-class="{disabled: currentPage == 0}">
-								<a href ng-click="prevPage()">« Prev</a>
-								</li>
-								<li ng-repeat="n in range(pagedItems.length)"
-								ng-class="{active: n == currentPage}"
-								ng-click="setPage()">
-								<a href ng-bind="n + 1">1</a>
-								</li>
-								<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-								<a href ng-click="nextPage()">Next »</a>
-								</li>
-								</ul>
-								</div></td>
-								</tfoot>
-								<tbody>
-								<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-								<td colspan="7">
-								<div  class="bs-callout bs-callout-info">
-								<div class="case-header" ng-click="toggle_expand(item)" >
+							<div class="row-header">
+								<a id="open_case_add"  ng-click="case_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+							</div>
+						</div></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="item in pagedItems[currentPage]">
+						
+						<td colspan="7">
+						<div  class="bs-callout bs-callout-info">
+							<div class="row-header" ng-click="toggle_expand(item)" >
 								<a id="expand"
 								data-toggle="modal"
 								data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
-								</div>
+							</div>
 
-								<div class="case-header">
+							<div class="row-header">
 								{{item.case_header.case_id}}
-								</div>
-								<div class="case-header">
+							</div>
+							<div class="row-header">
 								{{item.case_header.shipment_nbr}}
 							</div>
-							<div class="case-header">
+							<div class="row-header">
 								{{item.case_header.location}}
 							</div>
-							<div class="case-header">
+							<div class="row-header">
 								{{item.case_header.record_status}}
 							</div>
 
-							<div class="case-header">
+							<div class="row-header">
 								<a id="open_case_detail"
 								data-toggle="modal"
 								data-target="{{item.case_header.id}}"> <i class="icon-edit"></i></a>
 							</div>
-						</div>
-						<!--Detail -->
+						</div><!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
-								<div class="case-header"></div>
-								<div class="case-header">
+								<div class="row-header"></div>
+								<div class="row-header">
 									Shipped Quantity
 								</div>
-								<div class="case-header">
+								<div class="row-header">
 									Received Quantity
 								</div>
-								<div class="case-header">
+								<div class="row-header">
 									<a id="open_case_detail_add"
 									data-toggle="modal"
 									data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
@@ -169,27 +106,46 @@
 
 							</div>
 							<div ng-repeat="detail in item.case_detail" class="bs-callout">
-								<div class="case-header">
+								<div class="row-header">
 									{{detail.item}}
 								</div>
-								<div class="case-header">
+								<div class="row-header">
 									{{detail.quantity}}
 								</div>
-								<div class="case-header">
+								<div class="row-header">
 									{{detail.coo}}
 								</div>
 
-								<div class="case-header">
+								<div class="row-header">
 									<a id="open_case_detail_edit"
 									data-toggle="modal"
 									case_id="{{item.case_header.id}}" case_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
 								</div>
 
 							</div>
-						</div> </td>
+						</div>
+						</td>
 					</tr>
 
-					</tbody>
+				</tbody>
+				<tfoot>
+					<td colspan="7">
+					<div>
+						<ul class="pagination pull-right">
+							<li ng-class="{disabled: currentPage == 0}">
+								<a href ng-click="prevPage()">« Prev</a>
+							</li>
+							<li ng-repeat="n in range(pagedItems.length)"
+							ng-class="{active: n == currentPage}"
+							ng-click="setPage()">
+								<a href ng-bind="n + 1">1</a>
+							</li>
+							<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+								<a href ng-click="nextPage()">Next »</a>
+							</li>
+						</ul>
+					</div></td>
+				</tfoot>
 			</table>
 
 			<div class="modal fade" id="case_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -216,7 +172,7 @@
 				</div>
 			</div>
 
-	</div>
+		</div>
 
 	</body>
 </html>

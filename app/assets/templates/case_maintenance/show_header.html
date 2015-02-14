@@ -1,3 +1,4 @@
+<html ng-app="case_detail">
 	<head>
 		<style>
 			.row_header {
@@ -7,34 +8,31 @@
 		</style>
 	</head>
 
-	<body>
+	<body ng-controller="caseEditCtrl">
 
-		 <div class="modal-header">
+		<div>
 			<button type="button" class="btn btn-primary">
 				Wahrehouse :
 			</button>
-			{{shipment_header.warehouse || "WM"}}
+			{{case_header.warehouse}}
 			<button type="button" class="btn btn-primary">
 				Client:
 			</button>
-			{{shipment_headerclient || "WH1"}}
+			{{case_header.client}}
 			<button type="button" class="btn btn-primary">
 				Shipment:
 			</button>
-			{{shipment_header.shipment_nbr||"New Shipment"}}												
+			{{case_header.case_id}}
 		</div>
-		       
-
-  <div class="modal-body">
 
 	<accordion close-others="oneAtATime">
 
-			<accordion-group heading="Shipment Header" is-open=true>			
+			<accordion-group heading="Case Header" is-open=true>			
 						<div ng-include src="header_template.url"></div>
 			</accordion-group>
 			
 			<accordion-group heading="Shipment Detail" >	
-					<header ng-repeat-start="shipment_detail in shipment_details">
+					<header ng-repeat-start="case_detail in case_details">
 						<accordion-group heading="Item: {{shipment_detail.item}}"  >			
 											<div ng-include src="detail_template.url"></div>
 							</header>

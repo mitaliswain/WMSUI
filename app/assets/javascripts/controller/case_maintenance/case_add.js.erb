@@ -1,58 +1,93 @@
-case_data.controller('caseAddCtrl', function ($scope, $http, $location) {	
+case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $http, $location, $q) {
    
    $scope.case_header = {};
    $scope.case_detail = {};
    var case_header_id  =  $location.search().case_header_id;
    var case_id  =  $location.search().case_id;
 
+   if (case_id != null) {
+	   $http.get(url).success(function(data) {
+	    	$scope.case_header = data.case_header;
+	    	$scope.case_details = data.case_detail;      			
+	  	});
+  	}
    
    $scope.globalInfo = {
    	error: false,
    	warning: false,
    	info: false 
-   };
-   
+   }
    $scope.statuses = [
     {value: 'Created', text: 'Created'},
     ]; 
+   
    
    $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
     {value: 'N', text: 'No'},
     ]; 
 
-
-
     $scope.clear = function() {
 	   $scope.case_header= {};
 	   $scope.case_detail= {};	
-	   setInfo('info', ' ');
-	   };
-  
+	   }
    
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('case_maintenance/case_header.html') %>'
-        }; 
+        }
 
   $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('case_maintenance/case_detail.html') %>'
-        };
-         
+        }
+
+
+
+    $scope.saveDetail = function() {
+        var fields_to_update = {};
+        fields_to_update = $scope.case_detail;
+        fields_to_update.case_header_id = case_id
+
+        var url = '/case/add_detail?client=' + client + '&warehouse='+ warehouse;
+        return $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+            app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+            fields_to_update: fields_to_update
+        }).success(function(data){
+            $scope.case_header = data.case_header;
+            $scope.case_detail = data.case_detail;
+            setInfo('info', 'Case detail added');
+        }).error(function(message){
+            if (message.status == '422'){
+                setInfo('error', 'Validation Error');
+                angular.forEach(message.errors, function(error){
+                    if(error.field == null)
+                    {setInfo('error', error.message);}
+                    else{
+                        $scope.editableForm.$setError(error.field, error.message);
+                    }
+
+                });
+            }
+            else {
+                setInfo('error', message.message);
+            }
+        });
+    };
+
  $scope.saveHeader = function() {
- 	
+	
     var fields_to_update = {};
- 	var asn_header_id  =  $location.search().asn_header_id;
     fields_to_update = $scope.case_header;
-    var url = '/case/add_header'
+    var url = '/case/add_header?client=' + 'WM' + '&warehouse='+ 'WH1';	
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.case_header = data.case_header;
-		$scope.case_details = data.case_detail;
+		$scope.case_details = data.case_detail;    
  		setInfo('info', 'Case Created Successfully');
 
     }).error(function(message){
@@ -69,39 +104,7 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
 
     	}
     });
- };
-
- $scope.saveDetail = function() {
-
-    var fields_to_update = {};
-    fields_to_update = $scope.case_detail;
-    fields_to_update['case_header_id'] = case_header_id
-    fields_to_update.case_id = case_id;
-    
-    var url = '/case/add_detail?';	
-    return $http.post(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
-    	fields_to_update: fields_to_update
-    }).success(function(message){ 		
- 		setInfo('info', 'Case detail added');
-    }).error(function(message){
-    	if (message.status == '422'){ 
-    		setInfo('error', 'Validation Error');
-    		angular.forEach(message.errors, function(error){
-    			if(error.field == null)
-    				{setInfo('error', error.message);}
-    			else{
-    				$scope.editableForm.$setError(error.field, error.message);
-    			}	
-    			
-    		});
-    	}
-    	else {
-    		 setInfo('error', message.message);
-    	}
-    });
- };
+ }
 
 
  var setInfo = function(infotype, message) {
@@ -117,6 +120,13 @@ case_data.controller('caseAddCtrl', function ($scope, $http, $location) {
  	return;
  }
   
-});
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
 
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+});
 
