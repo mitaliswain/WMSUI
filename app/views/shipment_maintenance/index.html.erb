@@ -8,12 +8,13 @@
 
 	<body ng-app="shipment_detail" >
 
+
 		<%= render"shared/menu" %>
 
 
 		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
 			<div>
-				<h3><a href="/shipment"><span class="label label-primary">Shipment List</span></a></h3>
+				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List Server</span></a></h3>
 			</div>
 			<div class="input-group pull-right" style="width: 30%" >
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">

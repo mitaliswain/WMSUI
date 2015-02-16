@@ -27,10 +27,7 @@ class ShipmentMaintenanceController < ApplicationController
   def new
     
   end
-  
-  def add_detail
-    
-  end
+
   
   def edit_detail
     shipment = {}  
@@ -44,18 +41,19 @@ class ShipmentMaintenanceController < ApplicationController
     end
   end
 
-  def save_detail
-    response = Shipment.shipment_add_detail(params[:app_parameters], params[:fields_to_update])
-    render :json => response, status: response['status']
-  end
-
   def add_header
     response = Shipment.shipment_add_header(params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
   end
-  
+
+
   def update_header
     response = Shipment.shipment_update_header(params[:id], params[:app_parameters], params[:fields_to_update])
+    render :json => response, status: response['status']
+  end
+
+  def add_detail
+    response = Shipment.shipment_add_detail(params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
   end
 

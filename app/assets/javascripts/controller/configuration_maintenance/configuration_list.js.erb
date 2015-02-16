@@ -15,7 +15,7 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
     var warehouse = $location.search().warehouse;
     var client    = $location.search().client; 
     var fields_to_update = {};
-    var url = '/configuration/'+ id 
+    var url = '/configuration/'+ id;
 	fields_to_update[el.$editable.elem[0].id] = data;
 	var d = $q.defer();
     $http.put(url, {
@@ -59,7 +59,7 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
   	   					angular.forEach(JSON.parse(configuration.attribute1).Options, function(option){
   	   						$scope.options.push({value: option, text: option})
   	   					});
-  	   				return;
+
   	   			}
   	   			});  	   		
 		    };
@@ -85,7 +85,7 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
 		    // Filter by status
 		    $scope.status = function (status) {
 		    	status = status==null ?  last_status : status;
-		    	status = status==null ? 'Created' : status 
+		    	status = status==null ? 'Created' : status;
 		    	last_status = status;   	
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
 		                //if (searchMatch(item["enable"], status))

@@ -1,6 +1,6 @@
 	<head>
 		<style>
-			.asn_header {
+			.modal_text_box {
 				width: 50%;
 				float: left
 			}
@@ -11,33 +11,33 @@
 
 		 <div class="modal-header">
 			<button type="button" class="btn btn-primary">
-				Wahrehouse :
+				Warehouse :
 			</button>
 			{{shipment_header.warehouse || "WM"}}
 			<button type="button" class="btn btn-primary">
 				Client:
 			</button>
-			{{shipment_headerclient || "WH1"}}
+			{{client || "WH1"}}
 			<button type="button" class="btn btn-primary">
 				Shipment:
 			</button>
-			{{shipment_header.shipment_nbr||"New Shipment"}}												
+			{{Item||"New Item"}}
 		</div>
-		       
 
-  <div class="modal-body">
 
-	<accordion close-others="oneAtATime">
+         <div class="modal-body">
 
-			<accordion-group heading="Shipment Detail" is-open=true>			
-						<div ng-include src="detail_template.url"></div>
-			</accordion-group>			
-	</accordion>			
-				
-	</div>
-	<div class="modal-footer">
-         <button class="btn btn-primary" ng-click="ok()">OK</button>
-         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>	
-		
-</body>
+             <accordion close-others="oneAtATime">
+
+                 <accordion-group heading="Shipment Detail" is-open=true>
+                     <div ng-include src="detail_template.url"></div>
+                 </accordion-group>
+             </accordion>
+
+         </div>
+         <div class="modal-footer">
+             <button class="btn btn-primary" ng-click="ok()">OK</button>
+             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+         </div>
+
+    </body>

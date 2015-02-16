@@ -16,9 +16,10 @@ case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {
 
   	angular.forEach(data.case_detail, function(case_detail) {
   		if (case_detail.id == $location.search().detail_id){
-  			$scope.case_details = [case_detail];			  			
-  		};
-	});
+  			$scope.case_details = [case_detail];
+
+}
+    });
   });
   
   $scope.header_template = {

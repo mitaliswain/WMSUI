@@ -1,38 +1,56 @@
 Rails.application.routes.draw do
 
-  get 'shipment/new/:timestamp'  =>  'shipment_maintenance#new'
-  get 'shipment/add_detail/:timestamp'         => 'shipment_maintenance#add_detail'
-  get 'shipment/:id/edit_detail/:detail_id'    => 'shipment_maintenance#edit_detail'
-  post 'shipment/add_detail'        => 'shipment_maintenance#save_detail' 
-  post 'shipment/add_header'        => 'shipment_maintenance#add_header' 
-  post 'shipment/:id/update_header' => 'shipment_maintenance#update_header' 
-  post 'shipment/:id/update_detail' => 'shipment_maintenance#update_detail' 
-  
-  get  'case'                             => 'case_maintenance#index'
-  get  'case/new'                         => 'case_maintenance#new'
-  post 'case/add_header'                  => 'case_maintenance#add_header' 
-   
-  get  'case/add_detail'                  => 'case_maintenance#add_detail'
-  post 'case/add_detail'                  => 'case_maintenance#save_detail' 
-  get  'case/:id/edit_detail/:detail_id'  => 'case_maintenance#edit_detail'
-  post 'case/:id/update_detail'           => 'case_maintenance#update_detail' 
 
-  post 'case/:id/update_header'           => 'case_maintenance#update_header'
-  get  'case/:id'                         => 'case_maintenance#show'
+  namespace :shipment_maintenance do
+    get '' ,  action: 'index'
+    get  ':id', action: 'show'
+    get  ':id/detail/:detail_id', action: 'show_detail'
+
+    post 'add_detail', action: 'add_detail'
+    post 'add_header', action: 'add_header'
+
+    post ':id/update_header',  action: 'update_header'
+    post ':id/update_detail',  action: 'update_detail'
+
+    post ':id', action: 'show'
+
+    post ':shipment_nbr/receive',  action: 'receive'
+    post ':to_validate/validate',  action: 'validate'
+
+  end
 
 
-  
-  get 'configuration/' => 'configuration_maintenance#index'
-  put 'configuration/:id' => 'configuration_maintenance#update'
+  namespace :case_maintenance do
+    get '' ,  action: 'index'
+    get  ':id', action: 'show'
+    get  ':id/detail/:detail_id', action: 'show'
 
-  get 'item_master/' => 'item_master_maintenance#index'
+
+    post 'add_header', action: 'add_header'
+    post 'add_detail', action: 'add_detail'
+    post ':id', action: 'show'
+
+    post ':id/update_header', action:'update_header'
+    post ':id/update_detail', action:'update_detail'
+
+  end
+
+  namespace :configuration_maintenance do
+    get '', action: 'index'
+    put '/:id', action: 'update'
+  end
+
+
+  namespace :item_master_maintenance do
+    get '', action: 'index'
+    get  ':id', action: 'show'
+    post '/:id', action: 'update'
+  end
 
 
   resources :mainmenu,  controller: 'main_menu'
-
   resources :shipmentreceive, controller: 'shipment_receive'
   resources :shipment, controller: 'shipment_maintenance'
-
   resources :case_putaway, controller: 'case_putaway'
   
   # The priority is based upon order of creation: first created -> highest priority.

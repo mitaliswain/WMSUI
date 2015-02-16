@@ -12,9 +12,9 @@
 <%= render"shared/menu" %>
 
 
-<div id="ItemListCtrl" ng-controller="ItemListCtrl" style="width: 80%; margin: 2%">
+<div id="ItemListCtrl" ng-controller="itemListCtrl" style="width: 80%; margin: 2%">
   <div>
-    <h3><a href="/item_master"><span class="label label-primary">Item Master</span></a></h3>
+    <h3><a href="/item_master_maintenance"><span class="label label-primary">Item Master</span></a></h3>
   </div>
   <div class="input-group pull-right" style="width: 30%" >
     <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
@@ -24,10 +24,10 @@
   <div>
     <ul class="nav nav-tabs" role="tablist">
       <li class="active">
-        <a href="#Created" role="tab" data-toggle="tab" ng-click="status('Active')">Created</a>
+        <a href="#Created" role="tab" data-toggle="tab" ng-click="status('Active')">Active</a>
       </li>
       <li>
-        <a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Inactive')">Initiated</a>
+        <a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Inactive')">Inactive</a>
       </li>
     </ul>
   </div>
@@ -80,7 +80,7 @@
           </div>
 
           <div class="row-header">
-            <a id="open_shipment_detail" ng-click="shipment_edit_modal('lg', item.shipment_header.id)">
+            <a id="open_item_detail" ng-click="item_edit_modal('lg', item.id)">
               <i class="fa fa-pencil"></i>
             </a>
           </div>

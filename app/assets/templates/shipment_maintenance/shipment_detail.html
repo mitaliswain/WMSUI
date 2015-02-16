@@ -1,138 +1,269 @@
-<div>
-	<div class="asn_header">
-		<span class="title">Item Barcode:</span><a href="#" e-name="item" id="item" editable-text="shipment_detail.item" onbeforesave="updateDetail($data, this, shipment_detail.id)" e-required>{{ shipment_detail.item || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Short Description: </span><a href="#" e-name="short_desc" id="short_desc" editable-text="shipment_detail.short_desc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.short_desc || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Purchase Order: </span><a href="#" id="purchase_order_nbr" editable-text="purchase_order_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.purchase_order_nbr || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">PO Line No: </span><a href="#" id="poline_nbr" editable-number="poline_nbr" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.poline_nbr || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">PO Quantity: </span><a href="#" id="po_qty" editable-number="shipment_detail.po_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.po_qty || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Shipped Quantity: </span><a href="#" id="shipped_quantity" editable-number="shipment_detail.shipped_quantity" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.shipped_quantity || "0" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Received Quantity: </span><a href="#" id="received_qty" editable-number="shipment_detail.received_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.received_qty || "0" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Hot Item: </span><a href="#" id="hot_item" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.hot_item || "empty" }}</a>
-	</div>
-	<div class="asn_header">
-		<span class="title">Record Status: </span><a href="#" id="record_status" editable-text="shipment_detail.record_status" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.record_status || "empty" }}</a>
-	</div>
+<div class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title">Item Barcode:</span><a href="#" e-name="item" id="item" editable-text="shipment_detail.item"
+                                                   onbeforesave="updateDetail($data, this, shipment_detail.id)"
+                                                   e-required>{{ shipment_detail.item || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Short Description: </span><a href="#" e-name="short_desc" id="short_desc"
+                                                         editable-text="shipment_detail.short_desc"
+                                                         onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.short_desc || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Purchase Order: </span><a href="#" id="purchase_order_nbr"
+                                                      editable-text="purchase_order_nbr"
+                                                      onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.purchase_order_nbr || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">PO Line No: </span><a href="#" id="poline_nbr" editable-number="poline_nbr"
+                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.poline_nbr || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">PO Quantity: </span><a href="#" id="po_qty" editable-number="shipment_detail.po_qty"
+                                                   onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.po_qty || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Shipped Quantity: </span><a href="#" id="shipped_quantity"
+                                                        editable-number="shipment_detail.shipped_quantity"
+                                                        onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.shipped_quantity || "0" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Received Quantity: </span><a href="#" id="received_qty"
+                                                         editable-number="shipment_detail.received_qty"
+                                                         onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.received_qty || "0" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Hot Item: </span><a href="#" id="hot_item" editable-select="shipment_detail.hot_item"
+                                                e-ng-options="s.value as s.text for s in YesorNo"
+                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.hot_item || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Record Status: </span><a href="#" id="record_status"
+                                                     editable-text="shipment_detail.record_status"
+                                                     onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+        shipment_detail.record_status || "empty" }}</a>
+    </div>
 </div>
 &nbsp;
 
-<accordion close-others="oneAtATime">
-	<accordion-group heading="SKU Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-		<div class="asn_header">
-			<span class="title">SKU Attribute1: </span><a href="#" id="sku_attribute1" editable-text="shipment_detail.sku_attribute1" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute1 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute2: </span><a href="#" id="sku_attribute2" editable-text="shipment_detail.sku_attribute2" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute2 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute3: </span><a href="#" id="sku_attribute3" editable-text="shipment_detail.sku_attribute3" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipped_quantity.sku_attribute3 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute4: </span><a href="#" id="sku_attribute4" editable-text="shipment_detail.sku_attribute4" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute4 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute5: </span><a href="#" id="sku_attribute5" editable-text="shipment_detail.sku_attribute5" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute5 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute6: </span><a href="#" id="sku_attribute6" editable-text="shipment_detail.sku_attribute6" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute6 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute7: </span><a href="#" id="sku_attribute7" editable-text="shipment_detail.sku_attribute7" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute7 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute8: </span><a href="#" id="sku_attribute8" editable-text="shipment_detail.sku_attribute8" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute8 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute9: </span><a href="#" id="sku_attribute9" editable-text="shipment_detail.sku_attribute9" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute9 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">SKU Attribute10: </span><a href="#" id="sku_attribute10" editable-text="shipment_detail.sku_attribute10" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.sku_attribute10 || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Concept: </span><a href="#" id="concept" editable-number="shipment_detail.concept" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.concept || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Inventory Type: </span><a href="#" id="inventory_type" editable-number="shipment_detail.inventory_type" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.inventory_type || "empty" }}</a>
-		</div>
-	</accordion-group>
+<div style="width: 100%; margin-top: 5%">
 
-	<accordion-group heading="Quantities" >
-		<div class="asn_header">
-			<span class="title">Cases Received: </span><a href="#" id="cases_rcvd" editable-number="shipment_detail.cases_rcvd" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipped_quantity.cases_rcvd || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Cases Verified: </span><a href="#" id="cases_verified" editable-number="shipment_detail.cases_verified" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.cases_verified || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Innerpack Quantity: </span><a href="#" id="innerpack_qty" editable-number="shipment_detail.innerpack_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.innerpack_qty || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Standardcase Quantity: </span><a href="#" id="standardcase_qty" editable-number="shipment_detail.standardcase_qty" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.standardcase_qty || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">UOM: </span><a href="#" id="uom" editable-text="shipment_detail.uom" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.uom || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Unit Weight: </span><a href="#" id="unit_wgt" editable-number="shipment_detail.unit_wgt" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.unit_wgt || "empty" }}</a>
-		</div>
-	</accordion-group>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
 
-	<accordion-group heading="Tracking" >
-		<div class="asn_header">
-			<span class="title">Track COO: </span><a href="#" id="track_coo" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_coo || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_lotcontrol || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr" editable-select="shipment_detail.hot_item" e-ng-options="s.value as s.text for s in YesorNo"  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.track_serial_nbr || "empty" }}</a>
-		</div>
-	</accordion-group>
+            <accordion-group heading="SKU Information">
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute1: </span><a href="#" id="sku_attribute1"
+                                                                  editable-text="shipment_detail.sku_attribute1"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute1 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute2: </span><a href="#" id="sku_attribute2"
+                                                                  editable-text="shipment_detail.sku_attribute2"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute2 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute3: </span><a href="#" id="sku_attribute3"
+                                                                  editable-text="shipment_detail.sku_attribute3"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipped_quantity.sku_attribute3 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute4: </span><a href="#" id="sku_attribute4"
+                                                                  editable-text="shipment_detail.sku_attribute4"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute4 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute5: </span><a href="#" id="sku_attribute5"
+                                                                  editable-text="shipment_detail.sku_attribute5"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute5 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute6: </span><a href="#" id="sku_attribute6"
+                                                                  editable-text="shipment_detail.sku_attribute6"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute6 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute7: </span><a href="#" id="sku_attribute7"
+                                                                  editable-text="shipment_detail.sku_attribute7"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute7 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute8: </span><a href="#" id="sku_attribute8"
+                                                                  editable-text="shipment_detail.sku_attribute8"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute8 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute9: </span><a href="#" id="sku_attribute9"
+                                                                  editable-text="shipment_detail.sku_attribute9"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute9 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Attribute10: </span><a href="#" id="sku_attribute10"
+                                                                   editable-text="shipment_detail.sku_attribute10"
+                                                                   onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.sku_attribute10 || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Concept: </span><a href="#" id="concept"
+                                                           editable-number="shipment_detail.concept"
+                                                           onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.concept || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Inventory Type: </span><a href="#" id="inventory_type"
+                                                                  editable-number="shipment_detail.inventory_type"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.inventory_type || "empty" }}</a>
+                </div>
+            </accordion-group>
 
-	<accordion-group heading="Costing" >
-		<div class="asn_header">
-			<span class="title">Cost: </span><a href="#" id="unit_cost" editable-number="shipment_detail.unit_cost" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.unit_cost || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Price: </span><a href="#" id="retail_price" editable-number="shipment_detail.retail_price" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.retail_price || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Landing Cost: </span><a href="#" id="landing_cost" editable-number="shipment_detail.landing_cost" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.landing_cost || "empty" }}</a>
-		</div>
-	</accordion-group>
+            <accordion-group heading="Quantities">
+                <div class="modal_text_box">
+                    <span class="title">Cases Received: </span><a href="#" id="cases_rcvd"
+                                                                  editable-number="shipment_detail.cases_rcvd"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipped_quantity.cases_rcvd || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Cases Verified: </span><a href="#" id="cases_verified"
+                                                                  editable-number="shipment_detail.cases_verified"
+                                                                  onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.cases_verified || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Innerpack Quantity: </span><a href="#" id="innerpack_qty"
+                                                                      editable-number="shipment_detail.innerpack_qty"
+                                                                      onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.innerpack_qty || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Standardcase Quantity: </span><a href="#" id="standardcase_qty"
+                                                                         editable-number="shipment_detail.standardcase_qty"
+                                                                         onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.standardcase_qty || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">UOM: </span><a href="#" id="uom" editable-text="shipment_detail.uom"
+                                                       onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.uom || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Unit Weight: </span><a href="#" id="unit_wgt"
+                                                               editable-number="shipment_detail.unit_wgt"
+                                                               onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.unit_wgt || "empty" }}</a>
+                </div>
+            </accordion-group>
 
-	<accordion-group heading="Audit Information" >
-		<div class="asn_header">
-			<span class="title">Created Date: </span><a href="#" id="created_date" editable-date="shipment_detail.created_date" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_date || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Created User: </span><a href="#" id="created_user" editable-text="shipment_detail.created_user" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_user || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Created PRC: </span><a href="#" id="created_prc" editable-text="shipment_detail.created_prc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.created_prc || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Updated Date: </span><a href="#" id="updated_date" editable-date="shipment_detail.updated_date" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.upated_date || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Updated User: </span><a href="#" id="updated_user" editable-text="shipment_detail.updated_user" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.updated_user || "empty" }}</a>
-		</div>
-		<div class="asn_header">
-			<span class="title">Updated PRC: </span><a href="#" id="updated_prc" editable-text="shipment_detail.updated_prc" onbeforesave="updateDetail($data, this, shipment_detail.id)">{{ shipment_detail.updated_prc || "empty" }}</a>
-		</div>
-	</accordion-group>
-</accordion>
+            <accordion-group heading="Tracking">
+                <div class="modal_text_box">
+                    <span class="title">Track COO: </span><a href="#" id="track_coo"
+                                                             editable-select="shipment_detail.hot_item"
+                                                             e-ng-options="s.value as s.text for s in YesorNo"
+                                                             onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.track_coo || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol"
+                                                                     editable-select="shipment_detail.hot_item"
+                                                                     e-ng-options="s.value as s.text for s in YesorNo"
+                                                                     onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.track_lotcontrol || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr"
+                                                                       editable-select="shipment_detail.hot_item"
+                                                                       e-ng-options="s.value as s.text for s in YesorNo"
+                                                                       onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.track_serial_nbr || "empty" }}</a>
+                </div>
+            </accordion-group>
+
+            <accordion-group heading="Costing">
+                <div class="modal_text_box">
+                    <span class="title">Cost: </span><a href="#" id="unit_cost"
+                                                        editable-number="shipment_detail.unit_cost"
+                                                        onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.unit_cost || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Price: </span><a href="#" id="retail_price"
+                                                         editable-number="shipment_detail.retail_price"
+                                                         onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.retail_price || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Landing Cost: </span><a href="#" id="landing_cost"
+                                                                editable-number="shipment_detail.landing_cost"
+                                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.landing_cost || "empty" }}</a>
+                </div>
+            </accordion-group>
+
+            <accordion-group heading="Audit Information">
+                <div class="modal_text_box">
+                    <span class="title">Created Date: </span><a href="#" id="created_date"
+                                                                editable-date="shipment_detail.created_date"
+                                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.created_date || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Created User: </span><a href="#" id="created_user"
+                                                                editable-text="shipment_detail.created_user"
+                                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.created_user || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Created PRC: </span><a href="#" id="created_prc"
+                                                               editable-text="shipment_detail.created_prc"
+                                                               onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.created_prc || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Updated Date: </span><a href="#" id="updated_date"
+                                                                editable-date="shipment_detail.updated_date"
+                                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.upated_date || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Updated User: </span><a href="#" id="updated_user"
+                                                                editable-text="shipment_detail.updated_user"
+                                                                onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.updated_user || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Updated PRC: </span><a href="#" id="updated_prc"
+                                                               editable-text="shipment_detail.updated_prc"
+                                                               onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
+                    shipment_detail.updated_prc || "empty" }}</a>
+                </div>
+            </accordion-group>
+        </accordion-group>
+
+    </accordion>
 </div>

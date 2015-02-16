@@ -1,11 +1,9 @@
-item_master.controller('ItemListCtrl', function ($scope, $http,  $location, $filter, $modal) {
+item_master.controller('itemListCtrl', function ($scope, $http,  $location, $filter, $modal) {
     var warehouse = $location.search().warehouse;
-    var shipment  =  $location.search().shipment;
     var client    = $location.search().client;
     var last_status = 'Active';
 
-    $scope.shipment = 'new shipment';
-    var url = '/item_master.json?';
+    var url = '/item_master_maintenance.json?';
 
 
     $scope.reload = function() {
@@ -135,73 +133,33 @@ item_master.controller('ItemListCtrl', function ($scope, $http,  $location, $fil
     };
 
     //Modal methods
-    $scope.shipment_add_modal = function (size) {
+    $scope.item_add_modal = function (size) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
-            controller: 'shipmentAddCtrl',
+            templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
+            controller: 'itemAddCtrl',
             size: size,
             resolve: {
-                shipment: function () {
+                item: function () {
                     return null;
                 }
             }
         });
         $scope.reload();
-    }
+    };
 
-    $scope.shipment_edit_modal = function (size, shipment) {
+    $scope.item_edit_modal = function (size, item) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-            controller: 'shipmentEditCtrl',
+            templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
+            controller: 'itemEditCtrl',
             size: size,
             resolve: {
-                shipment: function () {
-                    return shipment;
-                },
-                shipment_detail_id: function () {
-                    return null;
-                }
-            }
-        });
-
-        $scope.reload();
-    }
-
-
-    $scope.shipment_detail_add_modal = function (size, shipment) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-            controller: 'shipmentAddCtrl',
-            size: size,
-            resolve: {
-                shipment: function () {
-                    return shipment;
-                },
-                shipment_detail_id: function () {
-                    return null;
-                }
-            }
-        });
-
-        $scope.reload();
-    }
-
-    $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-            controller: 'shipmentEditCtrl',
-            size: size,
-            resolve: {
-                shipment: function () {
-                    return shipment;
-                },
-                shipment_detail_id: function () {
-                    return shipment_detail_id;
+                item: function () {
+                    return item;
                 }
             }
         });
         $scope.reload();
-    }
+    };
 
     $scope.reload();
 });

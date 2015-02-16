@@ -6,7 +6,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
   var last_status = 'Created';
 
     $scope.shipment = 'new shipment';
-   var url = '/shipment.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+   var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
 
     $scope.reload = function() {
@@ -169,7 +169,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
             }
         });
         $scope.reload();
-    }
+    };
 
     $scope.shipment_edit_modal = function (size, shipment) {
         var modalInstance = $modal.open({
@@ -187,7 +187,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
         });
 
         $scope.reload();
-    }
+    };
 
 
     $scope.shipment_detail_add_modal = function (size, shipment) {
@@ -206,7 +206,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
         });
 
         $scope.reload();
-    }
+    };
 
     $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
         var modalInstance = $modal.open({
@@ -223,7 +223,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
             }
         });
         $scope.reload();
-    }
+    };
 
     $scope.reload();
 });

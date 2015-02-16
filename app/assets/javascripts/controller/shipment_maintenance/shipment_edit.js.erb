@@ -2,7 +2,7 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
   var warehouse = $location.search().warehouse;
   var client    = $location.search().client; 
   var detail_id    = $location.search().detail_id; 
-  var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
+  var url = '/shipment_maintenance/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
     $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
     {value: 'N', text: 'No'},
@@ -15,9 +15,10 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
 
   	angular.forEach(data.shipment_detail, function(shipment_detail) { 		  			
   		if (shipment_detail.id == shipment_detail_id){
-  			$scope.shipment_detail = shipment_detail;			  			
-  		};
-	});
+  			$scope.shipment_detail = shipment_detail;
+
+}
+    });
 	
   });
   
@@ -48,7 +49,7 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
         var shipment  =  $location.search().shipment;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/shipment/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;
+        var url = '/shipment_maintenance/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;
         fields_to_update[el.$editable.elem[0].id] = data;
         var d = $q.defer();
         $http.post(url, {
@@ -78,7 +79,7 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
         var shipment  =  $location.search().shipment;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/shipment/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;
+        var url = '/shipment_maintenance/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;
         fields_to_update[el.$editable.elem[0].id] = data;
         var d = $q.defer();
         $http.post(url, {

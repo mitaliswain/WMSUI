@@ -16,7 +16,7 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
    	error: false,
    	warning: false,
    	info: false 
-   }
+   };
    $scope.statuses = [
     {value: 'Created', text: 'Created'},
     ]; 
@@ -30,24 +30,24 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
     $scope.clear = function() {
 	   $scope.case_header= {};
 	   $scope.case_detail= {};	
-	   }
+	   };
    
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('case_maintenance/case_header.html') %>'
-        }
+        };
 
   $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('case_maintenance/case_detail.html') %>'
-        }
+        };
 
 
 
     $scope.saveDetail = function() {
         var fields_to_update = {};
         fields_to_update = $scope.case_detail;
-        fields_to_update.case_header_id = case_id
+        fields_to_update.case_header_id = case_id;
 
         var url = '/case/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
@@ -104,12 +104,12 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
 
     	}
     });
- }
+ };
 
 
  var setInfo = function(infotype, message) {
- 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){;
- 		if(infotype == infoKey) {
+     angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
+         if(infotype == infoKey) {
  			$scope.globalInfo[infoKey] = true
  		}
  		else{
@@ -117,8 +117,8 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
  		}
  	});
  	$scope.global_notification = message;		
- 	return;
- }
+
+ };
   
   $scope.ok = function () {
     $modalInstance.close();

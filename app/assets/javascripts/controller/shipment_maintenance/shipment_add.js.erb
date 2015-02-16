@@ -7,7 +7,7 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
 
    $scope.shipment_header = {};
    $scope.shipment_detail = {}; 
-   var url = '/shipment/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;	
+   var url = '/shipment_maintenance/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
    console.log(url);	
    
    if (shipment != null) {
@@ -21,7 +21,7 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
    	error: false,
    	warning: false,
    	info: false 
-   }
+   };
    
    $scope.statuses = [
     {value: 'Created', text: 'Created'},
@@ -42,18 +42,18 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
     $scope.clear = function() {
 	   $scope.shipment_header= {};
 	   $scope.shipment_detail= {};	
-	   }
+	   };
   
    
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
-        }
+        };
 
   $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
-        }
+        };
 
 
 
@@ -61,9 +61,9 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
         var fields_to_update = {};
         fields_to_update = $scope.shipment_detail;
         console.log($scope.shipment_detail);
-        fields_to_update.asn_header_id = shipment
+        fields_to_update.asn_header_id = shipment;
 
-        var url = '/shipment/add_detail?client=' + client + '&warehouse='+ warehouse;
+        var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
             app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
@@ -94,7 +94,7 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
 	
     var fields_to_update = {};
     fields_to_update = $scope.shipment_header;
-    var url = '/shipment/add_header?client=' + client + '&warehouse='+ warehouse;	
+    var url = '/shipment_maintenance/add_header?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
@@ -118,12 +118,12 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
 
     	}
     });
- }
+ };
 
 
  var setInfo = function(infotype, message) {
- 	angular.forEach($scope.globalInfo, function(infoValue, infoKey){;
- 		if(infotype == infoKey) {
+     angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
+         if(infotype == infoKey) {
  			$scope.globalInfo[infoKey] = true
  		}
  		else{
@@ -131,8 +131,8 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
  		}
  	});
  	$scope.global_notification = message;		
- 	return;
- }
+
+ };
   
   $scope.ok = function () {
     $modalInstance.close();

@@ -170,7 +170,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
             }
         });
         $scope.reload();
-    }
+    };
 
     $scope.shipment_edit_modal = function (size, shipment) {
         var modalInstance = $modal.open({
@@ -188,7 +188,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         });
 
         $scope.reload();
-    }
+    };
 
 
     $scope.shipment_detail_add_modal = function (size, shipment) {
@@ -207,7 +207,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         });
 
         $scope.reload();
-    }
+    };
 
     $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
         var modalInstance = $modal.open({
@@ -224,7 +224,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
             }
         });
         $scope.reload();
-    }
+    };
 
     $scope.reload();
 });
