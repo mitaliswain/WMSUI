@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="514093bf-68f3-4867-aaf8-d509383ed6a8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/case_putaway_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/main_menu_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/shipment_receive_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/helpers/shipment_receive_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/concerns/case_putaway.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/concerns/shipment_receive.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/putaway.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/shipment.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/case_putaway/new.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/main_menu/new.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shipment_receive/new.html.erb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" afterPath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/WMSUI.iml" afterPath="$PROJECT_DIR$/.idea/WMSUI.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/controllers/configuration_controller.rb" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/configuration_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/item_master.rb" afterPath="$PROJECT_DIR$/app/models/item_master.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/modules.xml" afterPath="$PROJECT_DIR$/../WMSService/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../WMSService/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/shipment.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WMSUI.iws" />
@@ -75,8 +58,8 @@
       <file leaf-file-name="development.log" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../WMSService/log/development.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3975" max-vertical-offset="365250">
-              <caret line="265" column="40" selection-start-line="265" selection-start-column="40" selection-end-line="265" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="108600" max-vertical-offset="469875">
+              <caret line="7240" column="40" selection-start-line="7240" selection-start-column="40" selection-end-line="7240" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -794,7 +777,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27945206" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27945206" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1149,8 +1132,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../WMSService/log/development.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3975" max-vertical-offset="365250">
-          <caret line="265" column="40" selection-start-line="265" selection-start-column="40" selection-end-line="265" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="108600" max-vertical-offset="469875">
+          <caret line="7240" column="40" selection-start-line="7240" selection-start-column="40" selection-end-line="7240" selection-end-column="40" />
           <folding />
         </state>
       </provider>
