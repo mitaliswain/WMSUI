@@ -1,0 +1,179 @@
+<div  class="btn-default">
+    <div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
+        Error:{{global_notification}}
+    </div>
+    <div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
+        {{global_notification}}
+    </div>
+</div>
+
+<div class="btn-default">
+    <div class="modal_text_box">
+        <span class="title"> Item:</span>
+        <a href="#" id="item"  e-name="item" editable-text="item.item" onbeforesave="updateHeader($data, this, item.id)" >{{ item.item || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Concept:</span>
+        <a href="#" id="concept" e-name="concept" editable_select="item.concept" onbeforesave="updateHeader($data, this, item.id)" e-required>{{ item.concept || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Description:</span>
+        <a href="#" id="description" e-name="description" editable_text="item.description"  onbeforesave="updateHeader($data, this, item.id)" e-required >{{ item.description || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Short Description:</span>
+        <a href="#" id="short_desc" e-name="short_desc" editable-text="item.short_desc" onbeforesave="updateHeader($data, this, item.id)" >{{ short_desc || "empty" }}</a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">Barcode:</span>
+        <a href="#" id="barcode" e-name="barcode" editable_text="item.barcode" onbeforesave="updateHeader($data, this, item.id)" e-required>{{ barcode || 'Not set' }} </a>
+    </div>
+    <div class="modal_text_box">
+        <span class="title">COO:</span>
+        <a href="#" id="source" e-name="coo" editable-text="item.coo" onbeforesave="updateHeader($data, this, item.id)" e-required>{{ coo || "empty" }}</a>
+    </div>
+
+</div>
+&nbsp;
+
+<div style="width: 100%">
+
+    <accordion close-others="oneAtATime">
+
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <accordion-group heading="Item Dimensions...." >
+                <div class="modal_text_box">
+                    <span class="title">Unit Length: </span>
+                    <a href="#" id="unit_len" editable-text="item.unit_len" onbeforesave="updateHeader($data, this, item.id)">{{ unit_len || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Unit Height: </span>
+                    <a href="#" id="unit_hgt" editable_text="item.unit_hgt" onbeforesave="updateHeader($data, this, item.id)">{{ unit_hgt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Unit Width: </span>
+                    <a href="#" id="unit_wdt" editable_text="item.unit_wdt" onbeforesave="updateHeader($data, this, item.id)">{{ unit_wdt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Unit Weight: </span>
+                    <a href="#" id="unit_wgt" editable_text="item.unit_wgt" onbeforesave="updateHeader($data, this, item.id)">{{ unit_wgt|| "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Unit Volume: </span>
+                    <a href="#" id="unit_vol" editable_text="item.unit_vol" onbeforesave="updateHeader($data, this, item.id)">{{ unit_vol || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Cavity Length: </span>
+                    <a href="#" id="cavity_len" editable_text="item.cavity_len" onbeforesave="updateHeader($data, this, item.id)">{{ cavity_len || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Cavity Width: </span>
+                    <a href="#" id="cavity_wdt" editable_text="item.cavity_wdt" onbeforesave="updateHeader($data, this, item.id)">{{ cavity_wdt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Cavity Height: </span>
+                    <a href="#" id="cavity_hgtt" editable_text="item.cavity_hgtt" onbeforesave="updateHeader($data, this, item.id)">{{cavity_hgtt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Maximum Nest: </span>
+                    <a href="#" id="maximum_nest" editable_text="item.maximum_nest" onbeforesave="updateHeader($data, this, item.id)">{{maximum_nest || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Case Length: </span>
+                    <a href="#" id="case_len" editable_text="item.case_len" onbeforesave="updateHeader($data, this, item.id)">{{case_len || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Case Width: </span>
+                    <a href="#" id="case_wdt" editable_text="item.case_wdt" onbeforesave="updateHeader($data, this, item.id)">{case_wdt || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Case Depth: </span>
+                    <a href="#" id="case_depth" editable_text="item.case_depth" onbeforesave="updateHeader($data, this, item.id)">{case_depth || "empty" }}</a>
+                </div>
+            </accordion-group>
+
+            <accordion-group heading="Item Putaway....">
+
+                <div class="modal_text_box">
+                    <span class="title">Unit Putaway TYpe: </span>
+                    <a href="#" id="unit_putaway_type" editable-text="item.unit_putaway_type" onbeforesave="updateHeader($data, this, item.id)">{{ unit_putaway_type || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Case Putaway Type: </span><a href="#" id="item.case_putaway_type" editable_text="case_putaway_type" onbeforesave="updateHeader($data, this, item.id)">{{ case_putaway_type|| "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">SKU Location Type: </span>
+                    <a href="#" id="sku_location_type" editable_text="item.sku_location_type" onbeforesave="updateHeader($data, this, item.id)">{{ sku_location_type || "empty" }}</a>
+                </div>
+
+                <div class="modal_text_box">
+                    <span></span> Pallet Putaway Type: </span>
+                    <a href="#" id="pallet_putaway_type" editable_text="item.pallet_putaway_type" onbeforesave="updateHeader($data, this, item.id)">{{ pallet_putaway_type || "empty" }}</a>
+                </div>
+
+                <div class="modal_text_box">
+                    <span></span> Suggested Zone: </span>
+                    <a href="#" id="suggested_zone" editable_text="item.suggested_zone" onbeforesave="updateHeader($data, this, item.id)">{{ suggested_zone || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span></span> Suggested Act Zone: </span>
+                    <a href="#" id="suggested_act_zone" editable_text="item.suggested_act_zone" onbeforesave="updateHeader($data, this, item.id)">{{ suggested_act_zone || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span></span>Active Location Count Factor: </span>
+                    <a href="#" id="active_locn_cnt_factor" editable_text="item.active_locn_cnt_factor" onbeforesave="updateHeader($data, this, item.id)">{{ active_locn_cnt_factor || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span></span> Reserve Location Count Factor : </span>
+                    <a href="#" id="reserve_locn_cnt_factor" editable_text="item.reserve_locn_cnt_factor" onbeforesave="updateHeader($data, this, item.id)">{{ reserve_locn_cnt_factor || "empty" }}</a>
+                </div>
+            </accordion-group>
+
+            <accordion-group heading="Item Sensitivity...." >
+                <div class="modal_text_box">
+                    <span class="title">Date Sensitivity: </span>
+                    <a href="#" id="date_sensitivity" editable-text="item.date_sensitivity" onbeforesave="updateHeader($data, this, item.id)">{{ date_sensitivity || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Product Temperature Zone: </span>
+                    <a href="#" id="product_temp_zone" editable_date="item.product_temp_zone" onbeforesave="updateHeader($data, this, item.id)">{{ product_temp_zone || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Trailer Temperature Zone: </span>
+                    <a href="#" id="trailer_temp_zone" editable_text="item.trailer_temp_zone" onbeforesave="updateHeader($data, this, item.id)">{{ trailer_temp_zone || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Hazardous Code: </span>
+                    <a href="#" id="haz_code" editable_date="item.haz_code" onbeforesave="updateHeader($data, this, item.id)">{{ haz_code || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">HTS Code: </span>
+                    <a href="#" id="hts_code" editable-text="item.hts_code" onbeforesave="updateHeader($data, this, item.id)">{{ hts_code || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">NMFC Code: </span>
+                    <a href="#" id="nmfc_code" editable_text="item.nmfc_code" onbeforesave="updateHeader($data, this, item.id)">{{ nmfc_code || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Top self Eligible: </span>
+                    <a href="#" id="topself_eligible" editable_text="topself_eligible" onbeforesave="updateHeader($data, this, item.id)">{{ topself_eligible || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Crushablity Code: </span>
+                    <a href="#" id="crushablity_code" editable_text="crushablity_code" onbeforesave="updateHeader($data, this, item.id)">{{ crushablity_code || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Inner Count Type: </span>
+                    <a href="#" id="inner_ctn_type" editable_text="inner_ctn_type" onbeforesave="updateHeader($data, this, item.id)">{{ inner_ctn_type || "empty" }}</a>
+                </div>
+                <div class="modal_text_box">
+                    <span class="title">Stackbility: </span>
+                    <a href="#" id="stackbility_of_items" editable_date="stackbility_of_items" onbeforesave="updateHeader($data, this, item.id)">{{ stackbility_of_items || "empty" }}</a>
+                </div>
+
+            </accordion-group>
+
+        </accordion-group>
+    </accordion>
+
+</div>
