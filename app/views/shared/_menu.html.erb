@@ -1,33 +1,30 @@
-<div style="margin: 2%">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" xmlns="http://www.w3.org/1999/html">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Warehouse Management System</a>
+    </div>
 
-  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle-Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <label class="navbar-brand" href="#">Warehouse Management</label>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav pull-right">
-          <li>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-              Home <span class="glyphicon glyphicon-home"></span>
-            </button>
-          </li>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a href="#">Home<span class="glyphicon glyphicon-home"></span> </a>
+        </li>
 
 
-          <li>
-            <div class="btn-group" dropdown>
-              <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                Utilities <span class="caret"></span>
-              </button>
+        <li>
+          <span class="nav" dropdown on-toggle="toggled(open)">
+                <a href="" class="dropdown-toggle nav" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-glass">Utilities</span><span class="caret"></span>
+                </a>
+
 
               <ul class="dropdown-menu">
                 <li><a href="/configuration_maintenance">Configuration</a></li>
@@ -41,30 +38,36 @@
                 <li><a href="/mainmenu/new">Receive</a></li>
                 <li class="divider"></li>
               </ul>
-            </div>
-          </li>
+          </span>
+        </li>
+        <li>
 
-          <li>
-            <div class="btn-group" dropdown>
-              <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                <span class="glyphicon glyphicon-leaf"></span> Welcome <%= @userid %> <span class="caret"></span>
-              </button>
+                <span class="navbar-nav" dropdown on-toggle="toggled(open)">
+                <a href="" class="dropdown-toggle navbar-inverse" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-leaf"></span> Welcome <%= @userid %> <span class="caret"></span>
+                </a>
+
 
               <ul class="dropdown-menu">
-                <li><a href="/login?logout=yes">Log out</a></li>
+                <li><a href="/configuration_maintenance">Configuration</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Change Password</a></li>
+                <li><a href="/shipment_maintenance">Shipment</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Change Default</a></li>
+                <li><a href="/case_maintenance">Case Inventory</a></li>
+                <li class="divider"></li>
+                <li><a href="/item_master_maintenance">Item Master</a></li>
+                <li class="divider"></li>
+                <li><a href="/mainmenu/new">Receive</a></li>
                 <li class="divider"></li>
               </ul>
-            </div>
-          </li>
-        </ul>
+            </span>
+        </li>
 
-      </div>
-      <!-- /.navbar-collapse -->
+
+      </ul>
+
     </div>
-    <!-- /.container-fluid -->
-  </nav>
-</div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>

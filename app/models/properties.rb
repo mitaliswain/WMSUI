@@ -4,7 +4,8 @@ class Properties
     if Rails.env.production?
      'http://wmsservice.herokuapp.com'
     else
-      'http://localhost:3001'    
+      'http://localhost:3001'
+      'http://wmsservice.herokuapp.com'
     end
   end
 

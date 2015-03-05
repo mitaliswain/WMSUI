@@ -6,7 +6,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
   var last_status = 'Created';
 
     $scope.shipment = 'new case';
-   var url = '/case.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+   var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
 
     $scope.reload = function() {

@@ -3,7 +3,7 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
   var client    = $location.search().client; 
   var lastitem = {}; 
   var last_status;
-  var url = '/configuration.json?client=' + 'WM' + '&warehouse='+ 'WH1';		
+  var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
   $scope.options = [];
   $scope.TrueOrFalse = [
     {value: 'True', text: 'True'},
@@ -15,7 +15,7 @@ configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $loc
     var warehouse = $location.search().warehouse;
     var client    = $location.search().client; 
     var fields_to_update = {};
-    var url = '/configuration/'+ id;
+    var url = '/configuration_maintenance/'+ id;
 	fields_to_update[el.$editable.elem[0].id] = data;
 	var d = $q.defer();
     $http.put(url, {

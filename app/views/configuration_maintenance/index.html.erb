@@ -36,16 +36,18 @@
 	</head>
 
 	<%= render"shared/menu" %>
-	<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" style="width: 80%; margin: 2%">
+	<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" class="maintenance_screen_div">
 
 
 		<body ng-app="configuration_detail" >
-			<a href="/"> <h2>Global Configuration</h2> </a>
+        <div>
+          <h3><a href="/case"> <span class="label label-primary">Global Configuration</a></h3>
+        </div>
 
-			<div class="input-group" style="width: 30%">
-				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
-				<span class="input-group-addon"><i class="icon-search"></i></span>
-			</div>
+        <div class="input-group pull-right" style="width: 30%">
+          <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+          <span class="input-group-addon"><i class="icon-search"></i></span>
+        </div>
 			<div>
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active">

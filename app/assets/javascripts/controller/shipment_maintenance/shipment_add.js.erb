@@ -1,22 +1,20 @@
-shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $http, $location, $q) {
+shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $http, $q) {
  
   var client    = 'WM';
   var warehouse = 'WH1';
-  var asn_header_id  =  $location.search().asn_header_id;
-	
+
 
    $scope.shipment_header = {};
    $scope.shipment_detail = {}; 
-   var url = '/shipment_maintenance/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
-   console.log(url);	
-   
-   if (shipment != null) {
+   var url = '/shipment_maintenance/'+  shipment.id + '.json?client=' + client + '&warehouse='+ warehouse;
+
+  if (shipment != null) {
 	   $http.get(url).success(function(data) {
 	    	$scope.shipment_header = data.shipment_header;
 	    	$scope.shipment_details = data.shipment_detail;      			
 	  	});
   	}
-   
+
    $scope.globalInfo = {
    	error: false,
    	warning: false,
@@ -60,8 +58,7 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
     $scope.saveDetail = function() {
         var fields_to_update = {};
         fields_to_update = $scope.shipment_detail;
-        console.log($scope.shipment_detail);
-        fields_to_update.asn_header_id = shipment;
+        fields_to_update.asn_header_id = shipment.id;
 
         var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {

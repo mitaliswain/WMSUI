@@ -9,3 +9,33 @@
 	min-height: 1px;
 	white-space: nowrap
 }
+
+.navbar-nav > li > span >a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-inverse .navbar-nav >  li > span > a {
+    color: #777;
+}
+.navbar-inverse .navbar-nav >  li > span > a:hover,
+.navbar-inverse .navbar-nav >  li > span > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.maintenance_screen_div {
+    width: 80%;
+    margin: 1%;
+    margin-left: 10%;
+    margin-right: 10%"
+}
+
+.navbar-inverse .navbar-brand  {
+    color: #fff;
+    background-color: transparent;
+
+}

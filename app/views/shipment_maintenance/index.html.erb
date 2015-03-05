@@ -12,31 +12,23 @@
 		<%= render"shared/menu" %>
 
 
-		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" style="width: 80%; margin: 2%">
+		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" class="maintenance_screen_div">
 			<div>
-				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List Server</span></a></h3>
+				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List</span></a></h3>
 			</div>
 			<div class="input-group pull-right" style="width: 30%" >
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
 				<span class="input-group-addon"><i class="icon-search"></i></span>
 			</div>
 
-			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="active">
-						<a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a>
-					</li>
-					<li>
-						<a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Initiated')">Initiated</a>
-					</li>
-					<li>
-						<a href="#Receiving in Progress" role="tab" data-toggle="tab" ng-click="status('Receiving in Progress')">Receiving in Progress</a>
-					</li>
-					<li>
-						<a href="#settings" role="tab" data-toggle="tab" ng-click="status('Verified')">Verified</a>
-					</li>
-				</ul>
-			</div>
+
+          <tabset>
+            <tab heading="Created" select="status('Created')"></tab>
+            <tab heading="Initiated" select="status('Initiated')"></tab>
+            <tab heading="In Progress" select="status('Receiving in Progress')"></tab>
+            <tab heading="Verified" select="status('Verified')"></tab>
+          </tabset>
+
 
 			<table class="table">
 				<thead>
@@ -86,7 +78,7 @@
 							</div>
 
 							<div class="row-header">
-								<a id="open_shipment_detail" ng-click="shipment_edit_modal('lg', item.shipment_header.id)"> 
+								<a id="open_shipment_detail" ng-click="shipment_edit_modal('lg', item.shipment_header.id)">
 									<i class="fa fa-pencil"></i>
 								</a>
 							</div>
@@ -103,7 +95,7 @@
 									Received Quantity
 								</div>
 								<div class="row-header">
-									<a id="open_shipment_detail_add" ng-click="shipment_detail_add_modal('lg', item.shipment_header.id)"> 
+									<a id="open_shipment_detail_add" ng-click="shipment_detail_add_modal('lg', item.shipment_header)">
 										<i class="icon-plus-sign"></i>
 									</a>									
 								</div>
