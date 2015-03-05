@@ -61,14 +61,14 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 		
 		    // init the filtered items
 		    $scope.search = function () {
+
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		            //for(var attr in item) {
-		                if (searchMatch(item["shipment_header"]["shipment_nbr"], $scope.query))
+		                if (searchMatch(item["shipment_header"]["shipment_nbr"], $scope.query) &&
+                                searchMatch(item["shipment_header"]["record_status"], last_status))
 		              	    return true;
-		              	else              	    
-		            //}
-		            	return false;
-		        });
+		              	else
+		            	    return false;
+		                });
 		        // take care of the sorting order
 		        if ($scope.sortingOrder !== '') {
 		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
@@ -202,10 +202,15 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 shipment_detail_id: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static'
         });
 
-        $scope.reload();
+        modalInstance.result.then(function(){
+            $scope.reload();
+        });
+
+        //$scope.reload();
     };
 
     $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
@@ -222,7 +227,6 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 }
             }
         });
-        $scope.reload();
     };
 
     $scope.reload();
