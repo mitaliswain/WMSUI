@@ -1,0 +1,48 @@
+item_master.controller('itemEditCtrl', function ($scope, $modalInstance, item, $http, $location, $q) {
+  var url = '/item_master_maintenance/'+  item + '.json?client=' + 'WM' ;
+
+
+
+  $http.get(url).success(function(data) {
+    $scope.item = data;
+  });
+  
+  $scope.item_template = {
+        name: 'item_template',
+        url: '<%= asset_path('item_master_maintenance/item_master.html') %>'
+        };
+
+
+    $scope.updateHeader = function(data, el, id) {
+
+        var warehouse = $location.search().warehouse;
+        var shipment  =  $location.search().shipment;
+        var client    = $location.search().client;
+        var fields_to_update = {};
+        var url = '/item_master_maintenance/'+ id
+        fields_to_update[el.$editable.elem[0].id] = data;
+        var d = $q.defer();
+        $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+            fields_to_update: fields_to_update
+        })
+                .success(function(res) {
+                    res = res || {};
+                    d.resolve();
+                }).error(function(res){
+                    console.log(res);
+                    res = res || {};
+                    if (res.status == 500) {
+                        d.reject(res.message|| 'Server Error');
+                    }
+                    else {
+                        d.reject(res.errors[0].message);
+
+                    }
+                });
+        return d.promise;
+    };
+
+
+});
