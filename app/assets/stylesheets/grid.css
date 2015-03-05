@@ -1,6 +1,7 @@
 .modal-dialog {
 	width: 900px;
 			}
+			
 .row-header {
 	min-width: 15%;
 	max-width: 15%;
@@ -31,7 +32,7 @@
     width: 80%;
     margin: 1%;
     margin-left: 10%;
-    margin-right: 10%"
+    margin-right: 10%";
 }
 
 .navbar-inverse .navbar-brand  {
