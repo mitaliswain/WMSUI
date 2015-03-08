@@ -1,49 +1,51 @@
 <html ng-app="case_detail">
-	<head>
-		<style>
-			.row_header {
-				width: 50%;
-				float: left
-			}
-		</style>
-	</head>
+<head>
+    <style>
+        .row_header {
+            width: 50%;
+            float: left
+        }
+    </style>
+</head>
 
-	<body ng-controller="caseEditCtrl">
+<body ng-controller="caseEditCtrl">
 
-		<div>
-			<button type="button" class="btn btn-primary">
-				Wahrehouse :
-			</button>
-			{{case_header.warehouse}}
-			<button type="button" class="btn btn-primary">
-				Client:
-			</button>
-			{{case_header.client}}
-			<button type="button" class="btn btn-primary">
-				Shipment:
-			</button>
-			{{case_header.case_id}}
-		</div>
+<div>
+    <button type="button" class="btn btn-primary">
+        Wahrehouse :
+    </button>
+    {{case_header.warehouse}}
+    <button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{case_header.client}}
+    <button type="button" class="btn btn-primary">
+        Shipment:
+    </button>
+    {{case_header.case_id}}
+</div>
 
-	<accordion close-others="oneAtATime">
+<accordion close-others="oneAtATime">
 
-			<accordion-group heading="Case Header" is-open=true>			
-						<div ng-include src="header_template.url"></div>
-			</accordion-group>
-			
-			<accordion-group heading="Shipment Detail" >	
-					<header ng-repeat-start="case_detail in case_details">
-						<accordion-group heading="Item: {{shipment_detail.item}}"  >			
-											<div ng-include src="detail_template.url"></div>
-							</header>
-							<header ng-repeat-end>
-							</header>
-			</accordion-group>
-		</accordion>					
-	</div>
-	<div class="modal-footer">
-         <button class="btn btn-primary" ng-click="ok()">OK</button>
-         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>	
-		
+    <accordion-group heading="Case Header" is-open=true>
+        <div ng-include src="header_template.url"></div>
+    </accordion-group>
+
+    <accordion-group heading="Case Detail">
+        <header ng-repeat-start="case_detail in case_details">
+            <accordion-group heading="Item: {{case_detail.item}}">
+                <div ng-include src="detail_template.url"></div>
+            </accordion-group>
+        </header>
+        <header ng-repeat-end>
+        </header>
+    </accordion-group>
+</accordion>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+
 </body>
+</html>

@@ -1,83 +1,60 @@
-<html ng-app="case_detail">
-	<head>
-		<%= csrf_meta_tag %>
-		<style>
-			.asn_header {
-				width: 50%;
-				float: left
-			}
-			div[ng-app] {
-				margin: 10px;
-			}
-			form[name="editableForm"] > div {
-				height: auto;
-				padding: 5px 0;
-			}
+<body>
+<div>
+    <button type="button" class="btn btn-primary">
+        Warehouse :
+    </button>
+    {{case_header.warehouse}}
+    <button type="button" class="btn btn-primary">
+        Client:
+    </button>
+    {{case_header.client}}
+    <button type="button" class="btn btn-primary">
+        Case:
+    </button>
+    {{case_header.case_id}}
+</div>
 
-			form[name="editableForm"] .title {
-				display: inline-block;
-				font-weight: bold;
-				padding-top: 5px;
-				vertical-align: top;
-				min-width: 140px;
-			}
+<div class="modal-body">
 
-			form[name="editableForm"] .editable {
-				display: inline-block;
-				padding-top: 5px;
-				vertical-align: top;
-			}
-
-			form[name="editableForm"] select {
-				width: 120px;
-			}
-
-		</style>
-	</head>
-
-	<body ng-controller="caseAddCtrl">
-
-		<div>
-			<button type="button" class="btn btn-primary">
-				Wahrehouse :
-			</button>
-			{{case_header.warehouse}}
-			<button type="button" class="btn btn-primary">
-				Client:
-			</button>
-			{{case_header.client}}
-			<button type="button" class="btn btn-primary">
-				Case:
-			</button>
-			{{case_header.case_id}}
-		</div>
-		<form editable-form name="editableForm" onaftersave="saveDetail()">
-			<div class="buttons">
-				<!-- button to show form -->
-				<button type="button" class="btn btn-default" ng-click="clear(); editableForm.$show()" ng-show="!editableForm.$visible">
-					Edit
-				</button>
-				<!-- buttons to submit / cancel form -->
+    <form editable-form name="editableForm" onaftersave="saveDetail()">
+        <div class="buttons">
+            <!-- button to show form -->
+            <button type="button" class="btn btn-default" ng-click="clear(); editableForm.$show()"
+                    ng-show="!editableForm.$visible">
+                Edit
+            </button>
+            <!-- buttons to submit / cancel form -->
 				<span ng-show="editableForm.$visible">
 					<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-						Save
-					</button>
-					<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-						Cancel
-					</button> </span>
-			</div>
-			<div  class="btn-default">
-				<div ng-show="globalInfo.error" class="bg-danger" style="width: 100%; height: 30px">
-					Error:{{global_notification}}
-				</div>
-				<div ng-show="globalInfo.info" class="bg-info" style="width: 100%; height: 30px">
-					{{global_notification}}
-				</div>
-			</div>
+                        Save
+                    </button>
+					<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting"
+                            ng-click="editableForm.$cancel()">
+                        Cancel
+                    </button>
+                </span>
+        </div>
+        <div class="modal-body">
 
-			<div ng-include src="detail_template.url"></div>
-			</div>
-		</form>
-	</body>
-</html>
+            <accordion close-others="oneAtATime">
+
+                <accordion-group heading="Case Detail" is-open=true>
+                    <div ng-include src="detail_template.url"></div>
+                </accordion-group>
+            </accordion>
+
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">
+        OK
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">
+        Cancel
+    </button>
+</div>
+
+</body>
 

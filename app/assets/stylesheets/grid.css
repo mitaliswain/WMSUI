@@ -1,16 +1,3 @@
-.modal-dialog {
-	width: 900px;
-			}
-			
-.row-header {
-	min-width: 15%;
-	max-width: 15%;
-	display: inline-block;
-	text-align: center;
-	min-height: 1px;
-	white-space: nowrap
-}
-
 .navbar-nav > li > span >a {
     position: relative;
     display: block;
@@ -28,6 +15,25 @@
     background-color: transparent;
 }
 
+
+.modal-dialog {
+	width: 900px;
+}
+
+.modal_text_box {
+    width: 50%;
+    float: left
+}
+			
+.row-header {
+	min-width: 15%;
+	max-width: 15%;
+	display: inline-block;
+	text-align: center;
+	min-height: 1px;
+	white-space: nowrap
+}
+
 .maintenance_screen_div {
     width: 80%;
     margin: 1%;
@@ -39,4 +45,30 @@
     color: #fff;
     background-color: transparent;
 
+}
+
+div[ng-app] {
+    margin: 10px;
+}
+form[name="editableForm"] > div {
+    height: auto;
+    padding: 5px 0;
+}
+
+form[name="editableForm"] .title {
+    display: inline-block;
+    font-weight: bold;
+    padding-top: 5px;
+    vertical-align: top;
+    min-width: 140px;
+}
+
+form[name="editableForm"] .editable {
+    display: inline-block;
+    padding-top: 5px;
+    vertical-align: top;
+}
+
+form[name="editableForm"] select {
+    width: 120px;
 }

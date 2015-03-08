@@ -1,11 +1,10 @@
-case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal) {	
+case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal) {
   var warehouse = $location.search().warehouse;
-  var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
   var lastitem = {}; 
   var last_status = 'Created';
 
-    $scope.shipment = 'new case';
+    $scope.case = 'new case';
    var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
 
@@ -63,12 +62,14 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
 		    $scope.search = function () {
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
 		            //for(var attr in item) {
-		                if (searchMatch(item["case_header"]["case_id"], $scope.query))
-		              	    return true;
+		                if (searchMatch(item["case_header"]["case_id"], $scope.query) &&
+                            searchMatch(item["case_header"]["record_status"], last_status))
+                            return true;
 		              	else              	    
-		            //}
-		            	return false;
+
+                            return false;
 		        });
+
 		        // take care of the sorting order
 		        if ($scope.sortingOrder !== '') {
 		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
@@ -164,7 +165,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
             controller: 'caseAddCtrl',
             size: size,
             resolve: {
-                case_id: function () {
+                case_header: function () {
                     return null;
                 }
             }
@@ -172,35 +173,16 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         $scope.reload();
     };
 
-    $scope.shipment_edit_modal = function (size, shipment) {
+    $scope.case_edit_modal = function (size, case_header) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-            controller: 'shipmentEditCtrl',
+            templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
+            controller: 'caseEditCtrl',
             size: size,
             resolve: {
-                shipment: function () {
-                    return shipment;
+                case_header: function () {
+                    return case_header;
                 },
-                shipment_detail_id: function () {
-                    return null;
-                }
-            }
-        });
-
-        $scope.reload();
-    };
-
-
-    $scope.shipment_detail_add_modal = function (size, shipment) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-            controller: 'shipmentAddCtrl',
-            size: size,
-            resolve: {
-                shipment: function () {
-                    return shipment;
-                },
-                shipment_detail_id: function () {
+                case_detail_id: function () {
                     return null;
                 }
             }
@@ -209,17 +191,36 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         $scope.reload();
     };
 
-    $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
+
+    $scope.case_detail_add_modal = function (size, case_header) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-            controller: 'shipmentEditCtrl',
+            templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
+            controller: 'caseAddCtrl',
             size: size,
             resolve: {
-                shipment: function () {
-                    return shipment;
+                case_header: function () {
+                    return case_header;
                 },
-                shipment_detail_id: function () {
-                    return shipment_detail_id;
+                case_detail_id: function () {
+                    return null;
+                }
+            }
+        });
+
+        $scope.reload();
+    };
+
+    $scope.case_detail_edit_modal = function (size, case_header, case_detail_id) {
+        var modalInstance = $modal.open({
+            templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
+            controller: 'caseEditCtrl',
+            size: size,
+            resolve: {
+                case_header: function () {
+                    return case_header;
+                },
+                case_detail_id: function () {
+                    return case_detail_id;
                 }
             }
         });

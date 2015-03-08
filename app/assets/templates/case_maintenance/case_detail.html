@@ -19,15 +19,13 @@
 	</div>
 </div>
 
-<div class="panel-group" id="accordion_detail_inners" style="width: 100%; float:left">
-	<div class="panel panel-default">
+<div style="width: 100%; margin-top: 5%; float: left;">
 
-		<div class="panel-heading">
-			<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_detail_inners" href="#Vendor" >SKU Information</a></h4>
-		</div>		
-		<div id="Vendor" class="panel-collapse collapse out">
-			<div class="panel-body">
-				<div class="modal_text_box">
+    <accordion close-others="oneAtATime">
+        <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+
+            <accordion-group heading="SKU Information">
+                <div class="modal_text_box">
 					<span class="title">SKU Attribute1: </span><a href="#" id="sku_attribute1" editable-text="case_detail.sku_attribute1" onbeforesave="updateDetail($data, this, case_detail.id)">{{ case_detail.sku_attribute1 || "empty" }}</a>
 				</div>
 				<div class="modal_text_box">
@@ -63,15 +61,10 @@
 				<div class="modal_text_box">
 					<span class="title">Inventory Type: </span><a href="#" id="inventory_type" editable-number="case_detail.inventory_type" onbeforesave="updateDetail($data, this, case_detail.id)">{{ case_detail.inventory_type || "empty" }}</a>
 				</div>
-			</div>
-		</div>
-		
-		<div class="panel-heading">
-			<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion_detail_inners" href="#Quantities" >Quantities</a></h4>
-		</div>
-		<div id="Quantities" class="panel-collapse collapse out">
-			<div class="panel-body">
-				<div class="modal_text_box">
+            </accordion-group>
+
+            <accordion-group heading="Quantity Information">
+                <div class="modal_text_box">
 					<span class="title">Cases Received: </span><a href="#" id="cases_rcvd" editable-number="case_detail.cases_rcvd" onbeforesave="updateDetail($data, this, case_detail.id)">{{ shipped_quantity.cases_rcvd || "empty" }}</a>
 				</div>
 				<div class="modal_text_box">
@@ -89,8 +82,8 @@
 				<div class="modal_text_box">
 					<span class="title">Unit Weight: </span><a href="#" id="unit_wgt" editable-number="case_detail.unit_wgt" onbeforesave="updateDetail($data, this, case_detail.id)">{{ case_detail.unit_wgt || "empty" }}</a>
 				</div>
-			</div>
-		</div>
+			</accordion-group>
+        </accordion-group>
+    </accordion>
 
-	</div>
 </div>

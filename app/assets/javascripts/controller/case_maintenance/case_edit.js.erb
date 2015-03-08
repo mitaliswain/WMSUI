@@ -1,100 +1,96 @@
-case_data.controller('caseEditCtrl', function ($scope, $http, $location, $q) {	
-  var warehouse = $location.search().warehouse;
-  var id  =  $location.search().id;
-  var client    = $location.search().client; 
-  var detail_id    = $location.search().detail_id;
-  var url = '/case/'+  id + '.json?client=' + client + '&warehouse='+ warehouse;	
-  $scope.YesorNo = [
-    {value: 'Y', text: 'Yes'},
-    {value: 'N', text: 'No'},
-  ]; 
+case_data.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, case_detail_id, $http, $location, $q) {
+    var warehouse = case_header.warehouse;
+    var client    = case_header.client;
+    var url = '/case_maintenance/'+  case_header.id + '.json?client=' + client + '&warehouse='+ warehouse;
+    $scope.YesorNo = [
+        {value: 'Y', text: 'Yes'},
+        {value: 'N', text: 'No'},
+    ];
 
-  $http.get(url).success(function(data) {
-    $scope.case_header = data.case_header;
-    $scope.case_details = data.case_detail;    
-  		
+    $http.get(url).success(function(data) {
+        $scope.case_header = data.case_header;
+        $scope.case_details = data.case_detail;
 
-  	angular.forEach(data.case_detail, function(case_detail) {
-  		if (case_detail.id == $location.search().detail_id){
-  			$scope.case_details = [case_detail];
 
-}
+        angular.forEach(data.case_detail, function(case_detail) {
+            if (case_detail.id == case_detail_id){
+                $scope.case_detail = case_detail;
+
+            }
+        });
+
     });
-  });
-  
-  $scope.header_template = {
+
+    $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('case_maintenance/case_header.html') %>'
-        }; 
+    };
 
-  $scope.detail_template = {
+    $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('case_maintenance/case_detail.html') %>'
-        }; 
+    };
 
 
- $scope.updateHeader = function(data, el, id) {
 
-    var warehouse = $location.search().warehouse;
-    var shipment  =  $location.search().shipment;
-    var client    = $location.search().client;
-    var fields_to_update = {};
-    var url = '/case/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;	
-	fields_to_update[el.$editable.elem[0].id] = data;
-	var d = $q.defer();
-    $http.post(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-    	fields_to_update: fields_to_update
-    	})
-    	.success(function(res) {
-	     	res = res || {};
-	        d.resolve();
-	    }).error(function(res){
-	    	res = res || {};
-	    	if (res.status == 500) {
-	      		d.reject('Server error!');
-	      	}
-	      	else {	
-	      		d.reject(res.errors[0].message);
-	      	} 		
-	    });
-	    return d.promise;
- 	};
+    $scope.statuses = [
+        {value: 'Created', text: 'Created'},
+        {value: 'Received', text: 'Received'},
+        {value: 'Consumed', text: 'Consumed'}
+    ];
 
-  $scope.statuses = [
-    {value: 'Created', text: 'Created'},
-    {value: 'Received', text: 'Received'},
-    {value: 'Consumed', text: 'Consumed'}
-  ]; 
-  
- $scope.updateDetail = function(data, el, id) {
 
-    var warehouse = $location.search().warehouse;
-    var shipment  =  $location.search().shipment;
-    var client    = $location.search().client; 
-    var fields_to_update = {};
-    var url = '/case/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;	
-	fields_to_update[el.$editable.elem[0].id] = data;
-	var d = $q.defer();
-    $http.post(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-    	fields_to_update: fields_to_update
-    	})
-    	.success(function(res) {
-	     	res = res || {};
-	        d.resolve();
-	    }).error(function(res){
-	    	res = res || {};
-	    	if (res.status == 500) {
-	      		d.reject(res.message || 'Server Error');
-	      	}
-	      	else {	
-	      		d.reject(res.errors[0].message);
-	      	} 		
-	    });
-	    return d.promise;
- 	};
+    $scope.updateHeader = function(data, el, id) {
+
+        var fields_to_update = {};
+        var url = '/case_maintenance/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;
+        fields_to_update[el.$editable.elem[0].id] = data;
+        var d = $q.defer();
+        $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+            fields_to_update: fields_to_update
+        })
+                .success(function(res) {
+                    res = res || {};
+                    d.resolve();
+                }).error(function(res){
+                    console.log(res);
+                    res = res || {};
+                    if (res.status == 500) {
+                        d.reject(res.message|| 'Server Error');
+                    }
+                    else {
+                        d.reject(res.errors[0].message);
+                    }
+                });
+        return d.promise;
+    };
+
+    $scope.updateDetail = function(data, el, id) {
+
+        var fields_to_update = {};
+        var url = '/case_maintenance/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;
+        fields_to_update[el.$editable.elem[0].id] = data;
+        var d = $q.defer();
+        $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+            fields_to_update: fields_to_update
+        })
+                .success(function(res) {
+                    res = res || {};
+                    d.resolve();
+                }).error(function(res){
+                    res = res || {};
+                    if (res.status == 500) {
+                        d.reject('Server error!');
+                    }
+                    else {
+                        d.reject(res.errors[0].message);
+                    }
+                });
+        return d.promise;
+    };
 
 });

@@ -45,7 +45,7 @@ class CaseMaintenanceController < ApplicationController
     end
   end
 
-  def save_detail
+  def add_detail
     response = CaseMaintenance.case_add_detail(params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
   end

@@ -1,18 +1,12 @@
-case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $http, $location, $q) {
-   
-   $scope.case_header = {};
-   $scope.case_detail = {};
-   var case_header_id  =  $location.search().case_header_id;
-   var case_id  =  $location.search().case_id;
+case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_header, $http, $location) {
+    var client    = 'WM';
+    var warehouse = 'WH1';
 
-   if (case_id != null) {
-	   $http.get(url).success(function(data) {
-	    	$scope.case_header = data.case_header;
-	    	$scope.case_details = data.case_detail;      			
-	  	});
-  	}
-   
-   $scope.globalInfo = {
+
+    $scope.shipment_header = {};
+    $scope.shipment_detail = {};
+
+    $scope.globalInfo = {
    	error: false,
    	warning: false,
    	info: false 
@@ -47,13 +41,13 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
     $scope.saveDetail = function() {
         var fields_to_update = {};
         fields_to_update = $scope.case_detail;
-        fields_to_update.case_header_id = case_id;
+        fields_to_update.case_header_id = case_header.id;
 
-        var url = '/case/add_detail?client=' + client + '&warehouse='+ warehouse;
+        var url = '/case_maintenance/add    _detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
-            fields_to_update: fields_to_update
+             app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+             fields_to_update: fields_to_update
         }).success(function(data){
             $scope.case_header = data.case_header;
             $scope.case_detail = data.case_detail;
@@ -80,7 +74,7 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_id, $
 	
     var fields_to_update = {};
     fields_to_update = $scope.case_header;
-    var url = '/case/add_header?client=' + 'WM' + '&warehouse='+ 'WH1';	
+    var url = '/case_maintenance/add_header?client=' + 'WM' + '&warehouse='+ 'WH1';
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},

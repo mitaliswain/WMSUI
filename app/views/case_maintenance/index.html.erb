@@ -12,24 +12,21 @@
 		<div id="CaseListCtrl" ng-controller="CaseListCtrl" class="maintenance_screen_div">
 
 			<div>
-				<h3><a href="/case"> <span class="label label-primary">Case List</a></h3>
+				<h3>
+                  <a href="/case"> <span class="label label-primary">Case List</span></a>
+                </h3>
 			</div>
 			<div class="input-group pull-right" style="width: 30%">
 				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
 				<span class="input-group-addon"><i class="icon-search"></i></span>
 			</div>
+
 			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="active">
-						<a href="#Created" role="tab" data-toggle="tab" ng-click="status('Created')">Created</a>
-					</li>
-					<li>
-						<a href="#Received" role="tab" data-toggle="tab" ng-click="status('Received')">Received</a>
-					</li>
-					<li>
-						<a href="#Consumed" role="tab" data-toggle="tab" ng-click="status('Consumed')">Consumed</a>
-					</li>
-				</ul>
+              <tabset>
+                <tab heading="Created" select="status('Created')"></tab>
+                <tab heading="Received" select="status('Received')"></tab>
+                <tab heading="Consumed" select="status('Consumed')"></tab>
+              </tabset>
 
 			</div>
 			<table class="table">
@@ -64,12 +61,9 @@
 						
 						<td colspan="7">
 						<div  class="bs-callout bs-callout-info">
-							<div class="row-header" ng-click="toggle_expand(item)" >
-								<a id="expand"
-								data-toggle="modal"
-								data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
-							</div>
-
+                          <div class="row-header" ng-click="toggle_expand(item)" >
+                            <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}"></i></a>
+                          </div>
 							<div class="row-header">
 								{{item.case_header.case_id}}
 							</div>
@@ -82,13 +76,13 @@
 							<div class="row-header">
 								{{item.case_header.record_status}}
 							</div>
+                          <div class="row-header">
+                            <a id="open_case_detail" ng-click="case_edit_modal('lg', item.case_header)">
+                              <i class="fa fa-pencil"></i>
+                            </a>
+                          </div>
 
-							<div class="row-header">
-								<a id="open_case_detail"
-								data-toggle="modal"
-								data-target="{{item.case_header.id}}"> <i class="icon-edit"></i></a>
-							</div>
-						</div><!--Detail -->
+							</div><!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
 								<div class="row-header"></div>
@@ -99,10 +93,10 @@
 									Received Quantity
 								</div>
 								<div class="row-header">
-									<a id="open_case_detail_add"
-									data-toggle="modal"
-									data-target="{{item.case_header.id}}"> <i class="icon-plus-sign"></i></a>
-								</div>
+                                  <a id="open_case_detail_add" ng-click="case_detail_add_modal('lg', item.case_header)">
+                                    <i class="icon-plus-sign"></i>
+                                  </a>
+                                </div>
 
 							</div>
 							<div ng-repeat="detail in item.case_detail" class="bs-callout">
@@ -115,12 +109,11 @@
 								<div class="row-header">
 									{{detail.coo}}
 								</div>
+                              <div class="row-header">
+                                <a id="open_case_detail_edit" ng-click="case_detail_edit_modal('lg', item.case_header, detail.id)">
+                                  <i class="icon-edit"></i></a>
+                              </div>
 
-								<div class="row-header">
-									<a id="open_case_detail_edit"
-									data-toggle="modal"
-									case_id="{{item.case_header.id}}" case_detail_id="{{detail.id}}"> <i class="icon-edit"></i></a>
-								</div>
 
 							</div>
 						</div>

@@ -1,38 +1,3 @@
-<head>
-	<style>
-		.modal_text_box {
-			width: 50%;
-			float: left
-		}
-		div[ng-app] {
-			margin: 10px;
-		}
-		form[name="editableForm"] > div {
-			height: auto;
-			padding: 5px 0;
-		}
-
-		form[name="editableForm"] .title {
-			display: inline-block;
-			font-weight: bold;
-			padding-top: 5px;
-			vertical-align: top;
-			min-width: 140px;
-		}
-
-		form[name="editableForm"] .editable {
-			display: inline-block;
-			padding-top: 5px;
-			vertical-align: top;
-		}
-
-		form[name="editableForm"] select {
-			width: 120px;
-		}
-
-	</style>
-</head>
-
 <body>
 	<div>
 		<button type="button" class="btn btn-primary">
@@ -66,7 +31,18 @@
 						Cancel
 					</button> </span>
 			</div>
-			<div ng-include src="detail_template.url"></div>
+
+            <div class="modal-body">
+
+                <accordion close-others="oneAtATime">
+
+                    <accordion-group heading="Shipment Detail" is-open=true>
+                        <div ng-include src="detail_template.url"></div>
+                    </accordion-group>
+                </accordion>
+
+            </div>
+
 		</form>
 	</div>
 
