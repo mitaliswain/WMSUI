@@ -135,7 +135,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
     //Modal methods
     $scope.item_add_modal = function (size) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
+            templateUrl: '<%= asset_path('item_master_maintenance/add_item.html') %>',
             controller: 'itemAddCtrl',
             size: size,
             resolve: {

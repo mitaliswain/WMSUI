@@ -1,0 +1,94 @@
+item_master.controller('itemAddCtrl', function ($scope, $modalInstance, item, $http, $q) {
+ 
+  var client    = 'WM';
+  var warehouse = 'WH1';
+
+
+   $scope.item = {};
+
+   $scope.globalInfo = {
+   	error: false,
+   	warning: false,
+   	info: false 
+   };
+   
+   $scope.statuses = [
+    {value: 'Created', text: 'Created'},
+    ]; 
+   
+   $scope.YesorNo = [
+    {value: 'Y', text: 'Yes'},
+    {value: 'N', text: 'No'},
+    ]; 
+
+   $scope.AsnType = [
+    {value: 'PO', text: 'PO'},
+    {value: 'Inbound', text: 'Inbound'},
+    {value: 'Warehouse Transfer', text: 'Warehouse Transfer'}
+    ]; 
+
+
+    $scope.clear = function() {
+	   $scope.item= {};
+	   };
+  
+   
+  $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('item_master_maintenance/item_master.html') %>'
+        };
+
+ $scope.saveHeader = function() {
+	
+    var fields_to_update = {};
+    fields_to_update = $scope.item;
+    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	fields_to_update: fields_to_update
+    }).success(function(data){ 		
+    	$scope.item = data.item;
+ 		setInfo('info', 'Item Created Successfully');
+
+    }).error(function(message){
+    	if (message.status == '422')
+    	{ 
+    		setInfo('error', 'Validation Error');
+    		angular.forEach(message.errors, function(error){
+    			$scope.editableForm.$setError(error.field, error.message);
+    		});
+    	}
+
+    	else {
+    		 setInfo('error', message.message);
+
+    	}
+    });
+ };
+
+
+ var setInfo = function(infotype, message) {
+     angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
+         if(infotype == infoKey) {
+ 			$scope.globalInfo[infoKey] = true
+ 		}
+ 		else{
+ 			$scope.globalInfo[infoKey] = false
+ 		}
+ 	});
+ 	$scope.global_notification = message;		
+
+ };
+  
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+});
+
+

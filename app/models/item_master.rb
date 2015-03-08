@@ -35,4 +35,25 @@ class ItemMaster
     return JSON.parse(response)  
   end
 
+  def self.add_item_master(app_parameters, fields_to_update)
+    url = Properties.getUrl + '/item_master/'
+    response = RestClient.post(url,
+                               app_parameters: app_parameters,
+                               fields_to_update: fields_to_update) { | responses, request, result, &block |
+      case responses.code
+        when 200, 422
+          responses
+        when 201
+          message = JSON.parse(responses)
+          resource_url = Properties.getUrl + message["content"][0]["link"]
+          response = RestClient.get(resource_url)
+          return JSON.parse(response)
+        else
+          message = responses.nil? ? {} : JSON.parse(responses)["message"]
+          {status: responses.code, message: [message]}.to_json
+      end
+    }
+    return JSON.parse(response)
+  end
+
 end

@@ -31,7 +31,6 @@ item_master.controller('itemEditCtrl', function ($scope, $modalInstance, item, $
                     res = res || {};
                     d.resolve();
                 }).error(function(res){
-                    console.log(res);
                     res = res || {};
                     if (res.status == 500) {
                         d.reject(res.message|| 'Server Error');

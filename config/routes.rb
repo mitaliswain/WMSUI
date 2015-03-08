@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   namespace :item_master_maintenance do
     get '', action: 'index'
     get  ':id', action: 'show'
-    post '/:id', action: 'update'
+    post ':id', action: 'update'
+    post '', action: 'create'
   end
 
 

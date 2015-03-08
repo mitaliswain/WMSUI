@@ -24,6 +24,10 @@ class ItemMasterMaintenanceController < ApplicationController
     render :json => response, status: response['status']
   end
 
+  def create
+    response = ItemMaster.add_item_master(params[:app_parameters], params[:fields_to_update])
+    render :json => response, status: response['status']
+  end
 
 end
 
