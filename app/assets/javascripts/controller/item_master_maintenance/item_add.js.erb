@@ -16,17 +16,10 @@ item_master.controller('itemAddCtrl', function ($scope, $modalInstance, item, $h
     {value: 'Created', text: 'Created'},
     ]; 
    
-   $scope.YesorNo = [
-    {value: 'Y', text: 'Yes'},
-    {value: 'N', text: 'No'},
+   $scope.concept = [
+    {value: 'AB', text: 'AB'},
+    {value: 'BC', text: 'BC'},
     ]; 
-
-   $scope.AsnType = [
-    {value: 'PO', text: 'PO'},
-    {value: 'Inbound', text: 'Inbound'},
-    {value: 'Warehouse Transfer', text: 'Warehouse Transfer'}
-    ]; 
-
 
     $scope.clear = function() {
 	   $scope.item= {};
