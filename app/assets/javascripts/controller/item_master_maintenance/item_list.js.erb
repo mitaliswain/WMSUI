@@ -149,7 +149,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
 
     $scope.item_edit_modal = function (size, item) {
         var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
+            templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
             controller: 'itemEditCtrl',
             size: size,
             resolve: {
