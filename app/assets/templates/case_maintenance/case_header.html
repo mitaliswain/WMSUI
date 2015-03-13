@@ -78,6 +78,14 @@
                         case_header.location_type || "empty" }}</a>
                     </div>
                     <div class="modal_text_box">
+                        <span class="title">Pallet:</span><a href="#" id="pallet_id"
+                                                                    e-name="pallet_id"
+                                                                    editable_text="case_header.location_type"
+                                                                    onbeforesave="updateHeader($data, this, case_header.id)">{{
+                        case_header.pallet_id || "empty" }}</a>
+                    </div>
+
+                    <div class="modal_text_box">
                         <span class="title">Location:</span><a href="#" id="location" e-name="location"
                                                                editable_text="case_header.location"
                                                                onbeforesave="updateHeader($data, this, case_header.id)">{{

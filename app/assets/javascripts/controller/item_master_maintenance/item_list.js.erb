@@ -22,7 +22,14 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
                 if (!needle) {
                     return true;
                 }
-                return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+                if (haystack != null)
+                {  console.log(haystack + ' ' + needle);
+                    console.log(haystack.toLowerCase().indexOf(needle.toLowerCase()))
+                    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+                }
+                else
+                    return false;
+
             };
 
 
@@ -31,6 +38,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
                 status = status==null ?  last_status : status;
                 last_status = status;
                 $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+
                     if (searchMatch(item["status"], status))
                         return true;
                     else
@@ -50,7 +58,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
             $scope.search = function () {
                 $scope.filteredItems = $filter('filter')($scope.items, function (item) {
                     //for(var attr in item) {
-                    if (searchMatch(item["status"], $scope.query))
+                    if (searchMatch(item["item"], $scope.query))
                         return true;
                     else
                     //}

@@ -21,16 +21,11 @@
     <span class="input-group-addon"><i class="icon-search"></i></span>
   </div>
 
-  <div>
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="active">
-        <a href="#Created" role="tab" data-toggle="tab" ng-click="status('Active')">Active</a>
-      </li>
-      <li>
-        <a href="#Initiated" role="tab" data-toggle="tab" ng-click="status('Inactive')">Inactive</a>
-      </li>
-    </ul>
-  </div>
+  <tabset>
+    <tab heading="Active" select="status('Active')"></tab>
+    <tab heading="Inactive" select="status('Inactive')"></tab>
+  </tabset>
+
 
   <table class="table">
     <thead>
