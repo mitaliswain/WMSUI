@@ -44,7 +44,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
 		    	status = status==null ?  last_status : status;
 		    	last_status = status;   	
 		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		                if ((item["shipment_header"]["record_status"], status))
+		                if (searchMatch(item["shipment_header"]["record_status"], status))
 		              	    return true;
 		              	else              	    
 		            		return false;
