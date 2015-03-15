@@ -42,7 +42,7 @@
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
 							<div class="row-header">
-								Shipped Qty&nbsp;<a ng-click="sort_by('asn_type')"><i class="fa fa-sort"></i></a>
+								Order Qty&nbsp;<a ng-click="sort_by('asn_type')"><i class="fa fa-sort"></i></a>
 							</div>
 							<div class="row-header">
 								Received Qty&nbsp;<a ng-click="sort_by('ship_via')"><i class="fa fa-sort"></i></a>
@@ -71,7 +71,7 @@
 								{{item.shipment_header.unit_ordered}}
 							</div>
 							<div class="row-header">
-								{{item.shipment_header.unit_shipped}}
+								{{item.shipment_header.units_rcvd}}
 							</div>
 							<div class="row-header">
 								{{item.shipment_header.record_status}}
