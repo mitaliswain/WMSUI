@@ -8,6 +8,10 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
    var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
 
+    var reload_modal_close =  function(){
+        $scope.reload();
+    }
+
     $scope.reload = function() {
 	    $http.get(url).success(function(data) {
 		    $scope.items = data; 
@@ -170,7 +174,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
                 }
             }
         });
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.case_edit_modal = function (size, case_header) {
@@ -188,7 +192,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
             }
         });
 
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
 
@@ -207,7 +211,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
             }
         });
 
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.case_detail_edit_modal = function (size, case_header, case_detail_id) {
@@ -224,7 +228,7 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
                 }
             }
         });
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.reload();

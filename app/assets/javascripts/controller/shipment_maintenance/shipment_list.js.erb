@@ -5,9 +5,12 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
   var lastitem = {}; 
   var last_status = 'Created';
 
-    $scope.shipment = 'new shipment';
+   $scope.shipment = 'new shipment';
    var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
+   var reload_modal_close =  function(){
+       $scope.reload();
+   }
 
     $scope.reload = function() {
 	    $http.get(url).success(function(data) {
@@ -168,7 +171,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 }
             }
         });
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.shipment_edit_modal = function (size, shipment) {
@@ -183,10 +186,10 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 shipment_detail_id: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static'
         });
-
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
 
@@ -206,11 +209,8 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
             backdrop : 'static'
         });
 
-        modalInstance.result.then(function(){
-            $scope.reload();
-        });
+       modalInstance.result.then(reload_modal_close,reload_modal_close);
 
-        //$scope.reload();
     };
 
     $scope.shipment_detail_edit_modal = function (size, shipment, shipment_detail_id) {
@@ -227,6 +227,7 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 }
             }
         });
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.reload();

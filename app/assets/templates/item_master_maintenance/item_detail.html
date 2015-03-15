@@ -16,6 +16,7 @@
     <div class="modal_text_box">
         <span class="title">Concept:</span>
         <a href="#" id="concept" e-name="concept" editable_select="item.concept"
+           e-ng-options="s.value as s.text for s in concept"
            onbeforesave="updateHeader($data, this, item.id)" e-required>{{ item.concept || "empty" }}</a>
     </div>
     <div class="modal_text_box">
@@ -41,15 +42,15 @@
 
     <div class="modal_text_box">
         <span class="title">Status:</span>
-        <a href="#" id="status" e-name="status" editable-text="item.status"
+        <a href="#" id="status" e-name="status" editable_select="item.record_status"
+           e-ng-options="s.value as s.text for s in statuses"
            onbeforesave="updateHeader($data, this, item.id)" e-required>{{ item.status || "empty" }}</a>
     </div>
-
 
 </div>
 &nbsp;
 
-<div style="width: 100%">
+<div style="width: 100%; margin-top: 2%">
 
     <accordion close-others="oneAtATime">
 
@@ -57,48 +58,48 @@
             <accordion-group heading="Item Dimensions....">
                 <div class="modal_text_box">
                     <span class="title">Unit Length: </span>
-                    <a href="#" id="unit_len" editable-text="item.unit_len"
+                    <a href="#" id="unit_len" editable-number="item.unit_len" e-step="any"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.unit_len || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Unit Height: </span>
-                    <a href="#" id="unit_hgt" editable_text="item.unit_hgt"
+                    <a href="#" id="unit_hgt" editable_number="item.unit_hgt"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.unit_hgt || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Unit Width: </span>
-                    <a href="#" id="unit_wdt" editable_text="item.unit_wdt"
+                    <a href="#" id="unit_wdt" editable_number="item.unit_wdt"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.unit_wdt || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Unit Weight: </span>
-                    <a href="#" id="unit_wgt" editable_text="item.unit_wgt"
+                    <a href="#" id="unit_wgt" editable_number="item.unit_wgt"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.unit_wgt|| "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Unit Volume: </span>
-                    <a href="#" id="unit_vol" editable_text="item.unit_vol"
+                    <a href="#" id="unit_vol" editable_number="item.unit_vol"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.unit_vol || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Cavity Length: </span>
-                    <a href="#" id="cavity_len" editable_text="item.cavity_len"
+                    <a href="#" id="cavity_len" editable_number="item.cavity_len"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.cavity_len || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Cavity Width: </span>
-                    <a href="#" id="cavity_wdt" editable_text="item.cavity_wdt"
+                    <a href="#" id="cavity_wdt" editable_number="item.cavity_wdt"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.cavity_wdt || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Cavity Height: </span>
-                    <a href="#" id="cavity_hgtt" editable_text="item.cavity_hgtt"
+                    <a href="#" id="cavity_hgtt" editable_number="item.cavity_hgtt"
                        onbeforesave="updateHeader($data, this, item.id)">{{item.cavity_hgtt || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Maximum Nest: </span>
-                    <a href="#" id="maximum_nest" editable_text="item.maximum_nest"
-                       onbeforesave="updateHeader($data, this, item.id)">{item.{maximum_nest || "empty" }}</a>
+                    <a href="#" id="maximum_nest" editable_number="item.maximum_nest"
+                       onbeforesave="updateHeader($data, this, item.id)">{{item.maximum_nest || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Case Length: </span>
@@ -107,12 +108,12 @@
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Case Width: </span>
-                    <a href="#" id="case_wdt" editable_text="item.case_wdt"
+                    <a href="#" id="case_wdt" editable_number="item.case_wdt"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.case_wdt || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Case Depth: </span>
-                    <a href="#" id="case_depth" editable_text="item.case_depth"
+                    <a href="#" id="case_depth" editable_number="item.case_depth"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.case_depth || "empty" }}</a>
                 </div>
             </accordion-group>
@@ -137,29 +138,29 @@
                 </div>
 
                 <div class="modal_text_box">
-                    <span></span> Pallet Putaway Type: </span>
+                    <span class="title"> Pallet Putaway Type: </span>
                     <a href="#" id="pallet_putaway_type" editable_text="item.pallet_putaway_type"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.pallet_putaway_type || "empty" }}</a>
                 </div>
 
                 <div class="modal_text_box">
-                    <span></span> Suggested Zone: </span>
+                    <span class="title"> Suggested Zone: </span>
                     <a href="#" id="suggested_zone" editable_text="item.suggested_zone"
                        onbeforesave="updateHeader($data, this, item.id)">{{ suggested_zone || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span></span> Suggested Act Zone: </span>
+                    <span class="title"> Suggested Act Zone: </span>
                     <a href="#" id="suggested_act_zone" editable_text="item.suggested_act_zone"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.suggested_act_zone || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span></span>Active Location Count Factor: </span>
+                    <span class="title">Active Location Count Factor: </span>
                     <a href="#" id="active_locn_cnt_factor" editable_text="item.active_locn_cnt_factor"
                        onbeforesave="updateHeader($data, this, item.id)">{{ item.active_locn_cnt_factor || "empty"
                         }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span></span> Reserve Location Count Factor : </span>
+                    <span class="title"> Reserve Location Count Factor : </span>
                     <a href="#" id="reserve_locn_cnt_factor" editable_text="item.reserve_locn_cnt_factor"
                        onbeforesave="updateHeader($data, this, item.id)">{{ reserve_locn_cnt_factor || "empty" }}</a>
                 </div>
@@ -173,7 +174,7 @@
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Product Temperature Zone: </span>
-                    <a href="#" id="product_temp_zone" editable_date="item.product_temp_zone"
+                    <a href="#" id="product_temp_zone" editable_text="item.product_temp_zone"
                        onbeforesave="updateHeader($data, this, item.id)">{{ product_temp_zone || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
@@ -183,7 +184,7 @@
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Hazardous Code: </span>
-                    <a href="#" id="haz_code" editable_date="item.haz_code"
+                    <a href="#" id="haz_code" editable_text="item.haz_code"
                        onbeforesave="updateHeader($data, this, item.id)">{{ haz_code || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">

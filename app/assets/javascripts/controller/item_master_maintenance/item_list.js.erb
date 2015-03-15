@@ -5,6 +5,9 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
 
     var url = '/item_master_maintenance.json?';
 
+    var reload_modal_close =  function(){
+        $scope.reload();
+    }
 
     $scope.reload = function() {
         $http.get(url).success(function(data) {
@@ -23,8 +26,8 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
                     return true;
                 }
                 if (haystack != null)
-                {  console.log(haystack + ' ' + needle);
-                    console.log(haystack.toLowerCase().indexOf(needle.toLowerCase()))
+                {
+
                     return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
                 }
                 else
@@ -152,7 +155,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
                 }
             }
         });
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.item_edit_modal = function (size, item) {
@@ -166,7 +169,7 @@ item_master.controller('itemListCtrl', function ($scope, $http,  $location, $fil
                 }
             }
         });
-        $scope.reload();
+        modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
     $scope.reload();

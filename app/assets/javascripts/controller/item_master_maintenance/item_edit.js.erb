@@ -6,8 +6,17 @@ item_master.controller('itemEditCtrl', function ($scope, $modalInstance, item, $
   $http.get(url).success(function(data) {
     $scope.item = data;
   });
-  
-  $scope.item_template = {
+
+    $scope.statuses = [
+        {value: 'Active', text: 'Active'},
+        {value: 'Inactive', text: 'Inactive'}
+    ];
+
+    $scope.concept = [
+        {value: 'AB', text: 'AB'},
+        {value: 'BC', text: 'BC'},
+    ];
+    $scope.item_template = {
         name: 'item_template',
         url: '<%= asset_path('item_master_maintenance/item_detail.html') %>'
         };
@@ -43,5 +52,13 @@ item_master.controller('itemEditCtrl', function ($scope, $modalInstance, item, $
         return d.promise;
     };
 
+
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 
 });

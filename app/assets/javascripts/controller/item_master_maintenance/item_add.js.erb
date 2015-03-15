@@ -13,7 +13,7 @@ item_master.controller('itemAddCtrl', function ($scope, $modalInstance, item, $h
    };
    
    $scope.statuses = [
-    {value: 'Created', text: 'Created'},
+    {value: 'Active', text: 'Active'},
     ]; 
    
    $scope.concept = [
@@ -41,7 +41,8 @@ item_master.controller('itemAddCtrl', function ($scope, $modalInstance, item, $h
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
-    	$scope.item = data.item;
+    	$scope.item = data;
+        console.log( $scope.item);
  		setInfo('info', 'Item Created Successfully');
 
     }).error(function(message){

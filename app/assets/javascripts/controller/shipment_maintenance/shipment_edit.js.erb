@@ -102,4 +102,12 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
         return d.promise;
     };
 
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
 });
