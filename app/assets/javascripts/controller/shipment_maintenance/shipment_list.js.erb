@@ -169,7 +169,9 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 shipment: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
@@ -187,7 +189,8 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                     return null;
                 }
             },
-            backdrop : 'static'
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
@@ -206,7 +209,8 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                     return null;
                 }
             },
-            backdrop : 'static'
+            backdrop : 'static',
+            keyboard: false
         });
 
        modalInstance.result.then(reload_modal_close,reload_modal_close);
@@ -225,7 +229,9 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
                 shipment_detail_id: function () {
                     return shipment_detail_id;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
