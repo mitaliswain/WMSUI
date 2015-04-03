@@ -1,0 +1,30 @@
+login.controller('LoginCtrl', function ($scope, $http, $q) {
+ 
+
+
+   $scope.statuses = [
+    {value: 'Active', text: 'Active'},
+    ]; 
+   
+
+ $scope.login = function() {
+	
+    var url = '/login'
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	 app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	 username: $scope.username,
+         password: $scope.password
+    }).success(function(data){
+        window.location = '/shipment_maintenance    ';
+
+    }).error(function(message){
+            $scope.message = message.message;
+
+    	});
+ };
+
+
+});
+
+
