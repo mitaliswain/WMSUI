@@ -1,7 +1,7 @@
 	<body>
-		
+
 		 <div class="modal-header">
-			<button type="button" class="btn btn-primary">
+				<button type="button" class="btn btn-primary">
 				Wahrehouse :
 			</button>
 			{{case_header.warehouse || "WM"}}
@@ -12,7 +12,10 @@
 			<button type="button" class="btn btn-primary">
 				Shipment:
 			</button>
-			{{case_header.case_id||"New Case"}}												
+			{{case_header.case_id||"New Case"}}
+             <button class="btn btn-primary" ng-click="ok()" style="float: right">
+                 <i class="fa fa-times" style="float: right"></i>
+             </button>
 		</div>
 		       
 
@@ -27,10 +30,10 @@
 
 								<!-- buttons to submit / cancel form -->
 								<span ng-show="editableForm.$visible">
-									<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+									<button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
 										Save
 									</button>
-									<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+									<button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
 										Cancel
 									</button> 
 									</span>
@@ -41,8 +44,7 @@
 			</div>
 		
 		<div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">Save</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>	
+            <button class="btn btn-primary" ng-click="ok()">Exit</button>
+        </div>
 
 	</body>
