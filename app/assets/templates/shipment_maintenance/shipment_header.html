@@ -331,7 +331,7 @@
             <accordion-group heading="QA Information....">
                 <div class="modal_text_box">
                     <span class="title">QA Sampling Plan: </span><a href="#" id="qa_samplling_plan"
-                                                                    editable-text="shipment_header.qa_samplling_plan"
+
                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.qa_samplling_plan || "empty" }}</a>
                 </div>
@@ -342,20 +342,20 @@
                     shipment_header.override_qa_plan || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span class="title">Override Plan: </span><a href="#" id="override_plan"
-                                                                 editable_text="shipment_header.override_plan"
+                    <span class="title">Override Plan: </span><a href="#" id="overided_plan"
+                                                                 editable_text="shipment_header.overided_plan"
                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
-                    shipment_header.override_plan || "empty" }}</a>
+                    shipment_header.overided_plan || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Total Units IN QA: </span><a href="#" id="total_units_in_qa"
-                                                                     editable_text="shipment_header.total_units_in_qa"
+
                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.total_units_in_qa || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Total Cases IN QA: </span><a href="#" id="total_cases_in_qa"
-                                                                     editable_text="shipment_header.total_cases_in_qa"
+
                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.total_cases_in_qa || "empty" }}</a>
                 </div>
