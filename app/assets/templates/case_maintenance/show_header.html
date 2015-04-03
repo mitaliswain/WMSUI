@@ -1,15 +1,8 @@
 <html ng-app="case_detail">
-<head>
-    <style>
-        .row_header {
-            width: 50%;
-            float: left
-        }
-    </style>
-</head>
 
 <body ng-controller="caseEditCtrl">
 
+<div class="modal-header">
 <div>
     <button type="button" class="btn btn-primary">
         Wahrehouse :
@@ -23,8 +16,13 @@
         Shipment:
     </button>
     {{case_header.case_id}}
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
+</div>
 </div>
 
+<div class="modal-body">
 <accordion close-others="oneAtATime">
 
     <accordion-group heading="Case Header" is-open=true>
@@ -42,9 +40,10 @@
     </accordion-group>
 </accordion>
 </div>
+</div>
+
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Exit</button>
 </div>
 
 </body>

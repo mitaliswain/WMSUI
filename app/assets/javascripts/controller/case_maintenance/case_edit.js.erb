@@ -93,4 +93,12 @@ case_data.controller('caseEditCtrl', function ($scope, $modalInstance, case_head
         return d.promise;
     };
 
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
 });

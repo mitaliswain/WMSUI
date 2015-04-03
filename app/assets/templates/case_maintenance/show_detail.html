@@ -1,3 +1,4 @@
+<div class="modal-header">
 <div>
     <button type="button" class="btn btn-primary">
         Warehouse :
@@ -11,8 +12,11 @@
         Case:
     </button>
     {{case_header.case_id}}
+    <button class="btn btn-primary" ng-click="ok()" style="float: right">
+        <i class="fa fa-times" style="float: right"></i>
+    </button>
 </div>
-
+</div>
 
 <div class="modal-body">
 
@@ -25,8 +29,7 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Exit</button>
 </div>
 
 </body>
