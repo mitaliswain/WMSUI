@@ -4,8 +4,8 @@ shipment.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipmen
   var warehouse = 'WH1';
 
 
-   $scope.shipment_header = {};
-   $scope.shipment_detail = {}; 
+   $scope.shipment_header = shipment;
+   $scope.shipment_detail = {};
 
    $scope.globalInfo = {
    	error: false,
