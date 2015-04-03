@@ -114,9 +114,9 @@
                     shipment_header.vendor_email_id || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span class="title">Phone: </span><a href="#" id="phone" editable_text="shipment_header.phone"
+                    <span class="title">Phone: </span><a href="#" id="phone" editable_tel="shipment_header.phone"
                                                          onbeforesave="updateHeader($data, this, shipment_header.id)">{{
-                    shipment_header.phone || "empty" }}</a>
+                    shipment_header.phone|tel }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Fax Number: </span><a href="#" id="fax_nbr"
@@ -192,12 +192,6 @@
                     shipment_header.appointment_nbr || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span class="title">Auto Cancel PO: </span><a href="#" id="auto_cancel_po"
-                                                                  editable_text="shipment_header.auto_cancel_po"
-                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
-                    shipment_header.auto_cancel_po || "empty" }}</a>
-                </div>
-                <div class="modal_text_box">
                     <span class="title">Cancel After Days: </span><a href="#" id="cancel_after_days"
                                                                      editable_text="shipment_header.cancel_after_days"
                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
@@ -254,13 +248,6 @@
             </accordion-group>
 
             <accordion-group heading="Receiving Information....">
-                <div class="modal_text_box">
-                    <span class="title">Track LotControl: </span><a href="#" id="track_lotcontrol"
-                                                                    editable-text="shipment_header.track_lotcontrol"
-                                                                    onbeforesave="updateHeader($data, this, shipment_header.id)">{{
-                    shipment_header.track_lotcontrol || "empty" }}</a>
-                </div>
-
                 <div class="modal_text_box">
                     <span class="title">PO Ship Date: </span><a href="#" id="po_ship_date"
                                                                 editable-date="shipment_header.po_ship_date"
@@ -344,7 +331,7 @@
             <accordion-group heading="QA Information....">
                 <div class="modal_text_box">
                     <span class="title">QA Sampling Plan: </span><a href="#" id="qa_samplling_plan"
-                                                                    editable-text="shipment_header.qa_samplling_plan"
+
                                                                     onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.qa_samplling_plan || "empty" }}</a>
                 </div>
@@ -355,20 +342,20 @@
                     shipment_header.override_qa_plan || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
-                    <span class="title">Override Plan: </span><a href="#" id="override_plan"
-                                                                 editable_text="shipment_header.override_plan"
+                    <span class="title">Override Plan: </span><a href="#" id="overided_plan"
+                                                                 editable_text="shipment_header.overided_plan"
                                                                  onbeforesave="updateHeader($data, this, shipment_header.id)">{{
-                    shipment_header.override_plan || "empty" }}</a>
+                    shipment_header.overided_plan || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Total Units IN QA: </span><a href="#" id="total_units_in_qa"
-                                                                     editable_text="shipment_header.total_units_in_qa"
+
                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.total_units_in_qa || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Total Cases IN QA: </span><a href="#" id="total_cases_in_qa"
-                                                                     editable_text="shipment_header.total_cases_in_qa"
+
                                                                      onbeforesave="updateHeader($data, this, shipment_header.id)">{{
                     shipment_header.total_cases_in_qa || "empty" }}</a>
                 </div>

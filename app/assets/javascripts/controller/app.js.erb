@@ -14,6 +14,14 @@ shipment.config(['$routeProvider',
      
 }]);
 
+shipment.filter('tel', function () {
+            return function (phoneNumber) {
+                if (!phoneNumber)
+                    return phoneNumber;
+                return formatLocal('US', phoneNumber);
+            }
+        });
+
 shipment.run(function(editableOptions) {
  editableOptions.theme = 'bs3';
 });
