@@ -36,4 +36,25 @@ item_master.run(function(editableOptions) {
     editableOptions.theme = 'bs3';
 });
 
+
+
+
+
+    shipment.factory("UserService", function($http){
+
+        return {
+
+            get_data : function($scope, url) {
+
+                $http.get(url).success(function(data) {
+                    $scope.shipment_header = data.shipment_header;
+                    $scope.shipment_details = data.shipment_detail;
+
+                });
+
+                }
+            }
+        });
+
+
  

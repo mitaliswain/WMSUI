@@ -12,7 +12,7 @@
 		<%= render"shared/menu" %>
 
 
-		<div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" class="maintenance_screen_div">
+        <div id="ShipmentListCtrl" ng-controller="ShipmentListCtrl" class="maintenance_screen_div">
 			<div>
 				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List</span></a></h3>
 			</div>
@@ -29,7 +29,8 @@
             <tab heading="Verified" select="status('Verified')"></tab>
           </tabset>
 
-
+          <div style="width: 100%">
+            <div style="float: left; width: {{squeeze}}%">
 			<table class="table">
 				<thead>
 					<tr>
@@ -38,19 +39,19 @@
 							<div class="row-header">
 								Option
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Order Qty&nbsp;<a ng-click="sort_by('asn_type')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Received Qty&nbsp;<a ng-click="sort_by('ship_via')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								<a id="open_shipment_add"  ng-click="shipment_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
 							</div>
 						</div></th>
@@ -59,7 +60,7 @@
 				<tbody>
 					<tr ng-repeat="item in pagedItems[currentPage]">
 						<td colspan="7">
-						<div  class="bs-callout bs-callout-info">
+						<div  class="card">
 							<div class="row-header" ng-click="toggle_expand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
@@ -78,8 +79,8 @@
 							</div>
 
 							<div class="row-header">
-								<a id="open_shipment_detail" ng-click="shipment_edit_modal('lg', item.shipment_header.id)">
-									<i class="fa fa-pencil"></i>
+								<a id="open_shipment_detail" ng-click="show_shipment(item.shipment_header.id)">
+									<i class="fa fa-chevron-right"></i>
 								</a>
 							</div>
 						</div><!--Detail -->
@@ -142,26 +143,18 @@
 				</tfoot>
 
 			</table>
+          </div>
+        </div>
 
-		    <script type="text/ng-template" id="myModalContent.html">
-		        <div class="modal-header">
-		            <h3 class="modal-title">I'm a modal!</h3>
-		        </div>
-		        <div class="modal-body">
-		            <ul>
-		                <li ng-repeat="item in items">
-		                    <a ng-click="selected.item = item">{{ item }}</a>
-		                </li>
-		            </ul>
-		            Selected: <b>{{ selected.item }}</b>
-		        </div>
-		        <div class="modal-footer">
-		            <button class="btn btn-primary" ng-click="ok()">Exit</button>
-		        </div>
-		    </script>
-		
 
-		</div>
+          <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
+            </div>
+            <div ng-include src="header_template.url" class="card"></div>
+          </div>
+        </div>
+
 
 	</body>
 </html>

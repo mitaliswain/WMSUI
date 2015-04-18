@@ -1,6 +1,7 @@
 	<body>
 
 		 <div class="modal-header">
+		    <div>
 				<button type="button" class="btn btn-primary">
 				Wahrehouse :
 			</button>
@@ -30,10 +31,10 @@
 
 								<!-- buttons to submit / cancel form -->
 								<span ng-show="editableForm.$visible">
-									<button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+									<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
 										Save
 									</button>
-									<button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+									<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
 										Cancel
 									</button> 
 									</span>

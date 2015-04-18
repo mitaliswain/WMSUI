@@ -8,6 +8,25 @@
     font-family: Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card {
+    float: left;
+    margin-top: 0%;
+    padding: 1%;
+    background: #f1f1f1;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 1px 1px #888888;
+}
+
 .centered {
     padding: 1%;
     background: #000000;
@@ -56,10 +75,10 @@
 }
 
 .maintenance_screen_div {
-    width: 80%;
-    margin: 1%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 96%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .navbar-inverse .navbar-brand  {

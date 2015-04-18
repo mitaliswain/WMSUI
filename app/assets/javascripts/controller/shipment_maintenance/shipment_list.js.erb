@@ -1,9 +1,14 @@
-shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal) {	
+shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, UserService) {
   var warehouse = $location.search().warehouse;
   var shipment  =  $location.search().shipment;
   var client    = $location.search().client; 
-  var lastitem = {}; 
+  var lastitem = {};
   var last_status = 'Created';
+
+    $scope.detail  = {}
+
+    $scope.expand = 0
+    $scope.squeeze = 100
 
    $scope.shipment = 'new shipment';
    var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
@@ -11,6 +16,31 @@ shipment.controller('ShipmentListCtrl', function ($scope, $http,  $location, $fi
    var reload_modal_close =  function(){
        $scope.reload();
    }
+
+    $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
+    };
+
+    $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
+    };
+
+    $scope.show_shipment = function(shipment) {
+        var url = '/shipment_maintenance/'+  shipment + '.json'
+        $scope.detail.show= true
+        $scope.expand = 50
+        $scope.squeeze = 50
+        UserService.get_data($scope, url)
+    }
+
+    $scope.hide_shipment = function() {
+        $scope.detail.show= false
+        $scope.expand = 0
+        $scope.squeeze = 100
+    }
+
 
     $scope.reload = function() {
 	    $http.get(url).success(function(data) {

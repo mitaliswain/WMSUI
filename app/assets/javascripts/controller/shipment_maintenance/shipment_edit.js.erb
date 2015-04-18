@@ -1,4 +1,4 @@
-shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q) {
+shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q, UserService) {
   var warehouse = $location.search().warehouse;
   var client    = $location.search().client; 
   var detail_id    = $location.search().detail_id; 
@@ -8,19 +8,15 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
     {value: 'N', text: 'No'},
   ]; 
 
-  $http.get(url).success(function(data) {
-    $scope.shipment_header = data.shipment_header;
-    $scope.shipment_details = data.shipment_detail;    
-  		
+    console.log(shipment);
+    UserService.get_data($scope, url)
 
-  	angular.forEach(data.shipment_detail, function(shipment_detail) { 		  			
-  		if (shipment_detail.id == shipment_detail_id){
-  			$scope.shipment_detail = shipment_detail;
+    angular.forEach($scope.shipment_details, function(shipment_detail) {
+        if (shipment_detail.id == shipment_detail_id){
+            $scope.shipment_detail = shipment_detail;
 
-}
+        }
     });
-	
-  });
   
   $scope.header_template = {
         name: 'header_template',
