@@ -39,7 +39,7 @@
                                                   editable_select="shipment_header.hot_item_po"
                                                   e-ng-options="s.value as s.text for s in YesorNo"
                                                   onbeforesave="updateHeader($data, this, shipment_header.id)"
-                                                  e-required>{{ shipment_header.hot_item_po || 'Not set' }} </a>
+                                                  e-required>{{ shipment_header.hot_item_po || '' }} </a>
     </div>
     <div class="modal_text_box">
         <span class="title">Source:</span><a href="#" id="source" e-name="source" editable-text="shipment_header.source"

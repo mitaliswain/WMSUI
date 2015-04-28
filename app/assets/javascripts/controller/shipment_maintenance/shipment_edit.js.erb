@@ -1,4 +1,4 @@
-shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q, UserService) {
+wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q, UserService) {
   var warehouse = $location.search().warehouse;
   var client    = $location.search().client; 
   var detail_id    = $location.search().detail_id; 
@@ -8,7 +8,6 @@ shipment.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipme
     {value: 'N', text: 'No'},
   ]; 
 
-    console.log(shipment);
     UserService.get_data($scope, url)
 
     angular.forEach($scope.shipment_details, function(shipment_detail) {

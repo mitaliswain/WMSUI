@@ -6,7 +6,7 @@
 		
 	</head>
 
-	<body ng-app="shipment_detail" >
+	<body ng-app="WMSUI" >
 
 
 		<%= render"shared/menu" %>
@@ -17,7 +17,7 @@
 				<h3><a href="/shipment_maintenance"><span class="label label-primary">Shipment List</span></a></h3>
 			</div>
 			<div class="input-group pull-right" style="width: 30%" >
-				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+				<input type="text" ng-model="query" ng-keydown="search($event, 'shipment_nbr')" class="form-control" placeholder="Search" typeahead="shipment for shipment in shipment_list | filter:$viewValue | limitTo:8">
 				<span class="input-group-addon"><i class="icon-search"></i></span>
 			</div>
 

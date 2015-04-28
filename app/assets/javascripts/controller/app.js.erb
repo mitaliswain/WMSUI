@@ -1,11 +1,11 @@
-var shipment = angular.module('shipment_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
+var wms = angular.module('WMSUI', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var case_data = angular.module('case_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var configuration = angular.module('configuration_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var item_master = angular.module('item_master', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var login = angular.module('login', ["ngRoute", "ui.bootstrap"]);
 
 
-shipment.config(['$routeProvider',
+wms.config(['$routeProvider',
  function($routeProvider) {
    $routeProvider.
      when('/shipmentHeader', {
@@ -15,7 +15,7 @@ shipment.config(['$routeProvider',
      
 }]);
 
-shipment.filter('tel', function () {
+wms.filter('tel', function () {
             return function (phoneNumber) {
                 if (!phoneNumber)
                     return phoneNumber;
@@ -23,7 +23,7 @@ shipment.filter('tel', function () {
             }
         });
 
-shipment.run(function(editableOptions) {
+wms.run(function(editableOptions) {
  editableOptions.theme = 'bs3';
 });
 case_data.run(function(editableOptions) {
@@ -40,7 +40,7 @@ item_master.run(function(editableOptions) {
 
 
 
-    shipment.factory("UserService", function($http){
+    wms.factory("UserService", function($http, $filter){
 
         return {
 
@@ -52,9 +52,133 @@ item_master.run(function(editableOptions) {
 
                 });
 
-                }
+                },
+
+            set_page: function($scope) {
+
+                $scope.sortingOrder = sortingOrder;
+                $scope.reverse = false;
+                $scope.filteredItems = [];
+                $scope.groupedItems = [];
+                $scope.itemsPerPage = 8;
+                $scope.pagedItems = [];
+                $scope.currentPage = 0;
+
+
+                var searchMatch = function (haystack, needle) {
+                    if (!needle) {
+                        return true;
+                    }
+                    return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
+                };
+
+                // Filter by status
+                $scope.status = function (status) {
+
+                    status = status==null ?  $scope.last_status : status;
+                    $scope.last_status = status;
+                    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                        if (searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], status)) {
+                            return true;
+                        }
+
+                        else {
+                            return false;
+                        }
+
+                    });
+                    // take care of the sorting order
+                    if ($scope.sortingOrder !== '') {
+                        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+                    }
+                    $scope.currentPage = 0;
+                    groupToPages();
+                };
+
+
+                // calculate page in place
+                var groupToPages = function () {
+                    $scope.pagedItems = [];
+
+                    for (var i = 0; i < $scope.filteredItems.length; i++) {
+                        if (i % $scope.itemsPerPage === 0) {
+                            $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
+                        } else {
+                            $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+                        }
+                    }
+                };
+
+                // init the filtered items
+                $scope.search = function (event, search_field) {
+
+                    if (event.which != 13) {
+                        return
+                    }
+
+                    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                        if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query) &&
+                                searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], $scope.last_status)) {
+                            return true
+                        }
+
+                        else {
+                            return false;
+                        }
+                    });
+                    // take care of the sorting order
+                    if ($scope.sortingOrder !== '') {
+                        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+                    }
+                    $scope.currentPage = 0;
+                    // now group by pages
+                    groupToPages();
+                };
+
+                $scope.range = function (start, end) {
+                    var ret = [];
+                    if (!end) {
+                        end = start;
+                        start = 0;
+                    }
+                    for (var i = start; i < end; i++) {
+                        ret.push(i);
+                    }
+                    return ret;
+                };
+
+                $scope.prevPage = function () {
+                    if ($scope.currentPage > 0) {
+                        $scope.currentPage--;
+                    }
+                };
+
+                $scope.nextPage = function () {
+                    if ($scope.currentPage < $scope.pagedItems.length - 1) {
+                        $scope.currentPage++;
+                    }
+                };
+
+                $scope.setPage = function () {
+                    $scope.currentPage = this.n;
+                };
+
+                // change sorting order
+                $scope.sort_by = function(newSortingOrder) {
+                    //if ($scope.sortingOrder == newSortingOrder)
+                    $scope.reverse = !$scope.reverse;
+
+                    $scope.sortingOrder = 'shipment_header.'+newSortingOrder;
+
+                    // take care of the sorting order
+                    $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+                    $scope.currentPage = 0;
+                    // now group by pages
+                    groupToPages();
+                };
+
             }
-        });
 
 
- 
+        }
+    });

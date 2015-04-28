@@ -1,8 +1,17 @@
-case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal) {
-  var warehouse = $location.search().warehouse;
-  var client    = $location.search().client; 
-  var lastitem = {}; 
-  var last_status = 'Created';
+wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal, UserService) {
+
+    $scope.last_status = 'Created';
+    $scope.lastitem = {};
+    $scope.detail  = {}
+    $scope.expand = 0
+    $scope.squeeze = 100
+    $scope.sortingOrder = sortingOrder;
+    $scope.reverse = false;
+    $scope.filteredItems = [];
+    $scope.groupedItems = [];
+    $scope.itemsPerPage = 8;
+    $scope.pagedItems = [];
+    $scope.currentPage = 0;
 
     $scope.case = 'new case';
    var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
@@ -12,155 +21,6 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         $scope.reload();
     }
 
-    $scope.reload = function() {
-	    $http.get(url).success(function(data) {
-		    $scope.items = data; 
-			
-		    $scope.sortingOrder = sortingOrder;
-		    $scope.reverse = false;
-		    $scope.filteredItems = [];
-		    $scope.groupedItems = [];
-		    $scope.itemsPerPage = 8;
-		    $scope.pagedItems = [];
-		    $scope.currentPage = 0;
-		
-		    var searchMatch = function (haystack, needle) {
-		        if (!needle) {
-		            return true;
-		        }
-		        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-		    };
-		
-		    
-		    $scope.toggle_expand = function(item) {
-		       item.show = !item.show;
-		       lastitem = item;	       
-		    };
-		    
-		    $scope.expand = function(item) {	
-		 		item.show = true;	      
-		    };
-		    			
-		
-		    // Filter by status
-		    $scope.status = function (status) {
-		    	status = status==null ?  last_status : status;
-		    	last_status = status;   	
-		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		                if (searchMatch(item["case_header"]["record_status"], status))
-		              	    return true;
-		              	else              	    
-		            		return false;
-	
-		        });
-		        // take care of the sorting order
-		        if ($scope.sortingOrder !== '') {
-		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-		        }
-		        $scope.currentPage = 0;
-		        // now group by pages
-		        $scope.groupToPages();
-		    };
-		
-		    // init the filtered items
-		    $scope.search = function () {
-		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		            //for(var attr in item) {
-		                if (searchMatch(item["case_header"]["case_id"], $scope.query) &&
-                            searchMatch(item["case_header"]["record_status"], last_status))
-                            return true;
-		              	else              	    
-
-                            return false;
-		        });
-
-		        // take care of the sorting order
-		        if ($scope.sortingOrder !== '') {
-		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-		        }
-		        $scope.currentPage = 0;
-		        // now group by pages
-		        $scope.groupToPages();
-		   	 };
-		    
-		    
-		  // calculate page in place
-		  $scope.groupToPages = function () {
-		        $scope.pagedItems = [];
-		        
-		        for (var i = 0; i < $scope.filteredItems.length; i++) {
-		            if (i % $scope.itemsPerPage === 0) {
-		                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
-		            } else {
-		                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-		            }
-		        }
-		        
-		    };
-		    
-		    $scope.range = function (start, end) {
-		        var ret = [];
-		        if (!end) {
-		            end = start;
-		            start = 0;
-		        }
-		        for (var i = start; i < end; i++) {
-		            ret.push(i);
-		        }
-		        return ret;
-		    };
-		    
-		    $scope.prevPage = function () {
-		        if ($scope.currentPage > 0) {
-		            $scope.currentPage--;
-		        }
-		    };
-		    
-		    $scope.nextPage = function () {
-		        if ($scope.currentPage < $scope.pagedItems.length - 1) {
-		            $scope.currentPage++;
-		        }
-		    };
-		    
-		    $scope.setPage = function () {
-		        $scope.currentPage = this.n;
-		    };
-		
-		    // functions have been describe process the data for display
-		    $scope.search();
-		
-		    // change sorting order
-		    $scope.sort_by = function(newSortingOrder) {
-		        //if ($scope.sortingOrder == newSortingOrder)
-		            $scope.reverse = !$scope.reverse;
-		
-		        $scope.sortingOrder = newSortingOrder;
-		        
-		        // take care of the sorting order
-		        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-		        $scope.currentPage = 0;
-		        // now group by pages
-		        $scope.groupToPages();
-		
-		/*
-		        // icon setup
-		        $('th i').each(function(){
-		            // icon reset
-		            $(this).removeClass().addClass('icon-sort');
-		        });
-		        if ($scope.reverse)
-		            $('th.'+newSortingOrder+' i').removeClass().addClass('icon-chevron-up');
-		        else
-		            $('th.'+newSortingOrder+' i').removeClass().addClass('icon-chevron-down');
-		 */           
-		    };
-		
-		    
-		 $scope.expand(lastitem);	
-		 $scope.status();
-		 });
-		
-	 };
 
     //Modal methods
     $scope.case_add_modal = function (size) {
@@ -231,5 +91,20 @@ case_data.controller('CaseListCtrl', function ($scope, $http,  $location, $filte
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
+    $scope.reload = function() {
+
+        $http.get(url).success(function(data) {
+            $scope.items = data;
+
+            UserService.set_page($scope);
+            $scope.filter_option = "case_header"
+            $scope.status(null);
+            //groupToPages();
+
+        });
+
+    };
+
     $scope.reload();
 });
+
