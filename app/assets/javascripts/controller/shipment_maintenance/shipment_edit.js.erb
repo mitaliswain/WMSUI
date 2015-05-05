@@ -9,11 +9,9 @@ wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, s
   ]; 
 
     UserService.get_data($scope, url)
-
     angular.forEach($scope.shipment_details, function(shipment_detail) {
         if (shipment_detail.id == shipment_detail_id){
             $scope.shipment_detail = shipment_detail;
-
         }
     });
   

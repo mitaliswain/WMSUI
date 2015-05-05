@@ -1,3 +1,15 @@
+select {
+    display: inline-block;
+    height:100%;
+    width: 40px;
+    outline: none;
+    color: #74646e;
+    border: 1px solid #C8BFC4;
+    border-radius: 4px;
+    box-shadow: inset 1px 1px 2px #ddd8dc;
+    background: #fff; 
+}
+
 .login-box {
     margin-top: 5%;
     padding: 2%;
@@ -66,13 +78,26 @@
 }
 
 .row-header {
-	min-width: 15%;
-	max-width: 15%;
+	min-width: 12%;
+	max-width: 12%;
 	display: inline-block;
 	text-align: center;
 	min-height: 1px;
 	white-space: nowrap
 }
+
+.icon-header {
+	min-width: 2%;
+	max-width: 2%;
+	display: inline-block;
+	text-align: center;
+	min-height: 1px;
+	white-space: nowrap;
+	color: #fff;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1em;
+}
+
 
 .maintenance_screen_div {
     width: 96%;

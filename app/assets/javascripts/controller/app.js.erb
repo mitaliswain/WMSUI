@@ -66,8 +66,8 @@ item_master.run(function(editableOptions) {
 
 
                 var searchMatch = function (haystack, needle) {
-                    if (!needle) {
-                        return true;
+                    if (!needle || !haystack) {
+                        return false;
                     }
                     return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
                 };
@@ -111,7 +111,7 @@ item_master.run(function(editableOptions) {
 
                 // init the filtered items
                 $scope.search = function (event, search_field) {
-
+					                  
                     if (event.which != 13) {
                         return
                     }

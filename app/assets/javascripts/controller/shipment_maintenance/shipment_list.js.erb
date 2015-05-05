@@ -1,11 +1,26 @@
-wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, UserService) {
+wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
     $scope.detail  = {}
+    $scope.header  = {}
     $scope.expand = 0
     $scope.squeeze = 100
+    $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
 
+    $scope.search_items = [
+	    {value: 'shipment_nbr', text: 'Shipment Number'},
+    	{value: 'purchase_order_nbr', text: 'Purchase Order Number'}
+ 	 ]; 
+
+    $scope.choose = function(choice) {
+    	$scope.search_choice = choice;
+    	$scope.shipment_list = []
+    	angular.forEach($scope.items, function(item) {
+           	$scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
+        });
+    }
+    
    $scope.shipment = 'new shipment';
    var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
@@ -23,15 +38,31 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
     };
 
-    $scope.show_shipment = function(shipment) {
+    $scope.show_shipment = function(show, shipment, shipment_detail_id) {
         var url = '/shipment_maintenance/'+  shipment + '.json'
-        $scope.detail.show= true
+        UserService.get_data($scope, url)
+        
+        if (show == 'Header') {
+        	$scope.header.show= true
+        	$scope.detail.show= false
+        } else {
+        	$scope.detail.show= true
+        	$scope.header.show= false
+        	angular.forEach($scope.shipment_details, function(shipment_detail) {
+        		        	console.log(shipment_detail.id)
+        		if (shipment_detail.id == shipment_detail_id){
+           			 $scope.shipment_detail = shipment_detail;
+        		}
+   			});
+        }
+        
         $scope.expand = 50
         $scope.squeeze = 50
-        UserService.get_data($scope, url)
+        $scope.selected_header_id = shipment        
     }
 
     $scope.hide_shipment = function() {
+        $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
         $scope.squeeze = 100
@@ -140,7 +171,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
             $scope.status(null);
 
             angular.forEach($scope.items, function(item) {
-                $scope.shipment_list.push(item["shipment_header"]["shipment_nbr"]);
+                $scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
             });
 
         });

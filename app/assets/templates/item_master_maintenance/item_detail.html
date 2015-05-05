@@ -42,7 +42,7 @@
 
     <div class="modal_text_box">
         <span class="title">Status:</span>
-        <a href="#" id="status" e-name="status" editable_select="item.record_status"
+        <a href="#" id="status" e-name="status" editable_select="item.status"
            e-ng-options="s.value as s.text for s in statuses"
            onbeforesave="updateHeader($data, this, item.id)" e-required>{{ item.status || "empty" }}</a>
     </div>
