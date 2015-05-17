@@ -1,25 +1,85 @@
-wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal, UserService) {
+wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
     $scope.detail  = {}
+    $scope.header  = {}
     $scope.expand = 0
     $scope.squeeze = 100
-    $scope.sortingOrder = sortingOrder;
-    $scope.reverse = false;
-    $scope.filteredItems = [];
-    $scope.groupedItems = [];
-    $scope.itemsPerPage = 8;
-    $scope.pagedItems = [];
-    $scope.currentPage = 0;
+    $scope.search_choice = {value: 'case_id', text: 'Case Id'}
+
+    $scope.search_items = [
+        {value: 'case_id', text: 'Case Id'},
+        {value: 'shipment_nbr', text: 'Shipment Number'}
+    ];
+
+    $scope.choose = function(choice) {
+        $scope.search_choice = choice;
+        $scope.case_list = []
+        angular.forEach($scope.items, function(item) {
+            $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+        });
+    }
 
     $scope.case = 'new case';
-   var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
-
+    var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
     var reload_modal_close =  function(){
         $scope.reload();
     }
+
+    $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('case_maintenance/case_header.html') %>'
+    };
+
+    $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path('case_maintenance/case_detail.html') %>'
+    };
+
+    $scope.show_case = function(show, case_id, case_detail_id) {
+        var url = '/case_maintenance/'+  case_id + '.json'
+        $scope.data = {}
+        $http.get(url).success(function(data) {
+            $scope.case_header = data.case_header
+            $scope.case_detail = data.case_detail
+
+                if (show == 'Header') {
+                    $scope.header.show = true
+                    $scope.detail.show = false
+                } else {
+                    $scope.detail.show = true
+                    $scope.header.show = false
+                    angular.forEach($scope.case_details, function (case_detail) {
+                        if (case_detail.id == case_detail_id) {
+                            $scope.case_detail = case_detail;
+                        }
+                    });
+                }
+            });
+
+        $scope.expand = 50
+        $scope.squeeze = 50
+        $scope.selected_header_id = case_id
+    }
+
+    $scope.hide_case = function() {
+        $scope.header.show= false
+        $scope.detail.show= false
+        $scope.expand = 0
+        $scope.squeeze = 100
+    };
+
+
+    $scope.toggle_expand = function(item) {
+        item.show = !item.show;
+        lastitem = item;
+    };
+
+    $scope.expand = function(item) {
+        item.show = true;
+    };
 
 
     //Modal methods
@@ -32,7 +92,9 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
                 case_header: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
@@ -49,9 +111,10 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
                 case_detail_id: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
-
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
@@ -68,7 +131,9 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
                 case_detail_id: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
 
         modalInstance.result.then(reload_modal_close,reload_modal_close);
@@ -81,25 +146,37 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
             size: size,
             resolve: {
                 case_header: function () {
-                    return case_header;
+                    return case_header
                 },
                 case_detail_id: function () {
                     return case_detail_id;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
+
+
 
     $scope.reload = function() {
 
         $http.get(url).success(function(data) {
             $scope.items = data;
+            $scope.case_list = []
+
+            $scope.filter_from_object = "case_header"
+            $scope.filter_from_field = "record_status"
 
             UserService.set_page($scope);
-            $scope.filter_option = "case_header"
+
             $scope.status(null);
-            //groupToPages();
+
+            angular.forEach($scope.items, function(item) {
+                console.log(item["case_header"]["record_status"])
+                $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+            });
 
         });
 
@@ -107,4 +184,3 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
 
     $scope.reload();
 });
-

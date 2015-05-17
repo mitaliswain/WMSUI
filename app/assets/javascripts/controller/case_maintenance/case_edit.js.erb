@@ -1,7 +1,7 @@
-case_data.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, case_detail_id, $http, $location, $q) {
+wms.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, case_detail_id, $http, $location, $q) {
     var warehouse = case_header.warehouse;
     var client    = case_header.client;
-    var url = '/case_maintenance/'+  case_header.id + '.json?client=' + client + '&warehouse='+ warehouse;
+    var url = '/case_maintenance/'+  case_header + '.json?client=' + client + '&warehouse='+ warehouse;
     $scope.YesorNo = [
         {value: 'Y', text: 'Yes'},
         {value: 'N', text: 'No'},

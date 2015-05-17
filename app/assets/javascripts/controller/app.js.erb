@@ -49,6 +49,8 @@ item_master.run(function(editableOptions) {
                 $http.get(url).success(function(data) {
                     $scope.shipment_header = data.shipment_header;
                     $scope.shipment_details = data.shipment_detail;
+                    $scope.data = data
+                    console.log($scope.data.case_header)
 
                 });
 

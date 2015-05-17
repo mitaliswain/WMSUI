@@ -1,10 +1,10 @@
-case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_header, $http, $location) {
+wms.controller('caseAddCtrl', function ($scope, $modalInstance, case_header, $http, $location) {
     var client    = 'WM';
     var warehouse = 'WH1';
 
 
-    $scope.shipment_header = {};
-    $scope.shipment_detail = {};
+    $scope.case_header = {};
+    $scope.case_detail = {};
 
     $scope.globalInfo = {
    	error: false,
@@ -43,7 +43,7 @@ case_data.controller('caseAddCtrl', function ($scope, $modalInstance, case_heade
         fields_to_update = $scope.case_detail;
         fields_to_update.case_header_id = case_header.id;
 
-        var url = '/case_maintenance/add    _detail?client=' + client + '&warehouse='+ warehouse;
+        var url = '/case_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
              app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},

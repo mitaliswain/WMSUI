@@ -5,7 +5,7 @@
 		</script>
 	</head>
 
-	<body ng-app="shipment_detail" >
+	<body ng-app="WMSUI" >
 
 		<%= render"shared/menu" %>
 
@@ -17,50 +17,64 @@
                 </h3>
 			</div>
 			<div class="input-group pull-right" style="width: 30%">
-				<input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
-				<span class="input-group-addon"><i class="icon-search"></i></span>
-			</div>
+				<span class="input-group-addon">
+                  <span class="dropdown" dropdown on-toggle="toggled(open)">
+				      <a href class="dropdown-toggle" dropdown-toggle>
+                        {{search_choice.text || 'Select'}}
+                      </a>
+				      <ul class="dropdown-menu">
+                        <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+                          <a href>{{choice.text}}</a>
+                        </li>
+                      </ul>
+				    </span>
+                </span>
+              <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="case for case in case_list | filter:$viewValue | limitTo:8">
+              <span class="input-group-addon"><i class="icon-search"></i></span>
+            </div>
 
-			<div>
+
               <tabset>
                 <tab heading="Created" select="status('Created')"></tab>
                 <tab heading="Received" select="status('Received')"></tab>
-                <tab heading="Consumed" select="status('Consumed')"></tab>
+                <tab heading="In Progress" select="status('Receiving in Progress')"></tab>
+                <tab heading="Verified" select="status('Verified')"></tab>
               </tabset>
 
-			</div>
-			<table class="table">
-				<thead>
+          <div style="width: 100%">
+            <div style="float: left; width: {{squeeze}}%">
+		    	<table class="table">
+			    	<thead>
 					<tr>
 						<th colspan="7">
 						<div class="bs-callout">
-							<div class="row-header">
+							<div class="row-header truncate">
 								Option
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Location<a ng-click="sort_by('vendor_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
-							<div class="row-header">
+							<div class="row-header truncate">
 								<a id="open_case_add"  ng-click="case_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
 							</div>
-						</div></th>
-					</tr>
-				</thead>
 
-				<tbody>
+            </div></th>
+            </tr>
+            </thead>
+			    	<tbody>
 					<tr ng-repeat="item in pagedItems[currentPage]">
-						
+
 						<td colspan="7">
-						<div  class="bs-callout bs-callout-info">
+						<div  class="card">
                           <div class="row-header" ng-click="toggle_expand(item)" >
                             <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                           </div>
@@ -76,12 +90,11 @@
 							<div class="row-header">
 								{{item.case_header.record_status}}
 							</div>
-                          <div class="row-header">
-                            <a id="open_case_detail" ng-click="case_edit_modal('lg', item.case_header)">
-                              <i class="fa fa-pencil"></i>
+                          <div class="icon-header pull-right">
+                            <a id="open_shipment_detail" ng-click="show_case('Header', item.case_header.id)">
+                              <i class="fa fa-chevron-right"></i>
                             </a>
                           </div>
-
 							</div><!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
@@ -121,7 +134,7 @@
 					</tr>
 
 				</tbody>
-				<tfoot>
+				    <tfoot>
 					<td colspan="7">
 					<div>
 						<ul class="pagination pull-right">
@@ -139,26 +152,30 @@
 						</ul>
 					</div></td>
 				</tfoot>
-			</table>
+			    </table>
+		    </div>
+          </div>
 
-          <script type="text/ng-template" id="myModalContent.html">
-            <div class="modal-header">
-              <h3 class="modal-title">Case Maintenance</h3>
+          <div style="float: left; width: {{expand}}%" ng-show = "header.show">
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li ng-repeat="item in items">
-                  <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
-              </ul>
-              Selected: <b>{{ selected.item }}</b>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-primary" ng-click="ok()">Exit</button>
-            </div>
-          </script>
+            <div ng-include src="header_template.url" class="card"></div>
+          </div>
 
-		</div>
 
+          <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
+            </div>
+            <div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_detail_add_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+            </div>
+            <div ng-include src="detail_template.url" class="card"></div>
+          </div>
+        </div>
 	</body>
 </html>
