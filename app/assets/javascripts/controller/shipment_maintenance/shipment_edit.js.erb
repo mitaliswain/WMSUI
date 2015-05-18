@@ -1,18 +1,21 @@
 wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q, UserService) {
   var warehouse = $location.search().warehouse;
-  var client    = $location.search().client; 
-  var detail_id    = $location.search().detail_id; 
+  var client    = $location.search().client;
   var url = '/shipment_maintenance/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
     $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
     {value: 'N', text: 'No'},
-  ]; 
+  ];
 
-    UserService.get_data($scope, url)
-    angular.forEach($scope.shipment_details, function(shipment_detail) {
-        if (shipment_detail.id == shipment_detail_id){
-            $scope.shipment_detail = shipment_detail;
-        }
+    $http.get(url).success(function(data) {
+        $scope.shipment_header = data.shipment_header
+        $scope.shipment_details = data.shipment_detail
+        angular.forEach($scope.shipment_details, function (shipment_detail) {
+            console.log(shipment_detail_id)
+            if (shipment_detail.id == shipment_detail_id) {
+                $scope.shipment_detail = shipment_detail;
+            }
+        });
     });
   
   $scope.header_template = {

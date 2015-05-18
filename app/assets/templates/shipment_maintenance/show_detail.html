@@ -2,22 +2,23 @@
 	<body>
 
 		 <div class="modal-header">
-			<button type="button" class="btn btn-primary">
-				Warehouse :
-			</button>
-			{{shipment_header.warehouse || "WM"}}
-			<button type="button" class="btn btn-primary">
-				Client:
-			</button>
-			{{client || "WH1"}}
-			<button type="button" class="btn btn-primary">
-				Shipment:
-			</button>
-			{{Item||"New Item"}}
+             <button type="button" class="btn btn-primary">
+                 Wahrehouse :
+             </button>
+             {{shipment_header.warehouse || "WH1"}}
+             <button type="button" class="btn btn-primary">
+                 Client:
+             </button>
+             {{shipment_header.client || "WM"}}
+             <button type="button" class="btn btn-primary">
+                 Shipment:
+             </button>
+             {{shipment_header.shipment_nbr||"New Shipment"}}
              <button class="btn btn-primary" ng-click="ok()" style="float: right">
                  <i class="fa fa-times" style="float: right"></i>
              </button>
-		</div>
+
+         </div>
 
 
          <div class="modal-body">

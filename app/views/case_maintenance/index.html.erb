@@ -98,11 +98,13 @@
 							</div><!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
-								<div class="row-header"></div>
 								<div class="row-header">
+                                  Item
+                                </div>
+								<div class="row-header truncate">
 									Shipped Quantity
 								</div>
-								<div class="row-header">
+								<div class="row-header truncate">
 									Received Quantity
 								</div>
 								<div class="row-header">
@@ -122,13 +124,13 @@
 								<div class="row-header">
 									{{detail.coo}}
 								</div>
-                              <div class="row-header">
-                                <a id="open_case_detail_edit" ng-click="case_detail_edit_modal('lg', item.case_header, detail.id)">
-                                  <i class="icon-edit"></i></a>
+                              <div class="icon-header pull-right">
+                                <a id="open_shipment_detail" ng-click="show_case('Detail', item.case_header.id,  detail.id)">
+                                  <i class="fa fa-chevron-right"></i>
+                                </a>
                               </div>
 
-
-							</div>
+                            </div>
 						</div>
 						</td>
 					</tr>
@@ -158,6 +160,9 @@
 
           <div style="float: left; width: {{expand}}%" ng-show = "header.show">
             <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Case Header</button>
+            </div>
+            <div>
               <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
             </div>
             <div>
@@ -169,10 +174,13 @@
 
           <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
             <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Case Detail </button>
+            </div>
+            <div>
               <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_detail_add_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_detail_edit_modal('lg', selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="detail_template.url" class="card"></div>
           </div>

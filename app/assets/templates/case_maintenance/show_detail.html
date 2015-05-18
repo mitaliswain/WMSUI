@@ -1,22 +1,24 @@
+
+<body>
 <div class="modal-header">
-<div>
     <button type="button" class="btn btn-primary">
-        Warehouse :
+        Wahrehouse :
     </button>
-    {{case_header.warehouse}}
+    {{shipment_header.warehouse || "WH1"}}
     <button type="button" class="btn btn-primary">
         Client:
     </button>
-    {{case_header.client}}
+    {{shipment_header.client || "WM"}}
     <button type="button" class="btn btn-primary">
-        Case:
+        Shipment:
     </button>
-    {{case_header.case_id}}
+    {{shipment_header.shipment_nbr||"New Shipment"}}
     <button class="btn btn-primary" ng-click="ok()" style="float: right">
         <i class="fa fa-times" style="float: right"></i>
     </button>
+
 </div>
-</div>
+
 
 <div class="modal-body">
 

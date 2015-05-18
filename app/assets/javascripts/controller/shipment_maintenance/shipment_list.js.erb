@@ -40,25 +40,29 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.show_shipment = function(show, shipment, shipment_detail_id) {
         var url = '/shipment_maintenance/'+  shipment + '.json'
-        UserService.get_data($scope, url)
-        
-        if (show == 'Header') {
-        	$scope.header.show= true
-        	$scope.detail.show= false
-        } else {
-        	$scope.detail.show= true
-        	$scope.header.show= false
-        	angular.forEach($scope.shipment_details, function(shipment_detail) {
-        		        	console.log(shipment_detail.id)
-        		if (shipment_detail.id == shipment_detail_id){
-           			 $scope.shipment_detail = shipment_detail;
-        		}
-   			});
-        }
+
+        $http.get(url).success(function(data) {
+            $scope.shipment_header = data.shipment_header
+            $scope.shipment_details = data.shipment_detail
+
+            if (show == 'Header') {
+                $scope.header.show = true
+                $scope.detail.show = false
+            } else {
+                $scope.detail.show = true
+                $scope.header.show = false
+                angular.forEach($scope.shipment_details, function (shipment_detail) {
+                    if (shipment_detail.id == shipment_detail_id) {
+                        $scope.shipment_detail = shipment_detail;
+                    }
+                });
+            }
+        });
         
         $scope.expand = 50
         $scope.squeeze = 50
-        $scope.selected_header_id = shipment        
+        $scope.selected_header_id = shipment
+        $scope.selected_detail_id = shipment_detail_id
     }
 
     $scope.hide_shipment = function() {
@@ -80,7 +84,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
 
     //Modal methods
-    $scope.shipment_add_modal = function (size) {
+    $scope.shipment_header_add_modal = function (size) {
         var modalInstance = $modal.open({
             templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
             controller: 'shipmentAddCtrl',
@@ -96,7 +100,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
-    $scope.shipment_edit_modal = function (size, shipment) {
+    $scope.shipment_header_edit_modal = function (size, shipment) {
         var modalInstance = $modal.open({
             templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
             controller: 'shipmentEditCtrl',

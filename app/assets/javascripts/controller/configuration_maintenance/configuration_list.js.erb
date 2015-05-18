@@ -1,193 +1,187 @@
-configuration.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $q) {	
-  var warehouse = $location.search().warehouse;
-  var client    = $location.search().client; 
-  var lastitem = {}; 
-  var last_status;
-  var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
-  $scope.options = [];
-  $scope.TrueOrFalse = [
-    {value: 'True', text: 'True'},
-    {value: 'False', text: 'False'},
-    ]; 
-  
- $scope.update_configuration = function(data, el, id) {
+    wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
 
-    var warehouse = $location.search().warehouse;
-    var client    = $location.search().client; 
-    var fields_to_update = {};
-    var url = '/configuration_maintenance/'+ id;
-	fields_to_update[el.$editable.elem[0].id] = data;
-	var d = $q.defer();
-    $http.put(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-    	fields_to_update: fields_to_update
-    	})
-    	.success(function(res) {
-	     	res = res || {};
-	        d.resolve();
-	    }).error(function(res){
-	    	res = res || {};
-	    	if (res.code == 500) {
-	      		d.reject('Server error!');
-	      	}
-	      	else {	
-	      		d.reject(res.errors[0].message);
-	      	} 		
-	    });
-	    return d.promise;
- 	};
+        $scope.last_status = 'Created';
+        $scope.lastitem = {};
+        $scope.detail  = {}
+        $scope.header  = {}
+        $scope.expand = 0
+        $scope.squeeze = 100
+        $scope.search_choice = {} //{value: 'case_id', text: 'Case Id'}
 
-		
-    $scope.reload = function() {
-	    $http.get(url).success(function(data) {
-		    $scope.shipment_headers = data;
-		    $scope.items = data; 
-			
-		    $scope.sortingOrder = sortingOrder;
-		    $scope.reverse = false;
-		    $scope.filteredItems = [];
-		    $scope.groupedItems = [];
-		    $scope.itemsPerPage = 8;
-		    $scope.pagedItems = [];
-		    $scope.currentPage = 0;
-		    
-		    $scope.loadGroups = function(key) {  
-		    $scope.options = [];	   
-  	   		angular.forEach(data, function(configuration) {
-  	   			if (configuration.key == key) {
-  	   					angular.forEach(JSON.parse(configuration.attribute1).Options, function(option){
-  	   						$scope.options.push({value: option, text: option})
-  	   					});
+        $scope.search_items = [
+            //{value: 'case_id', text: 'Case Id'},
+            //{value: 'shipment_nbr', text: 'Shipment Number'},
+            //{value: 'purchase_order_nbr', text: 'PO Number'}
+        ];
 
-  	   			}
-  	   			});  	   		
-		    };
-		    
-		    var searchMatch = function (haystack, needle) {
-		        if (!needle) {
-		            return true;
-		        }
-		        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-		    };
-		
-		    
-		    $scope.toggle_expand = function(item) {
-		       item.show = !item.show;
-		       lastitem = item;	       
-		    };
-		    
-		    $scope.expand = function(item) {	
-		 		item.show = true;	      
-		    };
-		    			
-		
-		    // Filter by status
-		    $scope.status = function (status) {
-		    	status = status==null ?  last_status : status;
-		    	status = status==null ? 'Created' : status;
-		    	last_status = status;   	
-		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		                //if (searchMatch(item["enable"], status))
-		              	    return true;
-		              	//else              	    
-		            		//return false;
-	
-		        });
-		        // take care of the sorting order
-		        if ($scope.sortingOrder !== '') {
-		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-		        }
-		        $scope.currentPage = 0;
-		        // now group by pages
-		        $scope.groupToPages();
-		    };
-		
-		    // init the filtered items
-		    $scope.search = function () {
-		        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-		            //for(var attr in item) {
-		                if (searchMatch(item["key"], $scope.query))
-		              	    return true;
-		              	else              	    		            
-		            	return false;
-		        	});
-		        // take care of the sorting order
-		        if ($scope.sortingOrder !== '') {
-		            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-		        }
-		        $scope.currentPage = 0;
-		        // now group by pages
-		        $scope.groupToPages();
-		   	 };
-		    
-		    
-		  // calculate page in place
-		  $scope.groupToPages = function () {
-		        $scope.pagedItems = [];
-		        
-		        for (var i = 0; i < $scope.filteredItems.length; i++) {
-		            if (i % $scope.itemsPerPage === 0) {
-		                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
-		            } else {
-		                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-		            }
-		        }
-		    };
-		    
-		    $scope.range = function (start, end) {
-		        var ret = [];
-		        if (!end) {
-		            end = start;
-		            start = 0;
-		        }
-		        for (var i = start; i < end; i++) {
-		            ret.push(i);
-		        }
-		        return ret;
-		    };
-		    
-		    $scope.prevPage = function () {
-		        if ($scope.currentPage > 0) {
-		            $scope.currentPage--;
-		        }
-		    };
-		    
-		    $scope.nextPage = function () {
-		        if ($scope.currentPage < $scope.pagedItems.length - 1) {
-		            $scope.currentPage++;
-		        }
-		    };
-		    
-		    $scope.setPage = function () {
-		        $scope.currentPage = this.n;
-		    };
-		
-		    // functions have been describe process the data for display
-		    $scope.search();
-		
-		    // change sorting order
-		    $scope.sort_by = function(newSortingOrder) {
-		        if ($scope.sortingOrder == newSortingOrder)
-		            $scope.reverse = !$scope.reverse;
-		
-		        $scope.sortingOrder = newSortingOrder;
-		
-		        // icon setup
-		        $('th i').each(function(){
-		            // icon reset
-		            $(this).removeClass().addClass('icon-sort');
-		        });
-		        if ($scope.reverse)
-		            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-up');
-		        else
-		            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
-		    };
-		 $scope.expand(lastitem);	
-		 $scope.status();
-		 });
-		
-	 };
- 
-    $scope.reload();
-});
+        $scope.choose = function(choice) {
+            $scope.search_choice = choice;
+            $scope.case_list = []
+            angular.forEach($scope.items, function(item) {
+                $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+            });
+        }
+
+        $scope.case = 'new case';
+        var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';;
+
+        var reload_modal_close =  function(){
+            $scope.reload();
+        }
+
+        $scope.header_template = {
+            name: 'header_template',
+            url: '<%= asset_path('case_maintenance/case_header.html') %>'
+        };
+
+        $scope.detail_template = {
+            name: 'detail_template',
+            url: '<%= asset_path('case_maintenance/case_detail.html') %>'
+        };
+
+        $scope.show_case = function(show, case_id, case_detail_id) {
+            var url = '/case_maintenance/'+  case_id + '.json'
+            $scope.data = {}
+            $http.get(url).success(function(data) {
+                $scope.case_header = data.case_header
+                $scope.case_details = data.case_detail
+
+                if (show == 'Header') {
+                    $scope.header.show = true
+                    $scope.detail.show = false
+                } else {
+                    $scope.detail.show = true
+                    $scope.header.show = false
+                    angular.forEach($scope.case_details, function (case_detail) {
+                        if (case_detail.id == case_detail_id) {
+                            $scope.case_detail = case_detail;
+                        }
+                    });
+                }
+            });
+
+            $scope.expand = 50
+            $scope.squeeze = 50
+            $scope.selected_header_id = case_id
+            $scope.selected_detail_id = case_detail_id
+        }
+
+        $scope.hide_case = function() {
+            $scope.header.show= false
+            $scope.detail.show= false
+            $scope.expand = 0
+            $scope.squeeze = 100
+        };
+
+
+        $scope.toggle_expand = function(item) {
+            item.show = !item.show;
+            lastitem = item;
+        };
+
+        $scope.expand = function(item) {
+            item.show = true;
+        };
+
+
+        //Modal methods
+        $scope.case_add_modal = function (size) {
+            var modalInstance = $modal.open({
+                templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
+                controller: 'caseAddCtrl',
+                size: size,
+                resolve: {
+                    case_header: function () {
+                        return null;
+                    }
+                },
+                backdrop : 'static',
+                keyboard: false
+            });
+            modalInstance.result.then(reload_modal_close,reload_modal_close);
+        };
+
+        $scope.case_edit_modal = function (size, case_header) {
+            var modalInstance = $modal.open({
+                templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
+                controller: 'caseEditCtrl',
+                size: size,
+                resolve: {
+                    case_header: function () {
+                        return case_header;
+                    },
+                    case_detail_id: function () {
+                        return null;
+                    }
+                },
+                backdrop : 'static',
+                keyboard: false
+            });
+            modalInstance.result.then(reload_modal_close,reload_modal_close);
+        };
+
+
+        $scope.case_detail_add_modal = function (size, case_header) {
+            var modalInstance = $modal.open({
+                templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
+                controller: 'caseAddCtrl',
+                size: size,
+                resolve: {
+                    case_header: function () {
+                        return case_header;
+                    },
+                    case_detail_id: function () {
+                        return null;
+                    }
+                },
+                backdrop : 'static',
+                keyboard: false
+            });
+
+            modalInstance.result.then(reload_modal_close,reload_modal_close);
+        };
+
+        $scope.case_detail_edit_modal = function (size, case_header, case_detail_id) {
+            var modalInstance = $modal.open({
+                templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
+                controller: 'caseEditCtrl',
+                size: size,
+                resolve: {
+                    case_header: function () {
+                        return case_header
+                    },
+                    case_detail_id: function () {
+                        return case_detail_id;
+                    }
+                },
+                backdrop : 'static',
+                keyboard: false
+            });
+            modalInstance.result.then(reload_modal_close,reload_modal_close);
+        };
+
+
+
+        $scope.reload = function() {
+
+            $http.get(url).success(function(data) {
+                $scope.items = data;
+                $scope.case_list = []
+
+                $scope.filter_from_object = "configuration_header"
+                $scope.filter_from_field = "enable"
+
+                UserService.set_page($scope);
+
+                $scope.status(null);
+
+                angular.forEach($scope.items, function(item) {
+                   // $scope.case_list.push(item["configuration_headers"][$scope.search_choice.value]);
+                });
+
+            });
+
+        };
+
+        $scope.reload();
+    });

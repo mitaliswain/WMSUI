@@ -1,168 +1,145 @@
 <html>
-	<head>
-		<script>
-			$(document).on("click", "#open_shipment_detail", function() {
-				url = '/shipment/' + $(this).attr('data-target') + '#?id=' + $(this).attr('data-target') + '&warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
-			});
+<head>
+  <script>
+      var sortingOrder = 'shipment_header.shipment_nbr';
+  </script>
 
-			$(document).on("click", "#open_shipment_add", function() {
-				url = '/shipment/new/#?warehouse=WH1&client=WM';
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				angular.element('#shipmentAddCtrl').scope().clear();
-				$('#shipment_detail_modal').modal('show');
-			});
+</head>
 
-			$(document).on('hidden.bs.modal', '#shipment_detail_modal', function() {
-				angular.element('#ShipmentListCtrl').scope().reload();
-			});
-
-			$(document).on("click", "#open_shipment_detail_add", function() {
-				url = '/shipment/add_detail/#?warehouse=WH1&client=WM&asn_header_id=' + $(this).attr('data-target');
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
-			});
-
-			$(document).on("click", "#open_shipment_detail_edit", function() {
-				url = '/shipment/' + $(this).attr('shipment_id') + '/edit_detail/' + $(this).attr('shipment_detail_id') + '#?id=' + $(this).attr('shipment_id') + '&detail_id=' + $(this).attr('shipment_detail_id') + '&warehouse=WH1&client=WM';
-
-				$('#shipment_detail_modal_iframe').attr('src', url);
-				$('#shipment_detail_modal').modal('show');
-			});
-
-			var sortingOrder = 'item.key';
-		</script>
-	</head>
-
-	<%= render"shared/menu" %>
-	<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" class="maintenance_screen_div">
+<body ng-app="WMSUI" >
 
 
-		<body ng-app="configuration_detail" >
-        <div>
-          <h3><a href="/case"> <span class="label label-primary">Global Configuration</a></h3>
-        </div>
+<%= render"shared/menu" %>
 
-        <div class="input-group pull-right" style="width: 30%">
-          <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
-          <span class="input-group-addon"><i class="icon-search"></i></span>
-        </div>
-			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="active">
-						<a href="#Active" role="tab" data-toggle="tab" ng-click="status('true')">Active</a>
-					</li>
-					<li>
-						<a href="#Inactive" role="tab" data-toggle="tab" ng-click="status('false')">Inactive</a>
-					</li>
-				</ul>
 
-			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th colspan="7">
-						<div class="bs-callout">
-							<div class="row-header">
-								Option
-							</div>
-							<div class="row-header">
-								Module<a ng-click="sort_by('module')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="row-header">
-								Key<a ng-click="sort_by('key')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="row-header">
-								Value<a ng-click="sort_by('value')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="row-header">
-								Active<a ng-click="sort_by('enable')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="row-header">
-								<a id="open_shipment_add"
-								data-toggle="modal"
-								<i class="icon-plus-sign"></i></a>
-							</div>
-						</div></th>
-					</tr>
-				</thead>
-				<tfoot>
-					<td colspan="7">
-					<div>
-						<ul class="pagination pull-right">
-							<li ng-class="{disabled: currentPage == 0}">
-								<a href ng-click="prevPage()">« Prev</a>
-							</li>
-							<li ng-repeat="n in range(pagedItems.length)"
-							ng-class="{active: n == currentPage}"
-							ng-click="setPage()">
-								<a href ng-bind="n + 1">1</a>
-							</li>
-							<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-								<a href ng-click="nextPage()">Next »</a>
-							</li>
-						</ul>
-					</div></td>
-				</tfoot>
-				<tbody>
-					<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-						<td colspan="7">
-						<div  class="bs-callout bs-callout-info">
-							<div class="row-header" ng-click="toggle_expand(item)" >
-								<a id="expand"
-								data-toggle="modal"
-								data-target="{{item.id}}"> <i class="icon-plus-sign"></i></a>
-							</div>
+<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" class="maintenance_screen_div">
+  <div>
+    <h3><a href="/shipment_maintenance"><span class="label label-primary">Global Configuration</span></a></h3>
+  </div>
+  <div class="input-group pull-right" style="width: 30%" >
+				<span class="input-group-addon">
+				    <span class="dropdown" dropdown on-toggle="toggled(open)">
+				      <a href class="dropdown-toggle" dropdown-toggle>
+                        {{search_choice.text || 'Select'}}
+                      </a>
+				      <ul class="dropdown-menu">
+                        <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+                          <a href>{{choice.text}}</a>
+                        </li>
+                      </ul>
+				    </span>
+				 </span>
+    <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="shipment for shipment in shipment_list | filter:$viewValue | limitTo:8">
+    <span class="input-group-addon"><i class="icon-search"></i></span>
+  </div>
 
-							<div class="row-header">
-								{{item.module}}
-							</div>
-							<div class="row-header">
-								{{item.key}}
-							</div>
-							<div class="row-header">
-								<a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.value || "empty" }}</a>
-							</div>
-							<div class="row-header">
-								<a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
-							</div>
-							<div class="row-header">
-								<a id="open_shipment_detail"
-								data-toggle="modal"
-								data-target="{{item.shipment_header.id}}"> <i class="icon-edit"></i></a>
-							</div>
-						</div><!--Detail --> </div> </td>
-					</tr>
 
-				</tbody>
-			</table>
+  <tabset>
+    <tab heading="Active" select="status('true')"></tab>
+    <tab heading="Inactive" select="status('false')"></tab>
+  </tabset>
 
-			<div class="modal fade" id="shipment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								<i class="icon-remove"></i>
-							</button>
-							<h4 class="modal-title" id="myModalLabel">Shipment Detail</h4>
-						</div>
-						<div class="modal-body" style="height:700px; max-height:700px; width:100%; max-width:100%;">
-							<iframe id="shipment_detail_modal_iframe" src="" style="width: 100%; height: 100%"></iframe>
-						</div>
-						<div class="modal-footer" >
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
 
-	</div>
+  <div style="width: 100%">
+    <div style="float: left; width: {{squeeze}}%">
+      <table class="table">
+        <thead>
+        <tr>
+          <th colspan="7">
+            <div class="bs-callout">
+              <div class="row-header">
+                Option
+              </div>
+              <div class="row-header truncate">
+                Module<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Key<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Value<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Active<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                <a id="open_shipment_add"  ng-click="shipment_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+              </div>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in pagedItems[currentPage]">
 
-	</body>
+         hi {{pagedItems[currentPage]}}
+
+          <td colspan="7">
+            <div  class="card">
+              <div class="row-header" ng-click="toggle_expand(item)" >
+                <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+              </div>
+
+              <div class="row-header">
+                {{item.configuration_header.module}}
+              </div>
+              <div class="row-header">
+                {{item.configuration_header.key}}
+              </div>
+              <div class="row-header">
+                <a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
+              </div>
+              <div class="row-header">
+                <a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
+              </div>
+
+
+              <div class="icon-header pull-right">
+                <a id="open_shipment_detail" ng-click="show_shipment('Header', item.shipment_header.id)">
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+              </div>
+
+            </div>
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <td colspan="7">
+          <div>
+            <ul class="pagination pull-right">
+              <li ng-class="{disabled: currentPage == 0}">
+                <a href ng-click="prevPage()">« Prev</a>
+              </li>
+              <li ng-repeat="n in range(pagedItems.length)"
+                  ng-class="{active: n == currentPage}"
+                  ng-click="setPage()">
+                <a href ng-bind="n + 1">1</a>
+              </li>
+              <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                <a href ng-click="nextPage()">Next »</a>
+              </li>
+            </ul>
+          </div></td>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+
+
+  <div style="float: left;width: {{expand}}%" ng-show = "header.show">
+    <div>
+      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Shipment Header </button>
+    </div>
+    <div>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
+    </div>
+    <div>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="shipment_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+    </div>
+    <div ng-include src="header_template.url" class="card"></div>
+  </div>
+</div>
+
+</body>
 </html>

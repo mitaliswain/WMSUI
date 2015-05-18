@@ -10,8 +10,7 @@ wms.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, ca
     $http.get(url).success(function(data) {
         $scope.case_header = data.case_header;
         $scope.case_details = data.case_detail;
-
-
+        console.log(case_detail_id)
         angular.forEach(data.case_detail, function(case_detail) {
             if (case_detail.id == case_detail_id){
                 $scope.case_detail = case_detail;

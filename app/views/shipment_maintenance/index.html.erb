@@ -68,7 +68,7 @@
 							</div>
 							
 							<div class="row-header truncate">
-								<a id="open_shipment_add"  ng-click="shipment_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+								<a id="open_shipment_add"  ng-click="shipment_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
 							</div>
 						</div></th>
 					</tr>
@@ -165,23 +165,29 @@
         </div>
 
 
-          <div style="float: left; width: {{expand}}%" ng-show = "header.show">
+          <div style="float: left;width: {{expand}}%" ng-show = "header.show">
+            <div>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Shipment Header </button>
+            </div>
             <div>
               <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
             </div>
              <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="shipment_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="shipment_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="header_template.url" class="card"></div>
           </div>
 
           
          <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
+           <div>
+             <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Shipment Detail </button>
+           </div>
             <div>
               <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
             </div>
              <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="shipment_detail_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="shipment_detail_edit_modal('lg', selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="detail_template.url" class="card"></div>
           </div>
