@@ -1,5 +1,4 @@
 var wms = angular.module('WMSUI', ["ngRoute", "xeditable", "ui.bootstrap"]);
-var case_data = angular.module('case_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var configuration = angular.module('configuration_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var item_master = angular.module('item_master', ["ngRoute", "xeditable", "ui.bootstrap"]);
 var login = angular.module('login', ["ngRoute", "ui.bootstrap"]);
@@ -26,17 +25,13 @@ wms.filter('tel', function () {
 wms.run(function(editableOptions) {
  editableOptions.theme = 'bs3';
 });
-case_data.run(function(editableOptions) {
- editableOptions.theme = 'bs3';
-});
+
 configuration.run(function(editableOptions) {
     editableOptions.theme = 'bs3';
 });
 item_master.run(function(editableOptions) {
     editableOptions.theme = 'bs3';
 });
-
-
 
 
 
@@ -50,8 +45,6 @@ item_master.run(function(editableOptions) {
                     $scope.shipment_header = data.shipment_header;
                     $scope.shipment_details = data.shipment_detail;
                     $scope.data = data
-                    console.log($scope.data.case_header)
-
                 });
 
                 },
@@ -71,7 +64,14 @@ item_master.run(function(editableOptions) {
                     if (!needle || !haystack) {
                         return false;
                     }
-                    return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
+                    
+                    if (typeof(haystack) == 'boolean') {
+                    	return haystack == needle
+                    }
+                    
+                    if (typeof(haystack) == 'string') {
+                    	return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
+                    }	
                 };
 
                 // Filter by status
@@ -79,6 +79,7 @@ item_master.run(function(editableOptions) {
 
                     status = status==null ?  $scope.last_status : status;
                     $scope.last_status = status;
+                    
                     $scope.filteredItems = $filter('filter')($scope.items, function (item) {
                         if (searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], status)) {
                             return true;

@@ -1,25 +1,30 @@
     wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
 
-        $scope.last_status = 'Created';
+        $scope.last_status = true;
         $scope.lastitem = {};
         $scope.detail  = {}
         $scope.header  = {}
         $scope.expand = 0
         $scope.squeeze = 100
-        $scope.search_choice = {} //{value: 'case_id', text: 'Case Id'}
 
         $scope.search_items = [
-            //{value: 'case_id', text: 'Case Id'},
+            {value: 'module', text: 'Module'},
             //{value: 'shipment_nbr', text: 'Shipment Number'},
             //{value: 'purchase_order_nbr', text: 'PO Number'}
         ];
+		
+		$scope.search_choice = $scope.search_items[0]
 
         $scope.choose = function(choice) {
             $scope.search_choice = choice;
             $scope.case_list = []
             angular.forEach($scope.items, function(item) {
-                $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+                $scope.case_list.push(item["configuration_header"][$scope.search_choice.value]);
             });
+            
+            $scope.case_list = $scope.case_list.filter(function (e, i, arr) {
+   				return arr.lastIndexOf(e) === i;
+			});
         }
 
         $scope.case = 'new case';
@@ -176,7 +181,7 @@
                 $scope.status(null);
 
                 angular.forEach($scope.items, function(item) {
-                   // $scope.case_list.push(item["configuration_headers"][$scope.search_choice.value]);
+                    $scope.case_list.push(item["configuration_header"][$scope.search_choice.value]);
                 });
 
             });
