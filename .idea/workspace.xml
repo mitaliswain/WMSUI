@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="514093bf-68f3-4867-aaf8-d509383ed6a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" afterPath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/case_maintenance/case_edit.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/case_maintenance/case_edit.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/case_maintenance/case_list.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/case_maintenance/case_list.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/controllers/configuration_controller.rb" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/configuration_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/configuration_maintenance/configuration_list.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/configuration_maintenance/configuration_list.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/concerns/wms_configuration/configuration_maintenance.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/concerns/wms_configuration/configuration_maintenance.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/case_maintenance/index.html.erb" afterPath="$PROJECT_DIR$/app/views/case_maintenance/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/configuration_maintenance/index.html.erb" afterPath="$PROJECT_DIR$/app/views/configuration_maintenance/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shipment_maintenance/index.html.erb" afterPath="$PROJECT_DIR$/app/views/shipment_maintenance/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_edit.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_edit.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/case_maintenance/show_detail.html" afterPath="$PROJECT_DIR$/app/assets/templates/case_maintenance/show_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/show_detail.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/show_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/case_maintenance/show_header.html" afterPath="$PROJECT_DIR$/app/assets/templates/case_maintenance/show_header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/show_header.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/show_header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WMSUI.iws" />
@@ -97,7 +82,7 @@
       <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/configuration_maintenance/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41504177" vertical-offset="496" max-vertical-offset="2250">
+            <state vertical-scroll-proportion="1.7966573" vertical-offset="0" max-vertical-offset="2250">
               <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -920,10 +905,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="697" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32066116" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32066116" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2536349" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1374,7 +1359,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/configuration_maintenance/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41504177" vertical-offset="496" max-vertical-offset="2250">
+        <state vertical-scroll-proportion="1.7966573" vertical-offset="0" max-vertical-offset="2250">
           <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
