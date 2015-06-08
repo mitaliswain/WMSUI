@@ -8,7 +8,13 @@ class GlobalConfiguration
     response = RestClient.get url, {:params => {:selection => params.to_json}}
     return JSON.parse(response)       
   end
-  
+
+  def self.configuration_details(configuration)
+    url = Properties.getUrl + "/configuration/#{configuration['configuration_id']}?client=#{configuration['client']}&warehouse=#{configuration['warehouse']}"
+    response = RestClient.get url
+    return JSON.parse(response)
+  end
+
   def configuration_update(id, app_parameters, fields_to_update)
     
     url = Properties.getUrl + "/configuration/#{id}"   

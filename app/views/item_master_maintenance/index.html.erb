@@ -1,127 +1,178 @@
 <html>
 <head>
   <script>
-      var sortingOrder = 'item_master.item';
-
+      var sortingOrder = 'item_header.item';
   </script>
 
 </head>
 
-<body ng-app="item_master" >
+<body ng-app="WMSUI" >
+
 
 <%= render"shared/menu" %>
 
 
-<div id="ItemListCtrl" ng-controller="itemListCtrl" class="maintenance_screen_div">
+<div id="ItemMasterListCtrl" ng-controller="ItemMasterListCtrl" class="maintenance_screen_div">
   <div>
     <h3><a href="/item_master_maintenance"><span class="label label-primary">Item Master</span></a></h3>
   </div>
   <div class="input-group pull-right" style="width: 30%" >
-    <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search">
+				<span class="input-group-addon">
+				    <span class="dropdown" dropdown on-toggle="toggled(open)">
+				      <a href class="dropdown-toggle" dropdown-toggle>
+                        {{search_choice.text || 'Select'}}
+                      </a>
+				      <ul class="dropdown-menu">
+                        <li ng-repeat="choice in search_items" ng-click="choose(choice)">
+                          <a href>{{choice.text}}</a>
+                        </li>
+                      </ul>
+				    </span>
+				 </span>
+    <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="item for item in item_list | filter:$viewValue | limitTo:8">
     <span class="input-group-addon"><i class="icon-search"></i></span>
   </div>
+
 
   <tabset>
     <tab heading="Active" select="status('Active')"></tab>
     <tab heading="Inactive" select="status('Inactive')"></tab>
   </tabset>
 
+  <div style="width: 100%">
+    <div style="float: left; width: {{squeeze}}%">
+      <table class="table">
+        <thead>
+        <tr>
+          <th colspan="7">
+            <div class="bs-callout">
+              <div class="row-header">
+                Option
+              </div>
+              <div class="row-header truncate">
+                Item<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Description<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Barcode<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                Coo<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
+              </div>
+              <div class="row-header truncate">
+                <a id="open_item_add"  ng-click="item_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+              </div>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in pagedItems[currentPage]">
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th colspan="7">
-        <div class="bs-callout">
-          <div class="row-header">
-            Option
-          </div>
-          <div class="row-header">
-            Item &nbsp;<a ng-click="sort_by('item')"><i class="icon-sort"></i></a>
-          </div>
-          <div class="row-header">
-            Item Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a>
-          </div>
-          <div class="row-header">
-            Barcode &nbsp;<a ng-click="sort_by('barcode')"><i class="icon-sort"></i></a>
-          </div>
-          <div class="row-header">
-            Country of Origin&nbsp;<a ng-click="sort_by('coo')"><i class="icon-sort"></i></a>
-          </div>
-          <div class="row-header">
-            <a id="open_item_add"  ng-click="item_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
-          </div>
-        </div></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-      <td colspan="7">
-        <div  class="bs-callout bs-callout-info">
-          <div class="row-header" ng-click="toggle_expand(item)" >
-            <i class="{{item.show ? 'fa fa-caret-right fa-lg' : 'fa fa-caret-down fa-lg'}}"></i></a>
-          </div>
+          <td colspan="7">
+            <div  class="card">
+              <div class="row-header" ng-click="toggle_expand(item)" >
+                <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+              </div>
 
-          <div class="row-header">
-            {{item.item}}
-          </div>
-          <div class="row-header">
-            {{item.description}}
-          </div>
-          <div class="row-header">
-            {{item.barcode}}
-          </div>
-          <div class="row-header">
-            {{item.coo}}
-          </div>
+              <div class="row-header truncate">
+                {{item.item_header.item}}
+              </div>
+              <div class="row-header truncate">
+                {{item.item_header.description}}
+              </div>
+              <div class="row-header truncate">
+                {{item.item_header.barcode}}
+              </div>
+              <div class="row-header truncate">
+                {{item.item_header.coo}}
+              </div>
 
-          <div class="row-header">
-            <a id="open_item_detail" ng-click="item_edit_modal('lg', item.id)">
-              <i class="fa fa-pencil"></i>
-            </a>
-          </div>
-        </div>
+              <div class="icon-header pull-right">
+                <a id="open_item_add" ng-click="show_item('Header', item.item_header.id)">
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+              </div>
 
-    </tbody>
+            </div>
 
-    <tfoot>
-    <td colspan="7">
-      <div>
-        <ul class="pagination pull-right">
-          <li ng-class="{disabled: currentPage == 0}">
-            <a href ng-click="prevPage()">« Prev</a>
-          </li>
-          <li ng-repeat="n in range(pagedItems.length)"
-              ng-class="{active: n == currentPage}"
-              ng-click="setPage()">
-            <a href ng-bind="n + 1">1</a>
-          </li>
-          <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-            <a href ng-click="nextPage()">Next »</a>
-          </li>
-        </ul>
-      </div></td>
-    </tfoot>
+            <!--Detail -->
+            <div ng-show="item.show" style="padding-left: 0%">
+              <div class="label label-default">
+                <div class="row-header">
+                  Inner Pack Qty
+                </div>
+                <div class="row-header">
+                  Inner Pack Weight
+                </div>
+                <div class="row-header">
+                  Inner Pack Height
+                </div>
+                <div class="row-header">
+                  <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
+                    <i class="icon-plus-sign"></i>
+                  </a>
+                </div>
 
-  </table>
+              </div>
+              <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
+                <div class="row-header">
+                  {{detail.innerpack_qty}}
+                </div>
+                <div class="row-header">
+                  {{detail.innerpack_wgt}}
+                </div>
+                <div class="row-header">
+                  {{detail.innerpack_hgt}}
+                </div>
+                <div class="icon-header pull-right">
+                  <a id="open_shipment_detail" ng-click="show_item('Detail', item.item_header.id,  detail.id)">
+                    <i class="fa fa-chevron-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
 
-  <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <h3 class="modal-title">I'm a modal!</h3>
+        </tbody>
+        <tfoot>
+        <td colspan="7">
+          <div>
+            <ul class="pagination pull-right">
+              <li ng-class="{disabled: currentPage == 0}">
+                <a href ng-click="prevPage()">« Prev</a>
+              </li>
+              <li ng-repeat="n in range(pagedItems.length)"
+                  ng-class="{active: n == currentPage}"
+                  ng-click="setPage()">
+                <a href ng-bind="n + 1">1</a>
+              </li>
+              <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                <a href ng-click="nextPage()">Next »</a>
+              </li>
+            </ul>
+          </div></td>
+        </tfoot>
+
+      </table>
     </div>
-    <div class="modal-body">
-      <ul>
-        <li ng-repeat="item in items">
-          <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-      </ul>
-      Selected: <b>{{ selected.item }}</b>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="ok()">Exit</button>
-    </div>
-  </script>
+  </div>
 
 
+  <div style="float: left;width: {{expand}}%" ng-show = "header.show">
+    <div>
+      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_configuration()">Item Master</button>
+    </div>
+    <div>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_configuration()"><i class="fa fa-times"></i> </button>
+    </div>
+    <div>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="item_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+    </div>
+    <div ng-include src="header_template.url" class="card"></div>
+  </div>
 </div>
 
 </body>

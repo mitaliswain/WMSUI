@@ -1,10 +1,10 @@
-wms.controller('ItemMasterEditCtrl', function ($scope, $modalInstance, item, $http, $location, $q) {
-  var url = '/item_master_maintenance/'+  item + '.json?client=' + 'WM' ;
+wms.controller('ConfigurationEditCtrl', function ($scope, $modalInstance, configuration, $http, $location, $q) {
+  var url = '/configuration_maintenance/'+  configuration + '.json?client=' + 'WM' ;
 
 
 
   $http.get(url).success(function(data) {
-    $scope.item_header = data.item_header;
+    $scope.configuration_header = data.configuration_header;
   });
 
     $scope.statuses = [
@@ -12,23 +12,32 @@ wms.controller('ItemMasterEditCtrl', function ($scope, $modalInstance, item, $ht
         {value: 'Inactive', text: 'Inactive'}
     ];
 
+    $scope.options = []
+
+    $scope.loadGroups = function(attribute1) {
+        $scope.options = []
+        angular.forEach(JSON.parse(attribute1).Options, function(option) {
+            $scope.options.push({value: option, text: option});
+        });
+    }
+
     $scope.concept = [
         {value: 'AB', text: 'AB'},
         {value: 'BC', text: 'BC'},
     ];
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
+        url: '<%= asset_path('configuration_maintenance/configuration_header.html') %>'
         };
 
 
     $scope.updateHeader = function(data, el, id) {
 
         var warehouse = $location.search().warehouse;
-        var item  =  $location.search().item;
+        var configuration  =  $location.search().configuration;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/item_master_maintenance/'+ id
+        var url = '/configuration_maintenance/'+ id
         fields_to_update[el.$editable.elem[0].id] = data;
         var d = $q.defer();
         $http.post(url, {

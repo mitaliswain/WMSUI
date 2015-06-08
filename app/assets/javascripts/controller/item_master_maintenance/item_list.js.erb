@@ -1,175 +1,146 @@
-item_master.controller('itemListCtrl', function ($scope, $http,  $location, $filter, $modal) {
-    var warehouse = $location.search().warehouse;
-    var client    = $location.search().client;
-    var last_status = 'Active';
+wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
 
-    var url = '/item_master_maintenance.json?';
+    $scope.last_status = 'Created';
+    $scope.lastitem = {};
+    $scope.detail  = {}
+    $scope.header  = {}
+    $scope.expand = 0
+    $scope.squeeze = 100
+
+    $scope.search_items = [
+        {value: 'barcode', text: 'Barcode'},
+        {value: 'item', text: 'Item'},
+        {value: 'description', text: 'Description'}
+    ];
+
+    $scope.search_choice = $scope.search_items[0]
+
+    $scope.choose = function(choice) {
+        $scope.search_choice = choice;
+        $scope.item_list = []
+        angular.forEach($scope.items, function(item) {
+            $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+        });
+    }
+
+    $scope.item = 'new item';
+    var url = '/item_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
     var reload_modal_close =  function(){
         $scope.reload();
     }
 
-    $scope.reload = function() {
-        $http.get(url).success(function(data) {
-            $scope.items = data;
-
-            $scope.sortingOrder = sortingOrder;
-            $scope.reverse = false;
-            $scope.filteredItems = [];
-            $scope.groupedItems = [];
-            $scope.itemsPerPage = 8;
-            $scope.pagedItems = [];
-            $scope.currentPage = 0;
-
-            var searchMatch = function (haystack, needle) {
-                if (!needle) {
-                    return true;
-                }
-                if (haystack != null)
-                {
-
-                    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-                }
-                else
-                    return false;
-
-            };
-
-
-            // Filter by status
-            $scope.status = function (status) {
-                status = status==null ?  last_status : status;
-                last_status = status;
-                $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-
-                    if (searchMatch(item["status"], status))
-                        return true;
-                    else
-                        return false;
-
-                });
-                // take care of the sorting order
-                if ($scope.sortingOrder !== '') {
-                    $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-                }
-                $scope.currentPage = 0;
-                // now group by pages
-                $scope.groupToPages();
-            };
-
-            // init the filtered items
-            $scope.search = function () {
-                $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-                    //for(var attr in item) {
-                    if (searchMatch(item["item"], $scope.query))
-                        return true;
-                    else
-                    //}
-                        return false;
-                });
-                // take care of the sorting order
-                if ($scope.sortingOrder !== '') {
-                    $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-                }
-                $scope.currentPage = 0;
-                // now group by pages
-                $scope.groupToPages();
-            };
-
-
-            // calculate page in place
-            $scope.groupToPages = function () {
-                $scope.pagedItems = [];
-
-                for (var i = 0; i < $scope.filteredItems.length; i++) {
-                    if (i % $scope.itemsPerPage === 0) {
-                        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
-                    } else {
-                        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-                    }
-                }
-            };
-
-            $scope.range = function (start, end) {
-                var ret = [];
-                if (!end) {
-                    end = start;
-                    start = 0;
-                }
-                for (var i = start; i < end; i++) {
-                    ret.push(i);
-                }
-                return ret;
-            };
-
-            $scope.prevPage = function () {
-                if ($scope.currentPage > 0) {
-                    $scope.currentPage--;
-                }
-            };
-
-            $scope.nextPage = function () {
-                if ($scope.currentPage < $scope.pagedItems.length - 1) {
-                    $scope.currentPage++;
-                }
-            };
-
-            $scope.setPage = function () {
-                $scope.currentPage = this.n;
-            };
-
-            // functions have been describe process the data for display
-            $scope.search();
-
-            // change sorting order
-            $scope.sort_by = function(newSortingOrder) {
-                if ($scope.sortingOrder == newSortingOrder)
-                    $scope.reverse = !$scope.reverse;
-
-                $scope.sortingOrder = newSortingOrder;
-
-                // icon setup
-                $('th i').each(function(){
-                    // icon reset
-                    $(this).removeClass().addClass('icon-sort');
-                });
-                if ($scope.reverse)
-                    $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-up');
-                else
-                    $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
-            };
-            $scope.status();
-        });
-
+    $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
     };
 
+    $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path('item_master_maintenance/item_detail.html') %>'
+    };
+
+    $scope.show_item = function(show, item, item_detail_id) {
+        var url = '/item_master_maintenance/'+  item + '.json'
+
+        $http.get(url).success(function(data) {
+            $scope.item_header = data.item_header
+            $scope.item_details = data.item_detail
+
+            if (show == 'Header') {
+                $scope.header.show = true
+                $scope.detail.show = false
+            } else {
+                $scope.detail.show = true
+                $scope.header.show = false
+                angular.forEach($scope.item_details, function (item_detail) {
+                    if (item_detail.id == item_detail_id) {
+                        $scope.item_detail = item_detail;
+                    }
+                });
+            }
+        });
+
+        $scope.expand = 50
+        $scope.squeeze = 50
+        $scope.selected_header_id = item
+        $scope.selected_detail_id = item_detail_id
+    }
+
+    $scope.hide_item= function() {
+        $scope.header.show= false
+        $scope.detail.show= false
+        $scope.expand = 0
+        $scope.squeeze = 100
+    };
+
+
+    $scope.toggle_expand = function(item) {
+        item.show = !item.show;
+        lastitem = item;
+    };
+
+    $scope.expand = function(item) {
+        item.show = true;
+    };
+
+
     //Modal methods
-    $scope.item_add_modal = function (size) {
+    $scope.item_header_add_modal = function (size) {
         var modalInstance = $modal.open({
             templateUrl: '<%= asset_path('item_master_maintenance/add_item.html') %>',
-            controller: 'itemAddCtrl',
+            controller: 'ItemMasterAddCtrl',
             size: size,
             resolve: {
                 item: function () {
                     return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
-    $scope.item_edit_modal = function (size, item) {
+    $scope.item_header_edit_modal = function (size, item) {
         var modalInstance = $modal.open({
             templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
-            controller: 'itemEditCtrl',
+            controller: 'ItemMasterEditCtrl',
             size: size,
             resolve: {
                 item: function () {
                     return item;
+                },
+                item_detail_id: function () {
+                    return null;
                 }
-            }
+            },
+            backdrop : 'static',
+            keyboard: false
         });
         modalInstance.result.then(reload_modal_close,reload_modal_close);
+    };
+
+
+    $scope.reload = function() {
+
+        $http.get(url).success(function(data) {
+            $scope.items = data;
+            $scope.item_list = []
+
+            $scope.filter_from_object = "item_header"
+            $scope.filter_from_field = "status"
+
+            UserService.set_page($scope);
+
+            $scope.status('Active');
+
+            angular.forEach($scope.items, function(item) {
+                $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+            });
+
+        });
+
     };
 
     $scope.reload();

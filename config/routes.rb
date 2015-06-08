@@ -37,7 +37,9 @@ Rails.application.routes.draw do
 
   namespace :configuration_maintenance do
     get '', action: 'index'
-    put '/:id', action: 'update'
+    get  ':id', action: 'show'
+    post ':id', action: 'update'
+    post '', action: 'create'
   end
 
 

@@ -12,7 +12,16 @@
             //{value: 'shipment_nbr', text: 'Shipment Number'},
             //{value: 'purchase_order_nbr', text: 'PO Number'}
         ];
-		
+
+        $scope.options = []
+
+        $scope.loadGroups = function(attribute1) {
+            $scope.options = []
+           angular.forEach(JSON.parse(attribute1).Options, function(option) {
+                  $scope.options.push({value: option, text: option});
+           });
+        }
+
 		$scope.search_choice = $scope.search_items[0]
 
         $scope.choose = function(choice) {
@@ -21,7 +30,7 @@
             angular.forEach($scope.items, function(item) {
                 $scope.case_list.push(item["configuration_header"][$scope.search_choice.value]);
             });
-            
+
             $scope.case_list = $scope.case_list.filter(function (e, i, arr) {
    				return arr.lastIndexOf(e) === i;
 			});
@@ -36,7 +45,7 @@
 
         $scope.header_template = {
             name: 'header_template',
-            url: '<%= asset_path('case_maintenance/case_header.html') %>'
+            url: '<%= asset_path('configuration_maintenance/configuration_header.html') %>'
         };
 
         $scope.detail_template = {
@@ -44,12 +53,13 @@
             url: '<%= asset_path('case_maintenance/case_detail.html') %>'
         };
 
-        $scope.show_case = function(show, case_id, case_detail_id) {
-            var url = '/case_maintenance/'+  case_id + '.json'
+        $scope.show_configuration = function(show, configuration, configuration_detail_id) {
+            var url = '/configuration_maintenance/'+  configuration + '.json'
             $scope.data = {}
             $http.get(url).success(function(data) {
-                $scope.case_header = data.case_header
-                $scope.case_details = data.case_detail
+                $scope.configuration_header = data.configuration_header
+                console.log(JSON.parse($scope.configuration_header.attribute1).Options)
+                $scope.configuration_details = data.configuration_detail
 
                 if (show == 'Header') {
                     $scope.header.show = true
@@ -57,9 +67,9 @@
                 } else {
                     $scope.detail.show = true
                     $scope.header.show = false
-                    angular.forEach($scope.case_details, function (case_detail) {
-                        if (case_detail.id == case_detail_id) {
-                            $scope.case_detail = case_detail;
+                    angular.forEach($scope.configuration_deatils, function (configuration_detail) {
+                        if (configuration_detail.id == configuration_detail_id) {
+                            $scope.configuration_detail = configuration_detail;
                         }
                     });
                 }
@@ -67,11 +77,11 @@
 
             $scope.expand = 50
             $scope.squeeze = 50
-            $scope.selected_header_id = case_id
-            $scope.selected_detail_id = case_detail_id
+            $scope.selected_header_id = configuration
+            $scope.selected_detail_id = configuration_detail_id
         }
 
-        $scope.hide_case = function() {
+        $scope.hide_configuration = function() {
             $scope.header.show= false
             $scope.detail.show= false
             $scope.expand = 0
@@ -106,16 +116,16 @@
             modalInstance.result.then(reload_modal_close,reload_modal_close);
         };
 
-        $scope.case_edit_modal = function (size, case_header) {
+        $scope.configuration_header_edit_modal = function (size, configuration_header) {
             var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
-                controller: 'caseEditCtrl',
+                templateUrl: '<%= asset_path('configuration_maintenance/show_configure.html') %>',
+                controller: 'ConfigurationEditCtrl',
                 size: size,
                 resolve: {
-                    case_header: function () {
-                        return case_header;
+                    configuration: function () {
+                        return configuration_header;
                     },
-                    case_detail_id: function () {
+                    configuration_detail_id: function () {
                         return null;
                     }
                 },
@@ -146,17 +156,17 @@
             modalInstance.result.then(reload_modal_close,reload_modal_close);
         };
 
-        $scope.case_detail_edit_modal = function (size, case_header, case_detail_id) {
+        $scope.configuration_detail_edit_modal = function (size, configuration_header, configuration_detail_id) {
             var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
-                controller: 'caseEditCtrl',
+                templateUrl: '<%= asset_path('configuration_maintenance/show_configure.html') %>',
+                controller: 'ConfigurationEditCtrl',
                 size: size,
                 resolve: {
-                    case_header: function () {
-                        return case_header
+                    configuration_header: function () {
+                        return configuration_header
                     },
-                    case_detail_id: function () {
-                        return case_detail_id;
+                    configuration_detail_id: function () {
+                        return configuration_detail_id;
                     }
                 },
                 backdrop : 'static',
@@ -164,8 +174,6 @@
             });
             modalInstance.result.then(reload_modal_close,reload_modal_close);
         };
-
-
 
         $scope.reload = function() {
 
