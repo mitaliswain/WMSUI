@@ -9,7 +9,7 @@
 
         $scope.search_items = [
             {value: 'module', text: 'Module'},
-            //{value: 'shipment_nbr', text: 'Shipment Number'},
+            {value: 'key', text: 'Key'}
             //{value: 'purchase_order_nbr', text: 'PO Number'}
         ];
 
@@ -58,7 +58,6 @@
             $scope.data = {}
             $http.get(url).success(function(data) {
                 $scope.configuration_header = data.configuration_header
-                console.log(JSON.parse($scope.configuration_header.attribute1).Options)
                 $scope.configuration_details = data.configuration_detail
 
                 if (show == 'Header') {

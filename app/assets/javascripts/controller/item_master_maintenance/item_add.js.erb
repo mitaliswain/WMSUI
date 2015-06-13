@@ -4,7 +4,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $htt
   var warehouse = 'WH1';
 
 
-   $scope.item = {};
+   $scope.item_header = {};
 
    $scope.globalInfo = {
    	error: false,
@@ -23,7 +23,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $htt
     ]; 
 
     $scope.clear = function() {
-	   $scope.item= {};
+	   $scope.item_header= {};
 	   };
   
    
@@ -35,7 +35,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $htt
  $scope.saveHeader = function() {
 	
     var fields_to_update = {};
-    fields_to_update = $scope.item;
+    fields_to_update = $scope.item_header;
     var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),

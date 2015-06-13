@@ -15,6 +15,7 @@ wms.controller('ConfigurationEditCtrl', function ($scope, $modalInstance, config
     $scope.options = []
 
     $scope.loadGroups = function(attribute1) {
+        console.log((attribute1))
         $scope.options = []
         angular.forEach(JSON.parse(attribute1).Options, function(option) {
             $scope.options.push({value: option, text: option});
