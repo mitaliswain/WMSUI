@@ -77,6 +77,11 @@ select {
     float: left
 }
 
+.title {
+    width: 50%;
+    float: left
+}
+
 .row-header {
 	min-width: 12%;
 	max-width: 12%;
