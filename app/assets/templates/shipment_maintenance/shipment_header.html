@@ -226,24 +226,24 @@
             <accordion-group heading="Tracking Information....">
                 <div class="modal_text_box">
                     <span class="title">Track COO: </span><a href="#" id="track_coo"
-                                                             editable-select="shipment_detail.hot_item"
+                                                             editable-select="shipment_header.track_coo"
                                                              e-ng-options="s.value as s.text for s in YesorNo"
-                                                             onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
-                    shipment_detail.track_coo || "empty" }}</a>
+                                                             onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                    shipment_header.track_coo || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Track LOC Control: </span><a href="#" id="track_lotcontrol"
-                                                                     editable-select="shipment_detail.hot_item"
+                                                                     editable-select="shipment_header.track_lotcontrol"
                                                                      e-ng-options="s.value as s.text for s in YesorNo"
-                                                                     onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
-                    shipment_detail.track_lotcontrol || "empty" }}</a>
+                                                                     onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                    shipment_header.track_lotcontrol || "empty" }}</a>
                 </div>
                 <div class="modal_text_box">
                     <span class="title">Track Serial Number: </span><a href="#" id="track_serial_nbr"
-                                                                       editable-select="shipment_detail.hot_item"
+                                                                       editable-select="shipment_header.track_serial_nbr"
                                                                        e-ng-options="s.value as s.text for s in YesorNo"
-                                                                       onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
-                    shipment_detail.track_serial_nbr || "empty" }}</a>
+                                                                       onbeforesave="updateDetail($data, this, shipment_header.id)">{{
+                    shipment_header.track_serial_nbr || "empty" }}</a>
                 </div>
             </accordion-group>
 
