@@ -45,28 +45,8 @@ wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, s
         var shipment  =  $location.search().shipment;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/shipment_maintenance/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;
-        fields_to_update[el.$editable.elem[0].id] = data;
-        var d = $q.defer();
-        $http.post(url, {
-            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-            fields_to_update: fields_to_update
-        })
-                .success(function(res) {
-                    res = res || {};
-                    d.resolve();
-                }).error(function(res){
-                    console.log(res);
-                    res = res || {};
-                    if (res.status == 500) {
-                        d.reject(res.message|| 'Server Error');
-                    }
-                    else {
-                        d.reject(res.errors[0].message);
-                    }
-                });
-        return d.promise;
+        var url = '/shipment_maintenance/'+ id + '/update_header' ;
+        UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.updateDetail = function(data, el, id) {
@@ -75,29 +55,9 @@ wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, s
         var shipment  =  $location.search().shipment;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/shipment_maintenance/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;
-        fields_to_update[el.$editable.elem[0].id] = data;
-        var d = $q.defer();
-        $http.post(url, {
-            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-            fields_to_update: fields_to_update
-        })
-                .success(function(res) {
-                    res = res || {};
-                    d.resolve();
-                }).error(function(res){
-                    res = res || {};
-                    if (res.status == 500) {
-                        d.reject('Server error!');
-                    }
-                    else {
-                        d.reject(res.errors[0].message);
-                    }
-                });
-        return d.promise;
+        var url = '/shipment_maintenance/'+ id + '/update_detail';
+        UserService.updateResource(data, el, id, url, $scope, $q)
     };
-
     $scope.ok = function () {
         $modalInstance.close();
     };

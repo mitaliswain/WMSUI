@@ -159,7 +159,15 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
+    $scope.updateHeader = function(data, el, id) {
+        var url = '/shipment_maintenance/'+ id + '/update_header';
+        UserService.updateResource(data, el, id, url, $scope, $q);
+    };
 
+    $scope.updateDetail = function(data, el, id) {
+        var url = '/shipment_maintenance/'+ id + '/update_detail';
+        UserService.updateResource(data, el, id, url, $scope, $q);
+    };
 
     $scope.reload = function() {
 

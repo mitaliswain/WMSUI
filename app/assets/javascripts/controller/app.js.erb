@@ -1,187 +1,225 @@
-var wms = angular.module('WMSUI', ["ngRoute", "xeditable", "ui.bootstrap"]);
-var configuration = angular.module('configuration_detail', ["ngRoute", "xeditable", "ui.bootstrap"]);
-var item_master = angular.module('item_master', ["ngRoute", "xeditable", "ui.bootstrap"]);
+var wms = angular.module('WMSUI', ['ngRoute' , 'xeditable', 'ui.bootstrap']);
 var login = angular.module('login', ["ngRoute", "ui.bootstrap"]);
 
 
-wms.config(['$routeProvider',
- function($routeProvider) {
-   $routeProvider.
-     when('/shipmentHeader', {
-       templateUrl: 'shipment_header.html', controller: 'shipmentEditCtrl'})
-    .otherwise({
-            templateUrl: '/assets/shipment_maintenance/shipment_header.html', controller: 'shipmentEditCtrl'});
-     
-}]);
 
-wms.filter('tel', function () {
-            return function (phoneNumber) {
-                if (!phoneNumber)
-                    return phoneNumber;
-                return formatLocal('US', phoneNumber);
-            }
-        });
+// configure our routes
+wms.config(function($routeProvider) {
+    $routeProvider
+
+        // route for the home page
+            .when('/shipment_maintenance', {
+                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
+                controller: 'ShipmentListCtrl'
+            })
+
+            .when('/case_maintenance', {
+                templateUrl: '<%= asset_path('case_maintenance/index.html') %>',
+                controller: 'CaseListCtrl'
+            })
+
+            .when('/item_master_maintenance', {
+                templateUrl: '<%= asset_path('item_master_maintenance/index.html') %>',
+                controller: 'ItemMasterListCtrl'
+            })
+
+            .when('/configuration_maintenance', {
+                templateUrl: '<%= asset_path('configuration_maintenance/index.html') %>',
+                controller: 'ConfigurationListCtrl'
+            });
+
+});
+
+
 
 wms.run(function(editableOptions) {
  editableOptions.theme = 'bs3';
 });
 
-configuration.run(function(editableOptions) {
-    editableOptions.theme = 'bs3';
-});
-item_master.run(function(editableOptions) {
-    editableOptions.theme = 'bs3';
-});
 
+wms.factory("UserService", function($http, $filter){
 
+    return {
 
-    wms.factory("UserService", function($http, $filter){
+        findAndReplace:  function($scope, objId, newObj) {
+            $scope.pagedItems[0].forEach(function(obj) {
+                if (obj.item_header.id === objId) {
+                    obj = newObj;
+                    console.log(obj.item_header.id);
+                }
 
-        return {
-
-            get_data : function($scope, url) {
-
-                $http.get(url).success(function(data) {
-                    $scope.shipment_header = data.shipment_header;
-                    $scope.shipment_details = data.shipment_detail;
-                    $scope.data = data
                 });
+         },
 
-                },
+        get_data : function($scope, url) {
 
-            set_page: function($scope) {
+            $http.get(url).success(function(data) {
+                $scope.shipment_header = data.shipment_header;
+                $scope.shipment_details = data.shipment_detail;
+                $scope.data = data
+            });
 
-                $scope.sortingOrder = sortingOrder;
-                $scope.reverse = false;
-                $scope.filteredItems = [];
-                $scope.groupedItems = [];
-                $scope.itemsPerPage = 8;
-                $scope.pagedItems = [];
-                $scope.currentPage = 0;
+            },
+
+        updateResource : function(data, el, id, url, $scope, $q) {
+
+        var fields_to_update = {};
+        fields_to_update[el.$editable.elem[0].id] = data;
+        var d = $q.defer();
+        $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+             app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+            fields_to_update: fields_to_update
+        })
+                .success(function(res) {
+                    res = res || {};
+                    d.resolve();
+                }).error(function(res){
+                    console.log(res);
+                    res = res || {};
+                    if (res.status == 500) {
+                        d.reject(res.message|| 'Server Error');
+                    }
+                    else {
+                        d.reject(res.errors[0].message);
+                    }
+                });
+        return d.promise;
+    },
+
+    set_page: function($scope) {
+
+            $scope.sortingOrder = '';
+            $scope.reverse = false;
+            $scope.filteredItems = [];
+            $scope.groupedItems = [];
+            $scope.itemsPerPage = 8;
+            $scope.pagedItems = [];
+            $scope.currentPage = 0;
 
 
-                var searchMatch = function (haystack, needle) {
-                    if (!needle || !haystack) {
+            var searchMatch = function (haystack, needle) {
+                if (!needle || !haystack) {
+                    return false;
+                }
+
+                if (typeof(haystack) == 'boolean') {
+                    return haystack == needle
+                }
+
+                if (typeof(haystack) == 'string') {
+                    return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
+                }
+            };
+
+            // Filter by status
+            $scope.status = function (status) {
+
+                status = status==null ?  $scope.last_status : status;
+                $scope.last_status = status;
+
+                $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                    if (searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], status)) {
+                        return true;
+                    }
+
+                    else {
                         return false;
                     }
-                    
-                    if (typeof(haystack) == 'boolean') {
-                    	return haystack == needle
-                    }
-                    
-                    if (typeof(haystack) == 'string') {
-                    	return haystack.toLowerCase().lastIndexOf(needle.toLowerCase(),0) !== -1;
-                    }	
-                };
 
-                // Filter by status
-                $scope.status = function (status) {
-
-                    status = status==null ?  $scope.last_status : status;
-                    $scope.last_status = status;
-                    
-                    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-                        if (searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], status)) {
-                            return true;
-                        }
-
-                        else {
-                            return false;
-                        }
-
-                    });
-                    // take care of the sorting order
-                    if ($scope.sortingOrder !== '') {
-                        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-                    }
-                    $scope.currentPage = 0;
-                    groupToPages();
-                };
-
-
-                // calculate page in place
-                var groupToPages = function () {
-                    $scope.pagedItems = [];
-
-                    for (var i = 0; i < $scope.filteredItems.length; i++) {
-                        if (i % $scope.itemsPerPage === 0) {
-                            $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
-                        } else {
-                            $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-                        }
-                    }
-                };
-
-                // init the filtered items
-                $scope.search = function (event, search_field) {
-					                  
-                    if (event.which != 13) {
-                        return
-                    }
-
-                    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-                        if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query) &&
-                                searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], $scope.last_status)) {
-                            return true
-                        }
-
-                        else {
-                            return false;
-                        }
-                    });
-                    // take care of the sorting order
-                    if ($scope.sortingOrder !== '') {
-                        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-                    }
-                    $scope.currentPage = 0;
-                    // now group by pages
-                    groupToPages();
-                };
-
-                $scope.range = function (start, end) {
-                    var ret = [];
-                    if (!end) {
-                        end = start;
-                        start = 0;
-                    }
-                    for (var i = start; i < end; i++) {
-                        ret.push(i);
-                    }
-                    return ret;
-                };
-
-                $scope.prevPage = function () {
-                    if ($scope.currentPage > 0) {
-                        $scope.currentPage--;
-                    }
-                };
-
-                $scope.nextPage = function () {
-                    if ($scope.currentPage < $scope.pagedItems.length - 1) {
-                        $scope.currentPage++;
-                    }
-                };
-
-                $scope.setPage = function () {
-                    $scope.currentPage = this.n;
-                };
-
-                // change sorting order
-                $scope.sort_by = function(newSortingOrder) {
-                    //if ($scope.sortingOrder == newSortingOrder)
-                    $scope.reverse = !$scope.reverse;
-
-                    $scope.sortingOrder = 'shipment_header.'+newSortingOrder;
-
-                    // take care of the sorting order
+                });
+                // take care of the sorting order
+                if ($scope.sortingOrder !== '') {
                     $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-                    $scope.currentPage = 0;
-                    // now group by pages
-                    groupToPages();
-                };
+                }
+                $scope.currentPage = 0;
+                groupToPages();
+            };
 
-            }
 
+            // calculate page in place
+            var groupToPages = function () {
+                $scope.pagedItems = [];
+
+                for (var i = 0; i < $scope.filteredItems.length; i++) {
+                    if (i % $scope.itemsPerPage === 0) {
+                        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
+                    } else {
+                        $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+                    }
+                }
+            };
+
+            // init the filtered items
+            $scope.search = function (event, search_field) {
+
+                if (event.which != 13) {
+                    return
+                }
+
+                $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                    if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query) &&
+                            searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], $scope.last_status)) {
+                        return true
+                    }
+
+                    else {
+                        return false;
+                    }
+                });
+                // take care of the sorting order
+                if ($scope.sortingOrder !== '') {
+                    $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+                }
+                $scope.currentPage = 0;
+                // now group by pages
+                groupToPages();
+            };
+
+            $scope.range = function (start, end) {
+                var ret = [];
+                if (!end) {
+                    end = start;
+                    start = 0;
+                }
+                for (var i = start; i < end; i++) {
+                    ret.push(i);
+                }
+                return ret;
+            };
+
+            $scope.prevPage = function () {
+                if ($scope.currentPage > 0) {
+                    $scope.currentPage--;
+                }
+            };
+
+            $scope.nextPage = function () {
+                if ($scope.currentPage < $scope.pagedItems.length - 1) {
+                    $scope.currentPage++;
+                }
+            };
+
+            $scope.setPage = function () {
+                $scope.currentPage = this.n;
+            };
+
+            // change sorting order
+            $scope.sort_by = function(newSortingOrder) {
+                //if ($scope.sortingOrder == newSortingOrder)
+                $scope.reverse = !$scope.reverse;
+
+                $scope.sortingOrder = 'shipment_header.'+newSortingOrder;
+
+                // take care of the sorting order
+                $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+                $scope.currentPage = 0;
+                // now group by pages
+                groupToPages();
+            };
 
         }
-    });
+
+
+    }
+});

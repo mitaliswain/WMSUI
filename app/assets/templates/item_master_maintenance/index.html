@@ -1,20 +1,6 @@
-<html>
-<head>
-  <script>
-      var sortingOrder = 'shipment_header.shipment_nbr';
-  </script>
-
-</head>
-
-<body ng-app="WMSUI" >
-
-
-<%= render"shared/menu" %>
-
-
-<div id="ConfigurationListCtrl" ng-controller="ConfigurationListCtrl" class="maintenance_screen_div">
+<div id="ItemMasterListCtrl" class="maintenance_screen_div">
   <div>
-    <h3><a href="/configuration_maintenance"><span class="label label-primary">Global Configuration</span></a></h3>
+    <h3><a href="/item_master_maintenance"><span class="label label-primary">Item Master</span></a></h3>
   </div>
   <div class="input-group pull-right" style="width: 30%" >
 				<span class="input-group-addon">
@@ -29,16 +15,15 @@
                       </ul>
 				    </span>
 				 </span>
-    <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="case for case in case_list | filter:$viewValue | limitTo:8">
+    <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="item for item in item_list | filter:$viewValue | limitTo:8">
     <span class="input-group-addon"><i class="icon-search"></i></span>
   </div>
 
 
   <tabset>
-    <tab heading="Active" select="status(true)"></tab>
-    <tab heading="Inactive" select="status(false)"></tab>
+    <tab heading="Active" select="status('Active')"></tab>
+    <tab heading="Inactive" select="status('Inactive')"></tab>
   </tabset>
-
 
   <div style="width: 100%">
     <div style="float: left; width: {{squeeze}}%">
@@ -51,19 +36,19 @@
                 Option
               </div>
               <div class="row-header truncate">
-                Module<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
+                Item<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
               </div>
               <div class="row-header truncate">
-                Key<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
+                Description<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
               </div>
               <div class="row-header truncate">
-                Value<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
+                Barcode<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
               </div>
               <div class="row-header truncate">
-                Active<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
+                Coo<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
               </div>
               <div class="row-header truncate">
-                <a id="open_configuration_add"  ng-click="configuration_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+                <a id="open_item_add"  ng-click="item_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
               </div>
             </div>
         </tr>
@@ -78,24 +63,63 @@
               </div>
 
               <div class="row-header truncate">
-                {{item.configuration_header.module}}
+                {{item.item_header.item}}
               </div>
               <div class="row-header truncate">
-                {{item.configuration_header.key}}
+                {{item.item_header.description}}
               </div>
               <div class="row-header truncate">
-                <a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
+                {{item.item_header.barcode}}
               </div>
               <div class="row-header truncate">
-                <a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
+                {{item.item_header.coo}}
               </div>
+
               <div class="icon-header pull-right">
-                <a id="open_configuration_detail" ng-click="show_configuration('Header', item.configuration_header.id)">
+                <a id="open_item_add" ng-click="show_item('Header', item.item_header.id)">
                   <i class="fa fa-chevron-right"></i>
                 </a>
               </div>
 
             </div>
+
+            <!--Detail -->
+            <div ng-show="item.show" style="padding-left: 0%">
+              <div class="label label-default">
+                <div class="row-header">
+                  Inner Pack Qty
+                </div>
+                <div class="row-header">
+                  Inner Pack Weight
+                </div>
+                <div class="row-header">
+                  Inner Pack Height
+                </div>
+                <div class="row-header">
+                  <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
+                    <i class="icon-plus-sign"></i>
+                  </a>
+                </div>
+
+              </div>
+              <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
+                <div class="row-header">
+                  {{detail.innerpack_qty}}
+                </div>
+                <div class="row-header">
+                  {{detail.innerpack_wgt}}
+                </div>
+                <div class="row-header">
+                  {{detail.innerpack_hgt}}
+                </div>
+                <div class="icon-header pull-right">
+                  <a id="open_shipment_detail" ng-click="show_item('Detail', item.item_header.id,  detail.id)">
+                    <i class="fa fa-chevron-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
         </tr>
 
         </tbody>
@@ -125,17 +149,14 @@
 
   <div style="float: left;width: {{expand}}%" ng-show = "header.show">
     <div>
-      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_configuration()">Configuration </button>
+      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_configuration()">Item Master</button>
     </div>
     <div>
       <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_configuration()"><i class="fa fa-times"></i> </button>
     </div>
     <div>
-      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="configuration_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="item_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
     </div>
     <div ng-include src="header_template.url" class="card"></div>
   </div>
 </div>
-
-</body>
-</html>

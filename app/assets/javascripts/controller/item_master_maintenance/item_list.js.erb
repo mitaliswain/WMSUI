@@ -121,6 +121,18 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
         modalInstance.result.then(reload_modal_close,reload_modal_close);
     };
 
+    $scope.updateHeader = function(data, el, id) {
+        var url = '/item_master_maintenance/'+ id
+        UserService.updateResource(data, el, id, url, $scope, $q);
+
+        var url = '/item_master_maintenance/'+ id + '.json'
+        $http.get(url).success(function(data) {
+            console.log($scope.pagedItems[0])
+            UserService.findAndReplace($scope, id, data)
+            console.log($scope.pagedItems[0])
+        });
+
+    };
 
     $scope.reload = function() {
 

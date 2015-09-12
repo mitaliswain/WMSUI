@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :main do
+    get '', action: 'index'
+  end
 
   namespace :shipment_maintenance do
     get '' ,  action: 'index'
