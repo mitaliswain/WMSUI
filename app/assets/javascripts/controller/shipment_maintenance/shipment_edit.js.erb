@@ -1,63 +1,64 @@
-wms.controller('shipmentEditCtrl', function ($scope, $modalInstance, shipment, shipment_detail_id, $http, $location, $q, UserService) {
-  var warehouse = $location.search().warehouse;
-  var client    = $location.search().client;
-  var url = '/shipment_maintenance/'+  shipment + '.json?client=' + client + '&warehouse='+ warehouse;
-    $scope.YesorNo = [
-    {value: 'Y', text: 'Yes'},
-    {value: 'N', text: 'No'},
-  ];
+wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, $q, UserService, ShareService) {
 
-    $http.get(url).success(function(data) {
-        $scope.shipment_header = data.shipment_header
-        $scope.shipment_details = data.shipment_detail
-        angular.forEach($scope.shipment_details, function (shipment_detail) {
-            console.log(shipment_detail_id)
-            if (shipment_detail.id == shipment_detail_id) {
-                $scope.shipment_detail = shipment_detail;
-            }
+    var shipment =  ShareService.get_shipment()
+    var warehouse =  shipment.shipment_header.warehouse;
+    var client    =  shipment.shipment_header.warehouse;
+
+    var shipment_header_id = shipment.shipment_header ? shipment.shipment_header.id : null;
+    var shipment_detail_id = shipment.shipment_detail ? shipment.shipment_detail.id : null;
+
+    if (shipment_header_id != null) {
+        var url = '/shipment_maintenance/'+  shipment_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
+        $http.get(url).success(function (data) {
+            $scope.shipment_header = data.shipment_header
+            $scope.shipment_detail = $filter('search')(data.shipment_detail, shipment_detail_id, 'id');
+
         });
-    });
-  
-  $scope.header_template = {
+    };
+
+    $scope.YesorNo = [
+        {value: 'Y', text: 'Yes'},
+        {value: 'N', text: 'No'},
+    ];
+
+
+    $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
-        }; 
+    };
 
-  $scope.detail_template = {
+    $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
-        }; 
+    };
 
 
 
-  $scope.statuses = [
-    {value: 'Created', text: 'Created'},
-    {value: 'Initiated', text: 'Initiated'},
-    {value: 'In Fullfilment', text: 'In Fullfilment'},
-    {value: 'Verified', text: 'Verified'},
-    {value: 'Cancelled', text: 'Cancelled'}
-  ];
+    $scope.statuses = [
+        {value: 'Created', text: 'Created'},
+        {value: 'Initiated', text: 'Initiated'},
+        {value: 'In Fullfilment', text: 'In Fullfilment'},
+        {value: 'Verified', text: 'Verified'},
+        {value: 'Cancelled', text: 'Cancelled'}
+    ];
 
 
     $scope.updateHeader = function(data, el, id) {
-
-        var warehouse = $location.search().warehouse;
-        var shipment  =  $location.search().shipment;
-        var client    = $location.search().client;
-        var fields_to_update = {};
         var url = '/shipment_maintenance/'+ id + '/update_header' ;
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.updateDetail = function(data, el, id) {
-
-        var warehouse = $location.search().warehouse;
-        var shipment  =  $location.search().shipment;
-        var client    = $location.search().client;
-        var fields_to_update = {};
         var url = '/shipment_maintenance/'+ id + '/update_detail';
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
+});
+
+
+wms.controller('ShipmentEditModalCtrl', function ($scope, $filter, $modalInstance, shipment_header_id, shipment_detail_id, $http, $location, $q, UserService, ShareService, $controller) {
+
+    $controller('ShipmentEditCtrl', {$scope: $scope})
+
     $scope.ok = function () {
         $modalInstance.close();
     };

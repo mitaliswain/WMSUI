@@ -2,15 +2,72 @@ var wms = angular.module('WMSUI', ['ngRoute' , 'xeditable', 'ui.bootstrap']);
 var login = angular.module('login', ["ngRoute", "ui.bootstrap"]);
 
 
+wms.run(function(editableOptions) {
+    editableOptions.theme = 'bs3';
+});
+
 
 // configure our routes
 wms.config(function($routeProvider) {
     $routeProvider
 
-        // route for the home page
+        // route for the shipment page
             .when('/shipment_maintenance', {
                 templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
                 controller: 'ShipmentListCtrl'
+            })
+
+        // route for the shipment header page
+            .when('/shipment_maintenance/show_shipment_header/:id', {
+                templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
+                controller: 'ShipmentEditCtrl'
+            })
+
+        // route for the shipment detail page
+            .when('/shipment_maintenance/show_shipment_detail/:id', {
+                templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
+                controller: 'ShipmentEditCtrl'
+            })
+
+            .when('/shipment_maintenance/show_header/', {
+                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
+                controller: 'ShipmentListCtrl'
+            })
+
+        // route for the shipment page
+            .when('/shipment_maintenance', {
+                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
+                controller: 'ShipmentListCtrl'
+            })
+
+        // route for the shipment header page
+            .when('/shipment_maintenance/show_shipment_header/:id', {
+                templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
+                controller: 'ShipmentEditCtrl'
+            })
+
+        // route for the shipment detail page
+            .when('/shipment_maintenance/show_shipment_detail/:id', {
+                templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
+                controller: 'ShipmentEditCtrl'
+            })
+
+        // route for the add shipment header
+            .when('/shipment_maintenance', {
+                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
+                controller: 'ShipmentListCtrl'
+            })
+
+        // route for the add shipment detail
+            .when('/shipment_maintenance/add_shipment_header', {
+                templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
+                controller: 'ShipmentAddCtrl'
+            })
+
+        // route for the shipment detail page
+            .when('/shipment_maintenance/add_shipment_detail/:to_shipment_header_id', {
+                templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
+                controller: 'ShipmentAddCtrl'
             })
 
             .when('/case_maintenance', {
@@ -31,11 +88,35 @@ wms.config(function($routeProvider) {
 });
 
 
-
-wms.run(function(editableOptions) {
- editableOptions.theme = 'bs3';
+wms.filter('search', function() {
+    return function(array_of_objects, expected_value, search_by ) {
+        var i =0;
+        for (; i < array_of_objects.length ; i++) {
+            if (array_of_objects[i][search_by] == expected_value) {
+                return array_of_objects[i];
+            }
+        }
+    }
 });
 
+
+
+wms.factory("ShareService", function() {
+    var share_shipment = {shipment_header: {} , shipment_detail: {}};
+
+    return {
+
+        set_shipment : function(shipment) {
+            share_shipment = shipment;
+        },
+
+        get_shipment : function() {
+            return share_shipment;
+        }
+
+    };
+
+});
 
 wms.factory("UserService", function($http, $filter){
 

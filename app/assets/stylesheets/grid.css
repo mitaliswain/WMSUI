@@ -10,6 +10,11 @@ select {
     background: #fff; 
 }
 
+.view {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .login-box {
     margin-top: 5%;
     padding: 2%;

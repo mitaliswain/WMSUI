@@ -1,10 +1,10 @@
-wms.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $http, $q) {
+wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
  
   var client    = 'WM';
   var warehouse = 'WH1';
 
-
-   $scope.shipment_header = shipment;
+   $scope.to_shipment_header_id = $routeParams.to_shipment_header_id;
+   $scope.shipment_header = {};
    $scope.shipment_detail = {};
 
    $scope.globalInfo = {
@@ -35,12 +35,12 @@ wms.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $h
 	   };
   
    
-  $scope.header_template = {
+    $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
         };
 
-  $scope.detail_template = {
+    $scope.detail_template = {
         name: 'detail_template',
         url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
         };
@@ -50,7 +50,7 @@ wms.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $h
     $scope.saveDetail = function() {
         var fields_to_update = {};
         fields_to_update = $scope.shipment_detail;
-        fields_to_update.asn_header_id = shipment.id;
+        fields_to_update.asn_header_id = $scope.to_shipment_header_id;
 
         var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
@@ -122,15 +122,21 @@ wms.controller('shipmentAddCtrl', function ($scope, $modalInstance, shipment, $h
  	$scope.global_notification = message;		
 
  };
-  
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
 
 });
 
+
+wms.controller('ShipmentModalAddCtrl', function ($scope, $modalInstance, shipment, $http, $q) {
+
+    $controller('ShipmentAddCtrl', {$scope: $scope})
+
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+});
 
