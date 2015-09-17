@@ -16,7 +16,7 @@ login.controller('LoginCtrl', function ($scope, $http, $q) {
     	 username: $scope.username,
          password: $scope.password
     }).success(function(data){
-        window.location = '/shipment_maintenance    ';
+        window.location = '/main    ';
 
     }).error(function(message){
             $scope.message = message.message;
