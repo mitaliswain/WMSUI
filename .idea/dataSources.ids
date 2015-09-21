@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Rails WMSUI: development" uuid="d158bbc1-3bfa-42e9-9573-d35fdb4f7f81">
+  <data-source name="Rails WMSUI: development" uuid="d158bbc1-3bfa-42e9-9573-d35fdb4f7f81">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
