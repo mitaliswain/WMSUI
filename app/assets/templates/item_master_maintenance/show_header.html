@@ -10,9 +10,9 @@
     </button>
     {{item_header.client || "WM"}}
     <button type="button" class="btn btn-primary">
-        Item:
+        Shipment:
     </button>
-    {{item_header.item||"New Shipment"}}
+    {{item_header.item||"New Item"}}
     <button class="btn btn-primary" ng-click="ok()" style="float: right">
         <i class="fa fa-times" style="float: right"></i>
     </button>
@@ -25,11 +25,11 @@
 
     <accordion close-others="oneAtATime">
 
-        <accordion-group heading="Configuration Header" is-open=true>
+        <accordion-group heading="Item Header" is-open=true>
             <div ng-include src="header_template.url"></div>
         </accordion-group>
-    </accordion>
 
+    </accordion>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">Exit</button>

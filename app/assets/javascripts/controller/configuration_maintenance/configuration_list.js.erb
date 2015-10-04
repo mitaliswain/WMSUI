@@ -1,4 +1,5 @@
-    wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
+    wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+
 
         $scope.last_status = true;
         $scope.lastitem = {};
@@ -10,7 +11,6 @@
         $scope.search_items = [
             {value: 'module', text: 'Module'},
             {value: 'key', text: 'Key'}
-            //{value: 'purchase_order_nbr', text: 'PO Number'}
         ];
 
         $scope.options = []
@@ -37,11 +37,7 @@
         }
 
         $scope.case = 'new case';
-        var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';;
 
-        var reload_modal_close =  function(){
-            $scope.reload();
-        }
 
         $scope.header_template = {
             name: 'header_template',
@@ -53,7 +49,7 @@
             url: '<%= asset_path('case_maintenance/case_detail.html') %>'
         };
 
-        $scope.show_configuration = function(show, configuration, configuration_detail_id) {
+        $scope.showConfiguration = function(show, configuration, configuration_detail_id) {
             var url = '/configuration_maintenance/'+  configuration + '.json'
             $scope.data = {}
             $http.get(url).success(function(data) {
@@ -80,7 +76,7 @@
             $scope.selected_detail_id = configuration_detail_id
         }
 
-        $scope.hide_configuration = function() {
+        $scope.hideConfiguration = function() {
             $scope.header.show= false
             $scope.detail.show= false
             $scope.expand = 0
@@ -88,7 +84,7 @@
         };
 
 
-        $scope.toggle_expand = function(item) {
+        $scope.toggleExpand = function(item) {
             item.show = !item.show;
             lastitem = item;
         };
@@ -97,85 +93,21 @@
             item.show = true;
         };
 
+        $scope.editConfiguration= function(header_id, detail_id) {
+            var url =  '/configuration_maintenance/edit_configuration/'+ header_id + '/'
+            if(detail_id != null) {
+                url += detail_id
+            }
+            $location.path(url);
+        }
 
-        //Modal methods
-        $scope.case_add_modal = function (size) {
-            var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
-                controller: 'caseAddCtrl',
-                size: size,
-                resolve: {
-                    case_header: function () {
-                        return null;
-                    }
-                },
-                backdrop : 'static',
-                keyboard: false
-            });
-            modalInstance.result.then(reload_modal_close,reload_modal_close);
+        $scope.updateConfiguration = function(data, el, id) {
+            var url = '/configuration_maintenance/'+ id ;
+            UserService.updateResource(data, el, id, url, $scope, $q);
         };
 
-        $scope.configuration_header_edit_modal = function (size, configuration_header) {
-            var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('configuration_maintenance/show_configure.html') %>',
-                controller: 'ConfigurationEditCtrl',
-                size: size,
-                resolve: {
-                    configuration: function () {
-                        return configuration_header;
-                    },
-                    configuration_detail_id: function () {
-                        return null;
-                    }
-                },
-                backdrop : 'static',
-                keyboard: false
-            });
-            modalInstance.result.then(reload_modal_close,reload_modal_close);
-        };
-
-
-        $scope.case_detail_add_modal = function (size, case_header) {
-            var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
-                controller: 'caseAddCtrl',
-                size: size,
-                resolve: {
-                    case_header: function () {
-                        return case_header;
-                    },
-                    case_detail_id: function () {
-                        return null;
-                    }
-                },
-                backdrop : 'static',
-                keyboard: false
-            });
-
-            modalInstance.result.then(reload_modal_close,reload_modal_close);
-        };
-
-        $scope.configuration_detail_edit_modal = function (size, configuration_header, configuration_detail_id) {
-            var modalInstance = $modal.open({
-                templateUrl: '<%= asset_path('configuration_maintenance/show_configure.html') %>',
-                controller: 'ConfigurationEditCtrl',
-                size: size,
-                resolve: {
-                    configuration_header: function () {
-                        return configuration_header
-                    },
-                    configuration_detail_id: function () {
-                        return configuration_detail_id;
-                    }
-                },
-                backdrop : 'static',
-                keyboard: false
-            });
-            modalInstance.result.then(reload_modal_close,reload_modal_close);
-        };
-
-        $scope.reload = function() {
-
+        $scope.init = function() {
+            var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';;
             $http.get(url).success(function(data) {
                 $scope.items = data;
                 $scope.case_list = []
@@ -195,5 +127,5 @@
 
         };
 
-        $scope.reload();
+        $scope.init();
     });

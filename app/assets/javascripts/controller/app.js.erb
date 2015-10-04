@@ -49,7 +49,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller:  'ShipmentAddCtrl'
             })
 
-        // route for the shipment page
+        // route for the case page
             .state('case_maintenance', {
                 url:         '/case_maintenance',
                 templateUrl: '<%= asset_path('case_maintenance/index.html') %>',
@@ -74,26 +74,59 @@ wms.config(function($stateProvider, $urlRouterProvider) {
             .state('add_case_header', {
                 url        : '/case_maintenance/add_case_header',
                 templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
-                controller : 'caseAddCtrl'
+                controller : 'CaseAddCtrl'
             })
 
         // route for the case detail page
             .state('add_case_detail', {
                 url:         '/case_maintenance/add_case_detail/:to_case_header_id',
                 templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
-                controller:  'caseAddCtrl'
+                controller:  'CaseAddCtrl'
             })
 
 
-            .state('/item_master_maintenance', {
+        // route for the item master page
+            .state('item_master_maintenance', {
+                url:         '/item_master_maintenance',
                 templateUrl: '<%= asset_path('item_master_maintenance/index.html') %>',
-                controller: 'ItemMasterListCtrl'
+                controller:  'ItemMasterListCtrl'
             })
 
-            .state('/configuration_maintenance', {
+        // edit item master header page
+            .state('item_master_header', {
+                url:         '/item_master_maintenance/edit_item/:header_id/',
+                templateUrl: '<%= asset_path('item_master_maintenance/show_header.html') %>',
+                controller:  'ItemMasterEditCtrl'
+            })
+
+        // route for the add item master
+            .state('add_item_master', {
+                url        : '/item_master_maintenance/add_item',
+                templateUrl: '<%= asset_path('item_master_maintenance/add_item.html') %>',
+                controller : 'ItemMasterAddCtrl'
+            })
+
+
+        // route for the configuration master page
+            .state('configuration_maintenance', {
+                url:         '/configuration_maintenance',
                 templateUrl: '<%= asset_path('configuration_maintenance/index.html') %>',
-                controller: 'ConfigurationListCtrl'
-            });
+                controller:  'ConfigurationListCtrl'
+            })
+
+        // edit configuration page
+            .state('edit_configuration_header', {
+                url:         '/configuration_maintenance/edit_configuration/:header_id/',
+                templateUrl: '<%= asset_path('configuration_maintenance/show_header.html') %>',
+                controller:  'ConfigurationEditCtrl'
+            })
+
+        // route for adding new configuration
+            .state('add_configuration_header', {
+                url        : '/configuration_maintenance/add_configuration',
+                templateUrl: '<%= asset_path('configuration_maintenance/add_item.html') %>',
+                controller : 'ConfigurationAddCtrl'
+            })
 
 });
 

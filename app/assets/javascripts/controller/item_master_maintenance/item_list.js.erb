@@ -1,4 +1,4 @@
-wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService) {
+wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -24,11 +24,6 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     }
 
     $scope.item = 'new item';
-    var url = '/item_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
-
-    var reload_modal_close =  function(){
-        $scope.reload();
-    }
 
     $scope.header_template = {
         name: 'header_template',
@@ -40,7 +35,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
         url: '<%= asset_path('item_master_maintenance/item_detail.html') %>'
     };
 
-    $scope.show_item = function(show, item, item_detail_id) {
+    $scope.showItem = function(show, item, item_detail_id) {
         var url = '/item_master_maintenance/'+  item + '.json'
 
         $http.get(url).success(function(data) {
@@ -67,7 +62,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
         $scope.selected_detail_id = item_detail_id
     }
 
-    $scope.hide_item= function() {
+    $scope.hideItem= function() {
         $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
@@ -75,7 +70,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     };
 
 
-    $scope.toggle_expand = function(item) {
+    $scope.toggleExpand = function(item) {
         item.show = !item.show;
         lastitem = item;
     };
@@ -84,57 +79,24 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
         item.show = true;
     };
 
+    $scope.editItem= function(header_id, detail_id) {
+        var url =  '/item_master_maintenance/edit_item/'+ header_id + '/'
+        if(detail_id != null) {
+            url += detail_id
+        }
 
-    //Modal methods
-    $scope.item_header_add_modal = function (size) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('item_master_maintenance/add_item.html') %>',
-            controller: 'ItemMasterAddCtrl',
-            size: size,
-            resolve: {
-                item: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-    $scope.item_header_edit_modal = function (size, item) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('item_master_maintenance/show_item.html') %>',
-            controller: 'ItemMasterEditCtrl',
-            size: size,
-            resolve: {
-                item: function () {
-                    return item;
-                },
-                item_detail_id: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
+        $location.path(url);
+    }
 
     $scope.updateHeader = function(data, el, id) {
         var url = '/item_master_maintenance/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q);
-
-        var url = '/item_master_maintenance/'+ id + '.json'
-        $http.get(url).success(function(data) {
-            console.log($scope.pagedItems[0])
-            UserService.findAndReplace($scope, id, data)
-            console.log($scope.pagedItems[0])
-        });
-
     };
 
-    $scope.reload = function() {
+
+    $scope.init = function() {
+
+        var url = '/item_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
         $http.get(url).success(function(data) {
             $scope.items = data;
@@ -155,5 +117,5 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
 
     };
 
-    $scope.reload();
+    $scope.init();
 });

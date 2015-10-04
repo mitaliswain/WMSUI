@@ -60,7 +60,7 @@
 
           <td colspan="7">
             <div  class="card">
-              <div class="row-header" ng-click="toggle_expand(item)" >
+              <div class="row-header" ng-click="toggleExpand(item)" >
                 <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
               </div>
 
@@ -71,13 +71,13 @@
                 {{item.configuration_header.key}}
               </div>
               <div class="row-header truncate">
-                <a href="#" id="value" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
+                <a href="#" id="key" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
               </div>
               <div class="row-header truncate">
                 <a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
               </div>
               <div class="icon-header pull-right">
-                <a id="open_configuration_detail" ng-click="show_configuration('Header', item.configuration_header.id)">
+                <a id="open_configuration_detail" ng-click="showConfiguration('Header', item.configuration_header.id)">
                   <i class="fa fa-chevron-right"></i>
                 </a>
               </div>
@@ -102,7 +102,8 @@
                 <a href ng-click="nextPage()">Next »</a>
               </li>
             </ul>
-          </div></td>
+          </div>
+        </td>
         </tfoot>
 
       </table>
@@ -112,13 +113,13 @@
 
   <div style="float: left;width: {{expand}}%" ng-show = "header.show">
     <div>
-      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_configuration()">Configuration </button>
+      <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideConfiguration()">Configuration </button>
     </div>
     <div>
-      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_configuration()"><i class="fa fa-times"></i> </button>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideConfiguration()"><i class="fa fa-times"></i> </button>
     </div>
     <div>
-      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="configuration_header_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+      <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editConfiguration(selected_header_id)"><i class="fa fa-pencil"></i> </button>
     </div>
     <div ng-include src="header_template.url" class="card"></div>
   </div>

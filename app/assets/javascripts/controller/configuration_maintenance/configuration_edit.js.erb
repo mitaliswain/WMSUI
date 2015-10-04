@@ -1,11 +1,17 @@
-wms.controller('ConfigurationEditCtrl', function ($scope, $modalInstance, configuration, $http, $location, $q) {
-  var url = '/configuration_maintenance/'+  configuration + '.json?client=' + 'WM' ;
+wms.controller('ConfigurationEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+
+    var configuration_id = $stateParams.header_id
+    var url = '/configuration_maintenance/' + configuration_id + '.json?client=' + 'WM';
 
 
-
-  $http.get(url).success(function(data) {
-    $scope.configuration_header = data.configuration_header;
-  });
+    $http.get(url).
+            success(function (data) {
+                console.log('Call worked')
+                $scope.configuration_header = data.configuration_header;
+            })
+            .error(function () {
+                console.log('Call failed')
+            });
 
     $scope.statuses = [
         {value: 'Active', text: 'Active'},
@@ -15,7 +21,6 @@ wms.controller('ConfigurationEditCtrl', function ($scope, $modalInstance, config
     $scope.options = []
 
     $scope.loadGroups = function(attribute1) {
-        console.log((attribute1))
         $scope.options = []
         angular.forEach(JSON.parse(attribute1).Options, function(option) {
             $scope.options.push({value: option, text: option});
@@ -64,11 +69,7 @@ wms.controller('ConfigurationEditCtrl', function ($scope, $modalInstance, config
 
 
     $scope.ok = function () {
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $location.path('/configuration_maintenance')
     };
 
 });

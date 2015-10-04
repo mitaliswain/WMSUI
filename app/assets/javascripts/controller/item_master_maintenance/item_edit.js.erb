@@ -1,11 +1,19 @@
-wms.controller('ItemMasterEditCtrl', function ($scope, $modalInstance, item, $http, $location, $q) {
-  var url = '/item_master_maintenance/'+  item + '.json?client=' + 'WM' ;
+wms.controller('ItemMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
 
 
+    var item_id = $stateParams.header_id
 
-  $http.get(url).success(function(data) {
-    $scope.item_header = data.item_header;
-  });
+    var client = 'WM'
+    var warehouse = 'WH1'
+
+    var url = '/item_master_maintenance/'+ item_id + '.json?client=' + client + '&warehouse='+ warehouse;
+    $http.get(url).success(function(data) {
+        $scope.item_header = data.item_header;
+    }).error(function(){
+        console.log('failed to call')
+    });
+
+
 
     $scope.statuses = [
         {value: 'Active', text: 'Active'},
@@ -28,11 +36,7 @@ wms.controller('ItemMasterEditCtrl', function ($scope, $modalInstance, item, $ht
     };
 
     $scope.ok = function () {
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $location.path('/item_master_maintenance');
     };
 
 });

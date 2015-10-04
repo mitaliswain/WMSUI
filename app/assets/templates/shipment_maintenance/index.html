@@ -55,7 +55,7 @@
 							</div>
 							
 							<div class="row-header truncate">
-								<a id="open_shipment_add" href="#shipment_maintenance/add_shipment_header"> <i class="icon-plus-sign"></i></a>
+								<a id="add_shipment_header" href="#shipment_maintenance/add_shipment_header"> <i class="icon-plus-sign"></i></a>
 							</div>
 						</div></th>
 					</tr>
@@ -64,7 +64,7 @@
 					<tr ng-repeat="item in pagedItems[currentPage]">
 						<td colspan="7">
 						<div  class="card" ng-click="showShipment('Header', item.shipment_header.id)">
-							<div class="row-header" ng-click="toggleExpand(item)" >
+							<div id="shipment_header" class="row-header" ng-click="toggleExpand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
 
@@ -84,9 +84,8 @@
 								{{item.shipment_header.record_status}}
 							</div>
 							<div class="icon-header pull-right">
-								<a id="open_shipment_detail">
-									<i class="fa fa-chevron-right"></i>
-								</a>
+								<i class="fa fa-chevron-right"></i>
+
 							</div>
 
 						</div>
@@ -111,7 +110,7 @@
 
 							</div>
 							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
-                                <div ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
+                                <div id="shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
 								    <div class="row-header">
 									    {{detail.item}}
 							    	</div>
@@ -122,9 +121,7 @@
 									    {{detail.received_qty}}
 								    </div>
 								    <div class="icon-header pull-right">
-										<a id="open_shipment_detail">
 								        <i class="fa fa-chevron-right"></i>
-								    </a>
 						        	</div>
                                 </div>
 							</div>

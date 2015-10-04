@@ -1,4 +1,4 @@
-wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $http, $q) {
+wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
  
   var client    = 'WM';
   var warehouse = 'WH1';
@@ -76,11 +76,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $htt
  };
   
   $scope.ok = function () {
-    $modalInstance.close();
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $location.path('/item_master_maintenance')
   };
 
 });
