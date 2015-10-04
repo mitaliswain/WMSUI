@@ -22,8 +22,8 @@
 
 
           <tabset>
-            <tab heading="Created" select="status('Created')"></tab>
-            <tab heading="Initiated" select="status('Initiated')"></tab>
+            <tab id="created" heading="Created" select="status('Created')"></tab>
+            <tab id="intiated" heading="Initiated" select="status('Initiated')"></tab>
             <tab heading="In Progress" select="status('Receiving in Progress')"></tab>
             <tab heading="Verified" select="status('Verified')"></tab>
           </tabset>
@@ -63,8 +63,8 @@
 				<tbody>
 					<tr ng-repeat="item in pagedItems[currentPage]">
 						<td colspan="7">
-						<div  class="card">
-							<div class="row-header" ng-click="toggle_expand(item)" >
+						<div  class="card" ng-click="showShipment('Header', item.shipment_header.id)">
+							<div class="row-header" ng-click="toggleExpand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
 
@@ -84,7 +84,7 @@
 								{{item.shipment_header.record_status}}
 							</div>
 							<div class="icon-header pull-right">
-								<a id="open_shipment_detail" ng-click="show_shipment('Header', item.shipment_header.id)">
+								<a id="open_shipment_detail">
 									<i class="fa fa-chevron-right"></i>
 								</a>
 							</div>
@@ -104,29 +104,32 @@
 									Received Quantity
 								</div>
 								<div class="row-header">
-									<a id="open_shipment_detail_add" href="#shipment_maintenance/add_shipment_detail/{{item.shipment_header.id}}">
+									<a id="add_shipment_detail" href="#shipment_maintenance/add_shipment_detail/{{item.shipment_header.id}}">
 										<i class="icon-plus-sign"></i>
 									</a>									
 								</div>
 
 							</div>
 							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
-								<div class="row-header">
-									{{detail.item}}
-								</div>
-								<div class="row-header">
-									{{detail.shipped_quantity}}
-								</div>
-								<div class="row-header">
-									{{detail.received_qty}}
-								</div>
-								<div class="icon-header pull-right">
-										<a id="open_shipment_detail" ng-click="show_shipment('Detail', item.shipment_header.id,  detail.id)">
-								<i class="fa fa-chevron-right"></i>
-								</a>
+                                <div ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
+								    <div class="row-header">
+									    {{detail.item}}
+							    	</div>
+								    <div class="row-header">
+									    {{detail.shipped_quantity}}
+								    </div>
+								    <div class="row-header">
+									    {{detail.received_qty}}
+								    </div>
+								    <div class="icon-header pull-right">
+										<a id="open_shipment_detail">
+								        <i class="fa fa-chevron-right"></i>
+								    </a>
+						        	</div>
+                                </div>
 							</div>
-							</div>
-						</div></td>
+						</div>
+                        </td>
 					</tr>
 
 				</tbody>
@@ -156,13 +159,13 @@
 
           <div style="float: left;width: {{expand}}%" ng-show = "header.show">
             <div>
-              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Shipment Header </button>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideShipment()">Shipment Header </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideShipment()"><i class="fa fa-times"></i> </button>
             </div>
              <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%"><a href="#shipment_maintenance/show_shipment_header/{{selected_header_id}}"><i class="fa fa-pencil"></i></a> </button>
+             <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="header_template.url" ng-controller="ShipmentEditCtrl" class="card"></div>
           </div>
@@ -170,14 +173,14 @@
           
          <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
            <div>
-             <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Shipment Detail </button>
+             <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideShipment()">Shipment Detail </button>
            </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_shipment()"><i class="fa fa-times"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideShipment()"><i class="fa fa-times"></i> </button>
             </div>
              <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%"><a href="#shipment_maintenance/show_shipment_detail/{{selected_detail_id}}"><i class="fa fa-pencil"></i></a> </button>
-            </div>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i></button>
+             </div>
             <div ng-include src="detail_template.url" ng-controller="ShipmentEditCtrl"  class="card"></div>
           </div>
 

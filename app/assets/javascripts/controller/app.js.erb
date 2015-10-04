@@ -1,4 +1,4 @@
-var wms = angular.module('WMSUI', ['ngRoute' , 'xeditable', 'ui.bootstrap']);
+var wms = angular.module('WMSUI', ['ngRoute' , 'xeditable', 'ui.bootstrap', 'ui.router']);
 var login = angular.module('login', ["ngRoute", "ui.bootstrap"]);
 
 
@@ -8,79 +8,89 @@ wms.run(function(editableOptions) {
 
 
 // configure our routes
-wms.config(function($routeProvider) {
-    $routeProvider
+wms.config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
 
         // route for the shipment page
-            .when('/shipment_maintenance', {
+            .state('shipment_maintenance', {
+                url:         '/shipment_maintenance',
                 templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
-                controller: 'ShipmentListCtrl'
+                controller:  'ShipmentListCtrl'
             })
 
-        // route for the shipment header page
-            .when('/shipment_maintenance/show_shipment_header/:id', {
+        // edit shipment header page
+            .state('edit_shipment_header', {
+                url:         '/shipment_maintenance/edit_shipment/:header_id/',
                 templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-                controller: 'ShipmentEditCtrl'
+                controller:  'ShipmentEditCtrl'
             })
 
-        // route for the shipment detail page
-            .when('/shipment_maintenance/show_shipment_detail/:id', {
+        // edit the shipment detail page
+            .state('edit_shipment_detail', {
+                url:         '/shipment_maintenance/edit_shipment/:header_id/:detail_id',
                 templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-                controller: 'ShipmentEditCtrl'
+                controller:  'ShipmentEditCtrl'
             })
 
-            .when('/shipment_maintenance/show_header/', {
-                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
-                controller: 'ShipmentListCtrl'
-            })
-
-        // route for the shipment page
-            .when('/shipment_maintenance', {
-                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
-                controller: 'ShipmentListCtrl'
-            })
-
-        // route for the shipment header page
-            .when('/shipment_maintenance/show_shipment_header/:id', {
-                templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-                controller: 'ShipmentEditCtrl'
-            })
-
-        // route for the shipment detail page
-            .when('/shipment_maintenance/show_shipment_detail/:id', {
-                templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-                controller: 'ShipmentEditCtrl'
-            })
-
-        // route for the add shipment header
-            .when('/shipment_maintenance', {
-                templateUrl: '<%= asset_path('shipment_maintenance/index.html') %>',
-                controller: 'ShipmentListCtrl'
-            })
-
-        // route for the add shipment detail
-            .when('/shipment_maintenance/add_shipment_header', {
+           // route for the add shipment header
+            .state('add_shipment_header', {
+                url        : '/shipment_maintenance/add_shipment_header',
                 templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
-                controller: 'ShipmentAddCtrl'
+                controller : 'ShipmentAddCtrl'
             })
 
         // route for the shipment detail page
-            .when('/shipment_maintenance/add_shipment_detail/:to_shipment_header_id', {
+            .state('add_shipment_detail', {
+                url:         '/shipment_maintenance/add_shipment_detail/:to_shipment_header_id',
                 templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-                controller: 'ShipmentAddCtrl'
+                controller:  'ShipmentAddCtrl'
             })
 
-            .when('/case_maintenance', {
+        // route for the shipment page
+            .state('case_maintenance', {
+                url:         '/case_maintenance',
                 templateUrl: '<%= asset_path('case_maintenance/index.html') %>',
-                controller: 'CaseListCtrl'
+                controller:  'CaseListCtrl'
             })
 
-            .when('/item_master_maintenance', {
+        // edit case header page
+            .state('edit_case_header', {
+                url:         '/case_maintenance/edit_case/:header_id/',
+                templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
+                controller:  'CaseEditCtrl'
+            })
+
+        // edit the case detail page
+            .state('edit_case_detail', {
+                url:         '/case_maintenance/edit_case/:header_id/:detail_id',
+                templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
+                controller:  'CaseEditCtrl'
+            })
+
+        // route for the add case header
+            .state('add_case_header', {
+                url        : '/case_maintenance/add_case_header',
+                templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
+                controller : 'caseAddCtrl'
+            })
+
+        // route for the case detail page
+            .state('add_case_detail', {
+                url:         '/case_maintenance/add_case_detail/:to_case_header_id',
+                templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
+                controller:  'caseAddCtrl'
+            })
+
+
+            .state('/item_master_maintenance', {
                 templateUrl: '<%= asset_path('item_master_maintenance/index.html') %>',
                 controller: 'ItemMasterListCtrl'
             })
 
-            .when('/configuration_maintenance', {
+            .state('/configuration_maintenance', {
                 templateUrl: '<%= asset_path('configuration_maintenance/index.html') %>',
                 controller: 'ConfigurationListCtrl'
             });
@@ -118,6 +128,7 @@ wms.factory("ShareService", function() {
 
 });
 
+
 wms.factory("UserService", function($http, $filter){
 
     return {
@@ -131,16 +142,6 @@ wms.factory("UserService", function($http, $filter){
 
                 });
          },
-
-        get_data : function($scope, url) {
-
-            $http.get(url).success(function(data) {
-                $scope.shipment_header = data.shipment_header;
-                $scope.shipment_details = data.shipment_detail;
-                $scope.data = data
-            });
-
-            },
 
         updateResource : function(data, el, id, url, $scope, $q) {
 

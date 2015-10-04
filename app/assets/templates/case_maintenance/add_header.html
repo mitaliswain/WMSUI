@@ -1,8 +1,6 @@
-	<body>
 
 		 <div class="modal-header">
-		    <div>
-				<button type="button" class="btn btn-primary">
+             <button type="button" class="btn btn-primary">
 				Wahrehouse :
 			</button>
 			{{case_header.warehouse || "WM"}}
@@ -18,34 +16,30 @@
                  <i class="fa fa-times" style="float: right"></i>
              </button>
 		</div>
-		       
 
-        <div class="modal-body">
+             <div class="modal-body">
 
-			<form editable-form name="editableForm" onaftersave="saveHeader()">
-							<div class="buttons">
-								<!-- button to show form -->
-								<button type="button" class="btn btn-default" ng-click="clear(); editableForm.$show()" ng-show="!editableForm.$visible">
-									New Case
-								</button>
+                 <form editable-form name="editableForm" onaftersave="saveHeader()">
+                     <div class="buttons">
+                         <!-- button to show form -->
+                         {{editableForm.$show()}}
 
-								<!-- buttons to submit / cancel form -->
-								<span ng-show="editableForm.$visible">
-									<button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-										Save
-									</button>
-									<button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-										Cancel
-									</button> 
-									</span>
-							</div>
-
-							<div ng-include src="header_template.url"></div>
-						</form>
+                         <!-- buttons to submit / cancel form -->
+                        <span ng-show="editableForm.$visible">
+                            <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                                Save
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                                    ng-click="editableForm.$cancel()">
+                                Cancel
+                            </button>
+                        </span>
+                     </div>
+                     <div ng-include src="header_template.url"></div>
+                 </form>
 			</div>
 		
 		<div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">Exit</button>
         </div>
 
-	</body>

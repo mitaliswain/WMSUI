@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require_tree ./angular
-//= require_tree ./bootstrap
-//= require_tree ./xeditable
+//= require_tree ./lib/angular-1.2.21
+//= require_tree ./lib/bootstrap_angular-0.12.0
+//= require_tree ./lib/xeditable-0.1.8
 
 //= require ./controller/app.js.erb
 //= require_tree ./controller

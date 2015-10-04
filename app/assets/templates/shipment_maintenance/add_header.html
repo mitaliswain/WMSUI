@@ -24,10 +24,7 @@
     <form editable-form name="editableForm" onaftersave="saveHeader()">
         <div class="buttons">
             <!-- button to show form -->
-            <button type="button" class="btn btn-Info" ng-click="clear(); editableForm.$show()"
-                    ng-show="!editableForm.$visible">
-                New Shipment
-            </button>
+            {{editableForm.$show()}}
 
             <!-- buttons to submit / cancel form -->
             <span ng-show="editableForm.$visible">

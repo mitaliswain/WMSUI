@@ -1,11 +1,11 @@
-wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, $q, UserService, ShareService) {
+wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
 
-    var shipment =  ShareService.get_shipment()
-    var warehouse =  shipment.shipment_header.warehouse;
-    var client    =  shipment.shipment_header.warehouse;
 
-    var shipment_header_id = shipment.shipment_header ? shipment.shipment_header.id : null;
-    var shipment_detail_id = shipment.shipment_detail ? shipment.shipment_detail.id : null;
+    var shipment_header_id = $stateParams.header_id
+    var shipment_detail_id = $stateParams.detail_id
+
+    var client = 'WM'
+    var warehouse = 'WH1'
 
     if (shipment_header_id != null) {
         var url = '/shipment_maintenance/'+  shipment_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
@@ -13,8 +13,11 @@ wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, 
             $scope.shipment_header = data.shipment_header
             $scope.shipment_detail = $filter('search')(data.shipment_detail, shipment_detail_id, 'id');
 
+        }).error(function(){
+            console.log('failed call');
         });
     };
+
 
     $scope.YesorNo = [
         {value: 'Y', text: 'Yes'},
@@ -52,19 +55,10 @@ wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, 
         var url = '/shipment_maintenance/'+ id + '/update_detail';
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
-});
-
-
-wms.controller('ShipmentEditModalCtrl', function ($scope, $filter, $modalInstance, shipment_header_id, shipment_detail_id, $http, $location, $q, UserService, ShareService, $controller) {
-
-    $controller('ShipmentEditCtrl', {$scope: $scope})
 
     $scope.ok = function () {
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $location.path('/shipment_maintenance');
     };
 
 });
+

@@ -1,5 +1,5 @@
-wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
- 
+wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
+
   var client    = 'WM';
   var warehouse = 'WH1';
 
@@ -28,6 +28,8 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
     {value: 'Warehouse Transfer', text: 'Warehouse Transfer'}
     ]; 
 
+    //$scope.editableForm.show();
+    console.log($scope.editableForm);
 
     $scope.clear = function() {
 	   $scope.shipment_header= {};
@@ -46,38 +48,6 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
         };
 
 
-
-    $scope.saveDetail = function() {
-        var fields_to_update = {};
-        fields_to_update = $scope.shipment_detail;
-        fields_to_update.asn_header_id = $scope.to_shipment_header_id;
-
-        var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
-        return $http.post(url, {
-            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
-            fields_to_update: fields_to_update
-        }).success(function(data){
-            $scope.shipment_header = data.shipment_header;
-            $scope.shipment_detail = data.shipment_detail;
-            setInfo('info', 'Shipment detail added');
-        }).error(function(message){
-            if (message.status == '422'){
-                setInfo('error', 'Validation Error');
-                angular.forEach(message.errors, function(error){
-                    if(error.field == null)
-                    {setInfo('error', error.message);}
-                    else{
-                        $scope.editableForm.$setError(error.field, error.message);
-                    }
-
-                });
-            }
-            else {
-                setInfo('error', message.message);
-            }
-        });
-    };
 
  $scope.saveHeader = function() {
 	
@@ -110,6 +80,38 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
  };
 
 
+ $scope.saveDetail = function() {
+    var fields_to_update = {};
+    fields_to_update = $scope.shipment_detail;
+    fields_to_update.asn_header_id = $scope.to_shipment_header_id;
+
+    var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
+    return $http.post(url, {
+        'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+        app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+        fields_to_update: fields_to_update
+    }).success(function(data){
+        $scope.shipment_header = data.shipment_header;
+        $scope.shipment_detail = data.shipment_detail;
+        setInfo('info', 'Shipment detail added');
+    }).error(function(message){
+        if (message.status == '422'){
+            setInfo('error', 'Validation Error');
+            angular.forEach(message.errors, function(error){
+                if(error.field == null)
+                {setInfo('error', error.message);}
+                else{
+                    $scope.editableForm.$setError(error.field, error.message);
+                }
+
+            });
+        }
+        else {
+            setInfo('error', message.message);
+        }
+    });
+ };
+
  var setInfo = function(infotype, message) {
      angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
          if(infotype == infoKey) {
@@ -123,20 +125,11 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $routeParams) {
 
  };
 
-});
-
-
-wms.controller('ShipmentModalAddCtrl', function ($scope, $modalInstance, shipment, $http, $q) {
-
-    $controller('ShipmentAddCtrl', {$scope: $scope})
 
     $scope.ok = function () {
-        $modalInstance.close();
+        $location.path('/shipment_maintenance');
     };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
 
 });
 

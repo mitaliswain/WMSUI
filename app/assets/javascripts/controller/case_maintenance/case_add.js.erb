@@ -1,4 +1,4 @@
-wms.controller('caseAddCtrl', function ($scope, $modalInstance, case_header, $http, $location) {
+wms.controller('caseAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
     var client    = 'WM';
     var warehouse = 'WH1';
 
@@ -113,14 +113,10 @@ wms.controller('caseAddCtrl', function ($scope, $modalInstance, case_header, $ht
  	$scope.global_notification = message;		
 
  };
-  
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.ok = function () {
+        $location.path('/case_maintenance');
+    };
 
 });
 

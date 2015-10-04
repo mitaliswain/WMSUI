@@ -1,5 +1,4 @@
-
-		<div id="CaseListCtrl"  class="maintenance_screen_div">
+    <div id="CaseListCtrl"  class="maintenance_screen_div">
 
 			<div>
 				<h3>
@@ -19,7 +18,7 @@
                       </ul>
 				    </span>
                 </span>
-              <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="case for case in case_list | filter:$viewValue | limitTo:8">
+              <input id="query" type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="case for case in case_list | filter:$viewValue | limitTo:8">
               <span class="input-group-addon"><i class="icon-search"></i></span>
             </div>
 
@@ -54,7 +53,7 @@
 								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 							</div>
 							<div class="row-header truncate">
-								<a id="open_case_add"  ng-click="case_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
+								<a id="add_case_header"  href="#case_maintenance/add_case_header"> <i class="icon-plus-sign"></i></a>
 							</div>
 
             </div></th>
@@ -65,7 +64,7 @@
 
 						<td colspan="7">
 						<div  class="card">
-                          <div class="row-header" ng-click="toggle_expand(item)" >
+                          <div class="row-header" ng-click="toggleExpand(item)" >
                             <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                           </div>
 							<div class="row-header">
@@ -81,11 +80,13 @@
 								{{item.case_header.record_status}}
 							</div>
                           <div class="icon-header pull-right">
-                            <a id="open_shipment_detail" ng-click="show_case('Header', item.case_header.id)">
+                            <a id="show_case" ng-click="showCase('Header', item.case_header.id)">
                               <i class="fa fa-chevron-right"></i>
                             </a>
                           </div>
-							</div><!--Detail -->
+							</div>
+
+                        <!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
 								<div class="row-header">
@@ -98,7 +99,7 @@
 									Received Quantity
 								</div>
 								<div class="row-header">
-                                  <a id="open_case_detail_add" ng-click="case_detail_add_modal('lg', item.case_header)">
+                                  <a id="open_case_detail_add" href="#case_maintenance/add_case_detail/{{item.case_header.id}}">
                                     <i class="icon-plus-sign"></i>
                                   </a>
                                 </div>
@@ -150,13 +151,13 @@
 
           <div style="float: left; width: {{expand}}%" ng-show = "header.show">
             <div>
-              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Case Header</button>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideCase()">Case Header</button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideCase()"><i class="fa fa-times"></i> </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_edit_modal('lg', selected_header_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editCase(selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="header_template.url" class="card"></div>
           </div>
@@ -164,13 +165,13 @@
 
           <div style="float: left; width: {{expand}}%" ng-show = "detail.show">
             <div>
-              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hide_shipment()">Case Detail </button>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideCase()">Case Detail </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hide_case()"><i class="fa fa-times"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideCase()"><i class="fa fa-times"></i> </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="case_detail_edit_modal('lg', selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editCase(selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="detail_template.url" class="card"></div>
           </div>

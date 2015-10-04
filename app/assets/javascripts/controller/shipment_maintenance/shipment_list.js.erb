@@ -8,7 +8,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     $scope.squeeze = 100
     $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
 
-    $scope.search_items = [
+    $scope.searchIitems = [
 	    {value: 'shipment_nbr', text: 'Shipment Number'},
     	{value: 'purchase_order_nbr', text: 'Purchase Order Number'}
  	 ]; 
@@ -20,30 +20,8 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
            	$scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
         });
     }
-    
-   $scope.shipment = 'new shipment';
-   var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
-   var reload_modal_close =  function(){
-       $scope.reload();
-
-       //refresh the side screen
-       var shipment =  ShareService.get_shipment();
-       $scope.show_shipment(shipment.shipment_detail ? 'Detail' : 'Header', shipment.shipment_header.id, shipment.shipment_detail ? shipment.shipment_detail.id : null);
-
-   }
-
-    $scope.header_template = {
-        name: 'header_template',
-        url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
-    };
-
-    $scope.detail_template = {
-        name: 'detail_template',
-        url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
-    };
-
-    $scope.show_shipment = function(show, shipment_header_id, shipment_detail_id) {
+    $scope.showShipment = function(show, shipment_header_id, shipment_detail_id) {
         var url = '/shipment_maintenance/'+  shipment_header_id + '.json'
 
         $http.get(url).success(function(data) {
@@ -59,7 +37,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
                 $scope.header.show = false
             }
 
-            ShareService.set_shipment({shipment_header: $scope.shipment_header, shipment_detail: $scope.shipment_detail});
+            //ShareService.set_shipment({shipment_header: $scope.shipment_header, shipment_detail: $scope.shipment_detail});
 
         });
         
@@ -69,7 +47,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         $scope.selected_detail_id = shipment_detail_id;
     }
 
-    $scope.hide_shipment = function() {
+    $scope.hideShipment = function() {
         $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
@@ -77,7 +55,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     };
 
 
-    $scope.toggle_expand = function(item) {
+    $scope.toggleExpand = function(item) {
            item.show = !item.show;
            lastitem = item;
     };
@@ -86,82 +64,13 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         item.show = true;
     };
 
-
-    //Modal methods
-    $scope.shipment_header_add_modal = function (size) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
-            controller: 'ShipmentAddCtrl',
-            size: size,
-            resolve: {
-                shipment: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-    $scope.shipment_header_edit_modal = function (size, shipment_header_id) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
-            controller: 'ShipmentEditModalCtrl',
-            size: size,
-            resolve: {
-                shipment_header_id: function () {
-                    return shipment_header_id;
-                },
-                shipment_detail_id: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-
-    $scope.shipment_detail_add_modal = function (size, shipment) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
-            controller: 'ShipmentAddCtrl',
-            size: size,
-            resolve: {
-                shipment: function () {
-                    return shipment;
-                },
-                shipment_detail_id: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-
-       modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-    $scope.shipment_detail_edit_modal = function (size, shipment_header_id, shipment_detail_id) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
-            controller: 'ShipmentEditModalCtrl',
-            size: size,
-            resolve: {
-                shipment_header_id: function () {
-                    return shipment_header_id;
-                },
-                shipment_detail_id: function () {
-                    return shipment_detail_id;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
+    $scope.editShipment= function(header_id, detail_id) {
+        var url =  '/shipment_maintenance/edit_shipment/'+ header_id + '/'
+        if(detail_id != null) {
+            url += detail_id
+        }
+        $location.path(url);
+    }
 
     $scope.updateHeader = function(data, el, id) {
         var url = '/shipment_maintenance/'+ id + '/update_header';
@@ -173,7 +82,9 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
         UserService.updateResource(data, el, id, url, $scope, $q);
     };
 
-    $scope.reload = function() {
+    $scope.init = function() {
+
+        var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
         $http.get(url).success(function(data) {
             $scope.items = data;
@@ -194,5 +105,5 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     };
 
-    $scope.reload();
+    $scope.init();
 });

@@ -8,6 +8,9 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     $scope.squeeze = 100
     $scope.search_choice = {value: 'case_id', text: 'Case Id'}
 
+    $scope.case = 'new case';
+
+
     $scope.search_items = [
         {value: 'case_id', text: 'Case Id'},
         {value: 'shipment_nbr', text: 'Shipment Number'},
@@ -22,12 +25,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
         });
     }
 
-    $scope.case = 'new case';
-    var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
-    var reload_modal_close =  function(){
-        $scope.reload();
-    }
 
     $scope.header_template = {
         name: 'header_template',
@@ -39,7 +37,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
         url: '<%= asset_path('case_maintenance/case_detail.html') %>'
     };
 
-    $scope.show_case = function(show, case_id, case_detail_id) {
+    $scope.showCase = function(show, case_id, case_detail_id) {
         var url = '/case_maintenance/'+  case_id + '.json'
         $scope.data = {}
         $http.get(url).success(function(data) {
@@ -66,7 +64,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
         $scope.selected_detail_id = case_detail_id
     }
 
-    $scope.hide_case = function() {
+    $scope.hideCase = function() {
         $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
@@ -74,7 +72,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     };
 
 
-    $scope.toggle_expand = function(item) {
+    $scope.toggleExpand = function(item) {
         item.show = !item.show;
         lastitem = item;
     };
@@ -83,88 +81,29 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
         item.show = true;
     };
 
+    $scope.editCase= function(header_id, detail_id) {
+        var url =  '/case_maintenance/edit_case/'+ header_id + '/'
+        if(detail_id != null) {
+            url += detail_id
+        }
+        $location.path(url);
+    }
 
-    //Modal methods
-    $scope.case_add_modal = function (size) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
-            controller: 'caseAddCtrl',
-            size: size,
-            resolve: {
-                case_header: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
+    $scope.updateHeader = function(data, el, id) {
+        var url = '/case_maintenance/'+ id + '/update_header';
+        UserService.updateResource(data, el, id, url, $scope, $q);
     };
 
-    $scope.case_edit_modal = function (size, case_header) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
-            controller: 'caseEditCtrl',
-            size: size,
-            resolve: {
-                case_header: function () {
-                    return case_header;
-                },
-                case_detail_id: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
+    $scope.updateDetail = function(data, el, id) {
+        var url = '/case_maintenance/'+ id + '/update_detail';
+        UserService.updateResource(data, el, id, url, $scope, $q);
     };
 
+    $scope.init = function() {
+        console.log('case')
+        var url = '/case_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
-    $scope.case_detail_add_modal = function (size, case_header) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
-            controller: 'caseAddCtrl',
-            size: size,
-            resolve: {
-                case_header: function () {
-                    return case_header;
-                },
-                case_detail_id: function () {
-                    return null;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-    $scope.case_detail_edit_modal = function (size, case_header, case_detail_id) {
-        var modalInstance = $modal.open({
-            templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
-            controller: 'caseEditCtrl',
-            size: size,
-            resolve: {
-                case_header: function () {
-                    return case_header
-                },
-                case_detail_id: function () {
-                    return case_detail_id;
-                }
-            },
-            backdrop : 'static',
-            keyboard: false
-        });
-        modalInstance.result.then(reload_modal_close,reload_modal_close);
-    };
-
-
-
-    $scope.reload = function() {
-
-        $http.get(url).success(function(data) {
+        $http.get(url, {cache: true}).success(function(data) {
             $scope.items = data;
             $scope.case_list = []
 
@@ -184,5 +123,5 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
 
     };
 
-    $scope.reload();
+    $scope.init();
 });

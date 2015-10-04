@@ -1,24 +1,26 @@
-wms.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, case_detail_id, $http, $location, $q) {
-    var warehouse = case_header.warehouse;
-    var client    = case_header.client;
-    var url = '/case_maintenance/'+  case_header + '.json?client=' + client + '&warehouse='+ warehouse;
+wms.controller('CaseEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+
+    var case_header_id = $stateParams.header_id
+    var case_detail_id = $stateParams.detail_id
+
+    var client = 'WM'
+    var warehouse = 'WH1'
+
+    if (case_header_id != null) {
+        var url = '/case_maintenance/'+  case_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
+        $http.get(url).success(function (data) {
+            $scope.case_header = data.case_header
+            $scope.case_detail = $filter('search')(data.case_detail, case_detail_id, 'id');
+
+        }).error(function(){
+            console.log('failed call');
+        });
+    };
+
     $scope.YesorNo = [
         {value: 'Y', text: 'Yes'},
         {value: 'N', text: 'No'},
     ];
-
-    $http.get(url).success(function(data) {
-        $scope.case_header = data.case_header;
-        $scope.case_details = data.case_detail;
-        console.log(case_detail_id)
-        angular.forEach(data.case_detail, function(case_detail) {
-            if (case_detail.id == case_detail_id){
-                $scope.case_detail = case_detail;
-
-            }
-        });
-
-    });
 
     $scope.header_template = {
         name: 'header_template',
@@ -38,66 +40,20 @@ wms.controller('caseEditCtrl', function ($scope, $modalInstance, case_header, ca
         {value: 'Consumed', text: 'Consumed'}
     ];
 
-
     $scope.updateHeader = function(data, el, id) {
-
-        var fields_to_update = {};
-        var url = '/case_maintenance/'+ id + '/update_header?client=' + client + '&warehouse='+ warehouse;
-        fields_to_update[el.$editable.elem[0].id] = data;
-        var d = $q.defer();
-        $http.post(url, {
-            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-            fields_to_update: fields_to_update
-        })
-                .success(function(res) {
-                    res = res || {};
-                    d.resolve();
-                }).error(function(res){
-                    console.log(res);
-                    res = res || {};
-                    if (res.status == 500) {
-                        d.reject(res.message|| 'Server Error');
-                    }
-                    else {
-                        d.reject(res.errors[0].message);
-                    }
-                });
-        return d.promise;
+        var url = '/case_maintenance/'+ id + '/update_header' ;
+        UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.updateDetail = function(data, el, id) {
-
-        var fields_to_update = {};
-        var url = '/case_maintenance/'+ id + '/update_detail?client=' + client + '&warehouse='+ warehouse;
-        fields_to_update[el.$editable.elem[0].id] = data;
-        var d = $q.defer();
-        $http.post(url, {
-            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
-            fields_to_update: fields_to_update
-        })
-                .success(function(res) {
-                    res = res || {};
-                    d.resolve();
-                }).error(function(res){
-                    res = res || {};
-                    if (res.status == 500) {
-                        d.reject('Server error!');
-                    }
-                    else {
-                        d.reject(res.errors[0].message);
-                    }
-                });
-        return d.promise;
+        var url = '/case_maintenance/'+ id + '/update_detail';
+        UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.ok = function () {
-        $modalInstance.close();
+        $location.path('/case_maintenance');
     };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
+
 
 });
