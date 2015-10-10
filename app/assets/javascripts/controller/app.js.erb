@@ -88,21 +88,21 @@ wms.config(function($stateProvider, $urlRouterProvider) {
         // route for the item master page
             .state('item_master_maintenance', {
                 url:         '/item_master_maintenance',
-                templateUrl: '<%= asset_path('item_master_maintenance/index.html') %>',
+                templateUrl: '<%= asset_path('item_maintenance/index.html') %>',
                 controller:  'ItemMasterListCtrl'
             })
 
         // edit item master header page
             .state('item_master_header', {
                 url:         '/item_master_maintenance/edit_item/:header_id/',
-                templateUrl: '<%= asset_path('item_master_maintenance/show_header.html') %>',
+                templateUrl: '<%= asset_path('item_maintenance/show_header.html') %>',
                 controller:  'ItemMasterEditCtrl'
             })
 
         // route for the add item master
             .state('add_item_master', {
                 url        : '/item_master_maintenance/add_item',
-                templateUrl: '<%= asset_path('item_master_maintenance/add_item.html') %>',
+                templateUrl: '<%= asset_path('item_maintenance/add_item.html') %>',
                 controller : 'ItemMasterAddCtrl'
             })
 
@@ -127,6 +127,14 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 templateUrl: '<%= asset_path('configuration_maintenance/add_item.html') %>',
                 controller : 'ConfigurationAddCtrl'
             })
+            
+        // route for the shipment page
+            .state('user_master_maintenance', {
+                url:         '/user_master_maintenance',
+                templateUrl: '<%= asset_path('user_maintenance/index.html') %>',
+                controller:  'UserMasterListCtrl'
+            })
+
 
 });
 

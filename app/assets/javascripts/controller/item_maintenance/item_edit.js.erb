@@ -1,0 +1,42 @@
+wms.controller('ItemMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+
+
+    var item_id = $stateParams.header_id
+
+    var client = 'WM'
+    var warehouse = 'WH1'
+
+    var url = '/item_master_maintenance/'+ item_id + '.json?client=' + client + '&warehouse='+ warehouse;
+    $http.get(url).success(function(data) {
+        $scope.item_header = data.item_header;
+    }).error(function(){
+        console.log('failed to call')
+    });
+
+
+
+    $scope.statuses = [
+        {value: 'Active', text: 'Active'},
+        {value: 'Inactive', text: 'Inactive'}
+    ];
+
+    $scope.concept = [
+        {value: 'AB', text: 'AB'},
+        {value: 'BC', text: 'BC'},
+    ];
+    $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('item_maintenance/item_header.html') %>'
+        };
+
+
+    $scope.updateHeader = function(data, el, id) {
+        var url = '/item_master_maintenance/'+ id
+        UserService.updateResource(data, el, id, url, $scope, $q)
+    };
+
+    $scope.ok = function () {
+        $location.path('/item_master_maintenance');
+    };
+
+});

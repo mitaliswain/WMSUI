@@ -1,4 +1,4 @@
-wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -8,9 +8,8 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.squeeze = 100
 
     $scope.search_items = [
-        {value: 'barcode', text: 'Barcode'},
-        {value: 'item', text: 'Item'},
-        {value: 'description', text: 'Description'}
+        {value: 'user_name', text: 'User Name'},
+        {value: 'user_id', text: 'User Id'}
     ];
 
     $scope.search_choice = $scope.search_items[0]
@@ -23,20 +22,20 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
         });
     }
 
-    $scope.item = 'new item';
+    $scope.item = 'new user';
 
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
+        url: '<%= asset_path('user_master_maintenance/user_header.html') %>'
     };
 
     $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('item_master_maintenance/item_detail.html') %>'
+        url: '<%= asset_path('user_master_maintenance/user_detail.html') %>'
     };
 
     $scope.showItem = function(show, item, item_detail_id) {
-        var url = '/item_master_maintenance/'+  item + '.json'
+        var url = '/user_master_maintenance/'+  item + '.json'
 
         $http.get(url).success(function(data) {
             $scope.item_header = data.item_header
@@ -80,7 +79,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     };
 
     $scope.editItem= function(header_id, detail_id) {
-        var url =  '/item_master_maintenance/edit_item/'+ header_id + '/'
+        var url =  '/user_master_maintenance/edit_user/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }
@@ -89,28 +88,28 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     }
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/item_master_maintenance/'+ id
+        var url = '/user_master_maintenance/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q);
     };
 
 
     $scope.init = function() {
 
-        var url = '/item_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+        var url = '/user_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
 
         $http.get(url).success(function(data) {
             $scope.items = data;
             $scope.item_list = []
 
-            $scope.filter_from_object = "item_header"
-            $scope.filter_from_field = "status"
+            $scope.filter_from_object = "user_header"
+            $scope.filter_from_field = "user_name"
 
             UserService.set_page($scope);
 
-            $scope.status('Active');
+            //$scope.status('Active');
 
             angular.forEach($scope.items, function(item) {
-                $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+                $scope.item_list.push(item["user_header"][$scope.search_choice.value]);
             });
 
         });

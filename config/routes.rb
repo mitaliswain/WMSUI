@@ -45,6 +45,13 @@ Rails.application.routes.draw do
     post '', action: 'create'
   end
 
+  namespace :user_master_maintenance do
+    get '', action: 'index'
+    get  ':id', action: 'show'
+    post ':id', action: 'update'
+    post '', action: 'create'
+  end
+
 
   namespace :item_master_maintenance do
     get '', action: 'index'
