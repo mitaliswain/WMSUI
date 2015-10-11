@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require_tree ./lib/angular-1.2.21
+//= require_tree ./lib/angular-1.3.15
+//= require_tree ./lib/angular-storage-0.3.0
+//= require_tree ./lib/angular-ui-router-0.2.8
+
 //= require_tree ./lib/bootstrap_angular-0.12.0
 //= require_tree ./lib/xeditable-0.1.8
 

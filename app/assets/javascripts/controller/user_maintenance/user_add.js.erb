@@ -1,4 +1,4 @@
-wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
+wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
  
   var client    = 'WM';
   var warehouse = 'WH1';
@@ -29,7 +29,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    
   $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
+        url: '<%= asset_path('user_maintenance/item_header.html') %>'
         };
 
  $scope.saveHeader = function() {

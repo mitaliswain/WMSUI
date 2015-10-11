@@ -2,16 +2,20 @@ require 'rest_client'
 
 class ItemMaster
   
+  def initialize(token)
+    @token = token
+  end
+  
   def item_list(params = '')
     
     url = Properties.getUrl + '/item_master'
-    response = RestClient.get url #, {:params => {:selection => params.to_json}}
+    response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)       
   end
 
-  def self.item_details(item)
+  def item_details(item)
     url = Properties.getUrl + "/item_master/#{item['item_id']}?client=#{item['client']}&warehouse=#{item['warehouse']}"
-    response = RestClient.get url
+    response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)
   end
 
@@ -21,7 +25,7 @@ class ItemMaster
     url = Properties.getUrl + "/item_master/#{id}"
     response = RestClient.put(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update, authorization: @token) { | responses, request, result, &block |
 
       case responses.code
 
@@ -35,11 +39,12 @@ class ItemMaster
     return JSON.parse(response)  
   end
 
-  def self.add_item_master(app_parameters, fields_to_update)
+  def add_item_master(app_parameters, fields_to_update)
     url = Properties.getUrl + '/item_master/'
     response = RestClient.post(url,
                                app_parameters: app_parameters,
-                               fields_to_update: fields_to_update) { | responses, request, result, &block |
+                               fields_to_update: fields_to_update,
+                               authorization: @token) { | responses, request, result, &block |
       case responses.code
         when 200, 422
           responses

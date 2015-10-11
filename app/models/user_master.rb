@@ -9,8 +9,8 @@ class UserMaster
     return JSON.parse(response)       
   end
 
-  def self.user_details(item)
-    url = Properties.getUrl + "/user_master/#{user['user_id']}?client=#{user['client']}"
+  def self.user_details(user)
+    url = Properties.getUrl + "/user_master/#{user['id']}?client=#{user['client']}"
     response = RestClient.get url
     return JSON.parse(response)
   end

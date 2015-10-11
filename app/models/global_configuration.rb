@@ -2,10 +2,13 @@ require 'rest_client'
 
 class GlobalConfiguration
   
-  def configuration_list(params = {})    
-    
+  def initialize(token)
+    @token = token
+  end
+  
+  def configuration_list(params = {})      
     url = Properties.getUrl + "/configuration" 
-    response = RestClient.get url, {:params => {:selection => params.to_json}}
+    response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)       
   end
 

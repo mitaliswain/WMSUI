@@ -7,18 +7,22 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.expand = 0
     $scope.squeeze = 100
 
+    $scope.preffered_warehouse = [
+        {value: 'WH1', text: 'PDC'},
+        {value: 'WH2', text: 'WDC'}
+    ];
+
     $scope.search_items = [
         {value: 'user_name', text: 'User Name'},
         {value: 'user_id', text: 'User Id'}
     ];
-
     $scope.search_choice = $scope.search_items[0]
 
     $scope.choose = function(choice) {
         $scope.search_choice = choice;
         $scope.item_list = []
         angular.forEach($scope.items, function(item) {
-            $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+            $scope.item_list.push(item["user_header"][$scope.search_choice.value]);
         });
     }
 
@@ -26,30 +30,30 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
 
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('user_master_maintenance/user_header.html') %>'
+        url: '<%= asset_path('user_maintenance/user_header.html') %>'
     };
 
     $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('user_master_maintenance/user_detail.html') %>'
+        url: '<%= asset_path('user_maintenance/user_detail.html') %>'
     };
 
-    $scope.showItem = function(show, item, item_detail_id) {
-        var url = '/user_master_maintenance/'+  item + '.json'
+    $scope.showItem = function(show, user, user_detail_id) {
+        var url = '/user_master_maintenance/'+  user + '.json'
 
         $http.get(url).success(function(data) {
-            $scope.item_header = data.item_header
-            $scope.item_details = data.item_detail
-
+            $scope.user_header = data.user_header
+            $scope.user_details = data.user_detail
+			console.log($scope.user_header);
             if (show == 'Header') {
                 $scope.header.show = true
                 $scope.detail.show = false
             } else {
                 $scope.detail.show = true
                 $scope.header.show = false
-                angular.forEach($scope.item_details, function (item_detail) {
-                    if (item_detail.id == item_detail_id) {
-                        $scope.item_detail = item_detail;
+                angular.forEach($scope.user_details, function (user_detail) {
+                    if (user_detail.id == user_detail_id) {
+                        $scope.user_detail = user_detail;
                     }
                 });
             }
@@ -57,8 +61,8 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
 
         $scope.expand = 50
         $scope.squeeze = 50
-        $scope.selected_header_id = item
-        $scope.selected_detail_id = item_detail_id
+        $scope.selected_header_id = user
+        $scope.selected_detail_id = user_detail_id
     }
 
     $scope.hideItem= function() {
@@ -106,7 +110,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
 
             UserService.set_page($scope);
 
-            //$scope.status('Active');
+            $scope.status('*All');
 
             angular.forEach($scope.items, function(item) {
                 $scope.item_list.push(item["user_header"][$scope.search_choice.value]);

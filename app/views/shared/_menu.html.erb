@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav pull-right">
         <li>
-          <a href="#">Home<span class="glyphicon glyphicon-home"></span> </a>
+          <a ui-sref="main">Home<span class="glyphicon glyphicon-home"></span> </a>
         </li>
 
 
@@ -24,7 +24,6 @@
                 <a href="" class="dropdown-toggle nav" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
                   <span class="glyphicon glyphicon-glass">Utilities</span><span class="caret"></span>
                 </a>
-
 
               <ul class="dropdown-menu">
                 <li><a ui-sref="configuration_maintenance">Configuration</a></li>
@@ -41,31 +40,25 @@
               </ul>
           </span>
         </li>
+  
         <li>
-
-                <span class="navbar-nav" dropdown on-toggle="toggled(open)">
-                <a href="" class="dropdown-toggle navbar-inverse" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-                  <span class="glyphicon glyphicon-leaf"></span> Welcome <%= @userid %> <span class="caret"></span>
+          <span class="nav" dropdown on-toggle="toggled(open)">
+                <a href="" class="dropdown-toggle nav" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-glass">Welcome</span><span class="caret"></span>
                 </a>
 
+              <ul class="dropdown-menu pull-right">
+                <li>
+                	<div>
+                		<div style="float:left; margin: 5px">Welcome {{user_name}}</div>
+                		<div style="float:left; margin: 5px"> <button class="btn btn-primary" ng-click ="signout()">Sign Out</label></div>
+                	</div>
+                </li>
+                
 
-              <ul class="dropdown-menu">
-                <li><a ui-sref="configuration_maintenance">Configuration</a></li>
-                <li class="divider"></li>
-                <li><a ui-sref="shipment_maintenance">Shipment</a></li>
-                <li class="divider"></li>
-                <li><a ui-sref="case_maintenance">Case Inventory</a></li>
-                <li class="divider"></li>
-                <li><a ui-sref="item_master_maintenance">Item Master</a></li>
-                <li class="divider"></li>
-                <li><a ui-sref="user_master_maintenance">User Master</a></li>
-                <li class="divider"></li>
-                <li><a ui-sref="mainmenu/new">Receive</a></li>
-                <li class="divider"></li>
               </ul>
-            </span>
+          </span>
         </li>
-
 
       </ul>
 

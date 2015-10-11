@@ -10,6 +10,7 @@ class UserMasterMaintenanceController < ApplicationController
   def show
     user = {}
     user['client'] = params[:client]
+    user['id'] = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
