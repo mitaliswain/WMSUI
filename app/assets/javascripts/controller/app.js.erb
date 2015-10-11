@@ -10,15 +10,10 @@ wms.run(function(editableOptions) {
 // configure our routes
 wms.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
         
-        // route for the shipment page
-            .state('main', {
-                url:         '/main',
-                controller:  'MenuCtrl'
-            })
 
         // route for the shipment page
             .state('shipment_maintenance', {
@@ -155,16 +150,6 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller : 'UserMasterAddCtrl'
             })
 
-});
-
-//Check if the user is logged in or not
-wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-       if(! $localStorage.token) {
-        // window.location = '/login'
-    	}
-    	
-    	});
 });
 
 
