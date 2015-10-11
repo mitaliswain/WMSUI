@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     post '', action: 'create'
   end
 
-  namespace :logins do
+  namespace :login do
     get '', action: 'index'
     get  ':id', action: 'show'
     post ':id', action: 'update'
