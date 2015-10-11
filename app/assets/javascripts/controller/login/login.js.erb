@@ -15,7 +15,8 @@ login.controller('LoginCtrl', function ($scope, $location, $localStorage, $http,
          password: $scope.password
     }).success(function(data){
 		$localStorage.token = data['additional_info'][0]['token']
-        window.location = '/main';
+		console.log($localStorage.token);
+        //window.location = '/main';
 
     }).error(function(message){
             $scope.message = 'Invalid Login';
