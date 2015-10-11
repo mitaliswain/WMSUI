@@ -7,9 +7,15 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.expand = 0
     $scope.squeeze = 100
 
-    $scope.preffered_warehouse = [
+    $scope.warehouse = [
         {value: 'WH1', text: 'PDC'},
         {value: 'WH2', text: 'WDC'}
+    ];
+
+    $scope.roles = [
+        {value: 'admin', text: 'Admin'},
+        {value: 'warehouse_manager', text: 'Warehouse Manager'},
+        {value: 'warehouse_associate', text: 'Warehouse Associate'},
     ];
 
     $scope.search_items = [
