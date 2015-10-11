@@ -136,6 +136,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller:  'UserMasterListCtrl'
             })
 
+<<<<<<< HEAD
 
 });
 
@@ -147,10 +148,21 @@ wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
          window.location = '/login'
                 	console.log('log out')
     	}
+=======
+>>>>>>> 9e59b65d61db2ad5f8a048c9a8147e465f9a8374
 
     	});
 });
 
+//Check if the user is logged in or not
+wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+       if(! $localStorage.token) {
+         window.location = '/login'
+    	}
+    	
+    	});
+});
 
 wms.config(function ($httpProvider) {
    $httpProvider.interceptors.push('authInterceptor');
