@@ -18,7 +18,7 @@ class UserMaster
 
   def update_user_master(id, app_parameters, fields_to_update)
     
-    url = Properties.getUrl + "/user_master/#{id}"
+    url = Properties.getUrl + "/item_master/#{id}"
     response = RestClient.put(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
@@ -36,7 +36,7 @@ class UserMaster
   end
 
   def self.add_user_master(app_parameters, fields_to_update)
-    url = Properties.getUrl + '/user_master/'
+    url = Properties.getUrl + '/item_master/'
     response = RestClient.post(url,
                                app_parameters: app_parameters,
                                fields_to_update: fields_to_update) { | responses, request, result, &block |
