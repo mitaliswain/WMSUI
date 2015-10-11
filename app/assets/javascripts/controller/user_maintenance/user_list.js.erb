@@ -7,10 +7,17 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.expand = 0
     $scope.squeeze = 100
 
-    $scope.preffered_warehouse = [
+    $scope.warehouse = [
         {value: 'WH1', text: 'PDC'},
         {value: 'WH2', text: 'WDC'}
     ];
+    
+   $scope.authorized_action = [
+        {value: 'Admin', text: 'Admin'},
+        {value: 'WMS_Manager', text: 'Warehouse Manager'},
+        {value: 'WMS_Associate', text: 'Warehouse Associate'}
+    ];
+
 
     $scope.search_items = [
         {value: 'user_name', text: 'User Name'},
@@ -38,7 +45,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         url: '<%= asset_path('user_maintenance/user_detail.html') %>'
     };
 
-    $scope.showItem = function(show, user, user_detail_id) {
+    $scope.showUser = function(show, user, user_detail_id) {
         var url = '/user_master_maintenance/'+  user + '.json'
 
         $http.get(url).success(function(data) {
@@ -63,9 +70,10 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         $scope.squeeze = 50
         $scope.selected_header_id = user
         $scope.selected_detail_id = user_detail_id
+        console.log($scope.selected_header_id);
     }
 
-    $scope.hideItem= function() {
+    $scope.hideUser= function() {
         $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
@@ -82,7 +90,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         item.show = true;
     };
 
-    $scope.editItem= function(header_id, detail_id) {
+    $scope.editUser= function(header_id, detail_id) {
         var url =  '/user_master_maintenance/edit_user/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id

@@ -134,13 +134,26 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller : 'ConfigurationAddCtrl'
             })
             
-        // route for the shipment page
+        // route for the user master page
             .state('user_master_maintenance', {
                 url:         '/user_master_maintenance',
                 templateUrl: '<%= asset_path('user_maintenance/index.html') %>',
                 controller:  'UserMasterListCtrl'
             })
 
+        // edit user master header page
+            .state('user_master_header', {
+                url:         '/user_master_maintenance/edit_user/:header_id/',
+                templateUrl: '<%= asset_path('user_maintenance/show_header.html') %>',
+                controller:  'UserMasterEditCtrl'
+            })
+
+        // route for the add user 
+            .state('add_user_master', {
+                url        : '/user_master_maintenance/add_user',
+                templateUrl: '<%= asset_path('user_maintenance/add_user.html') %>',
+                controller : 'UserMasterAddCtrl'
+            })
 
 });
 
@@ -148,9 +161,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
        if(! $localStorage.token) {
-
          window.location = '/login'
-                	console.log('log out')
     	}
     	
     	});
