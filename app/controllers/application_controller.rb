@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     if request.headers['authorization'].nil?
-      redirect_to login_url
+      #redirect_to login_url
     end
   end
 end
