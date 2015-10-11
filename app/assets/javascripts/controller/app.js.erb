@@ -125,7 +125,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
         // route for adding new configuration
             .state('add_configuration_header', {
                 url        : '/configuration_maintenance/add_configuration',
-                templateUrl: '<%= asset_path('configuration_maintenance/add_item.html') %>',
+                templateUrl: '<%= asset_path('configuration_maintenance/add_configuration.html') %>',
                 controller : 'ConfigurationAddCtrl'
             })
             
@@ -134,6 +134,20 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 url:         '/user_master_maintenance',
                 templateUrl: '<%= asset_path('user_maintenance/index.html') %>',
                 controller:  'UserMasterListCtrl'
+            })
+
+        // edit user master header page
+            .state('user_master_header', {
+                url:         '/user_master_maintenance/edit_user/:header_id/',
+                templateUrl: '<%= asset_path('user_maintenance/show_header.html') %>',
+                controller:  'UserMasterEditCtrl'
+            })
+
+        // route for the add user
+            .state('add_user_master', {
+                url        : '/user_master_maintenance/add_item',
+                templateUrl: '<%= asset_path('user_maintenance/user_item.html') %>',
+                controller : 'UserMasterAddCtrl'
             })
 
 
