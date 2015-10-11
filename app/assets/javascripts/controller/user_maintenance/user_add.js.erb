@@ -4,7 +4,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
   var warehouse = 'WH1';
 
 
-   $scope.user_header = {};
+   $scope.item_header = {};
 
    $scope.globalInfo = {
    	error: false,
@@ -15,18 +15,13 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    $scope.statuses = [
     {value: 'Active', text: 'Active'},
     ]; 
-     
-    $scope.warehouse = [
-        {value: 'WH1', text: 'PDC'},
-        {value: 'WH2', text: 'WDC'}
-    ];
-    
-   $scope.authorized_action = [
-        {value: 'Admin', text: 'Admin'},
-        {value: 'WMS_Manager', text: 'Warehouse Manager'},
-        {value: 'WMS_Associate', text: 'Warehouse Associate'}
-    ];
-        
+   
+   
+   $scope.concept = [
+    {value: 'AB', text: 'AB'},
+    {value: 'BC', text: 'BC'},
+    ]; 
+
     $scope.clear = function() {
 	   $scope.item_header= {};
 	   };
@@ -34,21 +29,21 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    
   $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('user_maintenance/user_header.html') %>'
+        url: '<%= asset_path('user_maintenance/item_header.html') %>'
         };
 
  $scope.saveHeader = function() {
 	
     var fields_to_update = {};
-    fields_to_update = $scope.user_header;
-    var url = '/user_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    fields_to_update = $scope.item_header;
+    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM'},
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;
- 		setInfo('info', 'User Created Successfully');
+ 		setInfo('info', 'Item Created Successfully');
 
     }).error(function(message){
     	if (message.status == '422')
@@ -81,7 +76,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
  };
   
   $scope.ok = function () {
-    $location.path('/user_master_maintenance')
+    $location.path('/item_master_maintenance')
   };
 
 });
