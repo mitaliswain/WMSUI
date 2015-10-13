@@ -48,7 +48,7 @@
                         Auth Action<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
                       </div>
                       <div class="row-header truncate">
-                          <a id="add_item_header" href="#item_master_maintenance/add_item"> <i class="icon-plus-sign"></i></a>
+                          <a id="add_user_header" href="#user_master_maintenance/add_user"> <i class="icon-plus-sign"></i></a>
                       </div>
                     </div>
                 </tr>
@@ -76,7 +76,7 @@
                       </div>
 
                       <div class="icon-header pull-right">
-                        <a id="show_item" ng-click="showItem('Header', item.user_header.id)">
+                        <a id="show_item" ng-click="showUser('Header', item.user_header.id)">
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
@@ -149,13 +149,13 @@
 
           <div style="float: left;width: {{expand}}%" ng-show = "header.show">
             <div>
-              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideItem()">User Master</button>
+              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideUser()">User Master</button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideItem()"><i class="fa fa-times"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideUser()"><i class="fa fa-times"></i> </button>
             </div>
             <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editItem(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editUser(selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
             <div ng-include src="header_template.url" class="card"></div>
           </div>

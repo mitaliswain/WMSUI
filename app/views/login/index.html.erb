@@ -3,11 +3,11 @@
 
 </head>
 
-<body ng-app="login">
+<body ng-app="login" ng-controller="LoginCtrl" ng-keypress="($event.charCode==13)?login():return">
 
 
 
-<div id="LoginCtrl" ng-controller="LoginCtrl" class="maintenance_screen_div">
+<div id="LoginCtrl" class="maintenance_screen_div">
 
   <div class="centered">
     <h3><span>Warehouse Management System</span></h3>
@@ -35,7 +35,7 @@
     <div style="margin-bottom: 5%">
         <input type="checkbox"><span> Remember Me</span>
     </div>
-    <button id="login" class="btn btn-primary" ng-click="login()">Sign In</button>
+    <button id="login" class="btn btn-primary"  ng-click="login()">Sign In</button>
 
 
 

@@ -29,14 +29,14 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    
   $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('user_maintenance/item_header.html') %>'
+        url: '<%= asset_path('user_maintenance/user_header.html') %>'
         };
 
  $scope.saveHeader = function() {
 	
     var fields_to_update = {};
     fields_to_update = $scope.item_header;
-    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = '/user_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
@@ -76,7 +76,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
  };
   
   $scope.ok = function () {
-    $location.path('/item_master_maintenance')
+    $location.path('/user_master_maintenance')
   };
 
 });

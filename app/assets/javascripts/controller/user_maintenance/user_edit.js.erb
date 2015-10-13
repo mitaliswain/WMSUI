@@ -26,17 +26,17 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
     ];
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
+        url: '<%= asset_path('user_maintenance/user_header.html') %>'
         };
 
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/item_master_maintenance/'+ id
+        var url = '/user_master_maintenance/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.ok = function () {
-        $location.path('/item_master_maintenance');
+        $location.path('/user_master_maintenance');
     };
 
 });

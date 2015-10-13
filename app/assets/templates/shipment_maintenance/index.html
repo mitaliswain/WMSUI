@@ -30,10 +30,9 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-			<table class="table">
-				<thead>
-					<tr>
-						<th colspan="7">
+			<div id="table">
+				<div id="head" >
+					<div>
 						<div class="bs-callout">
 							<div class="row-header">
 								Option
@@ -57,13 +56,12 @@
 							<div class="row-header truncate">
 								<a id="add_shipment_header" href="#shipment_maintenance/add_shipment_header"> <i class="icon-plus-sign"></i></a>
 							</div>
-						</div></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in pagedItems[currentPage]">
-						<td colspan="7">
-						<div  class="card" ng-click="showShipment('Header', item.shipment_header.id)">
+						</div>
+					</div>
+				</div>
+				<div id="tbody">
+					<div ng-repeat="item in pagedItems[currentPage]">
+						<div  class="grid-row" ng-click="showShipment('Header', item.shipment_header.id)">
 							<div id="shipment_header" class="row-header" ng-click="toggleExpand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
@@ -109,7 +107,7 @@
 								</div>
 
 							</div>
-							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
+							<div ng-repeat="detail in item.shipment_detail">
                                 <div id="shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
 								    <div class="row-header">
 									    {{detail.item}}
@@ -126,12 +124,11 @@
                                 </div>
 							</div>
 						</div>
-                        </td>
-					</tr>
+          
+					</div>
 
-				</tbody>
-				<tfoot>
-					<td colspan="7">
+				</div>
+				<div id="tfoot">
 					<div>
 						<ul class="pagination pull-right">
 							<li ng-class="{disabled: currentPage == 0}">
@@ -146,10 +143,10 @@
 								<a href ng-click="nextPage()">Next »</a>
 							</li>
 						</ul>
-					</div></td>
-				</tfoot>
+					</div>
+				</div>
 
-			</table>
+			</div>
           </div>
         </div>
 
