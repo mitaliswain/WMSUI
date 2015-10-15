@@ -141,7 +141,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
             })
        
        // edit user master header page
-            .state('user_master_header', {
+            .state('edit_user_master', {
                 url:         '/user_master_maintenance/edit_user/:header_id/',
                 templateUrl: '<%= asset_path('user_maintenance/show_header.html') %>',
                 controller:  'UserMasterEditCtrl'
@@ -154,20 +154,6 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller : 'UserMasterAddCtrl'
             })
 
-
-        // edit user master header page
-            .state('user_master_header', {
-                url:         '/user_master_maintenance/edit_user/:header_id/',
-                templateUrl: '<%= asset_path('user_maintenance/show_header.html') %>',
-                controller:  'UserMasterEditCtrl'
-            })
-
-        // route for the add user
-            .state('add_user_master', {
-                url        : '/user_master_maintenance/add_user',
-                templateUrl: '<%= asset_path('user_maintenance/add_user.html') %>',
-                controller : 'UserMasterAddCtrl'
-            })
 
 
 });

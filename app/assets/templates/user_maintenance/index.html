@@ -14,7 +14,7 @@
                                 </li>
                               </ul>
                             </span>
-                         </span>
+                        </span>	
             <input type="text" ng-model="query" ng-keydown="search($event, search_choice.value)" class="form-control" placeholder="Search" typeahead="item for item in item_list | filter:$viewValue | limitTo:8">
             <span class="input-group-addon"><i class="icon-search"></i></span>
           </div>
@@ -27,40 +27,6 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-<<<<<<< HEAD
-              <table class="table">
-                <thead>
-                <tr>
-                  <th colspan="7">
-                    <div class="bs-callout">
-                      <div class="row-header">
-                        Option
-                      </div>
-                      <div class="row-header truncate">
-                        User Id<a ng-click="sort_by('user_id')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        User Name<a ng-click="sort_by('user_name')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        Preffered Warehouse<a ng-click="sort_by('preffered_warehouse')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        Auth Action<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                          <a id="add_user_header" href="#user_master_maintenance/add_user"> <i class="icon-plus-sign"></i></a>
-                      </div>
-                    </div>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in pagedItems[currentPage]">
-
-                  <td colspan="7">
-                    <div  class="card">
-                      <div class="row-header" ng-click="toggleExpand(item)" >
-=======
 	            <div class="row-header">
 	              <div class="col-header">
 	                Option
@@ -85,7 +51,6 @@
                 <div ng-repeat="item in pagedItems[currentPage]">
                     <div  class="row-detail">
                       <div class="col-header" ng-click="toggleExpand(item)" >
->>>>>>> 4ea9de90491cd98d4b5aecb6942583f98685cbba
                         <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                       </div>
 
@@ -103,11 +68,7 @@
                       </div>
 
                       <div class="icon-header pull-right">
-<<<<<<< HEAD
-                        <a id="show_user" ng-click="showUser('Header', item.user_header.id)">
-=======
                         <a id="show_item" ng-click="showUser('Header', item.user_header.id)">
->>>>>>> 4ea9de90491cd98d4b5aecb6942583f98685cbba
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
@@ -143,7 +104,7 @@
                           {{detail.innerpack_hgt}}
                         </div>
                         <div class="icon-header pull-right">
-                          <a id="show_user_detail" ng-click="showUser('Detail', item.user_header.id,  detail.id)">
+                          <a id="show_item_detail" ng-click="showItem('Detail', item.user_header.id,  detail.id)">
                             <i class="fa fa-chevron-right"></i>
                           </a>
                         </div>
