@@ -86,8 +86,16 @@ select {
     width: 35%;
     float: left
 }
-
-.grid-row{
+  
+.row-header{
+	padding: 8px;
+    margin-bottom: 7px;
+    background-color :#428bca;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+  
+.row-detail{
 	padding: 8px;
     margin-bottom: 7px;
     background-color :#F1F1F1;
@@ -95,11 +103,11 @@ select {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
   
-.grid-row:hover{
+.row-detail:hover{
 	background-color :#CCCCCC;
 }
     
-.row-header {
+.col-header {
 	min-width: 12%;
 	max-width: 12%;
 	display: inline-block;
@@ -107,6 +115,16 @@ select {
 	min-height: 1px;
 	white-space: nowrap
 }
+
+.col-detail {
+	min-width: 12%;
+	max-width: 12%;
+	display: inline-block;
+	text-align: center;
+	min-height: 1px;
+	white-space: nowrap
+}
+
 
 .icon-header {
 	min-width: 2%;

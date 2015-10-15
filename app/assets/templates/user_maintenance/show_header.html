@@ -2,17 +2,13 @@
 
 <div class="modal-header">
     <button type="button" class="btn btn-primary">
-        Wahrehouse :
-    </button>
-    {{item_header.warehouse || "WH1"}}
-    <button type="button" class="btn btn-primary">
         Client:
     </button>
-    {{item_header.client || "WM"}}
+    {{user_header.client || "WM"}}
     <button type="button" class="btn btn-primary">
         Shipment:
     </button>
-    {{item_header.item||"New Item"}}
+    {{item_header.item||"New User"}}
     <button class="btn btn-primary" ng-click="ok()" style="float: right">
         <i class="fa fa-times" style="float: right"></i>
     </button>
@@ -25,7 +21,7 @@
 
     <accordion close-others="oneAtATime">
 
-        <accordion-group heading="Item Header" is-open=true>
+        <accordion-group heading="User Header" is-open=true>
             <div ng-include src="header_template.url"></div>
         </accordion-group>
 

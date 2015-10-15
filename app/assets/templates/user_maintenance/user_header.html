@@ -25,22 +25,22 @@
     </div>
     <div class="modal_text_box">
         <span class="title truncate">Preffered Warehouse:</span>
-        <a href="#" id="preffered_warehouse" e-name="preffered_warehouse" editable_select="item_header.preffered_warehouse"
+        <a href="#" id="preffered_warehouse" e-name="preffered_warehouse" editable_select="user_header.preffered_warehouse"
            e-ng-options="s.value as s.text for s in preffered_warehouse"
-           onbeforesave="updateHeader($data, this, item_header.id)" e-required>{{ item_header.preffered_warehouse || "empty" }}</a>
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.preffered_warehouse || "empty" }}</a>
     </div>
         <div class="modal_text_box">
         <span class="title truncate">Authorized Warehouse:</span>
-        <a href="#" id="authorized_warehouse" e-name="authorized_warehouse" editable_select="item_header.authorized_warehouse"
+        <a href="#" id="authorized_warehouse" e-name="authorized_warehouse" editable_select="user_header.authorized_warehouse"
            e-ng-options="s.value as s.text for s in preffered_warehouse"
-           onbeforesave="updateHeader($data, this, item_header.id)" e-required>{{ item_header.authorized_warehouse || "empty" }}</a>
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.authorized_warehouse || "empty" }}</a>
     </div>
         </div>
         <div class="modal_text_box">
         <span class="title truncate">Authorized Action:</span>
-        <a href="#" id="authorized_action" e-name="authorized_action" editable_select="item_header.authorized_action"
+        <a href="#" id="authorized_action" e-name="authorized_action" editable_select="user_header.authorized_action"
            e-ng-options="s.value as s.text for s in authorized_action"
-           onbeforesave="updateHeader($data, this, item_header.id)" e-required>{{ item_header.authorized_action || "empty" }}</a>
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.authorized_action || "empty" }}</a>
     </div>
 
 </div>

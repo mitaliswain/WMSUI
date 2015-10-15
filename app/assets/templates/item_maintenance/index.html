@@ -27,51 +27,46 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th colspan="7">
-                    <div class="bs-callout">
-                      <div class="row-header">
+              <div>
+                    <div class="row-header">
+                      <div class="col-header">
                         Option
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         Item<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         Description<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         Barcode<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         Coo<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                           <a id="add_item_header" href="#item_master_maintenance/add_item"> <i class="icon-plus-sign"></i></a>
                       </div>
                     </div>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in pagedItems[currentPage]">
 
-                  <td colspan="7">
-                    <div  class="card">
-                      <div class="row-header" ng-click="toggleExpand(item)" >
+                <div ng-repeat="item in pagedItems[currentPage]">
+
+                  <div colspan="7">
+                    <div  class="row-detail">
+                      <div class="col-header" ng-click="toggleExpand(item)" >
                         <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                       </div>
 
-                      <div class="row-header truncate">
+                      <div class="col-header divuncate">
                         {{item.item_header.item}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.item_header.description}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.item_header.barcode}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.item_header.coo}}
                       </div>
 
@@ -86,16 +81,16 @@
                     <!--Detail -->
                     <div ng-show="item.show" style="padding-left: 0%">
                       <div class="label label-default">
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Qty
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Weight
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Height
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
                             <i class="icon-plus-sign"></i>
                           </a>
@@ -103,13 +98,13 @@
 
                       </div>
                       <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_qty}}
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_wgt}}
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_hgt}}
                         </div>
                         <div class="icon-header pull-right">
@@ -119,12 +114,12 @@
                         </div>
                       </div>
                     </div>
-                  </td>
-                </tr>
+                  </div>
+                </div>
 
                 </tbody>
                 <tfoot>
-                <td colspan="7">
+                <div colspan="7">
                   <div>
                     <ul class="pagination pull-right">
                       <li ng-class="{disabled: currentPage == 0}">
@@ -139,10 +134,10 @@
                         <a href ng-click="nextPage()">Next »</a>
                       </li>
                     </ul>
-                  </div></td>
+                  </div></div>
                 </tfoot>
 
-              </table>
+              </div>
             </div>
           </div>
 

@@ -27,51 +27,43 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th colspan="7">
-                    <div class="bs-callout">
-                      <div class="row-header">
-                        Option
-                      </div>
-                      <div class="row-header truncate">
-                        User Id<a ng-click="sort_by('user_id')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        User Name<a ng-click="sort_by('user_name')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        Preffered Warehouse<a ng-click="sort_by('preffered_warehouse')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                        Auth Action<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
-                      </div>
-                      <div class="row-header truncate">
-                          <a id="add_user_header" href="#user_master_maintenance/add_user"> <i class="icon-plus-sign"></i></a>
-                      </div>
-                    </div>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in pagedItems[currentPage]">
-
-                  <td colspan="7">
-                    <div  class="card">
-                      <div class="row-header" ng-click="toggleExpand(item)" >
+	            <div class="row-header">
+	              <div class="col-header">
+	                Option
+	              </div>
+	              <div class="col-header truncate">
+	                User Id<a ng-click="sort_by('user_id')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                User Name<a ng-click="sort_by('user_name')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                Preffered Warehouse<a ng-click="sort_by('preffered_warehouse')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                Auth Action<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
+	              </div>
+	              <div class="col-header truncate">
+	                  <a id="add_user_header" href="#user_master_maintenance/add_user"> <i class="icon-plus-sign"></i></a>
+	              </div>
+	            </div>
+                	
+                <div ng-repeat="item in pagedItems[currentPage]">
+                    <div  class="row-detail">
+                      <div class="col-header" ng-click="toggleExpand(item)" >
                         <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                       </div>
 
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.user_header.user_id}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.user_header.user_name}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.user_header.preffered_warehouse}}
                       </div>
-                      <div class="row-header truncate">
+                      <div class="col-header truncate">
                         {{item.user_header.authorized_action}}
                       </div>
 
@@ -80,36 +72,35 @@
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
-
-                    </div>
+                   </div>
 
                     <!--Detail -->
-                    <div ng-show="item.show" style="padding-left: 0%">
+                    <div id="detail" ng-show="item.show" style="padding-left: 0%">
                       <div class="label label-default">
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Qty
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Weight
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           Inner Pack Height
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
                             <i class="icon-plus-sign"></i>
                           </a>
                         </div>
-
                       </div>
+                      
                       <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_qty}}
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_wgt}}
                         </div>
-                        <div class="row-header">
+                        <div class="col-header">
                           {{detail.innerpack_hgt}}
                         </div>
                         <div class="icon-header pull-right">
@@ -119,12 +110,9 @@
                         </div>
                       </div>
                     </div>
-                  </td>
-                </tr>
-
-                </tbody>
-                <tfoot>
-                <td colspan="7">
+				  </div>	
+                
+                <div id="footer">
                   <div>
                     <ul class="pagination pull-right">
                       <li ng-class="{disabled: currentPage == 0}">
@@ -139,23 +127,22 @@
                         <a href ng-click="nextPage()">Next »</a>
                       </li>
                     </ul>
-                  </div></td>
-                </tfoot>
-
-              </table>
-            </div>
-          </div>
+                  </div>
+                </div>
+             </div>   
 
 
-          <div style="float: left;width: {{expand}}%" ng-show = "header.show">
+          <div  style="float: left;width: {{expand}}%" ng-show = "header.show">
             <div>
-              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideUser()">User Master</button>
-            </div>
-            <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideUser()"><i class="fa fa-times"></i> </button>
-            </div>
-            <div>
-              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editUser(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+	            <div>
+	              <button class="btn btn-default" style="float: left; margin-top: 1%; margin: 1%" ng-click="hideUser()">User Master</button>
+	            </div>
+	            <div>
+	              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="hideUser()"><i class="fa fa-times"></i> </button>
+	            </div>
+	            <div>
+	              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editUser(selected_header_id)"><i class="fa fa-pencil"></i> </button>
+	            </div>
             </div>
             <div ng-include src="header_template.url" class="card"></div>
           </div>

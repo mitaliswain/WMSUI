@@ -1,14 +1,14 @@
 wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
 
 
-    var item_id = $stateParams.header_id
+    var user_id = $stateParams.header_id
 
     var client = 'WM'
     var warehouse = 'WH1'
 
-    var url = '/item_master_maintenance/'+ item_id + '.json?client=' + client + '&warehouse='+ warehouse;
+    var url = '/user_master_maintenance/'+ user_id + '.json?client=' + client + '&warehouse='+ warehouse;
     $http.get(url).success(function(data) {
-        $scope.item_header = data.item_header;
+        $scope.user_header = data.user_header;
     }).error(function(){
         console.log('failed to call')
     });
