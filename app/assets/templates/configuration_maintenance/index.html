@@ -29,51 +29,43 @@
 
   <div style="width: 100%">
     <div style="float: left; width: {{squeeze}}%">
-      <table class="table">
-        <thead>
-        <tr>
-          <th colspan="7">
-            <div class="bs-callout">
-              <div class="row-header">
+      <div>
+            <div class="row-header">
+              <div class="col-header">
                 Option
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 Module<a ng-click="sort_by('module')"><i class="fa fa-sort"></i></a>
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 Key<a ng-click="sort_by('key')"><i class="fa fa-sort"></i></a>
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 Value<a ng-click="sort_by('value')"><i class="fa fa-sort"></i></a>
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 Active<a ng-click="sort_by('enable')"><i class="fa fa-sort"></i></a>
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 <a id="open_configuration_add"  ng-click="configuration_header_add_modal('lg')"> <i class="icon-plus-sign"></i></a>
               </div>
             </div>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in pagedItems[currentPage]">
-
-          <td colspan="7">
-            <div  class="card">
-              <div class="row-header" ng-click="toggleExpand(item)" >
+        <div ng-repeat="item in pagedItems[currentPage]">
+            <div  class="row-detail">
+              <div class="col-header" ng-click="toggleExpand(item)" >
                 <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
               </div>
 
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 {{item.configuration_header.module}}
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 {{item.configuration_header.key}}
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 <a href="#" id="key" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
               </div>
-              <div class="row-header truncate">
+              <div class="col-header truncate">
                 <a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
               </div>
               <div class="icon-header pull-right">
@@ -81,13 +73,9 @@
                   <i class="fa fa-chevron-right"></i>
                 </a>
               </div>
-
             </div>
-        </tr>
-
-        </tbody>
-        <tfoot>
-        <td colspan="7">
+           </div> 
+        <div>
           <div>
             <ul class="pagination pull-right">
               <li ng-class="{disabled: currentPage == 0}">
@@ -103,12 +91,10 @@
               </li>
             </ul>
           </div>
-        </td>
-        </tfoot>
+        </div>
 
-      </table>
+      </div>
     </div>
-  </div>
 
 
   <div style="float: left;width: {{expand}}%" ng-show = "header.show">

@@ -14,7 +14,7 @@ class GlobalConfiguration
 
   def self.configuration_details(configuration)
     url = Properties.getUrl + "/configuration/#{configuration['configuration_id']}?client=#{configuration['client']}&warehouse=#{configuration['warehouse']}"
-    response = RestClient.get url
+    response = RestClient.get url,  {authorization: @token}
     return JSON.parse(response)
   end
 
@@ -23,7 +23,8 @@ class GlobalConfiguration
     url = Properties.getUrl + "/configuration/#{id}"   
     response = RestClient.put(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token) { | responses, request, result, &block |
 
       case responses.code
 

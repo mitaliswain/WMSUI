@@ -14,7 +14,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         
-
+//===============================SHIPMENT PAGE============================================//
         // route for the shipment page
             .state('shipment_maintenance', {
                 url:         '/shipment_maintenance',
@@ -50,6 +50,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller:  'ShipmentAddCtrl'
             })
 
+//===============================CASE PAGE============================================//
         // route for the case page
             .state('case_maintenance', {
                 url:         '/case_maintenance',
@@ -85,6 +86,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller:  'CaseAddCtrl'
             })
 
+//===============================ITEM PAGE============================================//
 
         // route for the item master page
             .state('item_master_maintenance', {
@@ -107,6 +109,7 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller : 'ItemMasterAddCtrl'
             })
 
+//===============================CONFIGURATION PAGE============================================//
 
         // route for the configuration master page
             .state('configuration_maintenance', {
@@ -125,16 +128,32 @@ wms.config(function($stateProvider, $urlRouterProvider) {
         // route for adding new configuration
             .state('add_configuration_header', {
                 url        : '/configuration_maintenance/add_configuration',
-                templateUrl: '<%= asset_path('configuration_maintenance/add_item.html') %>',
+                templateUrl: '<%= asset_path('configuration_maintenance/add_configuration.html') %>',
                 controller : 'ConfigurationAddCtrl'
             })
             
-        // route for the shipment page
+//===============================USER PAGE============================================//            
+        // route for the user master page
             .state('user_master_maintenance', {
                 url:         '/user_master_maintenance',
                 templateUrl: '<%= asset_path('user_maintenance/index.html') %>',
                 controller:  'UserMasterListCtrl'
             })
+       
+       // edit user master header page
+            .state('edit_user_master', {
+                url:         '/user_master_maintenance/edit_user/:header_id/',
+                templateUrl: '<%= asset_path('user_maintenance/show_header.html') %>',
+                controller:  'UserMasterEditCtrl'
+            })
+
+        // route for the add user master
+            .state('add_user_master', {
+                url        : '/user_master_maintenance/add_user',
+                templateUrl: '<%= asset_path('user_maintenance/add_user.html') %>',
+                controller : 'UserMasterAddCtrl'
+            })
+
 
 
 });

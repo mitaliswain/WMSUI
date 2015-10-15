@@ -30,57 +30,55 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-			<table class="table">
-				<thead>
-					<tr>
-						<th colspan="7">
-						<div class="bs-callout">
-							<div class="row-header">
+			<div id="table">
+				<div id="head" >
+					<div>
+						<div class="row-header">
+							<div class="col-header">
 								Option
 							</div>
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								Shipment Number<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								Order Qty<a ng-click="sort_by('unit_ordered')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								Received Qty<a ng-click="sort_by('units_rcvd')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								Purchase Order<a ng-click="sort_by('purchase_order_nbr')"><i class="fa fa-sort"></i></a>
 							</div>
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								Record Status<a ng-click="sort_by('record_status')"></a>
 							</div>
 							
-							<div class="row-header truncate">
+							<div class="col-header truncate">
 								<a id="add_shipment_header" href="#shipment_maintenance/add_shipment_header"> <i class="icon-plus-sign"></i></a>
 							</div>
-						</div></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in pagedItems[currentPage]">
-						<td colspan="7">
-						<div  class="card" ng-click="showShipment('Header', item.shipment_header.id)">
-							<div id="shipment_header" class="row-header" ng-click="toggleExpand(item)" >
+						</div>
+					</div>
+				</div>
+				<div id="tbody">
+					<div ng-repeat="item in pagedItems[currentPage]">
+						<div  class="row-detail" ng-click="showShipment('Header', item.shipment_header.id)">
+							<div id="shipment_header" class="col-header" ng-click="toggleExpand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
 
-							<div class="row-header">
+							<div class="col-header">
 								{{item.shipment_header.shipment_nbr}}
 							</div>
-							<div class="row-header">
+							<div class="col-header">
 								{{item.shipment_header.unit_ordered}}
 							</div>
-							<div class="row-header">
+							<div class="col-header">
 								{{item.shipment_header.units_rcvd}}
 							</div>
-							<div class="row-header">
+							<div class="col-header">
 								{{item.shipment_header.purchase_order_nbr}}
 							</div>
-							<div class="row-header">
+							<div class="col-header">
 								{{item.shipment_header.record_status}}
 							</div>
 							<div class="icon-header pull-right">
@@ -93,31 +91,31 @@
                           <!--Detail -->
 						<div ng-show="item.show" style="padding-left: 0%">
 							<div class="label label-default">
-								<div class="row-header">
+								<div class="col-header">
 									Item
 								</div>
-								<div class="row-header truncate">
+								<div class="col-header truncate">
 									Shipped Quantity
 								</div>
-								<div class="row-header truncate">
+								<div class="col-header truncate">
 									Received Quantity
 								</div>
-								<div class="row-header">
+								<div class="col-header">
 									<a id="add_shipment_detail" href="#shipment_maintenance/add_shipment_detail/{{item.shipment_header.id}}">
 										<i class="icon-plus-sign"></i>
 									</a>									
 								</div>
 
 							</div>
-							<div ng-repeat="detail in item.shipment_detail" class="bs-callout">
+							<div ng-repeat="detail in item.shipment_detail">
                                 <div id="shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
-								    <div class="row-header">
+								    <div class="col-header">
 									    {{detail.item}}
 							    	</div>
-								    <div class="row-header">
+								    <div class="col-header">
 									    {{detail.shipped_quantity}}
 								    </div>
-								    <div class="row-header">
+								    <div class="col-header">
 									    {{detail.received_qty}}
 								    </div>
 								    <div class="icon-header pull-right">
@@ -126,12 +124,11 @@
                                 </div>
 							</div>
 						</div>
-                        </td>
-					</tr>
+          
+					</div>
 
-				</tbody>
-				<tfoot>
-					<td colspan="7">
+				</div>
+				<div id="tfoot">
 					<div>
 						<ul class="pagination pull-right">
 							<li ng-class="{disabled: currentPage == 0}">
@@ -146,10 +143,10 @@
 								<a href ng-click="nextPage()">Next »</a>
 							</li>
 						</ul>
-					</div></td>
-				</tfoot>
+					</div>
+				</div>
 
-			</table>
+			</div>
           </div>
         </div>
 
