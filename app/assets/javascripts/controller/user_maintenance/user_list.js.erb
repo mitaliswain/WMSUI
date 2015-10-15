@@ -44,7 +44,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         url: '<%= asset_path('user_maintenance/user_detail.html') %>'
     };
 
-    $scope.showItem = function(show, user, user_detail_id) {
+    $scope.showUser = function(show, user, user_detail_id) {
         var url = '/user_master_maintenance/'+  user + '.json'
 
         $http.get(url).success(function(data) {
@@ -71,7 +71,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         $scope.selected_detail_id = user_detail_id
     }
 
-    $scope.hideItem= function() {
+    $scope.hideUser= function() {
         $scope.header.show= false
         $scope.detail.show= false
         $scope.expand = 0
@@ -88,7 +88,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
         item.show = true;
     };
 
-    $scope.editItem= function(header_id, detail_id) {
+    $scope.editUser= function(header_id, detail_id) {
         var url =  '/user_master_maintenance/edit_user/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id

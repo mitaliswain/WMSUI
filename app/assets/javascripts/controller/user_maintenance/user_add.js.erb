@@ -42,7 +42,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
 	
     var fields_to_update = {};
     fields_to_update = $scope.item_header;
-    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = '/user_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},

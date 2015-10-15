@@ -1,14 +1,18 @@
 wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
 
 
-    var item_id = $stateParams.header_id
+    var user_id = $stateParams.header_id
 
     var client = 'WM'
     var warehouse = 'WH1'
 
+<<<<<<< HEAD
     var url = '/user_master_maintenance/'+ item_id + '.json?client=' + client + '&warehouse='+ warehouse;
+=======
+    var url = '/user_master_maintenance/'+ user_id + '.json?client=' + client + '&warehouse='+ warehouse;
+>>>>>>> 4ea9de90491cd98d4b5aecb6942583f98685cbba
     $http.get(url).success(function(data) {
-        $scope.item_header = data.item_header;
+        $scope.user_header = data.user_header;
     }).error(function(){
         console.log('failed to call')
     });
@@ -38,7 +42,7 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
 
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/item_master_maintenance/'+ id
+        var url = '/user_master_maintenance/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
