@@ -32,103 +32,92 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-		    	<table class="table">
-			    	<thead>
-					<tr>
-						<th colspan="7">
-						<div class="bs-callout">
-							<div class="row-header truncate">
-								Option
-							</div>
-							<div class="row-header truncate">
-								Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="fa fa-sort"></i></a>
-							</div>
-							<div class="row-header truncate">
-								Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
-							</div>
-							<div class="row-header truncate">
-								Location<a ng-click="sort_by('vendor_nbr')"><i class="fa fa-sort"></i></a>
-							</div>
-							<div class="row-header truncate">
-								Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
-							</div>
-							<div class="row-header truncate">
-								<a id="add_case_header"  href="#case_maintenance/add_case_header"> <i class="icon-plus-sign"></i></a>
-							</div>
+       
+				<div class="row-header">
+					<div class="col-header truncate">
+						Option
+					</div>
+					<div class="col-header truncate">
+						Case Id&nbsp;<a ng-click="sort_by('case_id')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Shipment Number&nbsp;<a ng-click="sort_by('shipment_nbr')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Location<a ng-click="sort_by('vendor_nbr')"><i class="fa fa-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
+					</div>
+					<div class="col-header truncate">
+						<a id="add_case_header"  href="#case_maintenance/add_case_header"> <i class="icon-plus-sign"></i></a>
+					</div>
 
-            </div></th>
-            </tr>
-            </thead>
-			    	<tbody>
-					<tr ng-repeat="item in pagedItems[currentPage]">
-
-						<td colspan="7">
-						<div  class="card">
-                          <div class="row-header" ng-click="toggleExpand(item)" >
-                            <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
-                          </div>
-							<div class="row-header">
-								{{item.case_header.case_id}}
-							</div>
-							<div class="row-header">
-								{{item.case_header.shipment_nbr}}
-							</div>
-							<div class="row-header">
-								{{item.case_header.location}}
-							</div>
-							<div class="row-header">
-								{{item.case_header.record_status}}
-							</div>
-                          <div class="icon-header pull-right">
-                            <a id="show_case" ng-click="showCase('Header', item.case_header.id)">
-                              <i class="fa fa-chevron-right"></i>
-                            </a>
-                          </div>
-							</div>
-
-                        <!--Detail -->
-						<div ng-show="item.show" style="padding-left: 0%">
-							<div class="label label-default">
-								<div class="row-header">
-                                  Item
-                                </div>
-								<div class="row-header truncate">
-									Shipped Quantity
-								</div>
-								<div class="row-header truncate">
-									Received Quantity
-								</div>
-								<div class="row-header">
-                                  <a id="open_case_detail_add" href="#case_maintenance/add_case_detail/{{item.case_header.id}}">
-                                    <i class="icon-plus-sign"></i>
-                                  </a>
-                                </div>
-
-							</div>
-							<div ng-repeat="detail in item.case_detail" class="bs-callout">
-								<div class="row-header">
-									{{detail.item}}
-								</div>
-								<div class="row-header">
-									{{detail.quantity}}
-								</div>
-								<div class="row-header">
-									{{detail.coo}}
-								</div>
-                              <div class="icon-header pull-right">
-                                <a id="open_shipment_detail" ng-click="show_case('Detail', item.case_header.id,  detail.id)">
-                                  <i class="fa fa-chevron-right"></i>
-                                </a>
-                              </div>
-
-                            </div>
+            	</div>
+            			
+				<div ng-repeat="item in pagedItems[currentPage]">
+					<div  class="row-detail">
+                      <div class="col-header" ng-click="toggleExpand(item)" >
+                        <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
+                      </div>
+						<div class="col-header">
+							{{item.case_header.case_id}}
 						</div>
-						</td>
-					</tr>
+						<div class="col-header">
+							{{item.case_header.shipment_nbr}}
+						</div>
+						<div class="col-header">
+							{{item.case_header.location}}
+						</div>
+						<div class="col-header">
+							{{item.case_header.record_status}}
+						</div>
+                      <div class="icon-header pull-right">
+                        <a id="show_case" ng-click="showCase('Header', item.case_header.id)">
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+                      </div>
+				</div>
 
-				</tbody>
-				    <tfoot>
-					<td colspan="7">
+                <!--Detail -->
+				<div ng-show="item.show" style="padding-left: 0%">
+					<div class="label label-default">
+						<div class="col-header">
+                          Item
+                        </div>
+						<div class="col-header truncate">
+							Shipped Quantity
+						</div>
+						<div class="col-header truncate">
+							Received Quantity
+						</div>
+						<div class="col-header">
+                          <a id="open_case_detail_add" href="#case_maintenance/add_case_detail/{{item.case_header.id}}">
+                            <i class="icon-plus-sign"></i>
+                          </a>
+                        </div>
+					</div>
+							
+					<div ng-repeat="detail in item.case_detail" class="bs-callout">
+						<div class="col-header">
+							{{detail.item}}
+						</div>
+						<div class="col-header">
+							{{detail.quantity}}
+						</div>
+						<div class="col-header">
+							{{detail.coo}}
+						</div>
+                      <div class="icon-header pull-right">
+                        <a id="open_shipment_detail" ng-click="show_case('Detail', item.case_header.id,  detail.id)">
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+                      </div>
+                    </div>
+				</div>
+			</div>
+
+				<div>	
 					<div>
 						<ul class="pagination pull-right">
 							<li ng-class="{disabled: currentPage == 0}">
@@ -143,9 +132,8 @@
 								<a href ng-click="nextPage()">Next »</a>
 							</li>
 						</ul>
-					</div></td>
-				</tfoot>
-			    </table>
+					</div>
+				</div>
 		    </div>
           </div>
 

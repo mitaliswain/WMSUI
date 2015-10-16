@@ -27,7 +27,6 @@
 
           <div style="width: 100%">
             <div style="float: left; width: {{squeeze}}%">
-              <div>
                     <div class="row-header">
                       <div class="col-header">
                         Option
@@ -50,8 +49,6 @@
                     </div>
 
                 <div ng-repeat="item in pagedItems[currentPage]">
-
-                  <div colspan="7">
                     <div  class="row-detail">
                       <div class="col-header" ng-click="toggleExpand(item)" >
                         <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
@@ -75,7 +72,6 @@
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
-
                     </div>
 
                     <!--Detail -->
@@ -95,8 +91,8 @@
                             <i class="icon-plus-sign"></i>
                           </a>
                         </div>
-
                       </div>
+                      
                       <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
                         <div class="col-header">
                           {{detail.innerpack_qty}}
@@ -115,10 +111,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
 
-                </tbody>
-                <tfoot>
                 <div colspan="7">
                   <div>
                     <ul class="pagination pull-right">
@@ -134,12 +127,10 @@
                         <a href ng-click="nextPage()">Next »</a>
                       </li>
                     </ul>
-                  </div></div>
-                </tfoot>
+                  </div>
+                </div>
 
               </div>
-            </div>
-          </div>
 
 
           <div style="float: left;width: {{expand}}%" ng-show = "header.show">

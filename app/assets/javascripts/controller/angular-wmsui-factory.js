@@ -89,6 +89,12 @@ wms.factory('Auth', function ($rootScope, $q, $window, $http, $localStorage) {
    });
 
 
+// Set up the cache ‘myCache’
+wms.factory('wmsCache', function($cacheFactory) {
+ return $cacheFactory('wmsCase');
+ return $cacheFactory('wmsShipment');
+});
+
 
 wms.factory("UserService", function($http, $filter){
 
