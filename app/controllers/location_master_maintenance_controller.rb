@@ -10,14 +10,14 @@ protect_from_forgery except: :index
   end
 
   def show
-    item = {}
-    item['_id'] = params[:id]
-    item['warehouse'] = params[:warehouse]
-    item['client'] = params[:client]
+    location = {}
+    location['location_id'] = params[:id]
+    location['warehouse'] = params[:warehouse]
+    location['client'] = params[:client]
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => LocationMaster.new(request.headers['authorization']).location_details(item) }
+      format.json { render :json => LocationMaster.new(request.headers['authorization']).location_details(location) }
     end
   end
 

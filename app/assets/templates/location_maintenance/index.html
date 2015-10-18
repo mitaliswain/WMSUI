@@ -54,7 +54,7 @@
                         <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
                       </div>
 
-                      <div class="col-header divuncate">
+                      <div class="col-header truncate">
                         {{item.location_header.barcode}}
                       </div>
                       <div class="col-header truncate">
@@ -68,7 +68,7 @@
                       </div>
 
                       <div class="icon-header pull-right">
-                        <a id="show_item" ng-click="showItem('Header', item.item_header.id)">
+                        <a id="show_item" ng-click="showLocation('Header', item.location_header.id)">
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
@@ -87,7 +87,7 @@
                           Inner Pack Height
                         </div>
                         <div class="col-header">
-                          <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
+                          <a id="open_location_detail_add" ng-click="location_detail_add_modal('lg', item.location_header.id)">
                             <i class="icon-plus-sign"></i>
                           </a>
                         </div>
@@ -104,7 +104,7 @@
                           {{detail.innerpack_hgt}}
                         </div>
                         <div class="icon-header pull-right">
-                          <a id="show_item_detail" ng-click="showItem('Detail', item.item_header.id,  detail.id)">
+                          <a id="show_item_detail" ng-click="showItem('Detail', item.location_header.id,  detail.id)">
                             <i class="fa fa-chevron-right"></i>
                           </a>
                         </div>

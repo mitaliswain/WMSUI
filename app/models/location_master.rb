@@ -15,8 +15,8 @@ class LocationMaster
     return JSON.parse(response)       
   end
 
-  def location_details(item)
-    url = Properties.getUrl + "#{URL}/#{location['location_id']}?client=#{item['client']}&warehouse=#{item['warehouse']}"
+  def location_details(location)
+    url = Properties.getUrl + "#{URL}/#{location['location_id']}?client=#{location['client']}&warehouse=#{location['warehouse']}"
     response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)
   end
@@ -31,8 +31,15 @@ class LocationMaster
 
       case responses.code
 
-      when 200, 201, 422,204
+      when 200, 422,204
         responses
+        
+      when 201
+        message = JSON.parse(responses)
+        resource_url = Properties.getUrl + message["content"][0]["link"]
+        response = RestClient.get(resource_url)
+        return JSON.parse(response)
+       
      else
        message = responses.nil? ? {} : JSON.parse(responses)['message']
       {status: responses.code, message: message}.to_json
@@ -50,11 +57,13 @@ class LocationMaster
       case responses.code
         when 200, 422
           responses
+          
         when 201
           message = JSON.parse(responses)
           resource_url = Properties.getUrl + message["content"][0]["link"]
           response = RestClient.get(resource_url)
           return JSON.parse(response)
+        
         else
           message = responses.nil? ? {} : JSON.parse(responses)["message"]
           {status: responses.code, message: [message]}.to_json

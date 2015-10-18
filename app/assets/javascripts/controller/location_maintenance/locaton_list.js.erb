@@ -9,9 +9,45 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
 
     $scope.search_items = [
         {value: 'barcode', text: 'Barcode'},
-        {value: 'item', text: 'Item'},
-        {value: 'description', text: 'Description'}
+        {value: 'location_type', text: 'Location Type'}
     ];
+    
+        $scope.YesorNo = [
+        {value: 'Yes', text: 'Yes'},
+        {value: 'No', text: 'No'}
+    ];
+
+    $scope.areas = [
+        {value: 'A1', text: 'Area 1'},
+        {value: 'A2', text: 'Area 2'}
+    ];
+    
+    $scope.zones = [
+        {value: 'Z1', text: 'Zone 1'},
+        {value: 'Z2', text: 'Zone 2'}
+    ];
+   
+    $scope.aisles = [
+        {value: 'a1', text: 'Aisle 1'},
+        {value: 'a2', text: 'Aisle 2'}
+    ];
+    
+    $scope.bays = [
+        {value: 'B1', text: 'Bay 1'},
+        {value: 'B2', text: 'Bat 2'}
+    ];
+    
+   $scope.levels = [
+        {value: 'L1', text: 'Level 1'},
+        {value: 'L2', text: 'Level 2'}
+    ];
+    
+    $scope.positions = [
+        {value: 'P1', text: 'Position 1'},
+        {value: 'P2', text: 'Position 2'}
+    ];
+    
+ 
 
     $scope.search_choice = $scope.search_items[0]
 
@@ -19,11 +55,11 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
         $scope.search_choice = choice;
         $scope.item_list = []
         angular.forEach($scope.items, function(item) {
-            $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+            $scope.item_list.push(item["location_header"][$scope.search_choice.value]);
         });
     }
 
-    $scope.item = 'new item';
+    $scope.item = 'new location';
 
     $scope.header_template = {
         name: 'header_template',
@@ -40,6 +76,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
 
         $http.get(url).success(function(data) {
             $scope.location_header = data.location_header
+            console.log(data)
             $scope.location_details = data.location_detail
 
             if (show == 'Header') {
@@ -48,7 +85,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
             } else {
                 $scope.detail.show = true
                 $scope.header.show = false
-                angular.forEach($scope.item_details, function (location_detail) {
+                angular.forEach($scope.location_details, function (location_detail) {
                     if (location_detail.id == location_detail_id) {
                         $scope.location_detail = location_detail;
                     }
@@ -58,8 +95,8 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
 
         $scope.expand = 50
         $scope.squeeze = 50
-        $scope.selected_header_id = item
-        $scope.selected_detail_id = item_detail_id
+        $scope.selected_header_id = location
+        $scope.selected_detail_id = location_detail_id
     }
 
     $scope.hideLocation= function() {
@@ -80,7 +117,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     };
 
     $scope.editLocation= function(header_id, detail_id) {
-        var url =  '/location_master_maintenance/edit_item/'+ header_id + '/'
+        var url =  '/location_master_maintenance/edit_location/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }

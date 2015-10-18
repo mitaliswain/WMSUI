@@ -18,7 +18,7 @@
         <span class="title truncate">Zone:</span>
         <a href="#" id="concept" e-name="concept" editable_select="location_header.zone"
            e-ng-options="s.value as s.text for s in zones"
-           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.concept || "empty" }}</a>
+           onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.zone || "empty" }}</a>
     </div>
         <div class="modal_text_box">
         <span class="title truncate">Aisle:</span>
@@ -40,15 +40,20 @@
     </div>
     <div class="modal_text_box">
         <span class="title truncate">Position:</span>
-        <a href="#" id="bay" e-name="position" editable_select="location_header.position"
+        <a href="#" id="position" e-name="position" editable_select="location_header.position"
            e-ng-options="s.value as s.text for s in positions"
            onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.position || "empty" }}</a>
     </div>    
     <div class="modal_text_box">
         <span class="title truncate truncate">Barcode:</span>
-        <a href="#" id="barcode" e-name="barcode" editable-text="location_header.coo" onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.barcode || "empty" }}</a>
+        <a href="#" id="barcode" e-name="barcode" editable-text="location_header.barcode" onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.barcode || "empty" }}</a>
     </div>
-
+    <div class="modal_text_box">
+        <span class="title truncate">Location Type: </span>
+        <a href="#" id="location_type" editable_text="location_header.location_type" e-step="any"
+           onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.location_type || "empty" }}</a>
+    </div>
+                
 </div>
 &nbsp;
 
@@ -58,12 +63,6 @@
 
         <accordion-group heading="More...." is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
             <accordion-group heading="Location Properties....">
-                <div class="modal_text_box">
-                    <span class="title truncate">Location Type: </span>
-                    <a href="#" id="location_type" editable_text="location_header.location_type" e-step="any"
-                       onbeforesave="updateHeader($data, this, location_header.id)">{{ location_header.location_type || "empty" }}</a>
-                </div>
-                
                 <div class="modal_text_box">
                     <span class="title truncate">Preffered Pallate Type: </span>
                     <a href="#" id="preffered_pallet_type" editable_text="location_header.preffered_pallet_type" e-step="any"
