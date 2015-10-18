@@ -41,7 +41,7 @@ class UserMaster
     return JSON.parse(response)  
   end
 
-  def self.add_user_master(app_parameters, fields_to_update)
+  def add_user_master(app_parameters, fields_to_update)
     url = Properties.getUrl + '/item_master/'
     response = RestClient.post(url,
                                app_parameters: app_parameters,
