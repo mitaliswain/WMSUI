@@ -6,16 +6,17 @@ class UserMaster
     @token = token
   end
   
+  ENDPOINT_URL = '/user_master' 
   
   def user_list(params = '')
     
-    url = Properties.getUrl + '/user_master'
+    url = Properties.getUrl + ENDPOINT_URL
     response = RestClient.get url, {authorization: @token} #, {:params => {:selection => params.to_json}}
     return JSON.parse(response)       
   end
 
   def user_details(user)
-    url = Properties.getUrl + "/user_master/#{user['id']}?client=#{user['client']}"
+    url = Properties.getUrl + "#{ENDPOINT_URL}/#{user['id']}?client=#{user['client']}"
     response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)
   end
@@ -23,7 +24,7 @@ class UserMaster
 
   def update_user_master(id, app_parameters, fields_to_update)
     
-    url = Properties.getUrl + "/user_master/#{id}"
+    url = Properties.getUrl + "#{ENDPOINT_URL}/#{id}"
     response = RestClient.put(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update,
@@ -42,7 +43,7 @@ class UserMaster
   end
 
   def add_user_master(app_parameters, fields_to_update)
-    url = Properties.getUrl + '/item_master/'
+    url = Properties.getUrl + ENDPOINT_URL
     response = RestClient.post(url,
                                app_parameters: app_parameters,
                                fields_to_update: fields_to_update,

@@ -4,7 +4,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
   var warehouse = 'WH1';
 
 
-   $scope.item_header = {};
+   $scope.user_header = {};
 
    $scope.globalInfo = {
    	error: false,
@@ -29,7 +29,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
     ]; 
 
     $scope.clear = function() {
-	   $scope.item_header= {};
+	   $scope.user_header= {};
 	   };
   
    
@@ -41,15 +41,15 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
  $scope.saveHeader = function() {
 	
     var fields_to_update = {};
-    fields_to_update = $scope.item_header;
+    fields_to_update = $scope.user_header;
     var url = '/user_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: {'client': 'WM'},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;
- 		setInfo('info', 'Item Created Successfully');
+ 		setInfo('info', 'User Created Successfully');
 
     }).error(function(message){
     	if (message.status == '422')
