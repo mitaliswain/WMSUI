@@ -25,7 +25,7 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
 	if (Auth.getTokenClaims()) 
 		{
 		token = Auth.getTokenClaims()
-	    if ($localStorage.app_parameters) {
+	    if (!$localStorage.app_parameters) {
 	   		$scope.app_parameters.client = token.client
 	    	$scope.app_parameters.user_name = token.user_id
 	    	$scope.app_parameters.warehouse = token.preferred_warehouse
@@ -47,6 +47,7 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
  	
  	$scope.signout = function() {
  		delete $localStorage.token;
+ 		delete $localStorage.app_parameters;
  		window.location = '/login'
  	}
    

@@ -75,7 +75,7 @@ wms.factory('Auth', function ($rootScope, $q, $window, $http, $localStorage) {
            login: function (data, success, error) {
                $http.post('/users/signin', data).success(success).error(error)
            },
-           logout: function (success) {
+           signout: function (success) {
                tokenClaims = {};
                delete $localStorage.token;
                delete $localStorage.app_parameters;
