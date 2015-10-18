@@ -1,9 +1,8 @@
-wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $location) {
+wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $location, Auth) {
 
-  var client    = 'WM';
-  var warehouse = 'WH1';
-   
-   console.log($stateParams.to_shipment_header_id)
+   var app_parameters = Auth.getAppParameters()	
+   var client = app_parameters.client
+   var warehouse = app_parameters.warehouse
   
    $scope.to_shipment_header_id = $stateParams.to_shipment_header_id;
    $scope.shipment_header = {};

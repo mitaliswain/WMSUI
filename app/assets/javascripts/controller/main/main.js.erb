@@ -1,0 +1,46 @@
+wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $filter, $q, Auth) {
+  
+  $scope.app_parameters ={}
+  $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('main/main_header.html') %>'
+        };
+         
+  $scope.warehouses = 
+  [
+    {value: 'WH1', text: 'WH1'},
+    {value: 'WH2', text: 'WH2'},
+    {value: 'WH3', text: 'WH3'},
+    {value: 'WH4', text: 'WH4'}
+  ]; 
+  
+    $scope.clients = 
+  [
+    {value: 'WM', text: 'WM'},
+    {value: 'WM1', text: 'WM1'},
+    {value: 'WM2', text: 'WM2'},
+    {value: 'WM3', text: 'WM3'}
+  ]; 
+  
+	if (Auth.getTokenClaims()) 
+		{
+		token = Auth.getTokenClaims()
+	    $scope.app_parameters.client = token.client
+	    $scope.app_parameters.user_name = token.user_id
+	    $scope.app_parameters.warehouse = token.preferred_warehouse
+	    $localStorage.app_parameters = $scope.app_parameters	   	    
+	}
+	
+    
+    $scope.saveHeader = function() {
+    	$localStorage.app_parameters = $scope.app_parameters	   
+    }
+        
+ 	
+ 	$scope.signout = function() {
+ 		delete $localStorage.token;
+ 		window.location = '/login'
+ 	}
+   
+        
+});

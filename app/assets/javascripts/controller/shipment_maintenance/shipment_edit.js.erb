@@ -1,11 +1,12 @@
-wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService, Auth) {
 
 
     var shipment_header_id = $stateParams.header_id
     var shipment_detail_id = $stateParams.detail_id
-
-    var client = 'WM'
-    var warehouse = 'WH1'
+	var app_parameters = Auth.getAppParameters()
+	
+    var client = app_parameters.client
+    var warehouse = app_parameters.warehouse
 
     if (shipment_header_id != null) {
         var url = '/shipment_maintenance/'+  shipment_header_id + '.json?client=' + client + '&warehouse='+ warehouse;

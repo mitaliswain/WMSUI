@@ -77,12 +77,16 @@ wms.factory('Auth', function ($rootScope, $q, $window, $http, $localStorage) {
            },
            logout: function (success) {
                tokenClaims = {};
-               console.log('here');
                delete $localStorage.token;
+               delete $localStorage.app_parameters;
                success();
            },
            getTokenClaims: function () {
                return getClaimsFromToken();
+           },
+           getAppParameters: function() {
+           		var app_parameters = $localStorage.app_parameters
+           		return app_parameters
            }
 
        };

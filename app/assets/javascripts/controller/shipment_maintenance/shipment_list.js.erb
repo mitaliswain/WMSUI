@@ -1,4 +1,4 @@
-wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService, ShareService) {
+wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService, ShareService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -7,6 +7,10 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     $scope.expand = 0
     $scope.squeeze = 100
     $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
+    var app_parameters = Auth.getAppParameters()
+	
+    var client = app_parameters.client
+    var warehouse = app_parameters.warehouse
 
     $scope.searchIitems = [
 	    {value: 'shipment_nbr', text: 'Shipment Number'},
@@ -82,7 +86,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.init = function() {
 
-        var url = '/shipment_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+        var url = '/shipment_maintenance.json?client=' + client + '&warehouse='+ warehouse;
 
         $http.get(url).success(function(data) {
             $scope.items = data;

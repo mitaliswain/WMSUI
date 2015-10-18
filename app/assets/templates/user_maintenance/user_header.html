@@ -24,10 +24,10 @@
            onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.password || "empty" }}</a>
     </div>
     <div class="modal_text_box">
-        <span class="title truncate">Preffered Warehouse:</span>
-        <a href="#" id="preffered_warehouse" e-name="preffered_warehouse" editable_select="user_header.preffered_warehouse"
+        <span class="title truncate">Preferred Warehouse:</span>
+        <a href="#" id="preferred_warehouse" e-name="preferred_warehouse" editable_select="user_header.preferred_warehouse"
            e-ng-options="s.value as s.text for s in warehouse"
-           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.preffered_warehouse || "empty" }}</a>
+           onbeforesave="updateHeader($data, this, user_header.id)" e-required>{{ user_header.preferred_warehouse || "empty" }}</a>
     </div>
         <div class="modal_text_box">
         <span class="title truncate">Authorized Warehouse:</span>

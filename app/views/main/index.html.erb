@@ -1,9 +1,28 @@
-<body ng-app="WMSUI" >
-	<div ng-controller="MenuCtrl">	
+<body ng-app="WMSUI"  ng-controller="MainCtrl" >
+	<div>	
 		<%= render"shared/menu" %>
 	</div>
 
     <div ui-view>
+		<div class="login-box">
+		      <form editable-form name="editableForm" onaftersave="saveHeader()">
+        <div class="buttons">
+            <!-- button to show form -->
+            {{editableForm.$show()}}
+        </div>
+
+        <div ng-include src="header_template.url"></div>
+            <span ng-show="editableForm.$visible">
+                <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
+                    Save
+                </button>
+                <button type="button" class="btn btn-warning" ng-disabled="editableForm.$waiting"
+                        ng-click="editableForm.$cancel()">
+                    Cancel
+                </button>
+            </span>
+
+    	</form>
     </div>
     
 </body>

@@ -2,26 +2,32 @@ require 'rest_client'
 
 class UserMaster
   
+  def initialize(token)
+    @token = token
+  end
+  
+  
   def user_list(params = '')
     
     url = Properties.getUrl + '/user_master'
-    response = RestClient.get url #, {:params => {:selection => params.to_json}}
+    response = RestClient.get url, {authorization: @token} #, {:params => {:selection => params.to_json}}
     return JSON.parse(response)       
   end
 
-  def self.user_details(user)
+  def user_details(user)
     url = Properties.getUrl + "/user_master/#{user['id']}?client=#{user['client']}"
-    response = RestClient.get url
+    response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)
   end
 
 
   def update_user_master(id, app_parameters, fields_to_update)
     
-    url = Properties.getUrl + "/item_master/#{id}"
+    url = Properties.getUrl + "/user_master/#{id}"
     response = RestClient.put(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token) { | responses, request, result, &block |
 
       case responses.code
 
@@ -39,7 +45,8 @@ class UserMaster
     url = Properties.getUrl + '/item_master/'
     response = RestClient.post(url,
                                app_parameters: app_parameters,
-                               fields_to_update: fields_to_update) { | responses, request, result, &block |
+                               fields_to_update: fields_to_update,
+                               authorization: @token) { | responses, request, result, &block |
       case responses.code
         when 200, 422
           responses
