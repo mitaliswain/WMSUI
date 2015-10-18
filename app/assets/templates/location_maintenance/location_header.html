@@ -16,7 +16,7 @@
     </div>
     <div class="modal_text_box">
         <span class="title truncate">Zone:</span>
-        <a href="#" id="concept" e-name="concept" editable_select="location_header.zone"
+        <a href="#" id="zone" e-name="zone" editable_select="location_header.zone"
            e-ng-options="s.value as s.text for s in zones"
            onbeforesave="updateHeader($data, this, location_header.id)" e-required>{{ location_header.zone || "empty" }}</a>
     </div>
