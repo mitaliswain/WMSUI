@@ -1,0 +1,84 @@
+wms.controller('LocationMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
+ 
+  var client    = 'WM';
+  var warehouse = 'WH1';
+
+
+   $scope.location_header = {};
+
+   $scope.globalInfo = {
+   	error: false,
+   	warning: false,
+   	info: false 
+   };
+   
+   $scope.statuses = [
+    {value: 'Active', text: 'Active'},
+    ]; 
+   
+   
+   $scope.concept = [
+    {value: 'AB', text: 'AB'},
+    {value: 'BC', text: 'BC'},
+    ]; 
+
+    $scope.clear = function() {
+	   $scope.location_header= {};
+	   };
+  
+   
+  $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('location_maintenance/location_header.html') %>'
+        };
+
+ $scope.saveHeader = function() {
+	
+    var fields_to_update = {};
+    fields_to_update = $scope.item_header;
+    var url = '/location_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    return $http.post(url, {
+    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	fields_to_update: fields_to_update
+    }).success(function(data){ 		
+    	$scope.item = data;
+ 		setInfo('info', 'Location Created Successfully');
+
+    }).error(function(message){
+    	if (message.status == '422')
+    	{ 
+    		setInfo('error', 'Validation Error');
+    		angular.forEach(message.errors, function(error){
+    			$scope.editableForm.$setError(error.field, error.message);
+    		});
+    	}
+
+    	else {
+    		 setInfo('error', message.message);
+
+    	}
+    });
+ };
+
+
+ var setInfo = function(infotype, message) {
+     angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
+         if(infotype == infoKey) {
+ 			$scope.globalInfo[infoKey] = true
+ 		}
+ 		else{
+ 			$scope.globalInfo[infoKey] = false
+ 		}
+ 	});
+ 	$scope.global_notification = message;		
+
+ };
+  
+  $scope.ok = function () {
+    $location.path('/location_master_maintenance')
+  };
+
+});
+
+

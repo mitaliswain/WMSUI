@@ -2,25 +2,30 @@ require 'rest_client'
 
 class Shipment
   
-  def self.shipment_list(shipment)    
+  def initialize(token)
+    @token = token
+  end
+  
+  def shipment_list(shipment)    
     url = Properties.getUrl + "/shipment/?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"
-    response = RestClient.get url    
+    response = RestClient.get url, {authorization: @token}   
     return JSON.parse(response)       
   end
 
 
-  def self.shipment_details(shipment)
+  def shipment_details(shipment)
     url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
-    response = RestClient.get url    
+    response = RestClient.get url, {authorization: @token}    
     return JSON.parse(response)       
   end
   
-  def self.shipment_update_header(id, app_parameters, fields_to_update)
+  def shipment_update_header(id, app_parameters, fields_to_update)
     
     url = Properties.getUrl + "/shipment/#{id}/update_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token ) { | responses, request, result, &block |
       case responses.code
 
       when 200, 201, 422,204
@@ -33,11 +38,12 @@ class Shipment
     return JSON.parse(response)  
   end
 
-  def self.shipment_add_header(app_parameters, fields_to_update)
+  def shipment_add_header(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token) { | responses, request, result, &block |
       case responses.code
       when 200, 422
         responses
@@ -55,11 +61,12 @@ class Shipment
   end
 
 
-  def self.shipment_add_detail(app_parameters, fields_to_update)
+  def shipment_add_detail(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_detail"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token) { | responses, request, result, &block |
       case responses.code
       when 200, 422, 204
         responses
@@ -78,11 +85,12 @@ class Shipment
   end
 
 
-  def self.shipment_update_detail(id, app_parameters, fields_to_update)    
+  def shipment_update_detail(id, app_parameters, fields_to_update)    
     url = Properties.getUrl + "/shipment/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,
-    fields_to_update: fields_to_update) { | responses, request, result, &block |
+    fields_to_update: fields_to_update,
+    authorization: @token) { | responses, request, result, &block |
       case responses.code
       when 200, 201, 422
         responses

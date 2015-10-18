@@ -1,28 +1,30 @@
 require 'rest_client'
 
-class ItemMaster
+class LocationMaster
+  
+  URL = '/location_master'
   
   def initialize(token)
     @token = token
   end
   
-  def item_list(params = '')
+  def location_list(params = '')
     
-    url = Properties.getUrl + '/item_master'
+    url = Properties.getUrl + URL
     response = RestClient.get url, {authorization: @token} 
     return JSON.parse(response)       
   end
 
-  def item_details(item)
-    url = Properties.getUrl + "/item_master/#{item['item_id']}?client=#{item['client']}&warehouse=#{item['warehouse']}"
+  def location_details(item)
+    url = Properties.getUrl + "#{URL}/#{location['location_id']}?client=#{item['client']}&warehouse=#{item['warehouse']}"
     response = RestClient.get url, {authorization: @token}
     return JSON.parse(response)
   end
 
 
-  def update_item_master(id, app_parameters, fields_to_update)
+  def update_location_master(id, app_parameters, fields_to_update)
     
-    url = Properties.getUrl + "/item_master/#{id}"
+    url = Properties.getUrl + "#{URL}/#{id}"
     response = RestClient.put(url, 
     app_parameters: app_parameters,
     fields_to_update: fields_to_update, authorization: @token) { | responses, request, result, &block |
@@ -39,8 +41,8 @@ class ItemMaster
     return JSON.parse(response)  
   end
 
-  def add_item_master(app_parameters, fields_to_update)
-    url = Properties.getUrl + '/item_master/'
+  def add_location_master(app_parameters, fields_to_update)
+    url = Properties.getUrl + URL
     response = RestClient.post(url,
                                app_parameters: app_parameters,
                                fields_to_update: fields_to_update,

@@ -109,6 +109,30 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 controller : 'ItemMasterAddCtrl'
             })
 
+//===============================LOCATTION PAGE============================================//
+
+        // route for the location master page
+            .state('location_master_maintenance', {
+                url:         '/location_master_maintenance',
+                templateUrl: '<%= asset_path('location_maintenance/index.html') %>',
+                controller:  'LocationMasterListCtrl'
+            })
+
+        // edit item master header page
+            .state('location_master_header', {
+                url:         '/location_master_maintenance/edit_location/:header_id/',
+                templateUrl: '<%= asset_path('location_maintenance/show_header.html') %>',
+                controller:  'LocationMasterEditCtrl'
+            })
+
+        // route for the add item master
+            .state('location_item_master', {
+                url        : '/location_master_maintenance/add_location',
+                templateUrl: '<%= asset_path('location_maintenance/add_location.html') %>',
+                controller : 'LocationMasterAddCtrl'
+            }) 
+
+
 //===============================CONFIGURATION PAGE============================================//
 
         // route for the configuration master page
@@ -161,34 +185,16 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 //Check if the user is logged in or not
 wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+              	 console.log(Auth.getTokenClaims())
+              	 //console.log(Date.UTC(2012, 02, 30))
        if(! $localStorage.token) {
 
-         window.location = '/login'
-                	console.log('log out')
-    	}
-    	
-    	});
-});
-
-//Check if the user is logged in or not
-wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-       if(! $localStorage.token) {
          window.location = '/login'
     	}
     	
     	});
 });
 
-//Check if the user is logged in or not
-wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-       if(! $localStorage.token) {
-         window.location = '/login'
-    	}
-    	
-    	});
-});
 
 
 wms.config(function ($httpProvider) {
