@@ -190,8 +190,6 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 //Check if the user is logged in or not
 wms.run(function($rootScope, $state, $localStorage, $location, Auth) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-              	 console.log(Auth.getTokenClaims())
-              	 //console.log(Date.UTC(2012, 02, 30))
        if(! $localStorage.token) {
 
          window.location = '/login'

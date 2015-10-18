@@ -108,7 +108,6 @@ wms.factory("UserService", function($http, $filter){
             $scope.pagedItems[0].forEach(function(obj) {
                 if (obj.item_header.id === objId) {
                     obj = newObj;
-                    console.log(obj.item_header.id);
                 }
 
                 });
@@ -128,7 +127,6 @@ wms.factory("UserService", function($http, $filter){
                     res = res || {};
                     d.resolve();
                 }).error(function(res){
-                    console.log(res);
                     res = res || {};
                     if (res.status == 500) {
                         d.reject(res.message|| 'Server Error');
@@ -173,7 +171,6 @@ wms.factory("UserService", function($http, $filter){
                 $scope.last_status = status;
 
                 $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-                	console.log(status);
                 	if (status == '*All') {
             			return true;
             		}
