@@ -1,5 +1,3 @@
-
-
 class ConfigurationMaintenanceController < ApplicationController
 
 def index
@@ -18,7 +16,7 @@ def show
 
   respond_to do |format|
     format.html # show.html.erb
-    format.json { render :json => GlobalConfiguration.new.(request.headers['authorization']).configuration_details(configuration) }
+    format.json { render :json => GlobalConfiguration.new(request.headers['authorization']).configuration_details(configuration) }
   end
 end
 

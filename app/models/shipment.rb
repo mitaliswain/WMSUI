@@ -50,7 +50,7 @@ class Shipment
       when 201  
         message = JSON.parse(responses)  
         resource_url = Properties.getUrl + message["content"][0]["link"]
-        response = RestClient.get(resource_url)
+        response = RestClient.get(resource_url, {authorization: @token})
         return JSON.parse(response)    
      else
       message = responses.nil? ? {} : JSON.parse(responses)["message"] 

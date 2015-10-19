@@ -12,7 +12,7 @@ class GlobalConfiguration
     return JSON.parse(response)       
   end
 
-  def self.configuration_details(configuration)
+  def configuration_details(configuration)
     url = Properties.getUrl + "/configuration/#{configuration['configuration_id']}?client=#{configuration['client']}&warehouse=#{configuration['warehouse']}"
     response = RestClient.get url,  {authorization: @token}
     return JSON.parse(response)
