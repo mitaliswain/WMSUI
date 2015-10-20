@@ -19,7 +19,7 @@ login.controller('LoginCtrl', function ($scope, $location, $localStorage, $http,
         window.location = '/main';
 
     }).error(function(message){
-            $scope.message = 'Invalid Login';
+            $scope.message = 'Invalid User Id or Password';
 
     	});
  };
