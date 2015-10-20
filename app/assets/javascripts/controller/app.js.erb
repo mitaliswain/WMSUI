@@ -29,28 +29,28 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 
         // edit shipment header page
             .state('edit_shipment_header', {
-                url:         '/shipment_maintenance/edit_shipment/:header_id/',
+                url:         '/shipment_maintenance/edit/:header_id/',
                 templateUrl: '<%= asset_path('shipment_maintenance/show_header.html') %>',
                 controller:  'ShipmentEditCtrl'
             })
 
         // edit the shipment detail page
             .state('edit_shipment_detail', {
-                url:         '/shipment_maintenance/edit_shipment/:header_id/:detail_id',
+                url:         '/shipment_maintenance/edit/:header_id/:detail_id',
                 templateUrl: '<%= asset_path('shipment_maintenance/show_detail.html') %>',
                 controller:  'ShipmentEditCtrl'
             })
 
            // route for the add shipment header
             .state('add_shipment_header', {
-                url        : '/shipment_maintenance/add_shipment_header',
+                url        : '/shipment_maintenance/add/header',
                 templateUrl: '<%= asset_path('shipment_maintenance/add_header.html') %>',
                 controller : 'ShipmentAddCtrl'
             })
 
         // route for the shipment detail page
             .state('add_shipment_detail', {
-                url:         '/shipment_maintenance/add_shipment_detail/:to_shipment_header_id',
+                url:         '/shipment_maintenance/add/detail/:to_shipment_header_id',
                 templateUrl: '<%= asset_path('shipment_maintenance/add_detail.html') %>',
                 controller:  'ShipmentAddCtrl'
             })

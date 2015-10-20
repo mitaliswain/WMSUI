@@ -74,7 +74,7 @@ class Shipment
         message = JSON.parse(responses)
         p message
         resource_url = Properties.getUrl + message["content"][0]["link"]
-        response = RestClient.get(resource_url)
+        response = RestClient.get(resource_url, {authorization: @token})
         return JSON.parse(response)
       else
        message = responses.nil? ? {} : JSON.parse(responses)["message"]  
