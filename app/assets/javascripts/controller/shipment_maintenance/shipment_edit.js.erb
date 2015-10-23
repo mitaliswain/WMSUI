@@ -54,8 +54,6 @@ wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, 
         return d.promise;
     };
 
-    };
-
     $scope.updateDetail = function(data, el, id) {
         var url =  baseUrl + '/' + id + id + '/update_detail';
         var d = $q.defer();

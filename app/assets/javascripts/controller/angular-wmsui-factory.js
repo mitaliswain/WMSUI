@@ -102,7 +102,7 @@ wms.factory('wmsCache', function($cacheFactory) {
 
 wms.factory("UserService", function($http, $filter){
 
-    return {
+    return ({
 
         findAndReplace:  function($scope, objId, newObj) {
             $scope.pagedItems[0].forEach(function(obj) {
@@ -135,7 +135,7 @@ wms.factory("UserService", function($http, $filter){
                         d.reject(res.errors[0].message);
                     }
                 });
-        return d;
+        return d.promise;
     },
 
     set_page: function($scope) {
@@ -278,4 +278,5 @@ wms.factory("UserService", function($http, $filter){
 
 
     }
+ );
 });
