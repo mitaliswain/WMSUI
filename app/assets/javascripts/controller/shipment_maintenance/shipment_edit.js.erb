@@ -49,12 +49,18 @@ wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, 
 
     $scope.updateHeader = function(data, el, id) {
         var url = baseUrl + '/' + id + '/update_header' ;
-        UserService.updateResource(data, el, id, url, $scope, $q)
+        var d = $q.defer();
+        d = UserService.updateResource(data, el, id, url, $scope, d)
+        return d.promise;
+    };
+
     };
 
     $scope.updateDetail = function(data, el, id) {
         var url =  baseUrl + '/' + id + id + '/update_detail';
-        UserService.updateResource(data, el, id, url, $scope, $q)
+        var d = $q.defer();
+        d= UserService.updateResource(data, el, id, url, $scope, d)
+        return d.promise;
     };
 
     $scope.ok = function () {

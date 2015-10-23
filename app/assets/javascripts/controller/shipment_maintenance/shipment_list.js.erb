@@ -27,7 +27,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     }
 
     $scope.showShipment = function(show, shipment_header_id, shipment_detail_id) {
-        var url = baseUrl + '/' + shipment_header_id + '.json'
+        var url = "{baseUrl}/{shipment_header_id}.json}"
 
         $http.get(url).success(function(data) {
             $scope.shipment_header = data.shipment_header
@@ -76,13 +76,17 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     }
 
     $scope.updateHeader = function(data, el, id) {
-        var url = baseUrl + '/' + id + '/update_header';
-        UserService.updateResource(data, el, id, url, $scope, $q);
+        var url = "{baseUrl}/{id}/update_header";
+        var d = $q.defer();
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
     $scope.updateDetail = function(data, el, id) {
-        var url = baseUrl + '/' + id + '/update_detail';
-        UserService.updateResource(data, el, id, url, $scope, $q);
+    	var d = $q.defer();
+        var url ="{baseUrl}/{id}/update_detail";
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
     $scope.init = function() {

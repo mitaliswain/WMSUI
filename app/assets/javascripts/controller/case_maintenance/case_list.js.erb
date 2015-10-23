@@ -91,12 +91,16 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
 
     $scope.updateHeader = function(data, el, id) {
         var url = '/case_maintenance/'+ id + '/update_header';
-        UserService.updateResource(data, el, id, url, $scope, $q);
+        var d = $q.defer();
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
     $scope.updateDetail = function(data, el, id) {
         var url = '/case_maintenance/'+ id + '/update_detail';
-        UserService.updateResource(data, el, id, url, $scope, $q);
+        var d = $q.defer();
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
     $scope.init = function() {

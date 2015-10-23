@@ -3,6 +3,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
    var app_parameters = Auth.getAppParameters()	
    var client = app_parameters.client
    var warehouse = app_parameters.warehouse
+   var baseUrl = '/shipment_maintenance'
   
    $scope.to_shipment_header_id = $stateParams.to_shipment_header_id;
    $scope.shipment_header = {};
@@ -53,7 +54,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
 	
     var fields_to_update = {};
     fields_to_update = $scope.shipment_header;
-    var url = '/shipment_maintenance/add_header?client=' + client + '&warehouse='+ warehouse;
+    var url = "{baseUrl}/add_header?client={client}&warehouse={warehouse}";
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
@@ -86,7 +87,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     fields_to_update.asn_header_id = $scope.to_shipment_header_id;
    
 
-    var url = '/shipment_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
+    var url = "{baseUrl}/add_detail?client={client}&warehouse={warehouse}";
     return $http.post(url, {
         'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
         app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
@@ -128,7 +129,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
 
 
     $scope.ok = function () {
-        $location.path('/shipment_maintenance');
+        $location.path(baseUrl);
     };
 
 

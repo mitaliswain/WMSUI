@@ -70,10 +70,10 @@ wms.factory('Auth', function ($rootScope, $q, $window, $http, $localStorage) {
        return {
 
            signup: function (data, success, error) {
-               $http.post('/users/signup', data).success(success).error(error)
+               $http.post('/users/signup', data).success(success).error(error);
            },
            login: function (data, success, error) {
-               $http.post('/users/signin', data).success(success).error(error)
+               $http.post('/users/signin', data).success(success).error(error);
            },
            signout: function (success) {
                tokenClaims = {};
@@ -85,8 +85,8 @@ wms.factory('Auth', function ($rootScope, $q, $window, $http, $localStorage) {
                return getClaimsFromToken();
            },
            getAppParameters: function() {
-           		var app_parameters = $localStorage.app_parameters
-           		return app_parameters
+           		var app_parameters = $localStorage.app_parameters;
+           		return app_parameters;
            }
 
        };
@@ -102,7 +102,7 @@ wms.factory('wmsCache', function($cacheFactory) {
 
 wms.factory("UserService", function($http, $filter){
 
-    return {
+    return ({
 
         findAndReplace:  function($scope, objId, newObj) {
             $scope.pagedItems[0].forEach(function(obj) {
@@ -113,11 +113,10 @@ wms.factory("UserService", function($http, $filter){
                 });
          },
 
-        updateResource : function(data, el, id, url, $scope, $q) {
+        updateResource : function(data, el, id, url, $scope, d) {
 
         var fields_to_update = {};
         fields_to_update[el.$editable.elem[0].id] = data;
-        var d = $q.defer();
         $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
              app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
@@ -129,13 +128,14 @@ wms.factory("UserService", function($http, $filter){
                 }).error(function(res){
                     res = res || {};
                     if (res.status == 500) {
+                    	console.log('error');
                         d.reject(res.message|| 'Server Error');
                     }
                     else {
                         d.reject(res.errors[0].message);
                     }
                 });
-        return d.promise;
+        return d;
     },
 
     set_page: function($scope) {
@@ -155,7 +155,7 @@ wms.factory("UserService", function($http, $filter){
                 }
 
                 if (typeof(haystack) == 'boolean') {
-                    return haystack == needle
+                    return haystack == needle;
                 }
 
                 if (typeof(haystack) == 'string') {
@@ -210,13 +210,13 @@ wms.factory("UserService", function($http, $filter){
             $scope.search = function (event, search_field) {
 
                 if (event.which != 13) {
-                    return
+                    return;
                 }
 
                 $scope.filteredItems = $filter('filter')($scope.items, function (item) {
                     if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query) &&
                             searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], $scope.last_status)) {
-                        return true
+                        return true;
                     }
 
                     else {
@@ -278,4 +278,5 @@ wms.factory("UserService", function($http, $filter){
 
 
     }
+ );
 });

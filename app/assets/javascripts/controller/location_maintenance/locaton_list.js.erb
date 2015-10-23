@@ -127,7 +127,9 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
 
     $scope.updateHeader = function(data, el, id) {
         var url = '/location_master_maintenance/'+ id
-        UserService.updateResource(data, el, id, url, $scope, $q);
+        var d = $q.defer();
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
 
