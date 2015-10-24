@@ -47,7 +47,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
     var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: app_parameters,
+    	app_parameters: {client: client},
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;
