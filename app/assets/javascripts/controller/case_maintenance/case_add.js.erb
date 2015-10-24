@@ -1,9 +1,11 @@
-wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $location, Auth) {
+wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $location, Auth) {
 
-    var baseUrl = '/case_maintenance'
-    var shipment_header_id = $stateParams.header_id
-    var shipment_detail_id = $stateParams.detail_id
-	var app_parameters = Auth.getAppParameters()
+    var baseUrl = '/case_maintenance';
+    var shipment_header_id = $stateParams.header_id;
+    var shipment_detail_id = $stateParams.detail_id;
+	var app_parameters = Auth.getAppParameters();
+	var client    = app_parameters.client;
+  	var warehouse = app_parameters.warehouse;
 
 
     $scope.case_header = {};

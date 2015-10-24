@@ -12,7 +12,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
 	var warehouse = app_parameters.warehouse;
 	var baseUrl = '/user_master_maintenance'	
     
-    var baseUrl = '/user_master_maintenance/'
+    var baseUrl = '/user_master_maintenance'
 
     $scope.warehouse = [
         {value: 'WH1', text: 'PDC'},
@@ -105,8 +105,10 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     }
 
     $scope.updateHeader = function(data, el, id) {
+    	var d = $q.defer();
         var url = baseUrl + '/'+ id
-        UserService.updateResource(data, el, id, url, $scope, $q);
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
 

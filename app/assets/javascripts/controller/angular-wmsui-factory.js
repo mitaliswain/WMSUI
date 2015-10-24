@@ -135,7 +135,7 @@ wms.factory("UserService", function($http, $filter){
                         d.reject(res.errors[0].message);
                     }
                 });
-        return d.promise;
+        return d;
     },
 
     set_page: function($scope) {

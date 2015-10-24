@@ -40,8 +40,10 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
 
 
     $scope.updateHeader = function(data, el, id) {
+    	var d = $q.defer();
         var url = baseUrl + '/'+ id
-        UserService.updateResource(data, el, id, url, $scope, $q)
+        d = UserService.updateResource(data, el, id, url, $scope, d);
+        return d.promise;
     };
 
     $scope.ok = function () {

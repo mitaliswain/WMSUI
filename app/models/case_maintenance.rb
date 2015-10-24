@@ -1,21 +1,25 @@
 require 'rest_client'
 
 class CaseMaintenance
-  
-  def self.case_list(case_data)
+
+  def initialize(token)
+    @token = token
+  end
+    
+  def case_list(case_data)
     url = Properties.getUrl + "/case/#{case_data['case']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"
     response = RestClient.get url    
     return JSON.parse(response)       
   end
 
 
-  def self.case_details(case_data)
+  def case_details(case_data)
     url = Properties.getUrl + "/case/#{case_data['id']}?client=#{case_data['client']}&warehouse=#{case_data['warehouse']}"   
     response = RestClient.get url    
     return JSON.parse(response)       
   end
   
-  def self.case_update_header(id, app_parameters, fields_to_update)
+  def case_update_header(id, app_parameters, fields_to_update)
     
     url = Properties.getUrl + "/case/#{id}/update_header"   
     response = RestClient.post(url, 
@@ -33,7 +37,7 @@ class CaseMaintenance
     return JSON.parse(response)  
   end
 
-  def self.case_add_header(app_parameters, fields_to_update)
+  def case_add_header(app_parameters, fields_to_update)
     url = Properties.getUrl + "/case/add_header"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
@@ -56,7 +60,7 @@ class CaseMaintenance
   end
 
 
-  def self.case_add_detail(app_parameters, fields_to_update)
+  def case_add_detail(app_parameters, fields_to_update)
     url = Properties.getUrl + "/case/add_detail"   
     response = RestClient.post(url, 
     app_parameters: app_parameters,
@@ -73,7 +77,7 @@ class CaseMaintenance
   end
 
 
-  def self.case_update_detail(id, app_parameters, fields_to_update)
+  def case_update_detail(id, app_parameters, fields_to_update)
     url = Properties.getUrl + "/case/#{id}/update_detail"
     response = RestClient.post(url, 
     app_parameters: app_parameters,

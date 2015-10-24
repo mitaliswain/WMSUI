@@ -7,6 +7,8 @@ wms.controller('CaseEditCtrl', function ($scope, $filter, $http, $location, $q, 
     var shipment_header_id = $stateParams.header_id
     var shipment_detail_id = $stateParams.detail_id
 	var app_parameters = Auth.getAppParameters()
+	var client    = app_parameters.client;
+  	var warehouse = app_parameters.warehouse;
 	
 
     if (case_header_id != null) {

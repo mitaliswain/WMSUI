@@ -1,4 +1,4 @@
-wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService, httpCache, Auth) {
+wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $modal, $q,  UserService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -8,10 +8,10 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     $scope.squeeze = 100
     $scope.search_choice = {value: 'case_id', text: 'Case Id'}
     
-    var baseUrl = '/case_maintenance'
-    var shipment_header_id = $stateParams.header_id
-    var shipment_detail_id = $stateParams.detail_id
-	var app_parameters = Auth.getAppParameters()
+    var baseUrl = '/case_maintenance';
+	var app_parameters = Auth.getAppParameters();
+	var client    = app_parameters.client;
+  	var warehouse = app_parameters.warehouse;
 
     $scope.case = 'new case';
 
@@ -110,10 +110,8 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
 
     $scope.init = function() {
         console.log('case')
-        var url = '/case_maintenance.json?client=' + client + '&warehouse='+ warehouse;
-		var cachedResponse = httpCache.get(url);
-		console.log(cachedResponse);
-        $http.get(url, {cache: true}).success(function(data) {
+        var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
+        $http.get(url).success(function(data) {
             $scope.items = data;
             $scope.case_list = []
 
