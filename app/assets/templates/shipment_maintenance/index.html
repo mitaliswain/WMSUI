@@ -61,7 +61,7 @@
 				</div>
 				<div id="tbody">
 					<div ng-repeat="item in pagedItems[currentPage]">
-						<div  class="row-detail" ng-click="showShipment('Header', item.shipment_header.id)">
+						<div  class="row-detail">
 							<div id="shipment_header" class="col-header" ng-click="toggleExpand(item)" >
                               <i class="{{item.show ? 'fa fa-caret-down fa-lg' : 'fa fa-caret-right fa-lg'}}" style="color:#428bca"></i></a>
 							</div>
@@ -81,15 +81,16 @@
 							<div class="col-header">
 								{{item.shipment_header.record_status}}
 							</div>
-							<div class="icon-header pull-right">
-								<i class="fa fa-chevron-right"></i>
-
+							<div class="col-header pull-right">
+		                        <a id="show_shipment_header" ng-click="showShipment('Header', item.shipment_header.id)">
+        		                  <i class="fa fa-chevron-right"></i>
+                		        </a>
 							</div>
 
 						</div>
 
                           <!--Detail -->
-						<div ng-show="item.show" style="padding-left: 0%">
+						<div ng-show="item.show" style="padding-left: 2%">
 							<div class="label label-default">
 								<div class="col-header">
 									Item
@@ -108,7 +109,7 @@
 
 							</div>
 							<div ng-repeat="detail in item.shipment_detail">
-                                <div id="shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
+                                <div class="row-detail" id="shipment_detail">
 								    <div class="col-header">
 									    {{detail.item}}
 							    	</div>
@@ -119,7 +120,9 @@
 									    {{detail.received_qty}}
 								    </div>
 								    <div class="icon-header pull-right">
-								        <i class="fa fa-chevron-right"></i>
+								    	 <a id="show_shipment_detail" ng-click="showShipment('Detail', item.shipment_header.id,  detail.id)">
+        		                  			<i class="fa fa-chevron-right"></i>
+                		        		</a>
 						        	</div>
                                 </div>
 							</div>
@@ -161,7 +164,7 @@
              <div>
              <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id)"><i class="fa fa-pencil"></i> </button>
             </div>
-            <div ng-include src="header_template.url" ng-controller="ShipmentEditCtrl" class="card"></div>
+            <div ng-include src="header_template.url" class="card"></div>
           </div>
 
           
@@ -175,7 +178,7 @@
              <div>
               <button class="btn btn-default" style="float: right; margin-top: 1%; margin: 1%" ng-click="editShipment(selected_header_id, selected_detail_id)"><i class="fa fa-pencil"></i></button>
              </div>
-            <div ng-include src="detail_template.url" ng-controller="ShipmentEditCtrl"  class="card"></div>
+            <div ng-include src="detail_template.url" class="card"></div>
           </div>
 
         </div>

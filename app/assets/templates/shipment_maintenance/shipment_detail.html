@@ -7,6 +7,7 @@
     </div>
 </div>
 
+
 <div class="btn-default">
     <div class="modal_text_box">
         <span class="title truncate">Item Barcode:</span><a href="#" e-name="item" id="item" editable-text="shipment_detail.item"
@@ -21,7 +22,7 @@
     </div>
     <div class="modal_text_box">
         <span class="title truncate">Purchase Order: </span><a href="#" id="purchase_order_nbr"
-                                                      editable-text="purchase_order_nbr"
+                                                      editable-text="shipment_detail.purchase_order_nbr"
                                                       onbeforesave="updateDetail($data, this, shipment_detail.id)">{{
         shipment_detail.purchase_order_nbr || "empty" }}</a>
     </div>

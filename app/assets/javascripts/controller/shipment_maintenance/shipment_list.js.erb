@@ -18,6 +18,17 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     	{value: 'purchase_order_nbr', text: 'Purchase Order Number'}
  	 ]; 
 
+    $scope.header_template = {
+        name: 'header_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
+    };
+
+    $scope.detail_template = {
+        name: 'detail_template',
+        url: '<%= asset_path('shipment_maintenance/shipment_detail.html') %>'
+    };
+
+
     $scope.choose = function(choice) {
     	$scope.search_choice = choice;
     	$scope.shipment_list = []
