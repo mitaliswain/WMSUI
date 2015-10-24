@@ -65,28 +65,28 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 
         // edit case header page
             .state('edit_case_header', {
-                url:         '/case_maintenance/edit_case/:header_id/',
+                url:         '/case_maintenance/edit/:header_id/',
                 templateUrl: '<%= asset_path('case_maintenance/show_header.html') %>',
                 controller:  'CaseEditCtrl'
             })
 
         // edit the case detail page
             .state('edit_case_detail', {
-                url:         '/case_maintenance/edit_case/:header_id/:detail_id',
+                url:         '/case_maintenance/edit/:header_id/:detail_id',
                 templateUrl: '<%= asset_path('case_maintenance/show_detail.html') %>',
                 controller:  'CaseEditCtrl'
             })
 
         // route for the add case header
             .state('add_case_header', {
-                url        : '/case_maintenance/add_case_header',
+                url        : '/case_maintenance/add/header',
                 templateUrl: '<%= asset_path('case_maintenance/add_header.html') %>',
                 controller : 'CaseAddCtrl'
             })
 
         // route for the case detail page
             .state('add_case_detail', {
-                url:         '/case_maintenance/add_case_detail/:to_case_header_id',
+                url:         '/case_maintenance/add/detail/:to_case_header_id',
                 templateUrl: '<%= asset_path('case_maintenance/add_detail.html') %>',
                 controller:  'CaseAddCtrl'
             })

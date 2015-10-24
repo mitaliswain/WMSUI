@@ -87,7 +87,7 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     };
 
     $scope.editCase= function(header_id, detail_id) {
-        var url =  baseUrl + '/edit_case/'+ header_id + '/'
+        var url =  baseUrl + '/edit/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }

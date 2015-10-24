@@ -1,8 +1,7 @@
 wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $location, Auth) {
 
     var baseUrl = '/case_maintenance';
-    var shipment_header_id = $stateParams.header_id;
-    var shipment_detail_id = $stateParams.detail_id;
+    var case_header_id = $stateParams.to_case_header_id;
 	var app_parameters = Auth.getAppParameters();
 	var client    = app_parameters.client;
   	var warehouse = app_parameters.warehouse;
@@ -10,6 +9,11 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $locati
 
     $scope.case_header = {};
     $scope.case_detail = {};
+    
+    $scope.case_header.client = client;
+    $scope.case_header.warehouse = warehouse;
+    $scope.case_detail.client = client;
+    $scope.case_detail.warehouse = warehouse;
 
     $scope.globalInfo = {
    	error: false,
@@ -46,7 +50,7 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $locati
     $scope.saveDetail = function() {
         var fields_to_update = {};
         fields_to_update = $scope.case_detail;
-        fields_to_update.case_header_id = case_header.id;
+        fields_to_update.case_header_id = case_header_id;
 
         var url = baseUrl + '/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {

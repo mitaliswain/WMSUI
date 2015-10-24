@@ -50,7 +50,7 @@
 						Record Status&nbsp;<a ng-click="sort_by('record_status')"><i class="icon-sort"></i></a>
 					</div>
 					<div class="col-header truncate">
-						<a id="add_case_header"  href="#case_maintenance/add_case_header"> <i class="icon-plus-sign"></i></a>
+						<a id="add_case_header"  href="#case_maintenance/add/header"> <i class="icon-plus-sign"></i></a>
 					</div>
 
             	</div>
@@ -92,7 +92,7 @@
 							Received Quantity
 						</div>
 						<div class="col-header">
-                          <a id="open_case_detail_add" href="#case_maintenance/add_case_detail/{{item.case_header.id}}">
+                          <a id="open_case_detail_add" href="#case_maintenance/add/detail/{{item.case_header.id}}">
                             <i class="icon-plus-sign"></i>
                           </a>
                         </div>
@@ -109,7 +109,7 @@
 							{{detail.coo}}
 						</div>
                       <div class="icon-header pull-right">
-                        <a id="open_shipment_detail" ng-click="show_case('Detail', item.case_header.id,  detail.id)">
+                        <a id="open_shipment_detail" ng-click="showCase('Detail', item.case_header.id,  detail.id)">
                           <i class="fa fa-chevron-right"></i>
                         </a>
                       </div>
