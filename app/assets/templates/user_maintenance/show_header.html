@@ -4,11 +4,11 @@
     <button type="button" class="btn btn-primary">
         Client:
     </button>
-    {{user_header.client || "WM"}}
+    {{user_header.client}}
     <button type="button" class="btn btn-primary">
-        Shipment:
+        User:
     </button>
-    {{item_header.item||"New User"}}
+    {{user_header.user_name||"New User"}}
     <button class="btn btn-primary" ng-click="ok()" style="float: right">
         <i class="fa fa-times" style="float: right"></i>
     </button>

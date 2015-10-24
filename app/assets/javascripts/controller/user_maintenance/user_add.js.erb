@@ -4,9 +4,11 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
   var client    = app_parameters.client;
   var warehouse = app_parameters.warehouse
   var baseUrl = '/user_master_maintenance'	
+  
 
 
    $scope.user_header = {};
+   $scope.user_header.client = client;	
 
    $scope.globalInfo = {
    	error: false,

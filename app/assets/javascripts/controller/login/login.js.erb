@@ -10,7 +10,6 @@ login.controller('LoginCtrl', function ($scope, $location, $localStorage, $http,
     var url = '/login'
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	 client: 'WM',
     	 userid: $scope.userid,
          password: $scope.password
     }).success(function(data){
