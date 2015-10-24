@@ -1,6 +1,9 @@
-wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
-    var client    = 'WM';
-    var warehouse = 'WH1';
+wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $location, Auth) {
+
+    var baseUrl = '/case_maintenance'
+    var shipment_header_id = $stateParams.header_id
+    var shipment_detail_id = $stateParams.detail_id
+	var app_parameters = Auth.getAppParameters()
 
 
     $scope.case_header = {};
@@ -43,10 +46,10 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $locati
         fields_to_update = $scope.case_detail;
         fields_to_update.case_header_id = case_header.id;
 
-        var url = '/case_maintenance/add_detail?client=' + client + '&warehouse='+ warehouse;
+        var url = baseUrl + '/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-             app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+             app_parameters: app_parameters,
              fields_to_update: fields_to_update
         }).success(function(data){
             $scope.case_header = data.case_header;
@@ -74,10 +77,10 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $locati
 	
     var fields_to_update = {};
     fields_to_update = $scope.case_header;
-    var url = '/case_maintenance/add_header?client=' + 'WM' + '&warehouse='+ 'WH1';
+    var url = baseUrl + '/add_header?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.case_header = data.case_header;
@@ -115,7 +118,7 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $routeParams, $locati
  };
 
     $scope.ok = function () {
-        $location.path('/case_maintenance');
+        $location.path(baseUrl);
     };
 
 });

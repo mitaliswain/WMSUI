@@ -1,13 +1,16 @@
-wms.controller('CaseEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+wms.controller('CaseEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService, Auth) {
 
     var case_header_id = $stateParams.header_id
     var case_detail_id = $stateParams.detail_id
 
-    var client = 'WM'
-    var warehouse = 'WH1'
+    var baseUrl = '/case_maintenance'
+    var shipment_header_id = $stateParams.header_id
+    var shipment_detail_id = $stateParams.detail_id
+	var app_parameters = Auth.getAppParameters()
+	
 
     if (case_header_id != null) {
-        var url = '/case_maintenance/'+  case_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
+        var url = baseUrl + '/'+  case_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
         $http.get(url).success(function (data) {
             $scope.case_header = data.case_header
             $scope.case_detail = $filter('search')(data.case_detail, case_detail_id, 'id');
@@ -41,21 +44,21 @@ wms.controller('CaseEditCtrl', function ($scope, $filter, $http, $location, $q, 
     ];
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/case_maintenance/'+ id + '/update_header' ;
+        var url = baseUrl + '/'+ id + '/update_header' ;
         var d = $q.defer();
         d = UserService.updateResource(data, el, id, url, $scope, d)
         return d.promise;
     };
 
     $scope.updateDetail = function(data, el, id) {
-        var url = '/case_maintenance/'+ id + '/update_detail';
+        var url = baseUrl + '/'+ id + '/update_detail';
         var d = $q.defer();
         d = UserService.updateResource(data, el, id, url, $scope, d)
         return d.promise;
     };
 
     $scope.ok = function () {
-        $location.path('/case_maintenance');
+        $location.path(baseUrl);
     };
 
 

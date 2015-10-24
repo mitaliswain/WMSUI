@@ -1,6 +1,6 @@
 wms.controller('ConfigurationMasterAddCtrl', function ($scope, $modalInstance, item, $http, $q, Auth) {
  
-  var app_parameters = Auth.app_parameters;
+  var app_parameters = Auth.getAppParameters()
   var client    = Auth.client;
   var warehouse = Auth.warehouse;
   var baseUrl = '/configuration_maintenance'

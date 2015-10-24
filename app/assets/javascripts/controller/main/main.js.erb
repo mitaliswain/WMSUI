@@ -26,14 +26,19 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
 		{
 		token = Auth.getTokenClaims()
 	    if (!$localStorage.app_parameters) {
-	   		$scope.app_parameters.client = token.client
-	    	$scope.app_parameters.user_name = token.user_id
-	    	$scope.app_parameters.warehouse = token.preferred_warehouse
+	   		$scope.app_parameters.client = token.client;
+	    	$scope.app_parameters.updated_user = token.user_id;
+	    	$scope.app_parameters.warehouse = token.preferred_warehouse;
+	    	$scope.app_parameters.building = '';
+	    	$scope.app_parameters.channel = '';
+	    	
 	    	$localStorage.app_parameters = $scope.app_parameters	 
 	    } else {
-	   		$scope.app_parameters.client = $localStorage.app_parameters.client
-	    	$scope.app_parameters.user_name = $localStorage.app_parameters.user_id
-	    	$scope.app_parameters.warehouse = $localStorage.app_parameters.preferred_warehouse	    	
+	   		$scope.app_parameters.client = $localStorage.app_parameters.client;
+	    	$scope.app_parameters.updated_user = $localStorage.app_parameters.user_id;
+	    	$scope.app_parameters.warehouse = $localStorage.app_parameters.preferred_warehouse;	 
+		   	$scope.app_parameters.building = '';
+	    	$scope.app_parameters.channel = '';   	
 	    }
 	    
 	      	    

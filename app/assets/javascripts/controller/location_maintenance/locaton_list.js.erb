@@ -7,7 +7,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     $scope.expand = 0;
     $scope.squeeze = 100;
     
-    var app_parameters = Auth.app_parameters();
+    var app_parameters = Auth.getAppParameters()
   	var client    = app_parameters.client;
   	var warehouse = app_parameters.warehouse
   	var baseUrl = '/location_master_maintenance'	

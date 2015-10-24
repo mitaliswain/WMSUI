@@ -1,4 +1,4 @@
-wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -7,6 +7,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.expand = 0
     $scope.squeeze = 100
     var baseUrl = '/item_master_maintenance'
+    var app_parameters = Auth.getAppParameters()
 
     $scope.search_items = [
         {value: 'barcode', text: 'Barcode'},

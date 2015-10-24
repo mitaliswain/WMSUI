@@ -1,4 +1,4 @@
-wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -6,6 +6,11 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.header  = {}
     $scope.expand = 0
     $scope.squeeze = 100
+    
+	var app_parameters = Auth.getAppParameters()
+	var client    = app_parameters.client;
+	var warehouse = app_parameters.warehouse;
+	var baseUrl = '/user_master_maintenance'	
     
     var baseUrl = '/user_master_maintenance/'
 
