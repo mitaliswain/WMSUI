@@ -24,10 +24,8 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
   
 	if (Auth.getTokenClaims()) 
 		{
-			console.log('1');
 			token = Auth.getTokenClaims()
 		    if (!$localStorage.app_parameters) {
-		    	console.log('2');
 		   		$scope.app_parameters.client = token.client;
 		    	$scope.app_parameters.updated_user = token.user_id;
 		    	$scope.app_parameters.warehouse = token.preferred_warehouse;
@@ -35,7 +33,6 @@ wms.controller('MainCtrl', function ($scope, $http,  $location, $localStorage, $
 		    	$scope.app_parameters.channel = '';		    	
 		    	$localStorage.app_parameters = $scope.app_parameters	 
 		    } else {
-		    	console.log('3');
 		   		$scope.app_parameters.client = $localStorage.app_parameters.client;
 		    	$scope.app_parameters.updated_user = $localStorage.app_parameters.user_id;
 		    	$scope.app_parameters.warehouse = $localStorage.app_parameters.preferred_warehouse;	 
