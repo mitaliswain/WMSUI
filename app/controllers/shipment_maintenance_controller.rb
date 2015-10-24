@@ -20,7 +20,7 @@ class ShipmentMaintenanceController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => Shipment.new(request.headers['authorization']).shipment_details(shipment) }
+      format.json { render :json => Shipment.new(request.headers['authorization']).shipment_details(shipment, params[:expand]) }
     end
   end
   

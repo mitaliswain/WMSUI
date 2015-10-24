@@ -13,8 +13,8 @@ class Shipment
   end
 
 
-  def shipment_details(shipment)
-    url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}"   
+  def shipment_details(shipment, expand=nil)
+    url = Properties.getUrl + "/shipment/#{shipment['shipment_nbr']}?client=#{shipment['client']}&warehouse=#{shipment['warehouse']}&expand=expand"   
     response = RestClient.get url, {authorization: @token}    
     return JSON.parse(response)       
   end

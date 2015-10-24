@@ -8,6 +8,12 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
    $scope.to_shipment_header_id = $stateParams.to_shipment_header_id;
    $scope.shipment_header = {};
    $scope.shipment_detail = {};
+   
+   $scope.shipment_header.client = client
+   $scope.shipment_header.warehouse = warehouse
+   $scope.shipment_detail.client = client
+   $scope.shipment_detail.warehouse = warehouse
+
 
    $scope.globalInfo = {
    	error: false,

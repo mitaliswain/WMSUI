@@ -7,6 +7,9 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
 	var client    = app_parameters.client;
 	var warehouse = app_parameters.warehouse
 	var baseUrl = '/user_master_maintenance'	
+	
+	$scope.client = client
+    $scope.warehouse = warehouse
 
     var url = baseUrl + '/'+ user_id + '.json?client=' + client + '&warehouse='+ warehouse;
     $http.get(url).success(function(data) {

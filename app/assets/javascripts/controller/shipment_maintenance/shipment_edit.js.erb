@@ -9,10 +9,11 @@ wms.controller('ShipmentEditCtrl', function ($scope, $filter, $http, $location, 
     var warehouse = app_parameters.warehouse
 
     if (shipment_header_id != null) {
-        var url = baseUrl + '/'+  shipment_header_id + '.json?client=' + client + '&warehouse='+ warehouse;
+        var url = baseUrl + '/'+  shipment_header_id + '.json?client=' + client + '&warehouse='+ warehouse + '&expand=true';
         $http.get(url).success(function (data) {
             $scope.shipment_header = data.shipment_header
             $scope.shipment_detail = $filter('search')(data.shipment_detail, shipment_detail_id, 'id');
+            console.log($scope.shipment_header);
 
         }).error(function(){
             console.log('failed call');
