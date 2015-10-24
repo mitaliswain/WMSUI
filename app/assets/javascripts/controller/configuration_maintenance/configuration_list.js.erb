@@ -1,12 +1,18 @@
-    wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+    wms.controller('ConfigurationListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
 
 
         $scope.last_status = true;
         $scope.lastitem = {};
-        $scope.detail  = {}
-        $scope.header  = {}
-        $scope.expand = 0
-        $scope.squeeze = 100
+        $scope.detail  = {};
+        $scope.header  = {};
+        $scope.expand = 0;
+        $scope.squeeze = 100;
+        
+        var app_parameters = Auth.getAppParameters();
+    	var client = app_parameters.client;
+    	var warehouse = app_parameters.warehouse;
+    	baseUrl = '/configuration_maintenance';
+
 
         $scope.search_items = [
             {value: 'module', text: 'Module'},
@@ -50,7 +56,7 @@
         };
 
         $scope.showConfiguration = function(show, configuration, configuration_detail_id) {
-            var url = '/configuration_maintenance/'+  configuration + '.json'
+            var url = baseUrl + '/'+  configuration + '.json'
             $scope.data = {}
             $http.get(url).success(function(data) {
                 $scope.configuration_header = data.configuration_header
@@ -94,7 +100,7 @@
         };
 
         $scope.editConfiguration= function(header_id, detail_id) {
-            var url =  '/configuration_maintenance/edit_configuration/'+ header_id + '/'
+            var url =  baseUrl + '/edit_configuration/'+ header_id + '/'
             if(detail_id != null) {
                 url += detail_id
             }
@@ -102,12 +108,12 @@
         }
 
         $scope.updateConfiguration = function(data, el, id) {
-            var url = '/configuration_maintenance/'+ id ;
+            var url = baseUrl + '/' + id ;
             UserService.updateResource(data, el, id, url, $scope, $q);
         };
 
         $scope.init = function() {
-            var url = '/configuration_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';;
+            var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
             $http.get(url).success(function(data) {
                 $scope.items = data;
                 $scope.case_list = []

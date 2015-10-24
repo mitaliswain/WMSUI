@@ -1,7 +1,10 @@
-wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
+wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location, Auth) {
  
-  var client    = 'WM';
-  var warehouse = 'WH1';
+    var app_parameters = Auth.getAppParameters()
+    var client = app_parameters.client
+    var warehouse = app_parameters.warehouse
+    baseUrl = '/item_master_maintenance'
+	
 
 
    $scope.item_header = {};
@@ -36,10 +39,10 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
 	
     var fields_to_update = {};
     fields_to_update = $scope.item_header;
-    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: baseUrl,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;

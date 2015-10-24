@@ -47,7 +47,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     };
 
     $scope.showUser = function(show, user, user_detail_id) {
-        var url = '/user_master_maintenance/'+  user + '.json'
+        var url = baseUrl + '/'+  user + '.json'
 
         $http.get(url).success(function(data) {
             $scope.user_header = data.user_header
@@ -91,7 +91,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     };
 
     $scope.editUser= function(header_id, detail_id) {
-        var url =  '/user_master_maintenance/edit_user/'+ header_id + '/'
+        var url =  baseUrl + '/edit_user/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }
@@ -100,14 +100,14 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     }
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/user_master_maintenance/'+ id
+        var url = baseUrl + '/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q);
     };
 
 
     $scope.init = function() {
 
-        var url = '/user_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+        var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
 
         $http.get(url).success(function(data) {
             $scope.items = data;

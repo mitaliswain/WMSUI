@@ -1,11 +1,14 @@
-wms.controller('LocationMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+wms.controller('LocationMasterEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService, Auth) {
 
 
     var location_id = $stateParams.header_id
-    var client = 'WM'
-    var warehouse = 'WH1'
+    var app_parameters = Auth.getAppParameters();
+    var client = app_parameters.client;
+    var warehouse = app_parameters.warehouse;
+    baseUrl = '/location_master_maintenance';
+    	
 
-    var url = '/location_master_maintenance/'+ location_id + '.json?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/'+ location_id + '.json?client=' + client + '&warehouse='+ warehouse;
     $http.get(url).success(function(data) {
         $scope.location_header = data.location_header;
     }).error(function(){

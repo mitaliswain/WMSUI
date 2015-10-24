@@ -1,11 +1,16 @@
-wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService) {
+wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
-    $scope.detail  = {}
-    $scope.header  = {}
-    $scope.expand = 0
-    $scope.squeeze = 100
+    $scope.detail  = {};
+    $scope.header  = {};
+    $scope.expand = 0;
+    $scope.squeeze = 100;
+    
+    var app_parameters = Auth.app_parameters();
+  	var client    = app_parameters.client;
+  	var warehouse = app_parameters.warehouse
+  	var baseUrl = '/location_master_maintenance'	
 
     $scope.search_items = [
         {value: 'barcode', text: 'Barcode'},
@@ -72,7 +77,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     };
 
     $scope.showLocation = function(show, location, location_detail_id) {
-        var url = '/location_master_maintenance/'+  location + '.json'
+        var url = baseUrl + '/'+  location + '.json'
 
         $http.get(url).success(function(data) {
             $scope.location_header = data.location_header
@@ -117,7 +122,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     };
 
     $scope.editLocation= function(header_id, detail_id) {
-        var url =  '/location_master_maintenance/edit_location/'+ header_id + '/'
+        var url =  baseUrl + '/edit_location/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }
@@ -126,7 +131,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     }
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/location_master_maintenance/'+ id
+        var url = baseUrl + '/'+ id
         var d = $q.defer();
         d = UserService.updateResource(data, el, id, url, $scope, d);
         return d.promise;
@@ -135,7 +140,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
 
     $scope.init = function() {
 
-        var url = '/location_master_maintenance.json?client=' + 'WM' + '&warehouse='+ 'WH1';
+        var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
 
         $http.get(url).success(function(data) {
             $scope.items = data;

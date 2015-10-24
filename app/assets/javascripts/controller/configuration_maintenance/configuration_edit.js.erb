@@ -1,7 +1,13 @@
-wms.controller('ConfigurationEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService) {
+wms.controller('ConfigurationEditCtrl', function ($scope, $filter, $http, $location, $q, $stateParams, UserService, Auth) {
 
+  var app_parameters = Auth.app_parameters();
+  var client    = app_parameters.client;
+  var warehouse = app_parameters.warehouse
+  var baseUrl = '/configuration_maintenance'	
+  
+  
     var configuration_id = $stateParams.header_id
-    var url = '/configuration_maintenance/' + configuration_id + '.json?client=' + 'WM';
+    var url = baseUrl + '/' + configuration_id + '.json?client=' + client;
 
 
     $http.get(url).
@@ -43,12 +49,12 @@ wms.controller('ConfigurationEditCtrl', function ($scope, $filter, $http, $locat
         var configuration  =  $location.search().configuration;
         var client    = $location.search().client;
         var fields_to_update = {};
-        var url = '/configuration_maintenance/'+ id
+        var url = baseUrl + '/'+ id
         fields_to_update[el.$editable.elem[0].id] = data;
         var d = $q.defer();
         $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-            app_parameters: {'client': 'WM', 'warehouse': 'WH1','channel': '', 'building': ''},
+            app_parameters: app_parameters,
             fields_to_update: fields_to_update
         })
                 .success(function(res) {
@@ -69,7 +75,7 @@ wms.controller('ConfigurationEditCtrl', function ($scope, $filter, $http, $locat
 
 
     $scope.ok = function () {
-        $location.path('/configuration_maintenance')
+        $location.path(baseUrl)
     };
 
 });

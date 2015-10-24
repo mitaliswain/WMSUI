@@ -1,10 +1,12 @@
-wms.controller('LocationMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
+wms.controller('LocationMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location, Auth) {
  
-  var client    = 'WM';
-  var warehouse = 'WH1';
-
-
+  var app_parameters = Auth.app_parameters();
+  var client    = app_parameters.client;
+  var warehouse = app_parameters.warehouse
+  var baseUrl = '/location_master_maintenance'	
+	
    $scope.location_header = {};
+   
 
    $scope.globalInfo = {
    	error: false,
@@ -63,10 +65,10 @@ wms.controller('LocationMasterAddCtrl', function ($scope, $http, $q, $routeParam
 	
     var fields_to_update = {};
     fields_to_update = $scope.location_header;
-    var url = '/location_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.location_header = data.location_header;
@@ -103,7 +105,7 @@ wms.controller('LocationMasterAddCtrl', function ($scope, $http, $q, $routeParam
  };
   
   $scope.ok = function () {
-    $location.path('/location_master_maintenance')
+    $location.path(baseUrl);
   };
 
 });

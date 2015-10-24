@@ -1,7 +1,9 @@
-wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $http, $q) {
+wms.controller('ConfigurationMasterAddCtrl', function ($scope, $modalInstance, item, $http, $q, Auth) {
  
-  var client    = 'WM';
-  var warehouse = 'WH1';
+  var app_parameters = Auth.app_parameters;
+  var client    = Auth.client;
+  var warehouse = Auth.warehouse;
+  var baseUrl = '/configuration_maintenance'
 
 
    $scope.item = {};
@@ -29,17 +31,17 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $modalInstance, item, $htt
    
   $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_master_maintenance/item_header.html') %>'
+        url: '<%= asset_path('configuration_maintenance/configuration_header.html') %>'
         };
 
  $scope.saveHeader = function() {
 	
     var fields_to_update = {};
     fields_to_update = $scope.item;
-    var url = '/item_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;

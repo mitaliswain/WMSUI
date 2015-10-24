@@ -54,10 +54,10 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
 	
     var fields_to_update = {};
     fields_to_update = $scope.shipment_header;
-    var url = "{baseUrl}/add_header?client={client}&warehouse={warehouse}";
+    var url = baseUrl + '/add_header?client=' + client + '&warehouse=' + warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.shipment_header = data.shipment_header;
@@ -87,10 +87,10 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     fields_to_update.asn_header_id = $scope.to_shipment_header_id;
    
 
-    var url = "{baseUrl}/add_detail?client={client}&warehouse={warehouse}";
+    var url = baseUrl + '/add_detail?client=' + client + '&warehouse=' + warehouse;
     return $http.post(url, {
         'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-        app_parameters: {'client': 'WM', 'warehouse': 'WH1', building: null, channel: null},
+        app_parameters: app_parameters,
         fields_to_update: fields_to_update
     }).success(function(data){
         $scope.shipment_header = data.shipment_header;

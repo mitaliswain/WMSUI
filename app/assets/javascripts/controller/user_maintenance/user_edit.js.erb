@@ -3,10 +3,12 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
 
     var user_id = $stateParams.header_id
 
-    var client = 'WM'
-    var warehouse = 'WH1'
+	var app_parameters = Auth.app_parameters();
+	var client    = app_parameters.client;
+	var warehouse = app_parameters.warehouse
+	var baseUrl = '/user_master_maintenance'	
 
-    var url = '/user_master_maintenance/'+ user_id + '.json?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/'+ user_id + '.json?client=' + client + '&warehouse='+ warehouse;
     $http.get(url).success(function(data) {
         $scope.user_header = data.user_header;
     }).error(function(){
@@ -38,12 +40,12 @@ wms.controller('UserMasterEditCtrl', function ($scope, $filter, $http, $location
 
 
     $scope.updateHeader = function(data, el, id) {
-        var url = '/user_master_maintenance/'+ id
+        var url = baseUrl + '/'+ id
         UserService.updateResource(data, el, id, url, $scope, $q)
     };
 
     $scope.ok = function () {
-        $location.path('/user_master_maintenance');
+        $location.path(baseUrl);
     };
 
 });

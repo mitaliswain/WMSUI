@@ -91,7 +91,8 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.init = function() {
 
-        var url = baseUrl + '.json?client=' + client + '&warehouse='+ warehouse;
+        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse;
+        
 
         $http.get(url).success(function(data) {
             $scope.items = data;

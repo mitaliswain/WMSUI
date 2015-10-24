@@ -1,7 +1,9 @@
 wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location) {
  
-  var client    = 'WM';
-  var warehouse = 'WH1';
+  var app_parameters = Auth.app_parameters();
+  var client    = app_parameters.client;
+  var warehouse = app_parameters.warehouse
+  var baseUrl = '/user_master_maintenance'	
 
 
    $scope.user_header = {};
@@ -42,10 +44,10 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
 	
     var fields_to_update = {};
     fields_to_update = $scope.user_header;
-    var url = '/user_master_maintenance/?client=' + client + '&warehouse='+ warehouse;
+    var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: {'client': 'WM'},
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;
@@ -82,7 +84,7 @@ wms.controller('UserMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
  };
   
   $scope.ok = function () {
-    $location.path('/user_master_maintenance')
+    $location.path(baseUrl)
   };
 
 });
