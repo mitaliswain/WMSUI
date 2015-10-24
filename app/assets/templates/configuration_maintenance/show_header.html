@@ -4,16 +4,22 @@
     <button type="button" class="btn btn-primary">
         Client:
     </button>
-    {{configuration.client || "WM"}}
+    {{configuration_header.client }}
+    
     <button type="button" class="btn btn-primary">
-        Configuration:
+        Wahrehouse :
     </button>
-    {{configuration.item||"New Configuration"}}
+    {{configuration_header.warehouse}}
+ 
+    <button type="button" class="btn btn-primary">
+        Configuration Key:
+    </button>
+    {{configuration_header.key||"New Key"}}
+    
     <button class="btn btn-primary" ng-click="ok()" style="float: right">
         <i class="fa fa-times" style="float: right"></i>
     </button>
 
-</div>
 </div>
 
 <div class="modal-body">
