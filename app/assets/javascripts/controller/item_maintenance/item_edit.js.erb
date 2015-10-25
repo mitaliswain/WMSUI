@@ -33,7 +33,7 @@ wms.controller('ItemMasterEditCtrl', function ($scope, $filter, $http, $location
 
 
     $scope.updateHeader = function(data, el, id) {
-        var url = baseUrl + id
+        var url = baseUrl + '/' + id
         var d = $q.defer();
         d = UserService.updateResource(data, el, id, url, $scope, d)
         return d.promise;

@@ -102,14 +102,14 @@ wms.config(function($stateProvider, $urlRouterProvider) {
 
         // edit item master header page
             .state('item_master_header', {
-                url:         '/item_master_maintenance/edit_item/:header_id/',
+                url:         '/item_master_maintenance/edit/:header_id/',
                 templateUrl: '<%= asset_path('item_maintenance/show_header.html') %>',
                 controller:  'ItemMasterEditCtrl'
             })
 
         // route for the add item master
             .state('add_item_master', {
-                url        : '/item_master_maintenance/add_item',
+                url        : '/item_master_maintenance/add',
                 templateUrl: '<%= asset_path('item_maintenance/add_item.html') %>',
                 controller : 'ItemMasterAddCtrl'
             })

@@ -42,7 +42,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
     var url = baseUrl + '/?client=' + client + '&warehouse='+ warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: baseUrl,
+    	app_parameters: app_parameters,
     	fields_to_update: fields_to_update
     }).success(function(data){ 		
     	$scope.item = data;
@@ -79,7 +79,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
  };
   
   $scope.ok = function () {
-    $location.path('baseUrl')
+    $location.path(baseUrl)
   };
 
 });
