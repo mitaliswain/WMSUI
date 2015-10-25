@@ -16,7 +16,8 @@ wms.controller('ItemMasterEditCtrl', function ($scope, $filter, $http, $location
     });
 
 
-
+	$scope.status = {}
+	$scope.status.isFirstOpen = true;
     $scope.statuses = [
         {value: 'Active', text: 'Active'},
         {value: 'Inactive', text: 'Inactive'}

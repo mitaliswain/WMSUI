@@ -15,6 +15,9 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    	info: false 
    };
    
+   $scope.status = {}
+   $scope.status.isFirstOpen = true;
+	
    $scope.statuses = [
     {value: 'Active', text: 'Active'},
     ]; 
