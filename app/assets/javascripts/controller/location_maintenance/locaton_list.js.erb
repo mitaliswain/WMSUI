@@ -122,7 +122,7 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     };
 
     $scope.editLocation= function(header_id, detail_id) {
-        var url =  baseUrl + '/edit_location/'+ header_id + '/'
+        var url =  baseUrl + '/edit/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }
