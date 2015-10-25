@@ -95,7 +95,7 @@ wms.controller('UserMasterListCtrl', function ($scope, $http,  $location, $filte
     };
 
     $scope.editUser= function(header_id, detail_id) {
-        var url =  baseUrl + '/edit_user/'+ header_id + '/'
+        var url =  baseUrl + '/edit/'+ header_id + '/'
         if(detail_id != null) {
             url += detail_id
         }
