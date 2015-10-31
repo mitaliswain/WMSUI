@@ -1,9 +1,16 @@
+require 'rest_client'
+
 class ConfigurationMaintenanceController < ApplicationController
 
 def index
   respond_to do |format|
       format.html 
-      format.json { render :json => GlobalConfiguration.new(request.headers['authorization']).configuration_list(module: 'RECEIVING') }
+      #format.json { render :json => GlobalConfiguration.new(request.headers['authorization']).configuration_list(module: 'RECEIVING') }
+      format.json {
+            url = Properties.getUrl + "/configuration" 
+            response = RestClient.get url, {authorization:request.headers['authorization']}
+            render :json => JSON.parse(response)   
+      }
     end
 end
 
