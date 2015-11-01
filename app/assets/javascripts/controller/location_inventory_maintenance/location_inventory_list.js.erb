@@ -1,4 +1,4 @@
-wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
+wms.controller('LocationInventoryListCtrl', function ($scope, $http,  $location, $filter, $q, UserService, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -8,6 +8,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
     $scope.squeeze = 100
     var baseUrl = '/item_master_maintenance'
     var app_parameters = Auth.getAppParameters()
+    var baseUrl = '/location_inventory_maintenance'
 
     $scope.search_items = [
         {value: 'barcode', text: 'Barcode'},
@@ -29,12 +30,12 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
 
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('item_maintenance/item_header.html') %>'
+        url: '<%= asset_path('location_inventory_maintenance/inventory_location_header.html') %>'
     };
 
     $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('item_maintenance/item_detail.html') %>'
+        url: '<%= asset_path('location_inventory_maintenance/inventory_location_detail.html') %>'
     };
 
     $scope.showItem = function(show, item, item_detail_id) {
@@ -106,7 +107,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
             $scope.items = data;
             $scope.item_list = []
 
-            $scope.filter_from_object = "item_header"
+            $scope.filter_from_object = "location_inventory"
             $scope.filter_from_field = "status"
 
             UserService.set_page($scope);
@@ -114,7 +115,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
             $scope.status('Active');
 
             angular.forEach($scope.items, function(item) {
-                $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
+                $scope.item_list.push(item["location_inventory"][$scope.search_choice.value]);
             });
 
         });

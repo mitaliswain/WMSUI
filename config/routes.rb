@@ -67,6 +67,13 @@ Rails.application.routes.draw do
     post '', action: 'create'
   end
 
+  namespace :location_inventory_maintenance do
+    get '', action: 'index'
+    get  ':id', action: 'show'
+    post ':id', action: 'update'
+    post '', action: 'create'
+  end
+
   namespace :login do
     get '', action: 'index'
     get  ':id', action: 'show'

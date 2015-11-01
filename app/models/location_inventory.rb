@@ -7,17 +7,17 @@ class LocationInventory
     @token = token
   end
   
-  def inventory_location_list(params = '')    
+  def location_inventory_list(params = '')
     JSON.parse(RestClient.get "#{Properties.getUrl}/#{API_URL}", {authorization: @token})  
   end
 
-  def inventory_location_details(location_inventory)
+  def location_inventory_details(location_inventory)
     JSON.parse(RestClient.get "{Properties.getUrl}/#{API_URL}/#{location_inventory['location_inventory_id']}?client=#{location_inventory['client']}&warehouse=#{location_inventory['warehouse']}", 
     {authorization: @token})
   end
 
 
-  def update_inventory_location(id, app_parameters, fields_to_update)
+  def location_inventory(id, app_parameters, fields_to_update)
     
     url = "#{Properties.getUrl}/#{API_URL}/#{id}"
     response = RestClient.put(url, 

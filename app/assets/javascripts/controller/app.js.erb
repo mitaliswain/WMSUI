@@ -160,7 +160,29 @@ wms.config(function($stateProvider, $urlRouterProvider) {
                 templateUrl: '<%= asset_path('configuration_maintenance/add_configuration.html') %>',
                 controller : 'ConfigurationAddCtrl'
             })
-            
+
+//===============================LOCATION INVENTORY============================================//
+        // route for the user master page
+            .state('location_inventory_maintenance', {
+                url:         '/location_inventory_maintenance',
+                templateUrl: '<%= asset_path('location_inventory_maintenance/index.html') %>',
+                controller:  'LocationInventoryListCtr'
+            })
+
+        // edit user master header page
+            .state('edit_location_inventory', {
+                url:         '/user_master_maintenance/edit/:header_id/',
+                templateUrl: '<%= asset_path('location_inventory_maintenance/show_header.html') %>',
+                controller:  'LocationInventoryEditCtrl'
+            })
+
+        // route for the add user master
+            .state('add_location_inventory', {
+                url        : '/user_master_maintenance/add',
+                templateUrl: '<%= asset_path('location_inventory_maintenance/add_user.html') %>',
+                controller : 'LocationInventoryAddCtrl'
+            })
+
 //===============================USER PAGE============================================//            
         // route for the user master page
             .state('user_master_maintenance', {

@@ -1,4 +1,4 @@
-wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService, ShareService, Auth) {
+wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter, $modal, $q, UserService, ShareService, $localStorage, Auth) {
 
     $scope.last_status = 'Created';
     $scope.lastitem = {};
@@ -8,8 +8,9 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     $scope.squeeze = 100
     $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
     var app_parameters = Auth.getAppParameters()
-    var baseUrl = '/shipment_maintenance'
-	
+    var baseUrl = 'http://wmsservice.herokuapp.com/shipment'
+	//var baseUrl = '/shipment_maintenance'
+
     var client = app_parameters.client
     var warehouse = app_parameters.warehouse
 
@@ -38,7 +39,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     }
 
     $scope.showShipment = function(show, shipment_header_id, shipment_detail_id) {
-        var url = baseUrl + '/'+ shipment_header_id + '.json'
+        var url = baseUrl + '/'+ shipment_header_id + '.json' + '/?authorization=' + $localStorage.token;
 
         $http.get(url).success(function(data) {
             $scope.shipment_header = data.shipment_header
@@ -102,7 +103,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.init = function() {
 
-        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse;
+        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse + '&authorization=' + $localStorage.token ;
         
 
         $http.get(url).success(function(data) {
