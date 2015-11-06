@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../CucumberWMS/.idea/CucumberWMS.iml" filepath="$PROJECT_DIR$/../CucumberWMS/.idea/CucumberWMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/../WMSRF/.idea/WMSRF.iml" filepath="$PROJECT_DIR$/../WMSRF/.idea/WMSRF.iml" />
       <module fileurl="file://$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" filepath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/WMSUI.iml" filepath="$PROJECT_DIR$/.idea/WMSUI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../cucumberWMSTest1/.idea/cucumberWMSTest1.iml" filepath="$PROJECT_DIR$/../cucumberWMSTest1/.idea/cucumberWMSTest1.iml" />
     </modules>
   </component>
 </project>

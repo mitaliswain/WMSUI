@@ -21,15 +21,10 @@
 
 <div class="modal-body">
 
-    <!-- button to show form -->
-
     <form editable-form name="editableForm" onaftersave="saveHeader()">
         <div class="buttons">
-
-            <button type="button" class="btn btn-primary" ng-show="!editableForm.$visible"
-                    ng-click="add_another()">
-                Add Another
-            </button>
+            <!-- button to show form -->
+            {{editableForm.$show()}}
 
             <!-- buttons to submit / cancel form -->
             <span ng-show="editableForm.$visible">
@@ -44,7 +39,6 @@
         </div>
 
         <div ng-include src="header_template.url"></div>
-
             <span ng-show="editableForm.$visible">
                 <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">
                     Save

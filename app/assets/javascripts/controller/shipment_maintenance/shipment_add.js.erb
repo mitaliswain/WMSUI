@@ -1,9 +1,10 @@
-wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $location, Auth) {
+wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $location,$localStorage, Auth) {
 
    var app_parameters = Auth.getAppParameters()	
    var client = app_parameters.client
    var warehouse = app_parameters.warehouse
    var baseUrl = '/shipment_maintenance'
+    //var baseUrl = 'http://localhost:3001/shipment'
   
    $scope.to_shipment_header_id = $stateParams.to_shipment_header_id;
    $scope.shipment_header = {};
@@ -64,7 +65,8 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
     	app_parameters: app_parameters,
-    	fields_to_update: fields_to_update
+    	fields_to_update: fields_to_update,
+        authorization: $localStorage.token
     }).success(function(data){ 		
     	$scope.shipment_header = data.shipment_header;
 		$scope.shipment_details = data.shipment_detail;    
@@ -97,7 +99,8 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     return $http.post(url, {
         'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
         app_parameters: app_parameters,
-        fields_to_update: fields_to_update
+        fields_to_update: fields_to_update,
+        authorization: $localStorage.token
     }).success(function(data){
         $scope.shipment_header = data.shipment_header;
         $scope.shipment_detail = data.shipment_detail;

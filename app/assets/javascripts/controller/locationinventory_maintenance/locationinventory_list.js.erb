@@ -30,12 +30,12 @@ wms.controller('LocationInventoryListCtrl', function ($scope, $http,  $location,
 
     $scope.header_template = {
         name: 'header_template',
-        url: '<%= asset_path('location_inventory_maintenance/inventory_location_header.html') %>'
+        url: '<%= asset_path('item_maintenance/item_header.html') %>'
     };
 
     $scope.detail_template = {
         name: 'detail_template',
-        url: '<%= asset_path('location_inventory_maintenance/inventory_location_detail.html') %>'
+        url: '<%= asset_path('item_maintenance/item_header.html') %>'
     };
 
     $scope.showItem = function(show, item, item_detail_id) {
@@ -112,7 +112,7 @@ wms.controller('LocationInventoryListCtrl', function ($scope, $http,  $location,
 
             UserService.set_page($scope);
 
-            $scope.status('Active');
+            $scope.status('*All');
 
             angular.forEach($scope.items, function(item) {
                 $scope.item_list.push(item["location_inventory"][$scope.search_choice.value]);

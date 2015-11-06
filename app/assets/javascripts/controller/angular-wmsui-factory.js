@@ -4,7 +4,7 @@ wms.factory('authInterceptor', function ($rootScope, $q, $window, $localStorage)
     request: function (config) {
       config.headers = config.headers || {};
       if ($localStorage.token) {
-        //config.headers.authorization = $localStorage.token;
+        config.headers.authorization = $localStorage.token;
       }
       return config;
     },

@@ -8,8 +8,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     $scope.squeeze = 100
     $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
     var app_parameters = Auth.getAppParameters()
-    var baseUrl = 'http://wmsservice.herokuapp.com/shipment'
-	//var baseUrl = '/shipment_maintenance'
+	var baseUrl = '/shipment_maintenance'
 
     var client = app_parameters.client
     var warehouse = app_parameters.warehouse
@@ -39,12 +38,11 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     }
 
     $scope.showShipment = function(show, shipment_header_id, shipment_detail_id) {
-        var url = baseUrl + '/'+ shipment_header_id + '.json' + '/?authorization=' + $localStorage.token;
+        var url = baseUrl + '/'+ shipment_header_id + '.json';
 
         $http.get(url).success(function(data) {
             $scope.shipment_header = data.shipment_header
             $scope.shipment_detail = $filter('search')(data.shipment_detail, shipment_detail_id, 'id');
-
 
             if (show == 'Header') {
                 $scope.header.show = true
@@ -103,7 +101,7 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.init = function() {
 
-        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse + '&authorization=' + $localStorage.token ;
+        var url = baseUrl + '.json?client=' + app_parameters.client + '&warehouse='+ app_parameters.warehouse;
         
 
         $http.get(url).success(function(data) {
@@ -115,10 +113,10 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
             UserService.set_page($scope);
 
-            $scope.status(null);
+            $scope.status('Active');
 
             angular.forEach($scope.items, function(item) {
-                $scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
+                $scope.shipment_list.push(item[$scope.search_choice.value]);
             });
 
         });

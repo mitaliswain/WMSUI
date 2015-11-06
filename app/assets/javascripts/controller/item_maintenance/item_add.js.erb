@@ -1,13 +1,18 @@
 wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $location, Auth) {
  
-    var app_parameters = Auth.getAppParameters()
-    var client = app_parameters.client
-    var warehouse = app_parameters.warehouse
-    baseUrl = '/item_master_maintenance'
-	
+    var app_parameters = Auth.getAppParameters();
+    var client = app_parameters.client;
+    var warehouse = app_parameters.warehouse;
+    var baseUrl = '/item_master_maintenance';
 
 
-   $scope.item_header = {};
+    $scope.$watch('editableForm', function(newValue, oldValue) {
+        $scope.editableForm.$show();
+        $scope.showing = true;
+    });
+
+
+    $scope.item_header = {};
 
    $scope.globalInfo = {
    	error: false,
@@ -15,24 +20,31 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
    	info: false 
    };
    
-   $scope.status = {}
+   $scope.status = {};
    $scope.status.isFirstOpen = true;
 	
    $scope.statuses = [
-    {value: 'Active', text: 'Active'},
+    {value: 'Active', text: 'Active'}
     ]; 
    
    
    $scope.concept = [
     {value: 'AB', text: 'AB'},
-    {value: 'BC', text: 'BC'},
+    {value: 'BC', text: 'BC'}
     ]; 
 
     $scope.clear = function() {
 	   $scope.item_header= {};
 	   };
-  
-   
+
+    $scope.add_another = function() {
+        $scope.editableForm.$show();
+        $scope.item_header = {};
+        $scope.showing = ! $scope.showing;
+
+    };
+
+
   $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('item_maintenance/item_header.html') %>'
@@ -50,6 +62,7 @@ wms.controller('ItemMasterAddCtrl', function ($scope, $http, $q, $routeParams, $
     }).success(function(data){ 		
     	$scope.item = data;
  		setInfo('info', 'Item Created Successfully');
+        $scope.editableForm.$hide();
 
     }).error(function(message){
     	if (message.status == '422')
