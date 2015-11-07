@@ -213,7 +213,14 @@ wms.factory("UserService", function($http, $filter){
                     return;
                 }
 
+                //If search is done for the All tab
                 $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+                    if ($scope.last_status == '*All') {
+                        if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query)) {
+                            return true;
+                        }
+                    }
+
                     if (searchMatch(item[$scope.filter_from_object][search_field], $scope.query) &&
                             searchMatch(item[$scope.filter_from_object][$scope.filter_from_field], $scope.last_status)) {
                         return true;

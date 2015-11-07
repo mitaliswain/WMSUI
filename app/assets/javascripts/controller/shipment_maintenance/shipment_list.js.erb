@@ -20,11 +20,6 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     var client = app_parameters.client;
     var warehouse = app_parameters.warehouse;
 
-    $scope.searchIitems = [
-	    {value: 'shipment_nbr', text: 'Shipment Number'},
-    	{value: 'purchase_order_nbr', text: 'Purchase Order Number'}
- 	 ]; 
-
     $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('shipment_maintenance/shipment_header.html') %>'
@@ -38,9 +33,11 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.choose = function(choice) {
     	$scope.search_choice = choice;
-    	$scope.shipment_list = []
+    	$scope.shipment_list = [];
     	angular.forEach($scope.items, function(item) {
-           	$scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
+            if($scope.shipment_list.indexOf(item["shipment_header"][$scope.search_choice.value]) == -1) {
+                $scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
+            }
         });
     }
 
@@ -52,10 +49,10 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
             $scope.shipment_detail = $filter('search')(data.shipment_detail, shipment_detail_id, 'id');
 
             if (show == 'Header') {
-                $scope.header.show = true
+                $scope.header.show = true;
                 $scope.detail.show = false
             } else {
-                $scope.detail.show = true
+                $scope.detail.show = true;
                 $scope.header.show = false
             }
 
@@ -68,9 +65,9 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     }
 
     $scope.hideShipment = function() {
-        $scope.header.show= false
-        $scope.detail.show= false
-        $scope.expand = 0
+        $scope.header.show= false;
+        $scope.detail.show= false;
+        $scope.expand = 0;
         $scope.squeeze = 100
     };
 
@@ -127,7 +124,6 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
                     $scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
                 }
             });
-            console.log($scope.shipment_list);
 
         });
 
