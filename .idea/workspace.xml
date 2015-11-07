@@ -3,13 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="514093bf-68f3-4867-aaf8-d509383ed6a8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" afterPath="$PROJECT_DIR$/../WMSService/.idea/WMSService.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_detail.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_header.html" afterPath="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/case_header.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/case_header.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/test/integration/case_putaway_process_integration_test.rb" afterPath="$PROJECT_DIR$/../WMSService/test/integration/case_putaway_process_integration_test.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/services/putaway/case_putaway_processing.rb" afterPath="$PROJECT_DIR$/../WMSService/app/services/putaway/case_putaway_processing.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/location_inventory.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/location_inventory.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_add.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_add.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WMSUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,16 +77,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="show_header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/templates/shipment_maintenance/show_header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="add_item.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/templates/item_maintenance/add_item.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -110,8 +100,38 @@
       <file leaf-file-name="item_list.js.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="45.375">
-              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+            <state vertical-scroll-proportion="-7.5">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="18" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show_header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/templates/item_maintenance/show_header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/templates/item_maintenance/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/templates/shipment_maintenance/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,11 +157,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65989846">
+            <state vertical-scroll-proportion="-16.25">
               <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shipment_list.js.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30456853">
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -183,14 +213,12 @@
         <option value="$PROJECT_DIR$/../WMSService/app/controllers/item_master_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_add.js.erb" />
         <option value="$PROJECT_DIR$/app/assets/templates/item_maintenance/add_item.html" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb" />
         <option value="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/index.html" />
         <option value="$PROJECT_DIR$/../WMSService/app/models/item_master.rb" />
         <option value="$PROJECT_DIR$/../WMSService/test/models/item_master_test.rb" />
         <option value="$PROJECT_DIR$/../WMSService/test/models/case_detail_test.rb" />
         <option value="$PROJECT_DIR$/../WMSService/test/models/location_inventory_test.rb" />
         <option value="$PROJECT_DIR$/../WMSService/app/models/case_detail.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" />
         <option value="$PROJECT_DIR$/../WMSService/app/controllers/shipment_controller.rb" />
         <option value="$PROJECT_DIR$/../WMSService/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/../WMSRF/app/controllers/case_putaway_controller.rb" />
@@ -217,6 +245,8 @@
         <option value="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_header.html" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_add.js.erb" />
         <option value="$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_detail.html" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb" />
       </list>
     </option>
   </component>
@@ -1152,30 +1182,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../WMSService/test/models/item_master_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../WMSService/test/fixtures/location_inventories.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../WMSService/test/models/location_inventory_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../WMSService/app/models/asn_header.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1188,14 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="32" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.75">
-          <caret line="115" column="34" selection-start-line="115" selection-start-column="34" selection-end-line="115" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1520,14 +1518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="45.375">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_add.js.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.875">
@@ -1554,8 +1544,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/templates/shipment_maintenance/add_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65989846">
+        <state vertical-scroll-proportion="-16.25">
           <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/item_maintenance/show_header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/item_maintenance/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/shipment_maintenance/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/item_maintenance/item_list.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="18" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/controller/shipment_maintenance/shipment_list.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30456853">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
       </provider>

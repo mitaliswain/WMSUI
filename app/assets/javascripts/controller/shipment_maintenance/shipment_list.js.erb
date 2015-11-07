@@ -6,12 +6,19 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
     $scope.header  = {}
     $scope.expand = 0
     $scope.squeeze = 100
-    $scope.search_choice = {value: 'shipment_nbr', text: 'Shipment Number'}
-    var app_parameters = Auth.getAppParameters()
-	var baseUrl = '/shipment_maintenance'
 
-    var client = app_parameters.client
-    var warehouse = app_parameters.warehouse
+    $scope.search_items = [
+        {value: 'shipment_nbr', text: 'Shipment Number'},
+        {value: 'purchase_order_nbr', text: 'Purchase Order Number'}
+    ];
+
+    $scope.search_choice = $scope.search_items[0];
+
+    var app_parameters = Auth.getAppParameters();
+	var baseUrl = '/shipment_maintenance';
+
+    var client = app_parameters.client;
+    var warehouse = app_parameters.warehouse;
 
     $scope.searchIitems = [
 	    {value: 'shipment_nbr', text: 'Shipment Number'},
@@ -116,8 +123,11 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
             $scope.status('Created');
 
             angular.forEach($scope.items, function(item) {
-                $scope.shipment_list.push(item[$scope.search_choice.value]);
+                if($scope.shipment_list.indexOf(item["shipment_header"][$scope.search_choice.value]) == -1) {
+                    $scope.shipment_list.push(item["shipment_header"][$scope.search_choice.value]);
+                }
             });
+            console.log($scope.shipment_list);
 
         });
 

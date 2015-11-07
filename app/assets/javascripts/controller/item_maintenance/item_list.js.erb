@@ -112,7 +112,7 @@ wms.controller('ItemMasterListCtrl', function ($scope, $http,  $location, $filte
 
             UserService.set_page($scope);
 
-            $scope.status('*All');
+            $scope.status('Active');
 
             angular.forEach($scope.items, function(item) {
                 $scope.item_list.push(item["item_header"][$scope.search_choice.value]);
