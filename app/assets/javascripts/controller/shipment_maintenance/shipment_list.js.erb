@@ -113,13 +113,14 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
             UserService.set_page($scope);
 
-            $scope.status('Active');
+            $scope.status('Created');
 
             angular.forEach($scope.items, function(item) {
                 $scope.shipment_list.push(item[$scope.search_choice.value]);
             });
 
         });
+
 
     };
 
