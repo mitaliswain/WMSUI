@@ -45,12 +45,11 @@ class CaseMaintenance
       case responses.code
       when 200, 422
         responses
-      when 201  
-        message = JSON.parse(responses)  
-        resource_url = Properties.getUrl + message["content"][0]["link"] 
-        app_parameters = app_parameters.merge(expand: "Yes")
-        response = RestClient.post(resource_url, app_parameters)
-        return JSON.parse(response)    
+      when 201
+        message = JSON.parse(responses)
+        resource_url = Properties.getUrl + message["content"][0]["link"]
+        response = RestClient.get(resource_url, {authorization: @token})
+        return JSON.parse(response)
      else
       message = responses.nil? ? {} : JSON.parse(responses)["message"] 
       {status: responses.code, message: [message]}.to_json
@@ -66,11 +65,16 @@ class CaseMaintenance
     app_parameters: app_parameters,
     fields_to_update: fields_to_update) { | responses, request, result, &block |
       case responses.code
-      when 200, 201, 422, 204
+      when 200, 422, 204
         responses
-     else
-       message = responses.nil? ? {} : JSON.parse(responses)["message"]  
-      {status: responses.code, message: message}.to_json
+      when 201
+        message = JSON.parse(responses)
+        resource_url = Properties.getUrl + message["content"][0]["link"]
+        response = RestClient.get(resource_url, {authorization: @token})
+        return JSON.parse(response)
+      else
+        message = responses.nil? ? {} : JSON.parse(responses)["message"]
+        {status: responses.code, message: message}.to_json
     end
     }    
     return JSON.parse(response)  

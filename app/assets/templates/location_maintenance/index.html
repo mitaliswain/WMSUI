@@ -78,10 +78,10 @@
                     <div ng-show="item.show" style="padding-left: 0%">
                       <div class="label label-default">
                         <div class="col-header">
-                          Inner Pack Qty
+                          Item
                         </div>
                         <div class="col-header">
-                          Inner Pack Weight
+                          Quantity
                         </div>
                         <div class="col-header">
                           Inner Pack Height
@@ -93,12 +93,12 @@
                         </div>
                       </div>
                       
-                      <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
+                      <div ng-repeat="detail in item.location_inventories" class="bs-callout">
                         <div class="col-header">
-                          {{detail.innerpack_qty}}
+                          {{detail.item}}
                         </div>
                         <div class="col-header">
-                          {{detail.innerpack_wgt}}
+                          {{detail.quantity}}
                         </div>
                         <div class="col-header">
                           {{detail.innerpack_hgt}}

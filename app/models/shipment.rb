@@ -18,25 +18,7 @@ class Shipment
     response = RestClient.get url, {authorization: @token}    
     return JSON.parse(response)       
   end
-  
-  def shipment_update_header(id, app_parameters, fields_to_update)
-    
-    url = Properties.getUrl + "/shipment/#{id}/update_header"   
-    response = RestClient.post(url, 
-    app_parameters: app_parameters,
-    fields_to_update: fields_to_update,
-    authorization: @token ) { | responses, request, result, &block |
-      case responses.code
 
-      when 200, 201, 422,204
-        responses
-     else
-       message = responses.nil? ? {} : JSON.parse(responses)["message"]
-      {status: responses.code, message: message}.to_json
-    end
-    }    
-    return JSON.parse(response)  
-  end
 
   def shipment_add_header(app_parameters, fields_to_update)
     url = Properties.getUrl + "/shipment/add_header"   
@@ -72,7 +54,6 @@ class Shipment
         responses
       when 201
         message = JSON.parse(responses)
-        p message
         resource_url = Properties.getUrl + message["content"][0]["link"]
         response = RestClient.get(resource_url, {authorization: @token})
         return JSON.parse(response)
@@ -82,6 +63,25 @@ class Shipment
     end
     }    
     return JSON.parse(response)  
+  end
+
+  def shipment_update_header(id, app_parameters, fields_to_update)
+
+    url = Properties.getUrl + "/shipment/#{id}/update_header"
+    response = RestClient.post(url,
+                               app_parameters: app_parameters,
+                               fields_to_update: fields_to_update,
+                               authorization: @token ) { | responses, request, result, &block |
+      case responses.code
+
+        when 200, 201, 422,204
+          responses
+        else
+          message = responses.nil? ? {} : JSON.parse(responses)["message"]
+          {status: responses.code, message: message}.to_json
+      end
+    }
+    return JSON.parse(response)
   end
 
 

@@ -19,14 +19,17 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
     $scope.search_items = [
         {value: 'case_id', text: 'Case Id'},
         {value: 'shipment_nbr', text: 'Shipment Number'},
-        {value: 'purchase_order_nbr', text: 'PO Number'}
+        {value: 'purchase_order_nbr', text: 'PO Number'},
+        {value: 'location', text: 'Location'}
     ];
 
     $scope.choose = function(choice) {
         $scope.search_choice = choice;
-        $scope.case_list = []
+        $scope.case_list = [];
         angular.forEach($scope.items, function(item) {
-            $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+            if($scope.case_list.indexOf(item["case_header"][$scope.search_choice.value]) == -1) {
+                $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+            }
         });
     }
 
@@ -123,8 +126,9 @@ wms.controller('CaseListCtrl', function ($scope, $http,  $location, $filter, $mo
             $scope.status(null);
 
             angular.forEach($scope.items, function(item) {
-                console.log(item["case_header"]["record_status"])
-                $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+                if($scope.case_list.indexOf(item["case_header"][$scope.search_choice.value]) == -1) {
+                    $scope.case_list.push(item["case_header"][$scope.search_choice.value]);
+                }
             });
 
         });

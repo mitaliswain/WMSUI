@@ -42,10 +42,10 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     ];
 
     $scope.add_another = function() {
-        $scope.editableForm.$show();
         $scope.shipment_header = {};
         $scope.shipment_detail = {};
         $scope.showing = ! $scope.showing;
+        $scope.editableForm.$show();
     };
 
     $scope.clear = function() {
@@ -67,9 +67,8 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
 
 
  $scope.saveHeader = function() {
-	
-    var fields_to_update = {};
-    fields_to_update = $scope.shipment_header;
+
+    var fields_to_update = $scope.shipment_header;
     var url = baseUrl + '/add_header?client=' + client + '&warehouse=' + warehouse;
     return $http.post(url, {
     	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
@@ -100,8 +99,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
 
 
  $scope.saveDetail = function() {
-    var fields_to_update = {};
-    fields_to_update = $scope.shipment_detail;
+    var fields_to_update = $scope.shipment_detail;
     fields_to_update.asn_header_id = $scope.to_shipment_header_id;
    
 
@@ -114,6 +112,7 @@ wms.controller('ShipmentAddCtrl', function ($scope, $http, $q, $stateParams, $lo
     }).success(function(data){
         $scope.shipment_header = data.shipment_header;
         $scope.shipment_detail = data.shipment_detail;
+        $scope.editableForm.$hide();
         setInfo('info', 'Shipment detail added');
     }).error(function(message){
         if (message.status == '422'){

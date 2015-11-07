@@ -15,27 +15,41 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $locati
     $scope.case_detail.client = client;
     $scope.case_detail.warehouse = warehouse;
 
+    $scope.$watch('editableForm', function(newValue, oldValue) {
+        $scope.editableForm.$show();
+        $scope.showing = true;
+    });
+
+
     $scope.globalInfo = {
    	error: false,
    	warning: false,
    	info: false 
    };
    $scope.statuses = [
-    {value: 'Created', text: 'Created'},
+    {value: 'Created', text: 'Created'}
     ]; 
    
    
    $scope.YesorNo = [
     {value: 'Y', text: 'Yes'},
-    {value: 'N', text: 'No'},
+    {value: 'N', text: 'No'}
     ]; 
 
     $scope.clear = function() {
 	   $scope.case_header= {};
 	   $scope.case_detail= {};	
 	   };
-   
-  $scope.header_template = {
+
+    $scope.add_another = function() {
+        $scope. case_header = {};
+        $scope. case_detail = {};
+        $scope.editableForm.$show();
+        $scope.showing = ! $scope.showing;
+    };
+
+
+    $scope.header_template = {
         name: 'header_template',
         url: '<%= asset_path('case_maintenance/case_header.html') %>'
         };
@@ -47,19 +61,51 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $locati
 
 
 
+    $scope.saveHeader = function() {
+
+        var fields_to_update = $scope.case_header;
+        var url = baseUrl + '/add_header?client=' + client + '&warehouse='+ warehouse;
+        return $http.post(url, {
+            'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
+            app_parameters: app_parameters,
+            fields_to_update: fields_to_update
+        }).success(function(data){
+            $scope.case_header = data.case_header;
+            $scope.case_details = data.case_detail;
+            $scope.editableForm.$hide();
+            setInfo('info', 'Case Created Successfully');
+
+        }).error(function(message){
+            if (message.status == '422')
+            {
+                setInfo('error', 'Validation Error');
+                angular.forEach(message.errors, function(error){
+                    $scope.editableForm.$setError(error.field, error.message);
+                });
+            }
+
+            else {
+                setInfo('error', message.message);
+
+            }
+        });
+    };
+
+
     $scope.saveDetail = function() {
-        var fields_to_update = {};
-        fields_to_update = $scope.case_detail;
+
+        var fields_to_update = $scope.case_detail;
         fields_to_update.case_header_id = case_header_id;
 
         var url = baseUrl + '/add_detail?client=' + client + '&warehouse='+ warehouse;
         return $http.post(url, {
             'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-             app_parameters: app_parameters,
-             fields_to_update: fields_to_update
+            app_parameters: app_parameters,
+            fields_to_update: fields_to_update
         }).success(function(data){
             $scope.case_header = data.case_header;
             $scope.case_detail = data.case_detail;
+            $scope.editableForm.$hide();
             setInfo('info', 'Case detail added');
         }).error(function(message){
             if (message.status == '422'){
@@ -79,38 +125,8 @@ wms.controller('CaseAddCtrl', function ($scope, $http, $q, $stateParams, $locati
         });
     };
 
- $scope.saveHeader = function() {
-	
-    var fields_to_update = {};
-    fields_to_update = $scope.case_header;
-    var url = baseUrl + '/add_header?client=' + client + '&warehouse='+ warehouse;
-    return $http.post(url, {
-    	'authenticity_token': $('meta[name="csrf-token"]').attr('content'),
-    	app_parameters: app_parameters,
-    	fields_to_update: fields_to_update
-    }).success(function(data){ 		
-    	$scope.case_header = data.case_header;
-		$scope.case_details = data.case_detail;    
- 		setInfo('info', 'Case Created Successfully');
 
-    }).error(function(message){
-    	if (message.status == '422')
-    	{ 
-    		setInfo('error', 'Validation Error');
-    		angular.forEach(message.errors, function(error){
-    			$scope.editableForm.$setError(error.field, error.message);
-    		});
-    	}
-
-    	else {
-    		 setInfo('error', message.message);
-
-    	}
-    });
- };
-
-
- var setInfo = function(infotype, message) {
+    var setInfo = function(infotype, message) {
      angular.forEach($scope.globalInfo, function (infoValue, infoKey) {
          if(infotype == infoKey) {
  			$scope.globalInfo[infoKey] = true

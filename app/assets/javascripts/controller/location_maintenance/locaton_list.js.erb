@@ -77,20 +77,19 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
     };
 
     $scope.showLocation = function(show, location, location_detail_id) {
-        var url = baseUrl + '/'+  location + '.json'
+        var url = baseUrl + '/'+  location + '.json';
 
         $http.get(url).success(function(data) {
-            $scope.location_header = data.location_header
-            console.log(data)
-            $scope.location_details = data.location_detail
+            $scope.location_header = data.location_header;
+            $scope.location_inventories = data.location_inventories;
 
             if (show == 'Header') {
-                $scope.header.show = true
+                $scope.header.show = true;
                 $scope.detail.show = false
             } else {
-                $scope.detail.show = true
-                $scope.header.show = false
-                angular.forEach($scope.location_details, function (location_detail) {
+                $scope.detail.show = true;
+                $scope.header.show = false;
+                angular.forEach($scope.location_inventories, function (location_detail) {
                     if (location_detail.id == location_detail_id) {
                         $scope.location_detail = location_detail;
                     }
@@ -98,16 +97,16 @@ wms.controller('LocationMasterListCtrl', function ($scope, $http,  $location, $f
             }
         });
 
-        $scope.expand = 50
-        $scope.squeeze = 50
-        $scope.selected_header_id = location
+        $scope.expand = 50;
+        $scope.squeeze = 50;
+        $scope.selected_header_id = location;
         $scope.selected_detail_id = location_detail_id
-    }
+    };
 
     $scope.hideLocation= function() {
-        $scope.header.show= false
-        $scope.detail.show= false
-        $scope.expand = 0
+        $scope.header.show= false;
+        $scope.detail.show= false;
+        $scope.expand = 0;
         $scope.squeeze = 100
     };
 

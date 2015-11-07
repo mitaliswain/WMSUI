@@ -22,7 +22,11 @@
 
 		<form editable-form name="editableForm" onaftersave="saveDetail()">
 			<div class="buttons">
-                {{editableForm.$show()}}
+                <button type="button" class="btn btn-primary" ng-show="!editableForm.$visible"
+                        ng-click="add_another()">
+                    Add Another
+                </button>
+
                 <!-- buttons to submit / cancel form -->
                 <span ng-show="editableForm.$visible">
                     <button type="submit" class="btn btn-info" ng-disabled="editableForm.$waiting">

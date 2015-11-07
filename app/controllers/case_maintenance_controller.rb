@@ -26,13 +26,8 @@ class CaseMaintenanceController < ApplicationController
   end
   
   def new
-    
   end
-  
-  def add_detail
-    
-  end
-  
+
   def edit_detail
     case_data = {}
     case_data['shipment_nbr'] = params[:id]
@@ -45,16 +40,16 @@ class CaseMaintenanceController < ApplicationController
     end
   end
 
+  def add_header
+    response = CaseMaintenance.new(request.headers['authorization']).case_add_header(params[:app_parameters], params[:fields_to_update])
+    render :json => response, status: response['status']
+  end
+
   def add_detail
     response = CaseMaintenance.new(request.headers['authorization']).case_add_detail(params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
   end
 
-  def add_header
-    response = CaseMaintenance.new(request.headers['authorization']).case_add_header(params[:app_parameters], params[:fields_to_update])
-    render :json => response, status: response['status']
-  end
-  
   def update_header
     response = CaseMaintenance.new(request.headers['authorization']).case_update_header(params[:id], params[:app_parameters], params[:fields_to_update])
     render :json => response, status: response['status']
