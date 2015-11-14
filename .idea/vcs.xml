@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../WMSRF" vcs="Git" />
+    <mapping directory="$USER_HOME$/RubymineProjects/CucumberWMS" vcs="Git" />
   </component>
 </project>
