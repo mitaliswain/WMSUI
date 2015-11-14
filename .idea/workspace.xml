@@ -6,6 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/models/location_inventory.rb" afterPath="$PROJECT_DIR$/../WMSService/app/models/location_inventory.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/controllers/location_master_controller.rb" afterPath="$PROJECT_DIR$/../WMSService/app/controllers/location_master_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WMSService/app/services/location/location_master_maintenance.rb" afterPath="$PROJECT_DIR$/../WMSService/app/services/location/location_master_maintenance.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WMSUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,8 +107,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/templates/location_maintenance/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40609136">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.38071066">
+              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -1608,8 +1609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/templates/location_maintenance/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40609136">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.38071066">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
           <folding />
         </state>
       </provider>
