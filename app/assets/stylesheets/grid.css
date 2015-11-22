@@ -175,5 +175,9 @@ form[name="editableForm"] .editable {
 }
 
 form[name="editableForm"] select {
-    width: 120px;
+    width: 200px;
+}
+
+form[name="editableForm"] input {
+    width: 200px;
 }

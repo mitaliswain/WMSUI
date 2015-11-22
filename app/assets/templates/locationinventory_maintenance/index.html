@@ -1,6 +1,6 @@
-<div id="ItemMasterListCtrl" class="maintenance_screen_div">
+<div id="LocationInventoryListCtrl" class="maintenance_screen_div">
           <div>
-            <h3><a href="/location_inventory_maintenance"><span class="label label-primary">Item Master</span></a></h3>
+            <h3><a href="/location_inventory_maintenance"><span class="label label-primary">Location Inventory</span></a></h3>
           </div>
           <div class="input-group pull-right" style="width: 30%" >
                         <span class="input-group-addon">
@@ -78,13 +78,16 @@
                     <div ng-show="item.show" style="padding-left: 0%">
                       <div class="label label-default">
                         <div class="col-header">
-                          Inner Pack Qty
+                          Case ID
                         </div>
                         <div class="col-header">
-                          Inner Pack Weight
+                          Case Quantity
                         </div>
                         <div class="col-header">
-                          Inner Pack Height
+                          Status
+                        </div>
+                        <div class="col-header">
+                              Hold Code
                         </div>
                         <div class="col-header">
                           <a id="open_shipment_detail_add" ng-click="item_detail_add_modal('lg', item.item_header.id)">
@@ -93,15 +96,18 @@
                         </div>
                       </div>
                       
-                      <div ng-repeat="detail in item.item_inner_pack" class="bs-callout">
+                      <div ng-repeat="detail in item.case_header" class="bs-callout">
                         <div class="col-header">
-                          {{detail.innerpack_qty}}
+                          {{detail.case_id}}
                         </div>
                         <div class="col-header">
-                          {{detail.innerpack_wgt}}
+                          {{detail.quantity}}
                         </div>
                         <div class="col-header">
-                          {{detail.innerpack_hgt}}
+                          {{detail.record_status}}
+                        </div>
+                        <div class="col-header">
+                              {{detail.hold_code}}
                         </div>
                         <div class="icon-header pull-right">
                           <a id="show_item_detail" ng-click="showItem('Detail', item.item_header.id,  detail.id)">
