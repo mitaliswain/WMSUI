@@ -146,6 +146,11 @@ select {
     margin-right: 2%;
 }
 
+.detail-view {
+    border: solid;
+    border-color: lightgray;
+}
+
 .navbar-inverse .navbar-brand  {
     color: #fff;
     background-color: transparent;

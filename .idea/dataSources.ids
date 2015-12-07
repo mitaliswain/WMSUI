@@ -3,4 +3,22 @@
   <data-source name="Rails WMSUI: development" uuid="d158bbc1-3bfa-42e9-9573-d35fdb4f7f81">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source name="Rails WMSRF: development" uuid="ffa00571-a131-4d10-8bdf-9ad37ae1b578">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails WMSRF: test" uuid="73a9a97e-e8ba-4340-89ce-6c9908c00c34">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails WMSService: development" uuid="aaef4a8c-f45f-484c-be38-191b4f3c3607">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails WMSService: test" uuid="0876370b-ab36-4250-859e-e0d258598d0e">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails WMSService: production" uuid="b314db33-27c4-46c2-8911-0f2b0dc6c01f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails WMSUI: test" uuid="dc28067c-b2a5-4bb3-a797-52a099af5385">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>

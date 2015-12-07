@@ -9,7 +9,8 @@ wms.controller('ShipmentListCtrl', function ($scope, $http,  $location, $filter,
 
     $scope.search_items = [
         {value: 'shipment_nbr', text: 'Shipment Number'},
-        {value: 'purchase_order_nbr', text: 'Purchase Order Number'}
+        {value: 'purchase_order_nbr', text: 'Purchase Order Number'},
+        {value: 'pallet_id', text: 'Pallet Id'}
     ];
 
     $scope.search_choice = $scope.search_items[0];

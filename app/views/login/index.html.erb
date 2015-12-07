@@ -1,9 +1,21 @@
 <html>
 <head>
+    <style>
+        body {
+            background-image: url(/assets/warehouse2.jpg); /*You will specify your image path here.*/
 
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: top center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed;
+        }
+
+    </style>
 </head>
 
-<body ng-app="login" ng-controller="LoginCtrl" ng-keypress="($event.charCode==13)?login():return">
+<body ng-app="login" ng-controller="LoginCtrl" ng-keypress="($event.charCode==13)?login():return"  >
 
 
 
