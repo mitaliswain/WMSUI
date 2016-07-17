@@ -63,10 +63,10 @@
                 {{item.configuration_header.key}}
               </div>
               <div class="col-header truncate">
-                <a href="#" id="key" onshow="loadGroups(item.key)" editable-select="item.value" e-ng-options="s.value as s.text for s in options" onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
+                <a href="#" id="value"  editable-text="item.value"  onbeforesave="update_configuration($data, this, item.id)">{{ item.configuration_header.value || "empty" }}</a>
               </div>
               <div class="col-header truncate">
-                <a href="#" id="value"  editable-select="item.enable" e-ng-options="s.value as s.text for s in TrueOrFalse" onbeforesave="update_configuration($data, this, item.id)">{{ item.enable || "empty" }}</a>
+                <a href="#" id="enable"  editable-text="item.enable" onbeforesave="update_configuration($data, this, item.id)">{{ tem.configuration_header.enable || "empty" }}</a>
               </div>
               <div class="icon-header pull-right">
                 <a id="open_configuration_detail" ng-click="showConfiguration('Header', item.configuration_header.id)">

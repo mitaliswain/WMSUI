@@ -14,6 +14,10 @@ def index
     end
 end
 
+def create
+  response = GlobalConfiguration.new(request.headers['authorization']).configuration_create(params[:app_parameters], params[:fields_to_update])
+  render :json => response, status: response['status']
+end
 
 def show
   configuration = {}
