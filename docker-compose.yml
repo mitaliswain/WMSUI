@@ -1,0 +1,28 @@
+version: '2'
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "32777:5432"
+
+  wmsservice:
+    image: jagannathlenka/wmsservice
+    ports:
+      - "3001:3001"
+    command: bash -c "rake db:migrate RAILS_ENV=qa && rails s -b 0.0.0.0 -p 3001 -e qa"
+    depends_on:
+      - db
+
+  wmsui:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+    command: rails s -b 0.0.0.0
+    depends_on:
+      - wmsservice
+
+
+
+

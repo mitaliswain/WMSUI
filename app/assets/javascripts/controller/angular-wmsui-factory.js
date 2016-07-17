@@ -260,6 +260,11 @@ wms.factory("UserService", function($http, $filter){
             $scope.nextPage = function () {
                 if ($scope.currentPage < $scope.pagedItems.length - 1) {
                     $scope.currentPage++;
+
+                     if ($scope.end_page > 8) {
+                         $scope.start_page
+                     }
+
                 }
             };
 
